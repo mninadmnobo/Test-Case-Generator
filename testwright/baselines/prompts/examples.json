@@ -1,0 +1,99 @@
+[
+  {
+    "id": "LOGIN-001",
+    "title": "Successful login with valid credentials",
+    "module_id": 1,
+    "module_title": "Login",
+    "workflow": "User Authentication",
+    "test_type": "positive",
+    "priority": "High",
+    "preconditions": "User is registered with username 'john' and password 'demo'. User is on the login page.",
+    "steps": [
+      "Navigate to the login page",
+      "Enter 'john' in the Username field",
+      "Enter 'demo' in the Password field",
+      "Click the 'Log In' button",
+      "Verify the page redirects to the dashboard"
+    ],
+    "expected_result": "User successfully logs in and is redirected to the dashboard. The Account Services menu replaces the Customer Login panel."
+  },
+  {
+    "id": "LOGIN-002",
+    "title": "Login fails with invalid password",
+    "module_id": 1,
+    "module_title": "Login",
+    "workflow": "User Authentication",
+    "test_type": "negative",
+    "priority": "High",
+    "preconditions": "User is registered with username 'john'. User is on the login page.",
+    "steps": [
+      "Navigate to the login page",
+      "Enter 'john' in the Username field",
+      "Enter 'wrongpass' in the Password field",
+      "Click the 'Log In' button",
+      "Observe the error message displayed in the main content area"
+    ],
+    "expected_result": "Error message 'The username and password could not be verified.' is displayed. User remains on the login page. Username field retains 'john', password field is cleared."
+  },
+  {
+    "id": "LOGIN-003",
+    "title": "Login with empty username field",
+    "module_id": 1,
+    "module_title": "Login",
+    "workflow": "User Authentication",
+    "test_type": "edge_case",
+    "priority": "Medium",
+    "preconditions": "User is on the login page.",
+    "steps": [
+      "Navigate to the login page",
+      "Leave the Username field empty",
+      "Enter 'demo' in the Password field",
+      "Click the 'Log In' button",
+      "Observe the validation message"
+    ],
+    "expected_result": "Validation error 'Please enter a username and password.' is displayed. User remains on the login page."
+  },
+  {
+    "id": "REGISTER-001",
+    "title": "Successful registration with valid data",
+    "module_id": 3,
+    "module_title": "Register",
+    "workflow": "Account Registration",
+    "test_type": "positive",
+    "priority": "High",
+    "preconditions": "User is on the registration page. No account exists with username 'newuser1'.",
+    "steps": [
+      "Navigate to the registration page by clicking 'Register' link",
+      "Enter 'John' in the First Name field",
+      "Enter 'Doe' in the Last Name field",
+      "Enter '123 Main St' in the Address field",
+      "Enter 'New York' in the City field",
+      "Enter 'NY' in the State field",
+      "Enter '10001' in the Zip Code field",
+      "Enter '555-1234' in the Phone field",
+      "Enter '123-45-6789' in the SSN field",
+      "Enter 'newuser1' in the Username field",
+      "Enter 'Pass123!' in the Password field",
+      "Enter 'Pass123!' in the Confirm field",
+      "Click the 'Register' button"
+    ],
+    "expected_result": "Welcome message 'Your account was created successfully. You are now logged in.' is displayed with username 'newuser1'. Account Services menu replaces the Customer Login panel."
+  },
+  {
+    "id": "REGISTER-002",
+    "title": "Registration with mismatched passwords",
+    "module_id": 3,
+    "module_title": "Register",
+    "workflow": "Account Registration",
+    "test_type": "negative",
+    "priority": "High",
+    "preconditions": "User is on the registration page.",
+    "steps": [
+      "Fill in all registration fields with valid data",
+      "Enter 'Pass123!' in the Password field",
+      "Enter 'DifferentPass!' in the Confirm field",
+      "Click the 'Register' button"
+    ],
+    "expected_result": "Error message 'Passwords did not match.' is displayed next to the Confirm field. Registration is not completed."
+  }
+]

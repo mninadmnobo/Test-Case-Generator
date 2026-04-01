@@ -1,0 +1,305 @@
+#!/usr/bin/env python3
+"""
+TestWright CLI - AI-powered test case generation from functional specifications.
+
+Usage:
+    testwright --generate --input spec.json --api-key "sk-..." --provider openai --output output/
+    testwright export-md --input output/test-cases.json --output output/test-cases.md
+"""
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import testwright
+from testwright.core.generator import TestCaseGenerator
+from testwright.exporters.markdown_exporter import load_test_cases, generate_markdown
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="TestWright - AI-powered test case generation from functional specifications"
+    )
+    parser.add_argument("--version", action="version", version=f"testwright {testwright.__version__}")
+
+    subparsers = parser.add_subparsers(dest="command")
+
+    # Generate command (also accessible via --generate flag for backward compat)
+    parser.add_argument("--generate", action="store_true", help="Generate test cases")
+    parser.add_argument("--input", "-i", help="Path to functional description directory or JSON file")
+    parser.add_argument("--spec", help="Path to functional specification markdown file (manual override)")
+    parser.add_argument("--nav", help="Path to navigation markdown file (manual override)")
+    parser.add_argument("--api-key", help="API key for LLM provider")
+    parser.add_argument("--model", default="gpt-4o", help="Model to use (default: gpt-4o)")
+    parser.add_argument("--provider", default="openai", choices=["openai", "github", "openrouter"],
+                       help="LLM provider (default: openai)")
+    parser.add_argument("--output", "-o", default="output", help="Output directory (default: output)")
+    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
+    parser.add_argument("--debug-file", default="debug_log.txt", help="Debug log file path")
+    parser.add_argument(
+        "--mode",
+        default="full",
+        choices=["full", "basic"],
+        help=(
+            "Pipeline mode: 'full' (default) runs all nodes including post-verification "
+            "and execution planning; 'basic' stops after assembler — no verification "
+            "flagging, RAG matching, or execution plans are generated."
+        ),
+    )
+
+    # Export markdown subcommand
+    export_parser = subparsers.add_parser("export-md", help="Export test cases JSON to Markdown")
+    export_parser.add_argument("--input", "-i", required=True, help="Input JSON file path")
+    export_parser.add_argument("--output", "-o", help="Output Markdown file path")
+
+    args = parser.parse_args()
+
+    if args.command == "export-md":
+        return _export_markdown(args)
+    elif args.generate:
+        return _generate(args)
+    else:
+        parser.print_help()
+        return 1
+
+
+def _generate(args):
+    """Run the test case generation pipeline."""
+    if not args.api_key:
+        print("Error: --api-key is required for generation")
+        return 1
+
+    # Manual --spec / --nav takes priority over --input
+    if hasattr(args, 'spec') and args.spec:
+        functional_desc = _load_from_files(
+            spec_path=Path(args.spec),
+            nav_path=Path(args.nav) if args.nav else None,
+        )
+    elif args.input:
+        input_path = Path(args.input)
+        if not input_path.exists():
+            print(f"Error: Input path not found: {input_path}")
+            return 1
+        if input_path.is_dir():
+            functional_desc = _load_from_directory(input_path)
+        elif input_path.suffix.lower() == ".md":
+            functional_desc = _load_from_markdown_file(input_path)
+        else:
+            with open(input_path, 'r') as f:
+                functional_desc = json.load(f)
+    else:
+        print("Error: --input or --spec is required for generation")
+        return 1
+
+    # Build output path: dataset/<website>/<website>-<model>
+    # unless the user explicitly passed --output
+    if args.output != "output":
+        output_dir = args.output
+    else:
+        website_name = functional_desc.get("project_name", "output").replace(" ", "_")
+        model_slug = args.model.replace("/", "-")
+        if hasattr(args, 'spec') and args.spec:
+            base_dir = str(Path(args.spec).parent)
+        elif args.input:
+            base_dir = str(Path(args.input) if Path(args.input).is_dir() else Path(args.input).parent)
+        else:
+            base_dir = "dataset"
+        output_dir = str(Path(base_dir) / f"{website_name}-{model_slug}")
+
+    print(f"  Output directory: {output_dir}")
+
+    generator = TestCaseGenerator(
+        api_key=args.api_key,
+        model=args.model,
+        provider=args.provider,
+        debug=args.debug,
+        debug_file=args.debug_file,
+        mode=args.mode,
+    )
+
+    output = generator.generate(functional_desc, output_dir=output_dir)
+
+    print(f"\nGeneration complete!")
+    print(f"  Total tests: {output.summary.get('total_tests', 0)}")
+    print(f"  Output: {output_dir}/")
+    return 0
+
+
+def _load_from_files(spec_path: Path, nav_path=None) -> dict:
+    """Load functional description from explicitly provided file paths."""
+    if not spec_path.exists():
+        print(f"Error: Spec file not found: {spec_path}")
+        sys.exit(1)
+
+    spec_text = spec_path.read_text(encoding='utf-8')
+    modules = []
+    current_module = None
+    module_id = 0
+
+    for line in spec_text.split('\n'):
+        if line.startswith('## '):
+            if current_module:
+                modules.append(current_module)
+            module_id += 1
+            current_module = {"id": module_id, "title": line[3:].strip(), "description": ""}
+        elif current_module:
+            current_module["description"] += line + "\n"
+
+    if current_module:
+        modules.append(current_module)
+
+    navigation_overview = ""
+    if nav_path and nav_path.exists():
+        navigation_overview = nav_path.read_text(encoding='utf-8')
+        print(f"  Using navigation file: {nav_path.name}")
+
+    project_name = spec_path.stem.replace('-', ' ').replace('_', ' ').title()
+    print(f"  Spec: {spec_path.name}  ({len(modules)} modules)")
+
+    return {
+        "project_name": project_name,
+        "website_url": "",
+        "navigation_overview": navigation_overview,
+        "mock_data": "",
+        "modules": modules,
+    }
+
+
+def _load_from_directory(dir_path: Path) -> dict:
+    """Load functional description from a directory of markdown files."""
+    spec_file = dir_path / "functional_specification.md"
+    nav_file = dir_path / "navigation.md"
+    mock_file = dir_path / "mock_data.md"
+
+    if not spec_file.exists():
+        # Fall back to any single .md file in the directory
+        md_files = list(dir_path.glob("*.md"))
+        if len(md_files) == 1:
+            spec_file = md_files[0]
+            print(f"  Using {spec_file.name} as functional specification")
+        else:
+            print(f"Error: functional_specification.md not found in {dir_path}")
+            sys.exit(1)
+
+    # Read the specification
+    spec_text = spec_file.read_text(encoding='utf-8')
+
+    # Parse modules from markdown headings
+    modules = []
+    current_module = None
+    module_id = 0
+
+    for line in spec_text.split('\n'):
+        if line.startswith('## '):
+            if current_module:
+                modules.append(current_module)
+            module_id += 1
+            title = line[3:].strip()
+            current_module = {
+                "id": module_id,
+                "title": title,
+                "description": ""
+            }
+        elif current_module:
+            current_module["description"] += line + "\n"
+
+    if current_module:
+        modules.append(current_module)
+
+    # Read navigation overview
+    navigation_overview = ""
+    if nav_file.exists():
+        navigation_overview = nav_file.read_text(encoding='utf-8')
+
+    # Read mock data
+    mock_data = ""
+    if mock_file.exists():
+        mock_data = mock_file.read_text(encoding='utf-8')
+
+    # Build the project name from directory name
+    project_name = dir_path.name.replace('-', ' ').replace('_', ' ').title()
+
+    return {
+        "project_name": project_name,
+        "website_url": "",
+        "navigation_overview": navigation_overview,
+        "mock_data": mock_data,
+        "modules": modules
+    }
+
+
+def _load_from_markdown_file(md_path: Path) -> dict:
+    """Load functional description from a single markdown file passed directly."""
+    spec_text = md_path.read_text(encoding='utf-8')
+
+    modules = []
+    current_module = None
+    module_id = 0
+    in_functional_section = False
+
+    for line in spec_text.split('\n'):
+        stripped = line.strip()
+
+        if stripped in {'## Functional Description'}:
+            in_functional_section = True
+            continue
+
+        if in_functional_section and stripped.startswith('## '):
+            break
+
+        if not in_functional_section:
+            continue
+
+        if stripped.startswith('### '):
+            if current_module:
+                modules.append(current_module)
+            module_id += 1
+            title = re.sub(r'^\d+\.\s*', '', stripped[4:]).strip()
+            current_module = {"id": module_id, "title": title, "description": ""}
+        elif current_module:
+            current_module["description"] += line + "\n"
+
+    if current_module:
+        modules.append(current_module)
+
+    project_name = md_path.stem.replace('-', ' ').replace('_', ' ').title()
+
+    return {
+        "project_name": project_name,
+        "website_url": "",
+        "navigation_overview": "",
+        "mock_data": "",
+        "modules": modules,
+    }
+
+
+def _export_markdown(args):
+    """Export test cases from JSON to Markdown."""
+    input_path = Path(args.input)
+    if not input_path.exists():
+        print(f"Error: Input file not found: {input_path}")
+        return 1
+
+    output_path = args.output
+    if not output_path:
+        output_path = input_path.with_suffix('.md')
+
+    print(f"Reading test cases from: {input_path}")
+    data = load_test_cases(str(input_path))
+
+    print("Generating Markdown...")
+    markdown = generate_markdown(data)
+
+    print(f"Writing to: {output_path}")
+    with open(output_path, 'w') as f:
+        f.write(markdown)
+
+    test_count = len(data.get('test_cases', []))
+    print(f"Done! Exported {test_count} test cases to Markdown.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main() or 0)
