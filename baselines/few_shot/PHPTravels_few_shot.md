@@ -67,7 +67,8 @@ Here are examples from the PHPTravels system:
 
 ---
 
-Now read the following functional description and generate test cases for it.
+Now read the following functional description and generate an EXHAUSTIVE list of test cases for it. 
+CRITICAL: Do NOT limit yourself to a small number of tests. You must comprehensively cover all logic, generating as many test cases as possible, including all positive, negative, and edge boundaries.
 
 <module_name>{Module name}</module_name>
 

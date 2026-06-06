@@ -296,10 +296,10 @@ async def run_baseline(approach: str, website: str, model_key: str,
     result_file = dest / "test-cases.json"
 
 
-    if result_file.exists():
-        log(f"{website}/{model_key}/{folder} - already exists", "SKIP")
-        _counts["skip"] += 1
-        return
+    # if result_file.exists():
+    #     log(f"{website}/{model_key}/{folder} - already exists", "SKIP")
+    #     _counts["skip"] += 1
+    #     return
 
     modules = parse_modules(spec_info["spec"])
     if not modules:
