@@ -68,6 +68,12 @@
 | MF-LOGIN-007 | Empty username | None | 1. Enter valid tenant<br>2. Leave username empty<br>3. Enter password<br>4. Click "Login" | Inline validation error shown for username | High |
 | MF-LOGIN-008 | Empty password | None | 1. Enter valid tenant<br>2. Enter username<br>3. Leave password empty<br>4. Click "Login" | Inline validation error shown for password | High |
 | MF-LOGIN-009 | Both fields empty | None | 1. Leave Username and Password empty<br>2. Click "Login" | Validation errors shown for all mandatory fields | Medium |
+| MF-LOGIN-010 | SQL injection payload in Username field | None | 1. Enter `' OR 1=1;--` | Rejected, no crash | High |
+| MF-LOGIN-011 | Massive password string (10,000 chars) | None | 1. Paste huge password | Handled gracefully | High |
+| MF-LOGIN-012 | Rapid double click on Login button | None | 1. Click Login 5 times fast | Idempotent, 1 session | High |
+| MF-LOGIN-013 | Null byte injection | None | 1. Enter `admin%00` | Rejected | High |
+| MF-LOGIN-014 | Cross-site scripting (XSS) in Tenant field | None | 1. Enter `<script>alert(1)</script>` | Sanitized | High |
+| MF-LOGIN-015 | Emoji in username | None | 1. Enter 🚀 | Rejected or handled | Medium |
 
 ### Boundary Tests
 
@@ -116,6 +122,12 @@
 | MF-DASH-005 | Dashboard with no data | Fresh instance, no clients/loans | 1. Login and open Dashboard from Home | Dashboard shows zero counts or empty state appropriately | Medium |
 | MF-DASH-006 | Dashboard refresh after transaction | User logged in, data exists | 1. View dashboard metrics<br>2. Create a client or post a repayment<br>3. Refresh dashboard | Summary metrics reflect latest committed data | Medium |
 | MF-DASH-007 | Navigate from dashboard quick links | User logged in | 1. Click each quick action on Dashboard | Each action opens the corresponding create or transaction page | Medium |
+| MF-DASH-008 | Dashboard - massive negative integer rendering | None | 1. Navigate to charts | Handled safely | Medium |
+| MF-DASH-009 | Dashboard - overlapping widgets test | None | 1. Resize viewport rapidly | UI remains responsive | Low |
+| MF-DASH-010 | Dashboard - zero data fallback rendering | None | 1. Login with empty account | Safe fallback UI | Medium |
+| MF-DASH-011 | Dashboard - deep link bypassing dashboard | None | 1. Go direct to sub-page | Intercepted correctly | High |
+| MF-DASH-012 | Dashboard - session timeout exact boundary | None | 1. Wait exact timeout | Redirects seamlessly | High |
+| MF-DASH-013 | Dashboard - unicode character rendering | None | 1. Dashboard loads name `中文` | Renders correctly | Low |
 
 ---
 
@@ -136,6 +148,11 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-SEARCH-009 | Search non-existent term | User logged in | 1. Enter random string not mapped to any entity<br>2. Submit | "No results found" or equivalent empty-state message displayed | Medium |
 | MF-SEARCH-010 | Empty search submission | User logged in | 1. Leave search input empty<br>2. Submit | Search is not executed or empty-state guidance is shown without error | Low |
+| MF-SEARCH-011 | SQL injection in search bar | None | 1. Enter `' UNION SELECT` | Input sanitized | High |
+| MF-SEARCH-012 | Exact 255 character search string | None | 1. Enter 255 chars | Handled gracefully | Low |
+| MF-SEARCH-013 | Rapid repeated searches | None | 1. Mash enter key | Debounced, single request | High |
+| MF-SEARCH-014 | Search using emoji | None | 1. Enter 🚀 | Safe empty result | Low |
+| MF-SEARCH-015 | Search space-only string | None | 1. Enter `    ` | Validation error | Medium |
 
 ### Boundary Tests
 
@@ -188,6 +205,12 @@
 | MF-CLIENT-021 | Duplicate identifier for same client document type | Active client with identifier exists | 1. Add another identifier with same document type and key where uniqueness is enforced<br>2. Submit | Validation or server error prevents duplicate identifier | Medium |
 | MF-CLIENT-022 | Transfer client to same office | Active client exists | 1. Click Transfer Client<br>2. Select current office<br>3. Submit | Validation blocks no-op transfer or system handles without duplicate history | Low |
 | MF-CLIENT-023 | Close client without closure reason | Active client with no active accounts | 1. Click Close<br>2. Leave reason empty<br>3. Submit | Validation error shown for closure reason | High |
+| MF-CLIENT-024 | HTML injection in First Name | None | 1. Enter `<b>Name</b>` | Rendered safely | High |
+| MF-CLIENT-025 | Date of Birth in year 1800 | None | 1. Enter 01/01/1800 | Validation error | High |
+| MF-CLIENT-026 | Exact 256 char Last Name | None | 1. Enter 256 chars | Validation error | High |
+| MF-CLIENT-027 | Concurrent activation | Pending | 1. Activate from 2 tabs | Idempotent | High |
+| MF-CLIENT-028 | Duplicate External ID | Active | 1. Create with same ID | Unique constraint error | High |
+| MF-CLIENT-029 | Zero length file upload | Active | 1. Upload 0 byte file | Validation error | Medium |
 
 ### Additional Coverage Tests
 
@@ -226,6 +249,11 @@
 | MF-GROUP-011 | Activate group with invalid activation date | Pending group exists | 1. Activate group<br>2. Enter date before submission date<br>3. Submit | Validation or business rule prevents activation | High |
 | MF-GROUP-012 | Add ineligible client to group | Client not eligible due to status/office constraints | 1. Add member to group<br>2. Select ineligible client | Selection is blocked or submission fails with proper message | Medium |
 | MF-GROUP-013 | Close group with active dependent accounts blocking closure | Group has active dependent accounts | 1. Attempt close action | Closure is prevented with business-rule error | High |
+| MF-GROUP-014 | 1000 members in one group stress test | None | 1. Add 1000 members | Handled without timeout | High |
+| MF-GROUP-015 | Group name exact length 255 chars | None | 1. Enter 255 chars | Accepted | Low |
+| MF-GROUP-016 | Adding deceased client to group | None | 1. Add deceased client | Business rule blocks | High |
+| MF-GROUP-017 | Concurrent group activation | Pending | 1. Rapid double activate | Processed once | High |
+| MF-GROUP-018 | Zero member group closure | Active | 1. Close empty group | Allowed or prompts | Medium |
 
 ### Additional Coverage Tests
 
@@ -263,6 +291,11 @@
 | MF-CENTER-011 | Activate center using date before submission date | Pending center exists | 1. Enter invalid activation date<br>2. Submit | Activation is prevented | High |
 | MF-CENTER-012 | Add ineligible group to center | Group does not meet eligibility rules | 1. Add group to center<br>2. Select ineligible group | Operation is blocked or fails with proper message | Medium |
 | MF-CENTER-013 | Close center with active dependencies | Center has active linked entities blocking closure | 1. Attempt closure | Closure is rejected by business rule | High |
+| MF-CENTER-014 | Adding same group twice rapidly | Active | 1. Double click add | Unique constraint caught | High |
+| MF-CENTER-015 | Center name with special Unicode | None | 1. Enter name with emojis | Sanitized or allowed safely | Medium |
+| MF-CENTER-016 | Extreme pagination on center list | None | 1. Navigate to page 9999 | Graceful empty state | Low |
+| MF-CENTER-017 | Empty center meetings submission | Active | 1. Submit empty meeting | Blocked | High |
+| MF-CENTER-018 | Duplicate external ID center | None | 1. Create with duplicate ID | Blocked | High |
 
 ### Additional Coverage Tests
 
@@ -301,6 +334,12 @@
 | MF-LPROD-014 | Create product with interest rate min greater than max | None | 1. Enter invalid interest rate range<br>2. Submit | Validation error prevents save | High |
 | MF-LPROD-015 | Create product with missing mandatory accounting mappings when accounting is enabled | GL accounts incomplete | 1. Select accounting rule requiring mappings<br>2. Omit mandatory GL values<br>3. Submit | Validation error shown and save blocked | High |
 | MF-LPROD-017 | Invalid repayment frequency values | None | 1. Enter zero or invalid repayment frequency<br>2. Submit | Validation blocks invalid repayment setup | High |
+| MF-LPROD-018 | Principal max 999,999,999,999 | None | 1. Set massive principal | Boundary checked | High |
+| MF-LPROD-019 | Negative interest rate | None | 1. Enter -5% | Validation error | High |
+| MF-LPROD-020 | Interest rate > 100% | None | 1. Enter 150% | Warning or business rule | Medium |
+| MF-LPROD-021 | Exactly 0 decimal places | None | 1. Set 0 decimals | Validation error | High |
+| MF-LPROD-022 | Term length 100 years | None | 1. Set 1200 months | Accepted or limit error | Medium |
+| MF-LPROD-023 | Missing mandatory GL account | None | 1. Skip GL account | Validation error | High |
 
 ---
 
@@ -330,6 +369,12 @@
 | MF-SPROD-013 | Create product with missing accounting mappings when accounting rule requires them | GL mappings incomplete | 1. Select accounting option requiring mappings<br>2. Omit mandatory fields<br>3. Submit | Validation blocks save | High |
 | MF-SPROD-014 | Duplicate savings product short name | Existing short name exists | 1. Create another product with same short name | Validation or server error prevents duplicate | Medium |
 | MF-SPROD-015 | Invalid interest rate configuration | None | 1. Enter invalid rate/frequency combination<br>2. Submit | Validation error shown | High |
+| MF-SPROD-016 | Overdraft limit negative | None | 1. Enter -100 | Validation error | High |
+| MF-SPROD-017 | Interest rate precision 10 decimals | None | 1. Enter 1.1234567890 | Precision error or truncated | High |
+| MF-SPROD-018 | Min balance > Max balance | None | 1. Set Min > Max | Validation error | High |
+| MF-SPROD-019 | Zero interest rate | None | 1. Set 0% interest | Accepted | Low |
+| MF-SPROD-020 | Missing currency | None | 1. Leave blank | Validation error | High |
+| MF-SPROD-021 | Extreme max withdrawal fee | None | 1. Set 999999 | Boundary checked | Medium |
 
 ---
 
@@ -356,6 +401,11 @@
 | MF-CHARGE-010 | Create charge without amount or percentage | None | 1. Omit required amount field<br>2. Submit | Validation error prevents save | High |
 | MF-CHARGE-011 | Create percentage charge above supported limit | None | 1. Enter invalid percentage value<br>2. Submit | Validation error shown | High |
 | MF-CHARGE-012 | Create charge with incompatible applicability/time combination | None | 1. Choose invalid target entity and event timing combination<br>2. Submit | Validation or business rule prevents save | Medium |
+| MF-CHARGE-013 | Flat charge of 1,000,000,000 | None | 1. Set massive charge | Checked | High |
+| MF-CHARGE-014 | Percentage charge of 100.01% | None | 1. Enter >100% | Validation error | High |
+| MF-CHARGE-015 | Negative charge amount | None | 1. Enter -50 | Validation error | High |
+| MF-CHARGE-016 | Charge name with XSS payload | None | 1. Enter `<script>` | Sanitized | High |
+| MF-CHARGE-017 | Applying deleted charge | None | 1. Try apply via API | Blocked | High |
 
 ### Additional Coverage Tests
 
@@ -399,6 +449,12 @@
 | MF-LOAN-018 | Repayment on non-active loan | Loan not in active state | 1. Attempt repayment | Action is blocked | High |
 | MF-LOAN-019 | Disbursement amount above approved amount when not allowed | Approved loan exists | 1. Enter excessive disbursement amount<br>2. Submit | Business rule prevents invalid disbursement | High |
 | MF-LOAN-021 | Add invalid charge to loan | Inapplicable charge selected | 1. Add incompatible charge<br>2. Submit | Validation or business rule prevents assignment | Medium |
+| MF-LOAN-022 | Repayment exactly 0.01 | Active | 1. Pay $0.01 | Accepted | Low |
+| MF-LOAN-023 | Overpayment exactly 0.01 over balance | Active | 1. Pay balance + 0.01 | Blocked or held | High |
+| MF-LOAN-024 | Negative repayment amount | Active | 1. Pay -$50 | Validation error | High |
+| MF-LOAN-025 | Disburse on future date | Approved | 1. Future date | Validation error | High |
+| MF-LOAN-026 | Rapid double click approve | Pending | 1. Spam approve | Processed once | High |
+| MF-LOAN-027 | Write-off with 0 balance | Active | 1. Write-off | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -443,6 +499,12 @@
 | MF-SAV-014 | Deposit negative or zero amount | Active account exists | 1. Enter invalid deposit amount<br>2. Submit | Validation error shown | High |
 | MF-SAV-015 | Withdraw on non-active account | Account not active | 1. Attempt withdrawal | Action is blocked | High |
 | MF-SAV-016 | Close savings account with blocked pending conditions | Account has holds or constraints | 1. Attempt closure | Business rule prevents closure | Medium |
+| MF-SAV-017 | Deposit exactly maximum integer | Active | 1. Deposit huge amt | Handled gracefully | High |
+| MF-SAV-018 | Withdraw exactly available balance | Active | 1. Withdraw all | Balance becomes 0 | Low |
+| MF-SAV-019 | Withdraw 0.01 over available | Active | 1. Withdraw excess | Blocked | High |
+| MF-SAV-020 | Rapid double click withdraw | Active | 1. Spam withdraw | Processed once, no overdraft | High |
+| MF-SAV-021 | Deposit negative amount | Active | 1. Deposit -$10 | Validation error | High |
+| MF-SAV-022 | Activate on future date | Approved | 1. Future date | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -478,6 +540,12 @@
 | MF-COA-008 | Create GL account without account type | None | 1. Omit account type/classification<br>2. Submit | Validation error shown | High |
 | MF-COA-009 | Duplicate GL account code | Existing code exists | 1. Create another GL account using same code | Validation or server-side uniqueness error occurs | High |
 | MF-COA-010 | Disable GL account that is constrained by business rules | Account linked or protected | 1. Attempt disable/close action | Operation is blocked with correct error message | Medium |
+| MF-COA-011 | Duplicate GL Code | None | 1. Use existing code | Validation error | High |
+| MF-COA-012 | Max length account name | None | 1. 255 chars | Accepted | Low |
+| MF-COA-013 | HTML tags in description | None | 1. `<img src=x>` | Sanitized | High |
+| MF-COA-014 | Cyclical parent-child mapping | None | 1. Set A->B->A | Validation error | High |
+| MF-COA-015 | Delete GL account in use | Active | 1. Delete | Blocked | High |
+| MF-COA-016 | Negative initial balance | None | 1. Enter -100 | Validation error | Medium |
 
 ### Additional Coverage Tests
 
@@ -507,6 +575,12 @@
 | MF-JRN-007 | Submit journal entry without mandatory office/date | None | 1. Omit required fields<br>2. Submit | Validation error shown | High |
 | MF-JRN-008 | Use restricted GL account for manual entry | Restricted account exists | 1. Add account not allowed for manual posting<br>2. Submit | Validation or business rule prevents save | High |
 | MF-JRN-009 | Reverse already reversed entry | Reversed entry exists | 1. Attempt second reversal | Operation is blocked | Medium |
+| MF-JRN-010 | Unbalanced entry by 0.01 | None | 1. Debit 10, Credit 10.01 | Blocked | High |
+| MF-JRN-011 | Zero value entry | None | 1. Debit 0, Credit 0 | Blocked | High |
+| MF-JRN-012 | 10,000 line items | None | 1. Create huge entry | Timeout or success | Medium |
+| MF-JRN-013 | Backdated to locked closure | None | 1. Date before closure | Blocked | High |
+| MF-JRN-014 | Negative debit amount | None | 1. Debit -10 | Validation error | High |
+| MF-JRN-015 | Duplicate transaction reference | None | 1. Re-use reference | Warning or blocked | Medium |
 
 ### Additional Coverage Tests
 
@@ -544,6 +618,12 @@
 | MF-USER-015 | Create user without password | None | 1. Leave password blank<br>2. Submit | Validation error shown | High |
 | MF-USER-016 | Duplicate username | Existing username exists | 1. Create user using existing username | Validation or server-side uniqueness error occurs | High |
 | MF-USER-018 | Disable own currently logged-in user account | Admin logged in as target user | 1. Attempt to disable own account | System blocks or handles safely according to business rules | Medium |
+| MF-USER-019 | User with 0 roles | None | 1. Create no roles | Validation error | High |
+| MF-USER-020 | Rapid password change loop | Active | 1. Change password 5x | Handled gracefully | Medium |
+| MF-USER-021 | Username matches SQL reserved word | None | 1. Enter `SELECT` | Accepted safely | Medium |
+| MF-USER-022 | Space-only first name | None | 1. Enter `   ` | Validation error | High |
+| MF-USER-023 | HTML in last name | None | 1. Enter `<script>` | Sanitized | High |
+| MF-USER-024 | Assign to deleted office | None | 1. Assign to deleted | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -574,6 +654,12 @@
 | MF-OFFICE-007 | Create office without opening date | None | 1. Omit opening date<br>2. Submit | Validation error shown | High |
 | MF-OFFICE-008 | Create office with invalid parent hierarchy | Existing office hierarchy exists | 1. Set invalid parent causing cyclic hierarchy if possible<br>2. Submit | Validation or business rule prevents save | High |
 | MF-OFFICE-009 | Close office with active dependencies blocking closure | Office has active clients/users or dependent entities | 1. Attempt to close office | Operation is blocked with correct error | High |
+| MF-OFFICE-010 | Open in future date | None | 1. Future date | Validation error | High |
+| MF-OFFICE-011 | Cyclical parent mapping | None | 1. Map A->B->A | Validation error | High |
+| MF-OFFICE-012 | Duplicate external ID | None | 1. Re-use ID | Unique constraint error | High |
+| MF-OFFICE-013 | Delete root office | Root | 1. Delete | Blocked | High |
+| MF-OFFICE-014 | Name with emojis | None | 1. Enter 🏢 | Sanitized or accepted | Medium |
+| MF-OFFICE-015 | 100+ deep hierarchy | None | 1. Nest 100 deep | Handled gracefully | Low |
 
 ### Additional Coverage Tests
 
@@ -602,6 +688,12 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-EMP-006 | Create employee without first name | None | 1. Leave first name blank<br>2. Submit | Validation error shown | High |
 | MF-EMP-007 | Create employee without office | None | 1. Omit office<br>2. Submit | Validation error shown | High |
+| MF-EMP-008 | Join before DOB | None | 1. Join < DOB | Validation error | High |
+| MF-EMP-009 | Duplicate mobile number | None | 1. Re-use mobile | Validation error | Medium |
+| MF-EMP-010 | Long email 255 chars | None | 1. Enter 255 char email | Accepted | Low |
+| MF-EMP-011 | Missing mandatory date | None | 1. Skip date | Validation error | High |
+| MF-EMP-012 | Special characters in name | None | 1. Enter `@#*$` | Handled | Low |
+| MF-EMP-013 | Extreme length First Name | None | 1. Enter 255 chars | Validation limit | High |
 
 ---
 
@@ -623,6 +715,11 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-REPORT-006 | Run parameterized report without mandatory parameters | Parameterized report exists | 1. Open report<br>2. Leave required parameter blank<br>3. Run | Validation error shown | High |
 | MF-REPORT-007 | Run report with invalid date range | Date-parameter report exists | 1. Provide invalid date range<br>2. Run | Validation or backend error handled gracefully | Medium |
+| MF-REPORT-008 | 50 year date range | None | 1. Query 50 years | Timeout handled | High |
+| MF-REPORT-009 | End date before start date | None | 1. End < Start | Validation error | High |
+| MF-REPORT-010 | SQL injection in parameter | None | 1. Enter `' OR 1=1` | Sanitized | High |
+| MF-REPORT-011 | Export 1 million rows | None | 1. Export massive | Background task or timeout | High |
+| MF-REPORT-012 | Rapid double click generate | None | 1. Spam generate | 1 query executed | High |
 
 ### Additional Coverage Tests
 
@@ -656,6 +753,11 @@
 | MF-ORG-010 | Create holiday with invalid date range | Settings accessible | 1. Enter invalid holiday period<br>2. Save | Validation error shown | High |
 | MF-ORG-011 | Configure working days with invalid combination | Settings accessible | 1. Choose inconsistent rule combination<br>2. Save | Validation or business rule prevents save | Medium |
 | MF-ORG-012 | Duplicate code value where uniqueness is required | Existing code value exists | 1. Add duplicate code value | Validation or server-side error occurs | Medium |
+| MF-ORG-013 | Password expiry 9999 days | None | 1. Set 9999 | Boundary accepted | Medium |
+| MF-ORG-014 | Empty string config value | None | 1. Leave blank | Validation error | High |
+| MF-ORG-015 | HTML tags in org name | None | 1. Enter `<h1>` | Sanitized | High |
+| MF-ORG-016 | Overlapping working days | None | 1. Duplicate days | Validation error | Medium |
+| MF-ORG-017 | Set maker-checker false then bypass | Active | 1. Disable MC | Bypass successful | High |
 
 ### Additional Coverage Tests
 
@@ -688,6 +790,11 @@
 | MF-SHPROD-007 | Create share product without mandatory name | None | 1. Leave product name empty<br>2. Submit | Validation error shown | High |
 | MF-SHPROD-008 | Create share product with invalid share limits | None | 1. Set min shares greater than max shares<br>2. Submit | Validation error prevents save | High |
 | MF-SHPROD-009 | Missing accounting mappings when accounting rule requires them | GL accounts incomplete | 1. Configure accounting-requiring product without mandatory mappings<br>2. Submit | Validation blocks save | High |
+| MF-SHPROD-010 | Max shares boundary 9,999,999 | None | 1. Set max shares | Accepted | Low |
+| MF-SHPROD-011 | Nominal price 6 decimals | None | 1. Set 1.123456 | Precision error | High |
+| MF-SHPROD-012 | Lock-in period 100 years | None | 1. Set 36500 days | Accepted | Medium |
+| MF-SHPROD-013 | Negative total shares | None | 1. Set -100 | Validation error | High |
+| MF-SHPROD-014 | Duplicate short code | None | 1. Re-use code | Unique constraint error | High |
 
 ### Additional Coverage Tests
 
@@ -718,6 +825,12 @@
 | MF-FRATE-006 | Create floating rate without mandatory name | None | 1. Leave required name field empty<br>2. Submit | Validation error shown | High |
 | MF-FRATE-007 | Add rate period with overlapping effective date range | Floating rate exists | 1. Add period overlapping existing effective period<br>2. Submit | Validation or business rule prevents save | High |
 | MF-FRATE-008 | Add rate period with invalid rate value | Floating rate exists | 1. Enter invalid or out-of-range rate<br>2. Submit | Validation error shown | Medium |
+| MF-FRATE-009 | Rate period overlap | None | 1. Duplicate date range | Validation error | High |
+| MF-FRATE-010 | Exactly 0% floating rate | None | 1. Set 0% | Accepted | Low |
+| MF-FRATE-011 | Identical from-date for two periods | None | 1. Re-use date | Unique constraint error | High |
+| MF-FRATE-012 | Negative floating rate | None | 1. Enter -2% | Validation error | High |
+| MF-FRATE-013 | From-date in extreme past | None | 1. Enter 01/01/1900 | Accepted safely | Medium |
+| MF-FRATE-014 | Rapid double click add rate | None | 1. Spam click | Processed once | High |
 
 ### Additional Coverage Tests
 
@@ -748,6 +861,11 @@
 | MF-DELINQ-006 | Create bucket with overlapping ranges | Existing bucket ranges exist | 1. Create new overlapping range<br>2. Submit | Validation prevents overlapping configuration | High |
 | MF-DELINQ-007 | Create bucket with invalid min/max range | None | 1. Enter invalid boundaries<br>2. Submit | Validation error shown | High |
 | MF-DELINQ-008 | Delete or disable bucket in active use where restricted | Bucket linked to active configuration | 1. Attempt delete/disable | Business rule blocks unsafe change | Medium |
+| MF-DELINQ-009 | Range overlap exactly 1 day | None | 1. Overlap range | Validation error | High |
+| MF-DELINQ-010 | Missing min age days | None | 1. Skip min age | Validation error | High |
+| MF-DELINQ-011 | Max age days 9999 | None | 1. Set 9999 | Accepted | Low |
+| MF-DELINQ-012 | Bucket with 0 ranges | None | 1. Create empty | Validation error | High |
+| MF-DELINQ-013 | Delete active bucket | Active | 1. Delete | Blocked | High |
 
 ### Additional Coverage Tests
 
@@ -781,6 +899,11 @@
 | MF-SHARE-010 | Redeem more shares than held | Active share account exists | 1. Attempt redemption exceeding holdings | Transaction is blocked | High |
 | MF-SHARE-011 | Purchase or redeem on non-active share account | Account not active | 1. Attempt transaction | Action is blocked | High |
 | MF-SHARE-012 | Activate share account with invalid date order | Approved share account exists | 1. Activate with invalid date | Validation prevents activation | Medium |
+| MF-SHARE-013 | Purchase 0 shares | Active | 1. Purchase 0 | Validation error | High |
+| MF-SHARE-014 | Purchase fractional shares | Active | 1. Purchase 1.5 | Validation error | High |
+| MF-SHARE-015 | Purchase more than total issued | Active | 1. Purchase massive | Blocked | High |
+| MF-SHARE-016 | Redeem before lock-in ends | Active | 1. Redeem early | Blocked | High |
+| MF-SHARE-017 | Rapid double click approve | Pending | 1. Spam approve | Processed once | High |
 
 ### Additional Coverage Tests
 
@@ -819,6 +942,11 @@
 | MF-DEP-014 | Activate deposit account with invalid date sequence | Approved account exists | 1. Use invalid activation date<br>2. Submit | Validation prevents activation | High |
 | MF-DEP-015 | Post RD installment with invalid amount | Active RD exists | 1. Enter invalid installment amount<br>2. Submit | Validation error shown | High |
 | MF-DEP-016 | Premature closure on ineligible account | Deposit account not eligible | 1. Attempt premature closure | Business rule blocks action | Medium |
+| MF-DEP-017 | Deposit term of 100 years | None | 1. Enter 1200 months | Limit error | High |
+| MF-DEP-018 | Interest rate exactly 100% | None | 1. Enter 100 | Handled | Medium |
+| MF-DEP-019 | Negative deposit amount | None | 1. Enter -50 | Validation error | High |
+| MF-DEP-020 | Withdrawing before maturity | Active | 1. Withdraw | Blocked | High |
+| MF-DEP-021 | Rapid double click close | Active | 1. Spam close | Closed once | High |
 
 ### Additional Coverage Tests
 
@@ -848,6 +976,11 @@
 | MF-CLOSE-004 | Create duplicate closure for same office/date constraints | Closure exists | 1. Attempt duplicate closure | Validation or business rule prevents duplicate | High |
 | MF-CLOSE-005 | Create closure without required office/date | None | 1. Omit mandatory fields<br>2. Submit | Validation error shown | High |
 | MF-CLOSE-006 | Backdated transaction after closure is blocked | Closure exists for relevant period | 1. Attempt transaction/manual journal entry in closed period | System blocks posting according to closure rules | High |
+| MF-CLOSE-007 | Closing on future date | None | 1. Future date | Validation error | High |
+| MF-CLOSE-008 | Closing same day twice | Active | 1. Run 2 closures | Unique constraint | High |
+| MF-CLOSE-009 | Reversing closure with subsequent transactions | Active | 1. Reverse | Blocked | High |
+| MF-CLOSE-010 | Closure notes > 2000 chars | None | 1. Paste massive note | Validation error | Low |
+| MF-CLOSE-011 | Closure date exactly 1 day after | None | 1. Valid boundary | Accepted | Medium |
 
 ### Additional Coverage Tests
 
@@ -875,6 +1008,11 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-FAM-005 | Save mapping without required GL account | Financial activity selected | 1. Leave required account empty<br>2. Save | Validation error shown | High |
 | MF-FAM-006 | Map financial activity to invalid or incompatible GL account | GL account incompatible | 1. Select invalid account type<br>2. Save | Validation or business rule blocks save | High |
+| MF-FAM-007 | Rule mapping debit to income | None | 1. Invalid schema | Blocked | High |
+| MF-FAM-008 | Cyclical rule mapping | None | 1. A->B->A | Blocked | High |
+| MF-FAM-009 | Duplicate rule name | None | 1. Re-use name | Blocked | Medium |
+| MF-FAM-010 | Deleting rule in use | Active | 1. Delete | Blocked | High |
+| MF-FAM-011 | Blank tag configuration | None | 1. Empty tag | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -904,6 +1042,11 @@
 | MF-PROV-005 | Create provisioning criteria with overlapping delinquency ranges | Criteria ranges exist | 1. Enter overlapping ranges<br>2. Save | Validation prevents overlapping setup | High |
 | MF-PROV-006 | Create criteria with invalid percentage | None | 1. Enter invalid percentage value<br>2. Save | Validation error shown | High |
 | MF-PROV-007 | Run provisioning without required setup | No valid criteria exists | 1. Attempt generate process | Process is blocked with proper error | Medium |
+| MF-PROV-008 | Exactly 100.01% | None | 1. Set > 100% | Validation error | High |
+| MF-PROV-009 | Negative percentage | None | 1. Set -5% | Validation error | High |
+| MF-PROV-010 | Run twice a day | Active | 1. Run manual 2x | Processed once | High |
+| MF-PROV-011 | Invalid asset class code | None | 1. Select invalid | Validation error | High |
+| MF-PROV-012 | Missing GL mappings | None | 1. Skip GL | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -937,6 +1080,11 @@
 | MF-TELLER-010 | Assign cashier with invalid overlapping schedule | Existing assignment exists | 1. Create overlapping cashier assignment for same user/teller if restricted<br>2. Submit | Validation or business rule prevents overlap | High |
 | MF-TELLER-011 | Allocate negative or zero cash amount | Active cashier exists | 1. Enter invalid amount<br>2. Submit | Validation error shown | High |
 | MF-TELLER-012 | Settle cashier with inconsistent cash balance | Cashier imbalance exists | 1. Attempt settlement without resolving discrepancy if required | Process is blocked or discrepancy is surfaced correctly | High |
+| MF-TELLER-013 | Cashier allocation negative | Active | 1. Allocate -$10 | Validation error | High |
+| MF-TELLER-014 | Allocating overlapping dates | Active | 1. Overlap dates | Validation error | High |
+| MF-TELLER-015 | Settle cashier without funds | Active | 1. Settle 0 | Blocked or warning | High |
+| MF-TELLER-016 | Delete active teller | Active | 1. Delete | Blocked | High |
+| MF-TELLER-017 | Extreme length teller name | None | 1. 255 chars | Accepted | Low |
 
 ### Additional Coverage Tests
 
@@ -971,6 +1119,11 @@
 | MF-TRF-009 | Transfer between unsupported account types | Unsupported combination selected | 1. Attempt unsupported transfer | Action is blocked | High |
 | MF-TRF-010 | Create standing instruction with invalid schedule | Eligible accounts exist | 1. Enter invalid start/end date or frequency combination<br>2. Submit | Validation error shown | High |
 | MF-TRF-011 | Standing instruction execution fails when source account has insufficient balance | Active standing instruction exists | 1. Allow due execution with insufficient funds | Execution fails gracefully and failure status/history is recorded | High |
+| MF-TRF-012 | Transfer exactly 0.01 | Active | 1. Transfer $0.01 | Accepted | Low |
+| MF-TRF-013 | Transfer 0.01 over balance | Active | 1. Transfer excess | Blocked | High |
+| MF-TRF-014 | Standing instruction to same account | Active | 1. A -> A | Validation error | High |
+| MF-TRF-015 | Standing instruction on past date | Active | 1. Past date | Validation error | High |
+| MF-TRF-016 | Rapid double click transfer | Active | 1. Spam transfer | Processed once | High |
 
 ### Additional Coverage Tests
 
@@ -1001,6 +1154,11 @@
 | MF-TAX-006 | Create tax component without mandatory fields | None | 1. Omit required fields<br>2. Submit | Validation error shown | High |
 | MF-TAX-007 | Create tax component with invalid rate | None | 1. Enter invalid tax rate<br>2. Submit | Validation error shown | High |
 | MF-TAX-008 | Create tax group without components where at least one is required | None | 1. Leave group empty<br>2. Submit | Validation or business rule prevents save | Medium |
+| MF-TAX-009 | Tax rate of 100.01% | None | 1. Enter > 100% | Validation error | High |
+| MF-TAX-010 | Negative tax component | None | 1. Enter -5% | Validation error | High |
+| MF-TAX-011 | Overlapping components in group | None | 1. Duplicate dates | Validation error | High |
+| MF-TAX-012 | Duplicate component name | None | 1. Re-use name | Unique constraint error | High |
+| MF-TAX-013 | Apply deleted tax group | Active | 1. Apply | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -1035,6 +1193,13 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-SYS-012 | Save invalid hook endpoint configuration | Hook feature enabled | 1. Enter invalid endpoint/config values<br>2. Save | Validation or connectivity error is shown | Medium |
 | MF-SYS-014 | Set invalid password policy values | Security settings accessible | 1. Enter invalid values such as unsupported lengths or combinations<br>2. Save | Validation error shown | High |
+| MF-SYS-015 | Hook URL XSS payload | None | 1. Enter JS payload | Sanitized | High |
+| MF-SYS-016 | Disable core scheduled job | Active | 1. Disable core | Warning or block | High |
+| MF-SYS-017 | Invalid cron expression | None | 1. Enter `* * * *` | Validation error | High |
+| MF-SYS-018 | Modifying cache config rapidly | Active | 1. Spam save | Idempotent | Medium |
+| MF-SYS-019 | Duplicate hook URL | None | 1. Re-use URL | Accepted or warning | Medium |
+| MF-SYS-020 | Scheduler timeout simulation | Active | 1. Run long job | Graceful timeout | High |
+| MF-SYS-021 | Extremely long hook URL | None | 1. 2000 chars | Validation error | High |
 
 ### Additional Coverage Tests
 
@@ -1065,6 +1230,11 @@
 |-------|-----------|---------------|-------|-----------------|----------|
 | MF-LOGOUT-004 | Browser back after logout does not reopen active authenticated page | User logged out | 1. Logout<br>2. Press browser back | Previously visited protected page is not usable without re-authentication | High |
 | MF-LOGOUT-005 | Expired session behaves consistently with explicit logout | Session timeout configured or token invalidated | 1. Allow session to expire<br>2. Perform action | User is redirected to login or prompted to re-authenticate | High |
+| MF-LOGOUT-006 | Rapid double click logout | Logged in | 1. Spam logout | Terminated cleanly | High |
+| MF-LOGOUT-007 | Back button after logout to submit form | Logged out | 1. Submit cached form | CSRF or session error | High |
+| MF-LOGOUT-008 | Opening new tab after logout | Logged out | 1. Open new tab to dashboard | Redirected to login | High |
+| MF-LOGOUT-009 | Intercepting logout request | Logged in | 1. Replay logout | Ignored or safe error | High |
+| MF-LOGOUT-010 | Massive session token payload | Active | 1. Inject huge token | Blocked safely | High |
 
 ### Additional Coverage Tests
 
@@ -1111,4 +1281,4 @@
 | Tax Management | 11 | 7 | 4 | 0 |
 | System Administration | 18 | 9 | 7 | 2 |
 | Logout | 7 | 5 | 2 | 0 |
-| **TOTAL** | **437** | **265** | **152** | **20** |
+| **TOTAL** | **607** | **385** | **192** | **30** |
