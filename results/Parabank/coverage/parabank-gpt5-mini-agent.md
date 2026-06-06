@@ -35,6 +35,8 @@
 | Support Center | 14 | 19 | ⚠️ Partial | 5 scenarios | 10 extra |
 | **TOTAL** | **200** | **230** | | **39 missing** | **71 extra** |
 
+**Ratio:** 230 / 200 = **1.15** ✅ (within acceptable range)
+
 ---
 
 ## Module-by-Module Analysis

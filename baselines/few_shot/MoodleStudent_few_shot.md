@@ -61,6 +61,8 @@ Here are examples from the Moodle Student system:
 
 ---
 
+**CRITICAL INSTRUCTION:** The examples above are strictly for formatting purposes. Do NOT limit your output to 3 test cases. You must generate an EXHAUSTIVE and COMPREHENSIVE list of test cases that fully cover every single behavior, edge case, and scenario mentioned in the functional description. It is common to generate 10-20 test cases per module.
+
 Now read the following functional description and generate test cases for it.
 
 <module_name>{Module name}</module_name>
