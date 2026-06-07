@@ -93,9 +93,9 @@ def get_semaphore(model_key: str) -> asyncio.Semaphore:
 # spec_key (folder name)  ->  paths
 SPECS = {
     "SwagLab": {
-        "spec":            "dataset/raw_specifications/SwagLab/SwagLab.md",
+        "spec":            "dataset/functional_description/SwagLab.md",
         "few_shot_prompt": "baselines/few_shot/SwagLab_few_shot.md",
-        # If an agent run already exists in outputs/, copy it instead of re-running.
+        # If an agent run already exists in generated_artifacts/, copy it instead of re-running.
         # Set to None if no existing run.
         "existing_agent": {
             "gpt-5-mini":  None,   # no existing run
@@ -103,42 +103,42 @@ SPECS = {
         },
     },
     "Mifos": {
-        "spec":            "dataset/raw_specifications/Mifos/Mifos.md",
+        "spec":            "dataset/functional_description/Mifos.md",
         "few_shot_prompt": "baselines/few_shot/Mifos_few_shot.md",
         "existing_agent": {
-            "gpt-5-mini":  "outputs/autospectest/Mifos/openai-gpt-5-mini",
+            "gpt-5-mini":  "generated_artifacts/autospectest/Mifos/openai-gpt-5-mini",
             "gpt-4o-mini": None,
         },
     },
     "Parabank": {
-        "spec":            "dataset/raw_specifications/Parabank/Parabank.md",
+        "spec":            "dataset/functional_description/Parabank.md",
         "few_shot_prompt": "baselines/few_shot/Parabank_few_shot.md",
         "existing_agent": {
-            "gpt-5-mini":  "outputs/autospectest/Parabank/openai-gpt-5-mini",
+            "gpt-5-mini":  "generated_artifacts/autospectest/Parabank/openai-gpt-5-mini",
             "gpt-4o-mini": None,
         },
     },
     "PHPTravels": {
-        "spec":            "dataset/raw_specifications/PHPTravels/PHPTravels.md",
+        "spec":            "dataset/functional_description/PHPTravels.md",
         "few_shot_prompt": "baselines/few_shot/PHPTravels_few_shot.md",
         "existing_agent": {
-            "gpt-5-mini":  "outputs/autospectest/Phptravels/openai-gpt-5-mini",
+            "gpt-5-mini":  "generated_artifacts/autospectest/Phptravels/openai-gpt-5-mini",
             "gpt-4o-mini": None,
         },
     },
     "MoodleTeacher": {
-        "spec":            "dataset/raw_specifications/Moodle/MoodleTeacher.md",
+        "spec":            "dataset/functional_description/MoodleTeacher.md",
         "few_shot_prompt": "baselines/few_shot/MoodleTeacher_few_shot.md",
         "existing_agent": {
-            "gpt-5-mini":  "outputs/autospectest/Moodleteacher/openai-gpt-5-mini",
+            "gpt-5-mini":  "generated_artifacts/autospectest/Moodleteacher/openai-gpt-5-mini",
             "gpt-4o-mini": None,
         },
     },
     "MoodleStudent": {
-        "spec":            "dataset/raw_specifications/Moodle/MoodleStudent.md",
+        "spec":            "dataset/functional_description/MoodleStudent.md",
         "few_shot_prompt": "baselines/few_shot/MoodleStudent_few_shot.md",
         "existing_agent": {
-            "gpt-5-mini":  "outputs/autospectest/Moodlestudent/openai-gpt-5-mini",
+            "gpt-5-mini":  "generated_artifacts/autospectest/Moodlestudent/openai-gpt-5-mini",
             "gpt-4o-mini": None,
         },
     },
@@ -517,7 +517,7 @@ def run_agent(website: str, model_key: str, model_str: str, api_key: str,
         _counts["skip"] += 1
         return
 
-    # Use pre-existing output from outputs/?
+    # Use pre-existing output from generated_artifacts/?
     existing = spec_info.get("existing_agent", {}).get(model_key)
     if existing:
         log(f"Copying existing agent output: {website}/{model_key}/agent ...")

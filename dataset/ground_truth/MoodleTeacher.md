@@ -42,7 +42,7 @@
 
 | Rule | Requirement |
 |------|-------------|
-| Source anchoring | Every module below maps to `dataset/raw_specifications/Moodle/MoodleTeacher.md`; inferred Moodle behavior is allowed only when the expected result names observable UI evidence. |
+| Source anchoring | Every module below maps to `dataset/functional_description/MoodleTeacher.md`; inferred Moodle behavior is allowed only when the expected result names observable UI evidence. |
 | Atomicity | Each test case should verify one user-facing workflow or permission boundary. Compound setup is allowed only when the assertion remains single-purpose. |
 | Observable result | Expected results must name visible UI state, persisted data, redirect, access denial, validation feedback, or absence of privileged controls. |
 | Deterministic oracle | Avoid generic success words, conditional applicability, ambiguous alternatives, and implementation-variable outcomes. A reviewer should be able to mark pass/fail without guessing. |
@@ -586,4 +586,4 @@
 | Modules covered | 15 |
 | Ground-truth test cases | 220 |
 | Primary role | Teacher |
-| Source functional description | dataset/raw_specifications/Moodle/MoodleTeacher.md |
+| Source functional description | dataset/functional_description/MoodleTeacher.md |

@@ -43,7 +43,7 @@ def main():
         default="openai/gpt-4o",
         help="LiteLLM model string with provider prefix (default: openai/gpt-4o)",
     )
-    parser.add_argument("--output", "-o", default="output", help="Output directory (default: output)")
+    parser.add_argument("--output", "-o", default="generated_artifacts", help="Output directory (default: generated_artifacts)")
     parser.add_argument(
         "--resume",
         metavar="RUN_ID",
@@ -122,12 +122,12 @@ def _generate(args):
     functional_desc = _load_from_markdown_file(md_path=input_path)
 
     if not resume:
-        if args.output != "output":
+        if args.output != "generated_artifacts":
             output_dir = args.output
         else:
-            project_slug = functional_desc.get("project_name", "output").replace(" ", "_")
+            project_slug = functional_desc.get("project_name", "generated_artifacts").replace(" ", "_")
             model_slug = model.replace("/", "-")
-            output_dir = str(Path("outputs") / "test_case_generation" / project_slug / model_slug)
+            output_dir = str(Path("generated_artifacts") / "test_case_generation" / project_slug / model_slug)
 
         run_id = make_run_id(functional_desc.get("project_name", "run"))
         sidecar = write_sidecar(make_run_metadata(

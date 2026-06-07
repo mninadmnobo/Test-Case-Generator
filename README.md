@@ -146,10 +146,10 @@ test-case-generation --generate \
   --input dataset/my-app-spec.md \
   --api-key "sk-..." \
   --model "openai/gpt-4o" \
-  --output outputs/my-run
+  --output generated_artifacts/my-run
 ```
 
-This writes the following files to `outputs/my-run/`:
+This writes the following files to `generated_artifacts/my-run/`:
 
 | File | Contents |
 |------|----------|
@@ -204,7 +204,7 @@ test-case-generation --resume RUN_ID --api-key KEY
 | `--input` / `-i` | — | Path to `.md` spec file (required for `--generate`) |
 | `--api-key` | — | API key for the LLM provider |
 | `--model` | `openai/gpt-4o` | LiteLLM model string (must include provider prefix) |
-| `--output` / `-o` | `outputs/autospectest/<project>/<model>/` | Output directory |
+| `--output` / `-o` | `generated_artifacts/autospectest/<project>/<model>/` | Output directory |
 | `--type` | all | Subset of test types: `positive`, `negative`, `edge` |
 | `--max-concurrency` | `10` | Max concurrent in-flight LLM calls |
 | `--debug` | off | Write per-stage debug logs to `<output>/debug/` |
@@ -223,7 +223,7 @@ test-case-generation --post-verify --input MERGED_DESC --test-cases TC_JSON --ap
 | `--test-cases` | — | Path to `test-cases.json` produced by `--generate` |
 | `--api-key` | — | API key for the LLM provider |
 | `--model` | `openai/gpt-4o` | LiteLLM model string (must include provider prefix) |
-| `--output` / `-o` | `output` | Output directory for `post-verifications.json` |
+| `--output` / `-o` | `generated_artifacts` | Output directory for `post-verifications.json` |
 | `--max-concurrency` | `10` | Max concurrent in-flight LLM calls |
 | `--debug` | off | Enable debug logging |
 
@@ -556,7 +556,7 @@ Every run gets a unique run ID (`<project>-YYYYMMDD-HHmmss-<6char>`). If a run i
 test-case-generation --resume my-app-20260503-120000-abc123 --api-key "sk-..."
 ```
 
-The run ID is printed at the start of every `--generate` invocation. Checkpoints are stored in `outputs/.checkpoints/autospectest.sqlite`; sidecar metadata (original inputs) lives in `outputs/.checkpoints/<run-id>.json`.
+The run ID is printed at the start of every `--generate` invocation. Checkpoints are stored in `generated_artifacts/.checkpoints/autospectest.sqlite`; sidecar metadata (original inputs) lives in `generated_artifacts/.checkpoints/<run-id>.json`.
 
 ---
 
@@ -564,10 +564,10 @@ The run ID is printed at the start of every `--generate` invocation. Checkpoints
 
 ```bash
 test-case-generation --generate --input spec.md --api-key "..." --model openai/gpt-4o \
-  --output outputs/debug-run --debug
+  --output generated_artifacts/debug-run --debug
 ```
 
-With `--debug`, per-module log files are written to `outputs/debug-run/debug/<Module_Name>/`:
+With `--debug`, per-module log files are written to `generated_artifacts/debug-run/debug/<Module_Name>/`:
 
 | File | Contents |
 |------|----------|

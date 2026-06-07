@@ -5,7 +5,7 @@ unique ``run_id`` that doubles as the LangGraph ``thread_id`` for its
 checkpoint, and is the key the user passes to ``--resume`` to continue an
 interrupted run from the last completed node.
 
-Layout under ``outputs/.checkpoints/``:
+Layout under ``generated_artifacts/.checkpoints/``:
     test_case_generation.sqlite       single shared LangGraph checkpoint DB
     <run_id>.json             per-run metadata sidecar (input path, model, ...)
 """
@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Optional
 
 
-CHECKPOINT_DIR = Path("outputs") / ".checkpoints"
+CHECKPOINT_DIR = Path("generated_artifacts") / ".checkpoints"
 CHECKPOINT_DB = CHECKPOINT_DIR / "test_case_generation.sqlite"
 
 

@@ -37,7 +37,7 @@
 
 | Rule | Requirement |
 |------|-------------|
-| Source anchoring | Every module below maps to `dataset/raw_specifications/Moodle/MoodleStudent.md`; inferred Moodle behaviour is allowed only when the expected result names observable UI evidence. |
+| Source anchoring | Every module below maps to `dataset/functional_description/MoodleStudent.md`; inferred Moodle behaviour is allowed only when the expected result names observable UI evidence. |
 | Student-only scope | Student ground truth must not include teacher authoring, enrollment administration, or full-gradebook administration workflows. |
 | Observable result | Expected results must name visible UI state, persisted submission/grade state, redirect, access denial, validation feedback, or absence of privileged controls. |
 | Deterministic oracle | Avoid generic success words, conditional applicability, ambiguous alternatives, and implementation-variable outcomes. A reviewer should be able to mark pass/fail without guessing. |
@@ -398,4 +398,4 @@
 | Modules covered | 10 |
 | Ground-truth test cases | 137 |
 | Primary role | Student |
-| Source functional description | dataset/raw_specifications/Moodle/MoodleStudent.md |
+| Source functional description | dataset/functional_description/MoodleStudent.md |
