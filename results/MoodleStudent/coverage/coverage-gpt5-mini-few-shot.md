@@ -1,4 +1,4 @@
-# Test Coverage Report
+﻿# Test Coverage Report
 
 **Ground Truth:** MoodleStudent GT v2.2  
 **Generated Suite:** openai/gpt-5-mini-few-shot — 133 cases  
@@ -187,4 +187,5 @@ The agent generated the following cases that had no direct equivalent in the GT 
 - TC-129 (Submit assignment after logout in another tab)
 - TC-130 (Expired session cookie)
 - TC-133 (Cached content after logout)
+
 

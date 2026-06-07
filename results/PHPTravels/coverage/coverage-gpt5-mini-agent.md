@@ -52,6 +52,12 @@ The following GT test cases were entirely absent from the generated suite:
 - HOME-009 Invalid hotel date range
 - HOME-025 Very rapid double-click on Search
 
+### Registration (0 missing)
+- None
+
+### Login (0 missing)
+- None
+
 ### Forgot Password (1 missing)
 - FP-013 Very long email
 
@@ -73,11 +79,20 @@ The following GT test cases were entirely absent from the generated suite:
 ### Tours Search And Booking (1 missing)
 - TOUR-003 Tour details page displays itinerary and inclusions
 
+### Cars Search And Booking (0 missing)
+- None
+
 ### Visa Services (1 missing)
 - VISA-006 Missing required visa application fields
 
 ### User Dashboard And Booking Management (1 missing)
 - UDB-001 Dashboard sections displayed
+
+### Payment Processing (0 missing)
+- None
+
+### Currency And Language Selection (0 missing)
+- None
 
 ### Search And Filters (1 missing)
 - FILTER-001 Filter sidebar controls displayed on listing pages

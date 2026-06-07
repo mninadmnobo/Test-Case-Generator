@@ -1,4 +1,4 @@
-# Test Coverage Report
+﻿# Test Coverage Report
 
 **Ground Truth:** MoodleStudent GT v2.2  
 **Generated Suite:** openai/gpt-5-mini — 168 cases  
@@ -90,7 +90,7 @@ The following GT test cases were entirely absent from the generated suite:
 The agent generated the following cases that had no direct equivalent in the GT scope:
 
 ### Login (~1 extra types)
-- "Lost password?" link disabled (GT treats it as a standard enabled link)
+- "Lost password— link disabled (GT treats it as a standard enabled link)
 
 ### Dashboard (~5 extra types)
 - Block drag handles
@@ -138,4 +138,5 @@ The agent generated the following cases that had no direct equivalent in the GT 
 
 ### Logout (~0 extra types)
 - None
+
 

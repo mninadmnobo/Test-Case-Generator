@@ -1,4 +1,4 @@
-# Test Coverage Report
+﻿# Test Coverage Report
 
 **Ground Truth:** MoodleStudent GT v2.2  
 **Generated Suite:** openai/gpt-5-mini-zero-shot — 161 cases  
@@ -197,4 +197,5 @@ The agent generated the following cases that had no direct equivalent in the GT 
 - TC-156 (Logout when no session)
 - TC-157 (Network failure during logout)
 - TC-161 (CSRF token missing)
+
 

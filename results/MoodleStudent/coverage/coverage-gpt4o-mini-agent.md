@@ -1,4 +1,4 @@
-# Test Coverage Report
+﻿# Test Coverage Report
 
 **Ground Truth:** MoodleStudent GT v2.2  
 **Generated Suite:** openai/gpt-4o-mini — 106 cases  
@@ -161,4 +161,5 @@ The agent generated the following cases that had no direct equivalent in the GT 
 ### Logout (2 extra)
 - TC-002 (unauthenticated logout duplicate)
 - TC-003 (unauthenticated logout duplicate)
+
 

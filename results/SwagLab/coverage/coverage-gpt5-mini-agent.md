@@ -72,10 +72,20 @@ The following GT test cases were entirely absent from the generated suite:
 
 ## Extra Scenarios
 
-The agent generated the following extra edge cases that had no direct equivalent in the expanded GT scope (~22 total). Examples include:
+### Login (~3 extra types)
+- Additional boundary tests for inline password errors
 
-- **Login:** Additional boundary tests for inline password errors.
-- **Product Inventory:** Multiple permutations of clicking 'Add' rapidly.
-- **Product Detail:** Navigating immediately after clicking 'Add to cart' before UI refresh.
-- **Checkout Flows:** Duplicate tab scenarios, refresh scenarios during confirmation, and Unicode handling inside cardholder details.
-- **App State & Logout:** Double-clicking buttons and verifying cached UI state on back navigation.
+### Product Inventory (~4 extra types)
+- Multiple permutations of clicking 'Add' rapidly
+
+### Product Detail (~4 extra types)
+- Navigating immediately after clicking 'Add to cart' before UI refresh
+
+### Checkout (~6 extra types)
+- Duplicate tab scenarios
+- Refresh scenarios during confirmation
+- Unicode handling inside cardholder details
+
+### Logout (~5 extra types)
+- Double-clicking buttons
+- Verifying cached UI state on back navigation

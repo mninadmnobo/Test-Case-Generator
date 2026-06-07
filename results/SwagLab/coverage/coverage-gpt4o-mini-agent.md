@@ -17,8 +17,6 @@
 | **Overall coverage** | **56.1%** |
 | GEN cases with no GT counterpart (extras) | ~14 |
 
-*Note: The `gpt-4o-mini` agent generated a smaller suite (66 cases vs 92 from the previous model) resulting in a correspondingly lower coverage rate against the 82 Ground Truth cases.*
-
 ---
 
 ## Per-Module Coverage
@@ -40,7 +38,7 @@
 
 ## Missing Scenarios (Gaps)
 
-The following GT test cases were absent from the `gpt-4o-mini` suite:
+The following GT test cases were entirely absent from the generated suite:
 
 ### Login (5 missing)
 - SL-LOGIN-006 Submit with both Username and Password missing
@@ -100,10 +98,17 @@ The following GT test cases were absent from the `gpt-4o-mini` suite:
 
 ## Extra Scenarios
 
-The agent generated the following extra edge cases that had no direct equivalent in the expanded GT scope (~14 total). Examples include:
+### Login (~2 extra types)
+- Attempt login with extremely long Username
 
-- **Login:** Attempt login with extremely long Username.
-- **Product Inventory:** Attempt to add/remove product from cart without selecting an item (edge states).
-- **Product Detail:** Attempt to add a product to the cart when the cart is already at maximum capacity.
-- **Shopping Cart:** Attempt to continue shopping or begin checkout with an empty cart.
-- **Checkout Flows:** Attempt to finish the order without any payment or shipping information.
+### Product Inventory (~2 extra types)
+- Attempt to add/remove product from cart without selecting an item (edge states)
+
+### Product Detail (~2 extra types)
+- Attempt to add a product to the cart when the cart is already at maximum capacity
+
+### Shopping Cart (~4 extra types)
+- Attempt to continue shopping or begin checkout with an empty cart
+
+### Checkout (~4 extra types)
+- Attempt to finish the order without any payment or shipping information
