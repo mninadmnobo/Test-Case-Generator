@@ -19,7 +19,7 @@ def generate_markdown(post_verifications: List[Dict[str, Any]], test_cases_map: 
         
         tc_data = test_cases_map.get(tc_id, {})
         title = tc_data.get("test_case", tc_data.get("title", "Unknown Title"))
-        description = tc_data.get("description", "No description available.")
+        description = tc_data.get("description", "")
         category = tc_data.get("category", "positive")
         steps = tc_data.get("steps", [])
         expected_result = tc_data.get("expected_result", "")
@@ -30,12 +30,13 @@ def generate_markdown(post_verifications: List[Dict[str, Any]], test_cases_map: 
         if coverage == "partial" and pv.get("coverage_note"):
             md_lines.append(f"**Coverage Note**: *{pv.get('coverage_note')}*\n")
             
-        md_lines.append("**Original Test Case Description:**")
-        md_lines.append(f"> {description}\n")
+        if description:
+            md_lines.append("**Original Test Case Description:**")
+            md_lines.append(f"> {description}\n")
         
         md_lines.append("**Original Steps:**")
         md_lines.append(f"{format_steps(steps)}\n")
-
+        
         if expected_result:
             md_lines.append(f"**Original Expected Result:** {expected_result}\n")
         

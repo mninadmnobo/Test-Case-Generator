@@ -7,11 +7,11 @@
       "tc_id": "P-001",
       "category": "positive",
       "test_case": "Log in with valid credentials",
-      "preconditions": ["User is on the login page"],
+      "preconditions": ["User is on the login page", "User has valid username and password"],
       "steps": [
-        "1. Enter a valid username in the Username field",
-        "2. Enter a valid password in the Password field",
-        "3. Click the 'Log in' button"
+        "1. Enter valid <username> in the Username field",
+        "2. Enter valid <password> in the Password field",
+        "3. Click 'Log in' button"
       ],
       "expected_result": "User is redirected to the Dashboard",
       "priority": "high"
@@ -19,72 +19,59 @@
     {
       "tc_id": "N-001",
       "category": "negative",
-      "test_case": "Attempt to log in with an empty username",
+      "test_case": "Attempt to log in with invalid credentials",
       "preconditions": ["User is on the login page"],
       "steps": [
-        "1. Leave the Username field empty",
-        "2. Enter a valid password in the Password field",
-        "3. Click the 'Log in' button"
+        "1. Enter invalid <username> in the Username field",
+        "2. Enter invalid <password> in the Password field",
+        "3. Click 'Log in' button"
       ],
-      "expected_result": "An inline error message indicates that the Username field is required; the Password field is cleared, and the Username field remains empty",
+      "expected_result": "An inline error message is displayed; the password field is cleared and the username remains for correction",
       "priority": "high"
     },
     {
       "tc_id": "N-002",
       "category": "negative",
-      "test_case": "Attempt to log in with an empty password",
+      "test_case": "Attempt to log in with empty fields",
       "preconditions": ["User is on the login page"],
       "steps": [
-        "1. Enter a valid username in the Username field",
+        "1. Leave the Username field empty",
         "2. Leave the Password field empty",
-        "3. Click the 'Log in' button"
+        "3. Click 'Log in' button"
       ],
-      "expected_result": "An inline error message indicates that the Password field is required; the Password field is cleared, and the Username field remains filled",
-      "priority": "high"
-    },
-    {
-      "tc_id": "N-003",
-      "category": "negative",
-      "test_case": "Attempt to log in with invalid credentials",
-      "preconditions": ["User is on the login page"],
-      "steps": [
-        "1. Enter an invalid username in the Username field",
-        "2. Enter an invalid password in the Password field",
-        "3. Click the 'Log in' button"
-      ],
-      "expected_result": "An inline error message indicates that the credentials are invalid; the Password field is cleared, and the Username field remains filled",
+      "expected_result": "An inline error message is displayed for both fields; both fields remain empty",
       "priority": "high"
     },
     {
       "tc_id": "E-001",
       "category": "edge",
-      "test_case": "Log in with a username at maximum length",
+      "test_case": "Log in with a very long username and password",
       "preconditions": ["User is on the login page"],
       "steps": [
-        "1. Enter a username that is at the maximum allowed length in the Username field",
-        "2. Enter a valid password in the Password field",
-        "3. Click the 'Log in' button"
+        "1. Enter a username with maximum allowed length in the Username field",
+        "2. Enter a password with maximum allowed length in the Password field",
+        "3. Click 'Log in' button"
       ],
-      "expected_result": "User is redirected to the Dashboard if the credentials are valid; otherwise, an error message is displayed",
+      "expected_result": "User is redirected to the Dashboard if credentials are valid; otherwise, an error message is displayed",
       "priority": "medium"
     },
     {
       "tc_id": "E-002",
       "category": "edge",
-      "test_case": "Log in with a password at maximum length",
+      "test_case": "Log in with a username containing special characters",
       "preconditions": ["User is on the login page"],
       "steps": [
-        "1. Enter a valid username in the Username field",
-        "2. Enter a password that is at the maximum allowed length in the Password field",
-        "3. Click the 'Log in' button"
+        "1. Enter a username with special characters (e.g., !@#$%^&*) in the Username field",
+        "2. Enter a valid <password> in the Password field",
+        "3. Click 'Log in' button"
       ],
-      "expected_result": "User is redirected to the Dashboard if the credentials are valid; otherwise, an error message is displayed",
+      "expected_result": "User is redirected to the Dashboard if credentials are valid; otherwise, an error message is displayed",
       "priority": "medium"
     }
   ],
   "summary": {
     "total": 5,
-    "high_priority": 4,
+    "high_priority": 3,
     "medium_priority": 2,
     "low_priority": 0
   }
@@ -99,77 +86,77 @@
       "tc_id": "P-001",
       "category": "positive",
       "test_case": "View the Dashboard with all elements displayed correctly",
-      "preconditions": ["User logged in", "User is enrolled in at least one course"],
+      "preconditions": ["User logged in", "User has enrolled in at least one course"],
       "steps": [
         "1. Navigate to the Dashboard",
         "2. Observe the personalized greeting at the top",
-        "3. Check that the Timeline block is displayed with upcoming teaching actions",
+        "3. Check that the Timeline block is displayed with the upcoming teaching actions",
         "4. Verify that the Calendar block is displayed with the current month and year"
       ],
-      "expected_result": "The Dashboard displays a personalized greeting, the Timeline block with upcoming actions, and the Calendar block with the current month and year",
+      "expected_result": "The Dashboard displays a personalized greeting, the Timeline block shows upcoming actions, and the Calendar block shows the current month and year",
       "priority": "high"
     },
     {
       "tc_id": "N-001",
       "category": "negative",
-      "test_case": "Attempt to use the search field in the Timeline block without entering a query",
-      "preconditions": ["User logged in", "User is enrolled in at least one course"],
+      "test_case": "Attempt to use the search field in the Timeline block without entering a search term",
+      "preconditions": ["User logged in", "User has enrolled in at least one course"],
       "steps": [
         "1. Navigate to the Dashboard",
-        "2. Locate the Timeline block",
+        "2. Locate the search field in the Timeline block",
         "3. Leave the search field empty",
         "4. Click the search button"
       ],
-      "expected_result": "An error message prompts the user to enter a search query; no results are displayed",
+      "expected_result": "An error message is displayed indicating that a search term must be entered; no search results are shown",
       "priority": "high"
     },
     {
       "tc_id": "E-001",
       "category": "edge",
       "test_case": "Select a time range in the Timeline block that has no upcoming actions",
-      "preconditions": ["User logged in", "User is enrolled in at least one course", "No actions are scheduled in the next 7 days"],
+      "preconditions": ["User logged in", "User has enrolled in at least one course"],
       "steps": [
         "1. Navigate to the Dashboard",
-        "2. Locate the Timeline block",
-        "3. Select 'Next 7 days' from the time range dropdown",
+        "2. Locate the time range dropdown in the Timeline block",
+        "3. Select 'Next 7 days' (assuming no actions are scheduled in this range)",
         "4. Observe the Timeline block"
       ],
-      "expected_result": "The Timeline block displays an empty state message indicating no upcoming actions are available for the selected range",
+      "expected_result": "The Timeline block displays an empty state message indicating no upcoming actions are available for the selected time range",
       "priority": "medium"
     },
     {
       "tc_id": "P-002",
       "category": "positive",
       "test_case": "Create a new event in the Calendar block",
-      "preconditions": ["User logged in", "User is enrolled in at least one course"],
+      "preconditions": ["User logged in", "User has access to the Calendar block"],
       "steps": [
         "1. Navigate to the Dashboard",
-        "2. Locate the Calendar block",
-        "3. Click the 'New event' button",
-        "4. Fill in the event details and save"
+        "2. Click the 'New event' button in the Calendar block",
+        "3. Fill in the event details (title, date, time)",
+        "4. Click 'Save'"
       ],
-      "expected_result": "The new event appears in the Calendar block on the correct date",
+      "expected_result": "The new event appears in the Calendar block on the selected date",
       "priority": "high"
     },
     {
       "tc_id": "N-002",
       "category": "negative",
       "test_case": "Attempt to create a new event without filling in required fields",
-      "preconditions": ["User logged in", "User is enrolled in at least one course"],
+      "preconditions": ["User logged in", "User has access to the Calendar block"],
       "steps": [
         "1. Navigate to the Dashboard",
-        "2. Locate the Calendar block",
-        "3. Click the 'New event' button",
-        "4. Leave required fields empty and click save"
+        "2. Click the 'New event' button in the Calendar block",
+        "3. Leave all required fields empty",
+        "4. Click 'Save'"
       ],
-      "expected_result": "An error message indicates that required fields must be filled; the event is not created",
+      "expected_result": "An error message is displayed indicating that required fields must be filled; the event is not created",
       "priority": "high"
     },
     {
       "tc_id": "E-002",
       "category": "edge",
       "test_case": "Navigate to the previous month in the Calendar block",
-      "preconditions": ["User logged in", "User is enrolled in at least one course"],
+      "preconditions": ["User logged in", "User has access to the Calendar block"],
       "steps": [
         "1. Navigate to the Dashboard",
         "2. Locate the Calendar block",
@@ -211,9 +198,9 @@
       "test_case": "Attempt to add a block when Edit mode is off",
       "preconditions": ["User logged in", "Edit mode is toggled off"],
       "steps": [
-        "1. Attempt to click '+ Add a block' below the Dashboard heading"
+        "1. Click '+ Add a block' below the Dashboard heading"
       ],
-      "expected_result": "The '+ Add a block' button is not visible or clickable",
+      "expected_result": "The '+ Add a block' button is not clickable; no action is performed",
       "priority": "high"
     },
     {
@@ -231,33 +218,33 @@
     {
       "tc_id": "P-002",
       "category": "positive",
-      "test_case": "Open the Add a block page and cancel the action",
-      "preconditions": ["User logged in", "Edit mode is toggled on"],
+      "test_case": "Open the options menu for a block",
+      "preconditions": ["User logged in", "Edit mode is toggled on", "At least one block is present on the Dashboard"],
       "steps": [
-        "1. Click '+ Add a block' below the Dashboard heading",
-        "2. Click 'Cancel' at the bottom of the Add a block page"
+        "1. Click the three-dot options menu on an existing block",
+        "2. Select 'Configure' from the menu"
       ],
-      "expected_result": "The user is returned to the Dashboard without adding a block",
+      "expected_result": "The configuration settings for the selected block are displayed",
       "priority": "medium"
     },
     {
       "tc_id": "N-002",
       "category": "negative",
-      "test_case": "Attempt to reset the Dashboard without any changes",
-      "preconditions": ["User logged in", "Edit mode is toggled on", "No blocks have been added or moved"],
+      "test_case": "Attempt to reset the Dashboard without any blocks added",
+      "preconditions": ["User logged in", "Edit mode is toggled on", "No blocks are added to the Dashboard"],
       "steps": [
         "1. Click 'Reset page to default' at the top right",
         "2. Confirm the reset action"
       ],
-      "expected_result": "A message indicates that there are no changes to reset",
-      "priority": "low"
+      "expected_result": "A message indicates that there are no changes to revert; the Dashboard remains unchanged",
+      "priority": "medium"
     }
   ],
   "summary": {
     "total": 5,
     "high_priority": 2,
-    "medium_priority": 2,
-    "low_priority": 1
+    "medium_priority": 3,
+    "low_priority": 0
   }
 }
 
@@ -274,7 +261,7 @@
       "steps": [
         "1. Navigate to the My Courses page"
       ],
-      "expected_result": "All courses the teacher has access to are displayed as visual cards with course banner images, names, and category names.",
+      "expected_result": "All courses the teacher has access to are displayed as visual cards with course banner images, names, and category names",
       "priority": "high"
     },
     {
@@ -287,7 +274,7 @@
         "2. Enter <course name> in the search field",
         "3. Click the search button"
       ],
-      "expected_result": "Only the course matching <course name> is displayed in the course cards.",
+      "expected_result": "Only the course matching <course name> is displayed in the course cards",
       "priority": "high"
     },
     {
@@ -300,7 +287,7 @@
         "2. Leave the search field empty",
         "3. Click the search button"
       ],
-      "expected_result": "All courses are displayed as no search criteria were provided.",
+      "expected_result": "All courses are displayed as visual cards; no error is shown",
       "priority": "medium"
     },
     {
@@ -310,9 +297,10 @@
       "preconditions": ["User logged in as Teacher", "More than 100 courses exist"],
       "steps": [
         "1. Navigate to the My Courses page",
-        "2. Select 'Sort by name' from the sort dropdown"
+        "2. Select the sort dropdown and choose <sorting criteria>",
+        "3. Observe the displayed courses"
       ],
-      "expected_result": "Courses are sorted alphabetically, and all 100+ courses are displayed correctly without performance issues.",
+      "expected_result": "Courses are sorted according to the selected criteria, and all courses are displayed correctly",
       "priority": "medium"
     },
     {
@@ -325,7 +313,7 @@
         "2. Click the three-dot menu on a course card",
         "3. Select 'Star this course'"
       ],
-      "expected_result": "The starred course is pinned to the top of the course list.",
+      "expected_result": "The starred course is pinned to the top of the course list",
       "priority": "high"
     },
     {
@@ -338,7 +326,7 @@
         "2. Click the three-dot menu on a starred course card",
         "3. Select 'Star this course'"
       ],
-      "expected_result": "A message indicates that the course is already starred; no changes are made to the course list.",
+      "expected_result": "A message indicates that the course is already starred; no changes are made",
       "priority": "medium"
     },
     {
@@ -349,9 +337,10 @@
       "steps": [
         "1. Navigate to the My Courses page",
         "2. Click the three-dot menu on a course card",
-        "3. Select 'Remove from view'"
+        "3. Select 'Remove from view'",
+        "4. Refresh the My Courses page"
       ],
-      "expected_result": "The course is hidden from the view but remains enrolled; the remaining courses are displayed correctly.",
+      "expected_result": "The removed course no longer appears in the course list; other courses remain visible",
       "priority": "medium"
     }
   ],
@@ -375,10 +364,9 @@
       "preconditions": ["User logged in as Teacher", "A course exists with multiple sections"],
       "steps": [
         "1. Navigate to the Course page",
-        "2. Ensure all sections are expanded",
-        "3. Observe the list of activities and resources within each section"
+        "2. Ensure all sections are expanded"
       ],
-      "expected_result": "All sections are visible with their respective activities and resources listed clearly",
+      "expected_result": "All sections are visible with activities and resources listed under each section",
       "priority": "high"
     },
     {
@@ -387,7 +375,7 @@
       "test_case": "Attempt to view course content without being logged in",
       "preconditions": [],
       "steps": [
-        "1. Navigate to the Course page URL directly"
+        "1. Navigate to the Course page"
       ],
       "expected_result": "User is redirected to the login page with an appropriate error message",
       "priority": "high"
@@ -396,7 +384,7 @@
       "tc_id": "E-001",
       "category": "edge",
       "test_case": "Collapse all sections when no sections are expanded",
-      "preconditions": ["User logged in as Teacher", "A course exists with multiple sections", "All sections are already collapsed"],
+      "preconditions": ["User logged in as Teacher", "A course exists with all sections collapsed"],
       "steps": [
         "1. Navigate to the Course page",
         "2. Click on the 'Collapse all' link"
@@ -407,25 +395,26 @@
     {
       "tc_id": "P-002",
       "category": "positive",
-      "test_case": "Collapse all sections when some sections are expanded",
-      "preconditions": ["User logged in as Teacher", "A course exists with multiple sections", "Some sections are expanded"],
+      "test_case": "Collapse a specific section of the course",
+      "preconditions": ["User logged in as Teacher", "A course exists with multiple sections"],
       "steps": [
         "1. Navigate to the Course page",
-        "2. Click on the 'Collapse all' link"
+        "2. Expand a specific section",
+        "3. Click on the collapsible chevron of that section"
       ],
-      "expected_result": "All sections are collapsed, and the chevrons for each section indicate they are closed",
+      "expected_result": "The specific section collapses, hiding its activities and resources",
       "priority": "high"
     },
     {
       "tc_id": "N-002",
       "category": "negative",
-      "test_case": "Attempt to access a section that does not exist",
+      "test_case": "Attempt to collapse a section that does not exist",
       "preconditions": ["User logged in as Teacher", "A course exists"],
       "steps": [
         "1. Navigate to the Course page",
-        "2. Click on a non-existent section link"
+        "2. Click on a non-existent section's collapsible chevron"
       ],
-      "expected_result": "An error message is displayed indicating the section does not exist",
+      "expected_result": "No action is performed; a message indicates the section does not exist",
       "priority": "medium"
     }
   ],
@@ -475,11 +464,10 @@
       "steps": [
         "1. Navigate to the Course page",
         "2. Click '+ Add an activity or resource' in a section",
-        "3. Open the Activity Chooser and select multiple activities (e.g., Assignment, Forum)",
-        "4. Click 'Add' for each selected activity",
-        "5. Use the bulk actions toolbar to select all activities in the section and click 'Move'"
+        "3. Select multiple activities from the Activity Chooser",
+        "4. Click 'Add' to add all selected activities"
       ],
-      "expected_result": "All selected activities are added to the course section and can be moved successfully",
+      "expected_result": "All selected activities are added to the course section successfully",
       "priority": "medium"
     }
   ],
@@ -506,11 +494,9 @@
         "2. Click '+ Add an activity or resource' in the target section",
         "3. Select Assignment from the Activity Chooser and click Add",
         "4. Enter <assignment name> in the Assignment name field",
-        "5. Enter <description> in the Description rich text editor",
+        "5. Enter <description> in the Description field",
         "6. Enable the Due date toggle and select <due date>",
-        "7. Enable the Cut-off date toggle and select <cut-off date>",
-        "8. Check the 'Online text' checkbox under Submission types",
-        "9. Click 'Save and return to course'"
+        "7. Click 'Save and return to course'"
       ],
       "expected_result": "The assignment appears in the course section with a link; the Grading summary panel shows 0 submissions",
       "priority": "high"
@@ -518,7 +504,7 @@
     {
       "tc_id": "N-001",
       "category": "negative",
-      "test_case": "Attempt to save an assignment without entering a name",
+      "test_case": "Attempt to save an assignment without filling the required fields",
       "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
       "steps": [
         "1. Navigate to the Course page and click '+ Add an activity or resource'",
@@ -530,49 +516,47 @@
       "priority": "high"
     },
     {
-      "tc_id": "N-002",
-      "category": "negative",
-      "test_case": "Attempt to save an assignment with invalid file types",
-      "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
-      "steps": [
-        "1. Navigate to the Course page and click '+ Add an activity or resource'",
-        "2. Select Assignment and click Add",
-        "3. Enter <assignment name> in the Assignment name field",
-        "4. Enable File submissions and upload a file with an invalid type",
-        "5. Click 'Save and return to course'"
-      ],
-      "expected_result": "An error message indicates that the file type is not accepted; the form is not submitted and remains open",
-      "priority": "high"
-    },
-    {
       "tc_id": "E-001",
       "category": "edge",
-      "test_case": "Set assignment due date and cut-off date to the same time",
+      "test_case": "Set both Due date and Cut-off date to the same time in the past",
       "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
       "steps": [
         "1. Open the Assignment creation form",
         "2. Enter <assignment name>",
-        "3. Enable Due date toggle and set it to <specific date and time>",
-        "4. Enable Cut-off date toggle and set it to the exact same date and time as the due date",
+        "3. Enable Due date toggle and set it to <specific past date and time>",
+        "4. Enable Cut-off date toggle and set it to the exact same past date and time as the due date",
         "5. Click 'Save and return to course'"
       ],
       "expected_result": "Assignment is saved successfully and appears in the course; both due and cut-off dates are identical in the assignment metadata",
       "priority": "medium"
     },
     {
-      "tc_id": "E-002",
-      "category": "edge",
-      "test_case": "Upload maximum number of files allowed for submission",
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Attempt to save an assignment with invalid file types in File submissions",
       "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
       "steps": [
         "1. Navigate to the Course page and click '+ Add an activity or resource'",
         "2. Select Assignment and click Add",
-        "3. Enter <assignment name> in the Assignment name field",
-        "4. Enable File submissions and set maximum number of uploaded files to <max number>",
-        "5. Upload <max number> of files",
-        "6. Click 'Save and return to course'"
+        "3. Enter <assignment name>",
+        "4. Enable File submissions and set invalid file types",
+        "5. Click 'Save and return to course'"
       ],
-      "expected_result": "Assignment is saved successfully; the maximum number of files is reflected in the assignment settings",
+      "expected_result": "An error message indicates that the file types are not accepted; the form is not submitted and remains open",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Set maximum submission size to the system's maximum limit",
+      "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
+      "steps": [
+        "1. Open the Assignment creation form",
+        "2. Enter <assignment name>",
+        "3. Enable File submissions and set maximum submission size to <system maximum size>",
+        "4. Click 'Save and return to course'"
+      ],
+      "expected_result": "Assignment is saved successfully and appears in the course; maximum submission size is set correctly in the assignment metadata",
       "priority": "medium"
     }
   ],
@@ -596,23 +580,14 @@
       "preconditions": ["User logged in as Teacher", "A course exists"],
       "steps": [
         "1. Navigate to the Course Settings page",
-        "2. Enter 'Full Course Name' in the Course full name field",
-        "3. Enter 'Short Course Name' in the Course short name field",
-        "4. Select a category from the Course category dropdown",
-        "5. Set Course visibility to 'Show'",
-        "6. Enter a start date in the Course start date field",
-        "7. Enable the Course end date toggle and set an end date",
-        "8. Enter a Course ID number",
-        "9. Enter a summary in the Course summary rich text editor",
-        "10. Upload a course image",
-        "11. Select a Course format",
-        "12. Set Maximum upload size",
-        "13. Enable Completion tracking toggle",
-        "14. Select group mode and grouping from the dropdowns",
-        "15. Add tags",
-        "16. Click 'Save and display'"
+        "2. Enter <course full name> in the Course full name field",
+        "3. Enter <course short name> in the Course short name field",
+        "4. Select <course category> from the Course category dropdown",
+        "5. Set Course visibility to <Show/Hide>",
+        "6. Optionally set Course start date and Course end date",
+        "7. Click 'Save and display'"
       ],
-      "expected_result": "The course settings are saved successfully and the course page displays the updated settings",
+      "expected_result": "The course settings are saved successfully and the user is redirected to the course page with updated settings",
       "priority": "high"
     },
     {
@@ -632,18 +607,17 @@
     {
       "tc_id": "E-001",
       "category": "edge",
-      "test_case": "Set course start date to a date in the past",
+      "test_case": "Set maximum upload size to the system's maximum limit",
       "preconditions": ["User logged in as Teacher", "A course exists"],
       "steps": [
         "1. Navigate to the Course Settings page",
-        "2. Enter 'Full Course Name' in the Course full name field",
-        "3. Enter 'Short Course Name' in the Course short name field",
-        "4. Select a category from the Course category dropdown",
-        "5. Set Course visibility to 'Show'",
-        "6. Enter a past date in the Course start date field",
-        "7. Click 'Save and display'"
+        "2. Enter <course full name> in the Course full name field",
+        "3. Enter <course short name> in the Course short name field",
+        "4. Select <course category> from the Course category dropdown",
+        "5. Set Maximum upload size to the maximum allowed value",
+        "6. Click 'Save and display'"
       ],
-      "expected_result": "The course settings are saved successfully, but a warning message indicates that the start date is in the past",
+      "expected_result": "The course settings are saved successfully with the maximum upload size set; the user is redirected to the course page",
       "priority": "medium"
     }
   ],
@@ -669,9 +643,9 @@
         "1. Navigate to the Participants page of the course",
         "2. Click the 'Enrol users' button",
         "3. Enter a valid username in the user search field",
-        "4. Select a role from the Role dropdown",
+        "4. Select a Role from the Role dropdown",
         "5. Optionally set an Enrollment duration",
-        "6. Click 'Enroll users' to confirm"
+        "6. Click 'Enrol selected users'"
       ],
       "expected_result": "The user is added to the course with the specified role; the participants list updates to include the new user",
       "priority": "high"
@@ -686,7 +660,7 @@
         "2. Click the 'Enrol users' button",
         "3. Enter a valid username in the user search field",
         "4. Leave the Role dropdown unselected",
-        "5. Click 'Enroll users' to confirm"
+        "5. Click 'Enrol selected users'"
       ],
       "expected_result": "An error message indicates that a role must be selected; the user is not enrolled",
       "priority": "high"
@@ -694,64 +668,36 @@
     {
       "tc_id": "E-001",
       "category": "edge",
-      "test_case": "Enroll a user with a very long enrollment duration",
-      "preconditions": ["User logged in as Teacher", "A course exists with users enrolled"],
-      "steps": [
-        "1. Navigate to the Participants page of the course",
-        "2. Click the 'Enrol users' button",
-        "3. Enter a valid username in the user search field",
-        "4. Select a role from the Role dropdown",
-        "5. Set the Enrollment duration to a very high value (e.g., 9999 days)",
-        "6. Click 'Enroll users' to confirm"
-      ],
-      "expected_result": "The user is enrolled successfully with the specified long enrollment duration; the participants list updates accordingly",
-      "priority": "medium"
-    },
-    {
-      "tc_id": "P-002",
-      "category": "positive",
-      "test_case": "Filter participants by first name",
+      "test_case": "Filter participants using multiple conditions",
       "preconditions": ["User logged in as Teacher", "A course exists with multiple enrolled users"],
       "steps": [
         "1. Navigate to the Participants page of the course",
-        "2. Click the 'A–Z' button for First name filtering",
-        "3. Select a letter (e.g., 'A') to filter",
-        "4. Observe the participants list"
+        "2. Click the '+ Add condition' link",
+        "3. Select 'First name' from the Select attribute dropdown",
+        "4. Set the condition to 'Contains' and enter a common substring",
+        "5. Click 'Apply filters'"
       ],
-      "expected_result": "The participants list displays only users whose first names start with the selected letter",
+      "expected_result": "The participants list updates to show only users whose first names contain the specified substring; the filter conditions are displayed",
       "priority": "medium"
-    },
-    {
-      "tc_id": "N-002",
-      "category": "negative",
-      "test_case": "Attempt to apply filters without any conditions set",
-      "preconditions": ["User logged in as Teacher", "A course exists with multiple enrolled users"],
-      "steps": [
-        "1. Navigate to the Participants page of the course",
-        "2. Click 'Apply filters' without setting any conditions"
-      ],
-      "expected_result": "The system shows a message indicating that no filters were set; the participants list remains unchanged",
-      "priority": "high"
     },
     {
       "tc_id": "E-002",
       "category": "edge",
-      "test_case": "Select all participants using bulk selection",
-      "preconditions": ["User logged in as Teacher", "A course exists with multiple enrolled users"],
+      "test_case": "Use alphabetical filter for Last name with no results",
+      "preconditions": ["User logged in as Teacher", "A course exists with users enrolled"],
       "steps": [
         "1. Navigate to the Participants page of the course",
-        "2. Check the checkbox at the top of the participants table to select all users",
-        "3. Choose an action from the 'With selected users...' dropdown",
-        "4. Confirm the action"
+        "2. Click the 'Last name' alphabetical filter button for 'Z'",
+        "3. Observe the participants list"
       ],
-      "expected_result": "The selected action is applied to all participants; the system processes the bulk action successfully",
+      "expected_result": "The participants list shows no users; a message indicates that no users match the filter criteria",
       "priority": "medium"
     }
   ],
   "summary": {
-    "total": 6,
-    "high_priority": 3,
-    "medium_priority": 3,
+    "total": 4,
+    "high_priority": 2,
+    "medium_priority": 2,
     "low_priority": 0
   }
 }
@@ -776,7 +722,7 @@
     {
       "tc_id": "P-002",
       "category": "positive",
-      "test_case": "Access grading interface from assignment page",
+      "test_case": "Access grading interface for an assignment",
       "preconditions": ["User logged in as Teacher", "An assignment exists with submissions"],
       "steps": [
         "1. Navigate to the Course page",
@@ -807,7 +753,7 @@
         "1. Navigate to the Course page",
         "2. Click on the assignment link to open the Assignment page"
       ],
-      "expected_result": "The assignment's metadata is displayed correctly without truncation, including the full description",
+      "expected_result": "The assignment's metadata is displayed correctly, and the full description is visible without truncation",
       "priority": "medium"
     }
   ],
@@ -839,12 +785,12 @@
     {
       "tc_id": "N-001",
       "category": "negative",
-      "test_case": "Attempt to search for submissions with an invalid student name",
+      "test_case": "Attempt to filter submissions with invalid student name",
       "preconditions": ["User logged in as Teacher", "An assignment with student submissions exists"],
       "steps": [
         "1. Navigate to the Assignment Submissions view",
         "2. Enter an invalid student name in the search field",
-        "3. Click the search button"
+        "3. Click the 'Search' button"
       ],
       "expected_result": "The table shows no results found; a message indicates that no submissions match the search criteria",
       "priority": "high"
@@ -852,14 +798,14 @@
     {
       "tc_id": "E-001",
       "category": "edge",
-      "test_case": "Filter submissions by grading status with no submissions available",
-      "preconditions": ["User logged in as Teacher", "An assignment exists but no submissions have been made"],
+      "test_case": "Filter submissions by grading status with no submissions",
+      "preconditions": ["User logged in as Teacher", "An assignment exists with no submissions"],
       "steps": [
         "1. Navigate to the Assignment Submissions view",
         "2. Select 'Not graded' from the grading status filter",
-        "3. Click the filter button"
+        "3. Click the 'Filter' button"
       ],
-      "expected_result": "The table shows no results; a message indicates that there are no submissions to display",
+      "expected_result": "The table remains empty, and a message indicates that there are no submissions to display",
       "priority": "medium"
     },
     {
@@ -879,29 +825,28 @@
     {
       "tc_id": "N-002",
       "category": "negative",
-      "test_case": "Attempt to enter invalid grades in quick grading mode",
+      "test_case": "Attempt to enter invalid grade in quick grading mode",
       "preconditions": ["User logged in as Teacher", "An assignment with student submissions exists"],
       "steps": [
         "1. Navigate to the Assignment Submissions view",
         "2. Enable 'Quick grading' mode",
-        "3. Enter a grade that exceeds the maximum allowed value",
+        "3. Enter an invalid grade (e.g., a negative number) for a student",
         "4. Click 'Save changes'"
       ],
-      "expected_result": "An error message appears indicating that the grade is invalid; the grades are not saved",
+      "expected_result": "An error message appears indicating that the grade is invalid; the grade is not saved",
       "priority": "high"
     },
     {
       "tc_id": "E-002",
       "category": "edge",
-      "test_case": "Filter submissions by multiple criteria simultaneously",
-      "preconditions": ["User logged in as Teacher", "An assignment with various student submissions exists"],
+      "test_case": "Filter submissions by submission status with maximum entries",
+      "preconditions": ["User logged in as Teacher", "An assignment exists with maximum allowed submissions"],
       "steps": [
         "1. Navigate to the Assignment Submissions view",
-        "2. Enter a student name in the search field",
-        "3. Select 'Submitted for grading' from the submission status filter",
-        "4. Click the filter button"
+        "2. Select 'Submitted for grading' from the submission status filter",
+        "3. Click the 'Filter' button"
       ],
-      "expected_result": "The table displays only the submissions that match both the student name and submission status criteria",
+      "expected_result": "The table displays all submissions that match the filter criteria, even if the number is at the system's maximum limit",
       "priority": "medium"
     }
   ],
@@ -953,7 +898,7 @@
       "steps": [
         "1. Navigate to the Gradebook section",
         "2. Locate the grade cell for a specific student and activity",
-        "3. Enter the minimum boundary value for the grade",
+        "3. Change the grade entry to the minimum allowed value (e.g., 0)",
         "4. Click 'Save changes'"
       ],
       "expected_result": "The grade entry is saved successfully, and the updated value is displayed in the grade cell",
@@ -962,14 +907,15 @@
     {
       "tc_id": "P-002",
       "category": "positive",
-      "test_case": "Filter students by name in the Grader report",
+      "test_case": "Filter students by name in the Gradebook",
       "preconditions": ["User logged in as Teacher", "A course with enrolled students exists"],
       "steps": [
         "1. Navigate to the Gradebook section",
-        "2. Enter a student's name in the user search field",
-        "3. Click the filter button"
+        "2. Locate the user search and filter controls above the grade table",
+        "3. Enter a student's name in the search field",
+        "4. Press Enter or click the search button"
       ],
-      "expected_result": "The grade table displays only the rows corresponding to the entered student's name",
+      "expected_result": "The grade table updates to display only the rows corresponding to the filtered student",
       "priority": "high"
     },
     {
@@ -980,10 +926,10 @@
       "steps": [
         "1. Navigate to the Gradebook section",
         "2. Locate the grade cell for a specific student and activity",
-        "3. Change the grade value",
+        "3. Change the grade entry",
         "4. Click 'Save changes'"
       ],
-      "expected_result": "An error message indicates that Edit mode must be enabled to save changes; the changes are not saved",
+      "expected_result": "An error message indicates that Edit mode must be enabled to save changes; no changes are saved",
       "priority": "high"
     },
     {
@@ -993,8 +939,8 @@
       "preconditions": ["User logged in as Teacher", "Edit mode is enabled", "Multiple grade entries exist"],
       "steps": [
         "1. Navigate to the Gradebook section",
-        "2. Quickly change the grade values for multiple students and activities",
-        "3. Click 'Save changes' after editing several entries"
+        "2. Quickly change several grade entries for different students",
+        "3. Click 'Save changes' after editing multiple entries"
       ],
       "expected_result": "All changes are saved successfully, and the updated values are displayed in the grade cells",
       "priority": "medium"
@@ -1030,10 +976,10 @@
     {
       "tc_id": "N-001",
       "category": "negative",
-      "test_case": "Attempt to access profile page without being logged in",
+      "test_case": "Attempt to access profile without being logged in",
       "preconditions": [],
       "steps": [
-        "1. Navigate to the Profile page URL directly"
+        "1. Navigate to the Profile page"
       ],
       "expected_result": "User is redirected to the login page with an appropriate error message",
       "priority": "high"
@@ -1070,21 +1016,18 @@
       "test_case": "Update profile with all required fields filled correctly",
       "preconditions": ["User logged in", "User is on the Edit profile page"],
       "steps": [
-        "1. Expand all sections of the Edit profile form",
-        "2. Enter 'John' in the First name field",
-        "3. Enter 'Doe' in the Last name field",
-        "4. Enter 'john.doe@example.com' in the Email address field",
-        "5. Select 'Show my email address' from the Email visibility dropdown",
-        "6. Enter '123456' in the MoodleNet profile ID field",
-        "7. Select 'New York' from the City/town field",
-        "8. Select 'United States' from the Country dropdown",
-        "9. Select 'America/New_York' from the Timezone dropdown",
-        "10. Enter 'This is a description' in the Description field",
-        "11. Upload a new user picture",
-        "12. Enter 'Profile picture' in the Picture description field",
-        "13. Click 'Update profile'"
+        "1. Enter 'John' in the First name field",
+        "2. Enter 'Doe' in the Last name field",
+        "3. Enter 'john.doe@example.com' in the Email address field",
+        "4. Select 'Show my email address' from the Email visibility dropdown",
+        "5. Enter '12345' in the MoodleNet profile ID field",
+        "6. Enter 'New York' in the City/town field",
+        "7. Select 'United States' from the Country dropdown",
+        "8. Select 'America/New_York' from the Timezone dropdown",
+        "9. Enter a description in the rich text editor",
+        "10. Click 'Update profile'"
       ],
-      "expected_result": "Profile is updated successfully; the profile page refreshes and displays the updated information.",
+      "expected_result": "The profile is updated successfully; the user sees a confirmation message and the updated profile information.",
       "priority": "high"
     },
     {
@@ -1093,13 +1036,12 @@
       "test_case": "Attempt to update profile without filling required fields",
       "preconditions": ["User logged in", "User is on the Edit profile page"],
       "steps": [
-        "1. Expand all sections of the Edit profile form",
-        "2. Leave the First name field empty",
-        "3. Leave the Last name field empty",
-        "4. Leave the Email address field empty",
-        "5. Click 'Update profile'"
+        "1. Leave the First name field empty",
+        "2. Leave the Last name field empty",
+        "3. Leave the Email address field empty",
+        "4. Click 'Update profile'"
       ],
-      "expected_result": "Validation errors are displayed for First name, Last name, and Email address fields; the form is not submitted and remains open.",
+      "expected_result": "Validation errors are displayed for First name, Last name, and Email address fields; the form is not submitted.",
       "priority": "high"
     },
     {
@@ -1108,19 +1050,34 @@
       "test_case": "Upload a user picture with maximum file size limit",
       "preconditions": ["User logged in", "User is on the Edit profile page"],
       "steps": [
-        "1. Expand all sections of the Edit profile form",
-        "2. Fill in all required fields with valid data",
-        "3. Upload a user picture that is exactly at the maximum file size limit",
+        "1. Prepare a user picture file that is at the maximum allowed size",
+        "2. Drag and drop the picture file into the upload area",
+        "3. Enter a description in the Picture description field",
         "4. Click 'Update profile'"
       ],
-      "expected_result": "Profile is updated successfully; the profile page refreshes and displays the updated information with the new picture.",
+      "expected_result": "The profile is updated successfully; the new picture is displayed with the provided description.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Enter a very long description in the rich text editor",
+      "preconditions": ["User logged in", "User is on the Edit profile page"],
+      "steps": [
+        "1. Enter 'John' in the First name field",
+        "2. Enter 'Doe' in the Last name field",
+        "3. Enter 'john.doe@example.com' in the Email address field",
+        "4. Enter a very long text (exceeding typical limits) in the Description field",
+        "5. Click 'Update profile'"
+      ],
+      "expected_result": "The profile is updated successfully; the long description is saved and displayed correctly.",
       "priority": "medium"
     }
   ],
   "summary": {
-    "total": 3,
+    "total": 4,
     "high_priority": 2,
-    "medium_priority": 1,
+    "medium_priority": 2,
     "low_priority": 0
   }
 }
@@ -1136,8 +1093,8 @@
       "test_case": "Successfully log out of the system",
       "preconditions": ["User logged in as Teacher"],
       "steps": [
-        "1. Click on the user profile icon in the top right corner",
-        "2. Select 'Log out' from the dropdown menu"
+        "1. Click on the 'Log out' button in the user menu",
+        "2. Wait for the page to redirect"
       ],
       "expected_result": "User is redirected to the login page; the session is terminated and the user is no longer authenticated",
       "priority": "high"
@@ -1149,7 +1106,7 @@
       "preconditions": ["User logged in as Teacher", "User has logged out"],
       "steps": [
         "1. Try to navigate to a protected page (e.g., Course page)",
-        "2. Observe the system's response"
+        "2. Observe the response"
       ],
       "expected_result": "User is redirected to the login page; access to the protected page is denied",
       "priority": "high"
@@ -1161,10 +1118,10 @@
       "preconditions": ["User logged in as Teacher", "User is in the middle of creating an assignment"],
       "steps": [
         "1. Start creating an assignment",
-        "2. Click on the user profile icon in the top right corner",
-        "3. Select 'Log out' from the dropdown menu"
+        "2. Click on the 'Log out' button in the user menu",
+        "3. Wait for the page to redirect"
       ],
-      "expected_result": "User is redirected to the login page; the assignment creation process is terminated and not saved",
+      "expected_result": "User is redirected to the login page; the assignment creation process is terminated and no data is saved",
       "priority": "medium"
     }
   ],

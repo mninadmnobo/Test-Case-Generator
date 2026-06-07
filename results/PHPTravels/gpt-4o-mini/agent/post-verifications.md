@@ -1,13 +1,12 @@
 # Post-Verification Specifications
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
+
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
 
 ---
 
@@ -16,57 +15,25 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard`
 - **Observe**:
-  - user's profile information
-  - list of bookings
-  - wallet/credits balance
+  - user account does not exist in the system
 
 **Post-Check**
 - **Navigate To**: `User Dashboard`
 - **Observe**:
-  - user's profile information
-  - list of bookings
-  - wallet/credits balance
+  - user account is created and visible in the user list
+  - welcome message displayed
 
-**Expected Change**: User's profile information is updated with the new registration details, and the account is created successfully.
+**Expected Change**: A new user account is created with the provided details and is visible in the user management section.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `Forgot Password page`
-- **Observe**:
-  - Email field
-  - Reset Password button
-
-**Post-Check**
-- **Navigate To**: `Email inbox`
-- **Observe**:
-  - reset password link email
-
-**Expected Change**: A reset password link email is received at the specified email address.
-
----
-
-### [TC-002] Unknown Title
-**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click the Logout button
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
 
 ---
 
@@ -75,160 +42,53 @@
 **Pre-Check**
 - **Navigate To**: `Login page`
 - **Observe**:
-  - Login button
-  - Forgot Password? link
+  - Email input field is empty
 
 **Post-Check**
 - **Navigate To**: `Login page`
 - **Observe**:
-  - Login button
-  - Forgot Password? link
+  - UI displays 'Reset link sent' message
 
-**Expected Change**: User can now log in with the new password.
+**Expected Change**: A confirmation message is displayed indicating that the reset link has been sent to the provided email.
 
 ---
 
-### [TC-002] Unknown Title
+### [TC-002] Attempt to access a protected page after logout
 **Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click the Logout button
 
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - travel dates
-  - status
-
-**Post-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - travel dates
-  - status
-
-**Expected Change**: A new booking entry appears in the My Bookings section with the correct service type, travel dates, and status 'Confirmed'.
-
----
-
-### [TC-001] Unknown Title
-**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click Logout_Button
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
 
 ---
 
 #### Verification Plan
 
 **Pre-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
+- **Navigate To**: `Login page`
 - **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - travel dates
-  - status
+  - Login form is visible
+  - Password reset link is not available
 
 **Post-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
+- **Navigate To**: `Login page`
 - **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - travel dates
-  - status
+  - Login form is visible
+  - Success message indicates password has been changed
 
-**Expected Change**: A new booking entry appears in the My Bookings section with the correct details and status 'Pending'.
+**Expected Change**: The user is redirected to the login page and can now log in with the new password.
 
 ---
 
-### [TC-001] Unknown Title
-**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click Logout_Button
-
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `Flight Booking Summary`
-- **Observe**:
-  - passenger count
-  - cabin class
-  - fare breakdown
-
-**Post-Check**
-- **Navigate To**: `Payment Page`
-- **Observe**:
-  - booking summary
-  - total price
-  - payment options
-
-**Expected Change**: User is redirected to the payment page with a complete booking summary and total price displayed.
-
----
-
-### [TC-001] Unknown Title
-**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click Logout_Button
-
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - list of bookings
-  - booking reference
-  - tour details
-
-**Post-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - list of bookings
-  - new booking reference
-  - tour details
-
-**Expected Change**: A new booking entry appears in the My Bookings section with the correct tour details and booking reference.
-
----
-
-### [TC-002] Unknown Title
+### [TC-002] Attempt to access a protected page after logout
 **Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click the Logout button
 
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
+
 ---
 
 #### Verification Plan
@@ -236,65 +96,53 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - status
+  - booking list does not contain the new hotel reservation
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - list of bookings
-  - booking reference
-  - service type
-  - status
+  - booking list contains the new hotel reservation
+  - status badge is 'Pending'
 
-**Expected Change**: A new booking entry appears in the My Bookings section with the status 'Confirmed'.
+**Expected Change**: A new booking entry is created for the selected hotel with the correct details.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
 ---
 
 #### Verification Plan
 
 **Pre-Check**
-- **Navigate To**: `Car Booking page`
+- **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - Driver Full Name field
-  - Age field
-  - License Number field
-  - Email field
-  - Phone Number field
+  - booking list does not contain the new booking entry
 
 **Post-Check**
-- **Navigate To**: `Payment page`
+- **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - Booking summary
-  - Total cost
-  - Payment options
+  - booking list contains the new booking entry
+  - status is 'Pending'
 
-**Expected Change**: User is redirected to the payment page where they can see the booking summary and proceed with payment.
+**Expected Change**: A new booking entry is created for the selected stay dates with the correct guest count and user details.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
 ---
 
 #### Verification Plan
@@ -302,56 +150,52 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - application status
-  - visa application details
+  - booking list does not contain the new booking entry
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - application status
-  - visa application details
+  - booking list contains the new booking entry
+  - status is 'Pending'
 
-**Expected Change**: A new visa application entry appears in the My Bookings section with the status indicating it is under review or submitted.
+**Expected Change**: A new booking entry is created with the correct traveler details and is awaiting payment.
 
 ---
 
-### [TC-002] Unknown Title
+### [TC-001] User successfully logs out
+**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click Logout_Button
+
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking list does not contain the new tour reservation
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking list contains the new tour reservation
+  - status badge is 'Pending'
+
+**Expected Change**: A new booking entry is created for the selected tour with the correct departure date and traveler count.
+
+---
+
+### [TC-002] Attempt to access a protected page after logout
 **Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click the Logout button
 
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - booking reference
-  - status of the booking
-
-**Post-Check**
-- **Navigate To**: `User Dashboard -> My Bookings`
-- **Observe**:
-  - booking reference
-  - status of the booking
-
-**Expected Change**: Booking status changed to 'Cancelled'.
-
----
-
-### [TC-003] Unknown Title
-**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click the Logout button
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
 
 ---
 
@@ -360,30 +204,26 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - booking reference
-  - service type
-  - status
+  - booking list does not contain the new vehicle reservation
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - booking reference
-  - service type
-  - status
+  - booking list contains the new vehicle reservation
+  - status is 'Confirmed'
 
-**Expected Change**: Booking status remains the same, but the booking modification form is opened for editing.
+**Expected Change**: A new booking entry is created for the selected vehicle with the correct details.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
 ---
 
 #### Verification Plan
@@ -391,88 +231,110 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - booking reference
+  - booking list does not contain the new car rental booking
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking list contains the new car rental booking
+  - status is 'Pending'
+
+**Expected Change**: A new car rental booking entry is created with the correct details and status.
+
+---
+
+### [TC-001] User successfully logs out
+**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click Logout_Button
+
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - no visa application entry present
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - visa application entry present
+  - status is 'Pending'
+
+**Expected Change**: A new visa application entry is created with the correct details and status reflecting the submitted application.
+
+---
+
+### [TC-002] Attempt to access a protected page after logout
+**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click the Logout button
+
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking status is 'Confirmed'
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking status is 'Cancelled'
+  - success message displayed
+
+**Expected Change**: The booking status changes from 'Confirmed' to 'Cancelled', and a success message is displayed.
+
+---
+
+### [TC-001] User successfully logs out
+**Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click Logout_Button
+
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking details
   - travel dates
+  - special requests
   - traveler information
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - booking reference
   - updated travel dates
+  - updated special requests
   - updated traveler information
 
-**Expected Change**: Travel dates and traveler information have been updated as per the modification.
+**Expected Change**: The booking details reflect the modifications made, including changes to travel dates, special requests, and traveler information.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `Payment Summary`
-- **Observe**:
-  - total amount due
-  - payment method selected
-
-**Post-Check**
-- **Navigate To**: `Booking Confirmation`
-- **Observe**:
-  - booking reference number
-  - total amount charged
-  - payment method
-
-**Expected Change**: User is redirected to the booking confirmation page displaying a booking reference number and the total amount charged matches the amount due on the payment summary.
-
----
-
-### [TC-002] Unknown Title
-**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click the Logout button
-
----
-
-#### Verification Plan
-
-**Pre-Check**
-- **Navigate To**: `Payment Summary Page`
-- **Observe**:
-  - total amount due
-  - selected payment method
-
-**Post-Check**
-- **Navigate To**: `Booking Confirmation Page`
-- **Observe**:
-  - booking reference number
-  - total amount charged
-
-**Expected Change**: User is redirected to the booking confirmation page displaying a booking reference number and the total amount charged matches the amount displayed on the payment summary page.
-
----
-
-### [TC-003] Unknown Title
-**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
-
-**Original Steps:**
-1. 1. Click the Logout button
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
 
 ---
 
@@ -481,31 +343,81 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - list of bookings
-  - booking reference number
-  - booking status
+  - booking list does not contain the new booking entry
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - list of bookings
-  - new booking reference number
-  - booking status as 'Confirmed'
+  - booking list contains the new booking entry
+  - status is 'Confirmed'
 
-**Expected Change**: A new booking appears in the list with a unique reference number and status updated to 'Confirmed'.
+**Expected Change**: A new booking entry is created with the correct details and status after the payment is successfully processed.
 
 ---
 
-### [TC-004] Unknown Title
+### [TC-002] Attempt to access a protected page after logout
+**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click the Logout button
+
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - no recent bookings listed
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - recent booking with reference number displayed
+  - status is 'Confirmed'
+
+**Expected Change**: A new booking entry is created with the correct reference number after successful payment via PayPal.
+
+---
+
+### [TC-003] Attempt to click Logout button when already logged out
+**Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
+
+**Original Steps:**
+1. 1. Click the Logout button
+
+**Original Expected Result:** No action occurs; user remains on the current page
+
+---
+
+#### Verification Plan
+
+**Pre-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking list does not contain the new booking entry
+
+**Post-Check**
+- **Navigate To**: `User Dashboard -> My Bookings`
+- **Observe**:
+  - booking list contains the new booking entry
+  - status is 'Pending'
+
+**Expected Change**: A new booking entry is created with the correct reference number after the payment submission.
+
+---
+
+### [TC-004] Rapid logout attempts
 **Category**: `edge` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click the Logout button
 2. 2. Immediately click the Logout button again
 
+**Original Expected Result:** Second logout attempt is blocked; user remains on the home page without session termination
+
 ---
 
 #### Verification Plan
@@ -513,73 +425,68 @@
 **Pre-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - booking reference
-  - booking status
+  - booking list does not contain the new booking entry
 
 **Post-Check**
 - **Navigate To**: `User Dashboard -> My Bookings`
 - **Observe**:
-  - new booking reference
-  - booking status
+  - booking list contains the new booking entry
+  - status is 'Confirmed'
 
-**Expected Change**: A new booking appears in the My Bookings section with a status of 'Confirmed'.
+**Expected Change**: A new booking entry is created with the correct reference number after the payment is processed.
 
 ---
 
-### [TC-001] Unknown Title
+### [TC-001] User successfully logs out
 **Category**: `positive` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click Logout_Button
 
+**Original Expected Result:** terminates the current session and clears sensitive session data; user is redirected to the home page
+
 ---
 
 #### Verification Plan
 
 **Pre-Check**
-- **Navigate To**: `My Bookings -> Reviews`
+- **Navigate To**: `User Dashboard -> My Reviews`
 - **Observe**:
-  - list of submitted reviews
-  - review count
+  - no reviews submitted by the user
 
 **Post-Check**
-- **Navigate To**: `My Bookings -> Reviews`
+- **Navigate To**: `User Dashboard -> My Reviews`
 - **Observe**:
-  - list of submitted reviews
-  - review count
+  - new review entry is displayed
+  - status is 'Pending'
 
-**Expected Change**: A new review appears in the list of submitted reviews, and the review count increases by one.
+**Expected Change**: A new review entry is created with the submitted ratings and feedback.
 
 ---
 
-### [TC-002] Unknown Title
+### [TC-002] Attempt to access a protected page after logout
 **Category**: `negative` | **Verification Type**: `same_actor_navigation` | **Coverage**: `verifiable`
-
-**Original Test Case Description:**
-> No description available.
 
 **Original Steps:**
 1. 1. Click the Logout button
 
+**Original Expected Result:** User is redirected to the login page when attempting to access a protected page
+
 ---
 
 #### Verification Plan
 
 **Pre-Check**
-- **Navigate To**: `User Dashboard`
+- **Navigate To**: `Offers page`
 - **Observe**:
-  - newsletter subscription status
-  - email address in subscription list
+  - subscription confirmation message is not displayed
 
 **Post-Check**
-- **Navigate To**: `User Dashboard`
+- **Navigate To**: `Offers page`
 - **Observe**:
-  - newsletter subscription status
-  - email address in subscription list
+  - subscription confirmation message is displayed
+  - user receives confirmation email
 
-**Expected Change**: Email address is now listed as subscribed for future exclusive deals.
+**Expected Change**: The user receives a confirmation message indicating that the email has been submitted for future exclusive deals.
 
 ---
