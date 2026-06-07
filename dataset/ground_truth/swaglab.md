@@ -1,7 +1,7 @@
-﻿# Swag Labs Test Cases
+# Swag Labs Test Cases
 
 **Website URL:** https://www.saucedemo.com/
-**Test Suite Version:** 1.0
+**Test Suite Version:** 1.3
 
 ---
 
@@ -18,246 +18,132 @@
 
 ---
 
-## Test Credentials
-
-| Username | Description |
-|----------|-------------|
-| standard_user | Standard user for normal testing |
-| locked_out_user | User that is locked out |
-| problem_user | User with UI/functionality problems |
-| performance_glitch_user | User with delayed responses |
-| error_user | User that triggers errors |
-| visual_user | User with visual glitches |
-
-**Password for all users:** secret_sauce
-
----
-
 ## 1. Login
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-LOGIN-001 | Valid login with standard_user | None | 1. Navigate to login page<br>2. Enter "standard_user" as username<br>3. Enter "secret_sauce" as password<br>4. Click "Login" | User redirected to product inventory page | High |
-| SL-LOGIN-002 | Login page elements displayed | None | 1. Navigate to login page | Username field, Password field, Login button, and accepted usernames/password info visible | Medium |
-| SL-LOGIN-003 | Login with each valid user type | None | 1. Login with standard_user<br>2. Logout<br>3. Repeat for each user type | All valid users can log in (except locked_out_user) | High |
-
-### Negative Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-LOGIN-004 | Invalid username | None | 1. Enter invalid username<br>2. Enter valid password<br>3. Click "Login" | Error message: "Epic sadface: Username and password do not match" | High |
-| SL-LOGIN-005 | Invalid password | None | 1. Enter valid username<br>2. Enter incorrect password<br>3. Click "Login" | Error message displayed, user remains on login page | High |
-| SL-LOGIN-006 | Empty username | None | 1. Leave username empty<br>2. Enter password<br>3. Click "Login" | Error message: "Epic sadface: Username is required" | High |
-| SL-LOGIN-007 | Empty password | None | 1. Enter username<br>2. Leave password empty<br>3. Click "Login" | Error message: "Epic sadface: Password is required" | High |
-| SL-LOGIN-008 | Both fields empty | None | 1. Leave both fields empty<br>2. Click "Login" | Error message: "Epic sadface: Username is required" | High |
-| SL-LOGIN-009 | Locked out user | None | 1. Enter "locked_out_user"<br>2. Enter "secret_sauce"<br>3. Click "Login" | Error message: "Epic sadface: Sorry, this user has been locked out" | High |
-
-### Boundary Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-LOGIN-010 | Username with leading/trailing spaces | None | 1. Enter " standard_user " (with spaces)<br>2. Enter valid password<br>3. Click "Login" | Login fails or spaces trimmed and login succeeds | Medium |
-| SL-LOGIN-011 | Case sensitivity | None | 1. Enter "Standard_User" (different case)<br>2. Enter valid password<br>3. Click "Login" | Login fails (username is case-sensitive) | Medium |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-LOGIN-012 | Password field masking | None | 1. Enter text in password field | Password characters are masked | High |
-| SL-LOGIN-013 | Error message dismissible | SL-LOGIN-004 completed | 1. Click X button on error message | Error message disappears | Medium |
-| SL-LOGIN-014 | Tab navigation | None | 1. Use Tab key to navigate | Focus moves: username → password → Login button | Medium |
-| SL-LOGIN-015 | Enter key submission | None | 1. Fill credentials<br>2. Press Enter | Form submits | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-LOGIN-001 | Successful login with accepted username and correct password | Redirects to inventory | High |
+| SL-LOGIN-002 | Locked out user submits credentials | Locked out error shown | High |
+| SL-LOGIN-003 | Submit unrecognized username with a password | Credential mismatch error | High |
+| SL-LOGIN-004 | Submit with missing Username and provided Password | Username required error | High |
+| SL-LOGIN-005 | Submit with provided Username and missing Password | Password required error | High |
+| SL-LOGIN-006 | Submit with both Username and Password missing | Both required errors | High |
+| SL-LOGIN-007 | Accepted username with leading and trailing whitespace | Login succeeds | Medium |
+| SL-LOGIN-008 | Username case-variation with correct password | Login blocked | Medium |
+| SL-LOGIN-009 | Accepted username with appended emoji | Login blocked | Low |
+| SL-LOGIN-010 | Rapid double-submit of Login with valid credentials | Successful login, no duplicates | Medium |
+| SL-LOGIN-011 | Submit with invalid credentials | Credential mismatch error | High |
+| SL-LOGIN-012 | Submit with provided Username and missing Password (inline) | Inline password required error | Medium |
+| SL-LOGIN-013 | Login page elements displayed | All input fields and buttons visible | Medium |
+| SL-LOGIN-014 | 'Enter' key submits login form | Form submits on enter | Medium |
 
 ## 2. Product Inventory
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-INV-001 | Products displayed | User logged in | 1. View inventory page | All products displayed with name, description, price, and "Add to cart" button | High |
-| SL-INV-002 | Add product to cart | User logged in | 1. Click "Add to cart" on any product | Button changes to "Remove", cart badge shows "1" | High |
-| SL-INV-003 | Add multiple products | User logged in | 1. Add product 1 to cart<br>2. Add product 2 to cart<br>3. Add product 3 to cart | Cart badge shows "3" | High |
-| SL-INV-004 | Remove product from cart | Product in cart | 1. Click "Remove" button | Button changes to "Add to cart", cart badge decrements | High |
-| SL-INV-005 | Sort A-Z (default) | User logged in | 1. Check default sort order | Products sorted alphabetically A-Z | High |
-| SL-INV-006 | Sort Z-A | User logged in | 1. Select "Name (Z to A)" from dropdown | Products sorted alphabetically Z-A | High |
-| SL-INV-007 | Sort Price low to high | User logged in | 1. Select "Price (low to high)" | Products sorted by price ascending | High |
-| SL-INV-008 | Sort Price high to low | User logged in | 1. Select "Price (high to low)" | Products sorted by price descending | High |
-| SL-INV-009 | Navigate to product detail | User logged in | 1. Click on product name or image | Navigates to product detail page | High |
-| SL-INV-010 | Cart icon navigation | User logged in | 1. Click cart icon | Navigates to shopping cart page | High |
-
-### Negative Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-INV-011 | Access inventory without login | Not logged in | 1. Navigate directly to inventory URL | Redirected to login or access denied | High |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-INV-012 | Product images displayed | User logged in | 1. View inventory | All products have images | Medium |
-| SL-INV-013 | Price formatting | User logged in | 1. View product prices | Prices formatted as $XX.XX | Medium |
-| SL-INV-014 | Cart badge visibility | User logged in, cart empty | 1. View cart icon | No badge shown when cart is empty | Medium |
-| SL-INV-015 | Cart badge updates real-time | User logged in | 1. Add item<br>2. Observe badge | Badge updates immediately | High |
-| SL-INV-016 | Sort dropdown options | User logged in | 1. Click sort dropdown | Shows 4 options: A-Z, Z-A, Price low-high, Price high-low | Medium |
-| SL-INV-017 | Hamburger menu visible | User logged in | 1. View top-left corner | Hamburger menu icon visible | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-INV-001 | Open Product Detail from product name | Navigates to detail page | High |
+| SL-INV-002 | Add product to cart from product list | Button changes to Remove, badge updates | High |
+| SL-INV-003 | Remove product from cart from product list | Button changes to Add, badge updates | High |
+| SL-INV-004 | Sort products by Name (A–Z) | Products sorted A-Z | High |
+| SL-INV-005 | Unauthenticated user cannot access Inventory | Redirects to login | High |
+| SL-INV-006 | Cannot perform 'Remove' when product NotInCart | Remove button unavailable | Medium |
+| SL-INV-007 | Cannot perform 'Add to cart' when product InCart | Add button unavailable | Medium |
+| SL-INV-008 | Double-click Add on a NotInCart product | Single item added | Medium |
+| SL-INV-009 | Double-click Remove on an InCart product | Single item removed | Medium |
+| SL-INV-010 | Rapidly add multiple distinct products | All items added to cart | Medium |
+| SL-INV-011 | Products displayed with correct formatting | Images and text align properly | High |
+| SL-INV-012 | Sort by Price (High to Low) functionality | Products sorted by price descending | High |
 
 ## 3. Product Detail
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-PD-001 | Product details displayed | User logged in | 1. Click on a product | Product name, description, price, and image displayed | High |
-| SL-PD-002 | Add to cart from detail page | User logged in, on product detail | 1. Click "Add to cart" | Product added, button changes to "Remove", cart badge updates | High |
-| SL-PD-003 | Remove from cart on detail page | Product in cart, on detail page | 1. Click "Remove" | Product removed, button changes to "Add to cart" | High |
-| SL-PD-004 | Back to products | On product detail page | 1. Click "Back to products" | Returns to inventory page | High |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-PD-005 | Large product image | On product detail | 1. View product image | Larger image than inventory thumbnail | Medium |
-| SL-PD-006 | Price matches inventory | On product detail | 1. Compare price with inventory listing | Price is identical | High |
-| SL-PD-007 | Cart state preserved | Product added from inventory | 1. Navigate to product detail | "Remove" button shown (not "Add to cart") | High |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-PD-001 | Add product to cart when product is not in cart | Added to cart | High |
+| SL-PD-002 | Remove product from cart when product is in cart | Removed from cart | High |
+| SL-PD-003 | Navigate back to Product Inventory via link | Returns to inventory | High |
+| SL-PD-004 | Open Shopping Cart via cart icon | Navigates to cart | High |
+| SL-PD-005 | Attempt to Add to cart when already In Cart | Add action blocked/hidden | Medium |
+| SL-PD-006 | Attempt to Remove when Not In Cart | Remove action blocked/hidden | Medium |
+| SL-PD-007 | Rapid double-click 'Add to cart' | Single item added | Medium |
+| SL-PD-008 | Rapid double-click 'Remove' | Single item removed | Medium |
+| SL-PD-009 | Product image is zoomable | Image expands on click | Low |
 
 ## 4. Shopping Cart
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CART-001 | View cart with items | Items added to cart | 1. Click cart icon | All added items displayed with name, description, price, quantity | High |
-| SL-CART-002 | Remove item from cart | Items in cart | 1. Click "Remove" on an item | Item removed from cart, list updates | High |
-| SL-CART-003 | Continue shopping | On cart page | 1. Click "Continue Shopping" | Returns to inventory page | High |
-| SL-CART-004 | Proceed to checkout | Items in cart | 1. Click "Checkout" | Navigates to checkout information page | High |
-| SL-CART-005 | Cart persists across pages | Items added | 1. Navigate to different pages<br>2. Return to cart | Items still in cart | High |
-| SL-CART-006 | Quantity display | Items in cart | 1. View cart | Quantity shown as "1" for each item | Medium |
-
-### Negative Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CART-007 | Empty cart | No items added | 1. Navigate to cart | Empty cart state or message displayed | Medium |
-| SL-CART-008 | Checkout with empty cart | No items in cart | 1. Navigate to cart<br>2. Try to checkout | Prevented or appropriate error | Medium |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CART-009 | Cart item layout | Items in cart | 1. View cart | Each item shows quantity, name, description, price | Medium |
-| SL-CART-010 | Remove button for each item | Multiple items in cart | 1. View cart | Each item has its own "Remove" button | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-CART-001 | Remove an item from the cart | Item disappears from list | High |
+| SL-CART-002 | Continue Shopping navigates to Product Inventory | Returns to inventory | High |
+| SL-CART-003 | Begin Checkout from the cart | Navigates to checkout info | High |
+| SL-CART-004 | Unauthenticated user cannot access Shopping Cart | Redirects to login | High |
+| SL-CART-005 | Unauthenticated user cannot begin checkout | Checkout action blocked | High |
+| SL-CART-006 | Very long product description in cart table | Description wraps cleanly | Low |
+| SL-CART-007 | Unicode and emoji characters in product description | Characters render correctly | Low |
+| SL-CART-008 | Cart total quantity updates on page refresh | Badge persists value | Medium |
+| SL-CART-009 | Cart scrollbar appears when many items added | List becomes scrollable | Low |
 
 ## 5. Checkout - Information
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK1-001 | Complete checkout info | Items in cart, on checkout page | 1. Enter First Name<br>2. Enter Last Name<br>3. Enter Postal Code<br>4. Click "Continue" | Navigates to checkout overview | High |
-| SL-CHK1-002 | Cancel checkout | On checkout info page | 1. Click "Cancel" | Returns to cart page | High |
-
-### Negative Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK1-003 | First Name empty | On checkout info | 1. Leave First Name empty<br>2. Fill other fields<br>3. Click "Continue" | Error: "Error: First Name is required" | High |
-| SL-CHK1-004 | Last Name empty | On checkout info | 1. Leave Last Name empty<br>2. Fill other fields<br>3. Click "Continue" | Error: "Error: Last Name is required" | High |
-| SL-CHK1-005 | Postal Code empty | On checkout info | 1. Leave Postal Code empty<br>2. Fill other fields<br>3. Click "Continue" | Error: "Error: Postal Code is required" | High |
-| SL-CHK1-006 | All fields empty | On checkout info | 1. Leave all fields empty<br>2. Click "Continue" | Error message for first required field | High |
-
-### Boundary Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK1-007 | Single character inputs | On checkout info | 1. Enter single character in each field<br>2. Click "Continue" | Form accepts or rejects appropriately | Low |
-| SL-CHK1-008 | Very long inputs | On checkout info | 1. Enter very long strings<br>2. Click "Continue" | System handles gracefully (truncates or accepts) | Low |
-| SL-CHK1-009 | Special characters | On checkout info | 1. Enter special characters in fields<br>2. Click "Continue" | System handles appropriately | Low |
-| SL-CHK1-010 | Numeric First/Last Name | On checkout info | 1. Enter numbers in name fields<br>2. Click "Continue" | May accept (no strict validation) | Low |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK1-011 | Form elements displayed | On checkout info | 1. View page | First Name, Last Name, Postal Code fields, Continue and Cancel buttons visible | Medium |
-| SL-CHK1-012 | Error message style | Error triggered | 1. Submit with empty field | Error displayed with red styling and X icon | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-CHK1-001 | Continue with all required fields filled | Navigates to overview | High |
+| SL-CHK1-002 | Continue with multiple required fields missing | Error banners shown | High |
+| SL-CHK1-003 | Continue with First Name missing | First name error | High |
+| SL-CHK1-004 | Continue with Last Name missing | Last name error | High |
+| SL-CHK1-005 | Continue with Zip/Postal Code missing | Postal code error | High |
+| SL-CHK1-006 | Click Cancel returns user to Shopping Cart | Navigates to cart | High |
+| SL-CHK1-007 | Whitespace-only in First_Name | Blocked as empty | Medium |
+| SL-CHK1-008 | Leading and trailing whitespace in Last_Name | Whitespace trimmed | Medium |
+| SL-CHK1-009 | Very long text in name fields (200+ chars) | Text truncated or accepted | Low |
+| SL-CHK1-010 | Special characters and emoji in name fields | Characters preserved | Low |
+| SL-CHK1-011 | Autofill works for shipping information | Fields populate from browser | Medium |
+| SL-CHK1-012 | Pressing 'Enter' in Postal Code field submits form | Form submits successfully | Medium |
 
 ## 6. Checkout - Overview
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK2-001 | Order summary displayed | Completed checkout info | 1. View checkout overview | All cart items listed with prices | High |
-| SL-CHK2-002 | Item total correct | Items in cart | 1. View Item total | Sum of all item prices | High |
-| SL-CHK2-003 | Tax calculated | On overview page | 1. View Tax amount | Tax calculated (typically 8%) | High |
-| SL-CHK2-004 | Total correct | On overview page | 1. View Total | Total = Item Total + Tax | High |
-| SL-CHK2-005 | Finish purchase | On overview page | 1. Click "Finish" | Order placed, confirmation page shown | High |
-| SL-CHK2-006 | Cancel from overview | On overview page | 1. Click "Cancel" | Returns to inventory page | High |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK2-007 | Payment info displayed | On overview page | 1. View payment section | Shows "SauceCard #31337" | Medium |
-| SL-CHK2-008 | Shipping info displayed | On overview page | 1. View shipping section | Shows shipping method (Free Pony Express) | Medium |
-| SL-CHK2-009 | Price breakdown clear | On overview page | 1. View totals section | Item total, Tax, and Total clearly labeled | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-CHK2-001 | Finish checkout navigates to confirmation page | Navigates to confirmation | High |
+| SL-CHK2-002 | Cancel exits checkout from overview | Returns to inventory | High |
+| SL-CHK2-003 | Unauthenticated user attempts to Finish checkout | Blocked | High |
+| SL-CHK2-004 | Unauthenticated user attempts to Cancel checkout | Blocked | High |
+| SL-CHK2-005 | Rapid double-click of Finish | Only one order created | Medium |
+| SL-CHK2-006 | Browser Back after successful Finish | Duplicate order blocked | High |
+| SL-CHK2-007 | Very long shipping address entered prior to Overview | Address displays cleanly | Low |
+| SL-CHK2-008 | Total price correctly includes tax calculation | Math is accurate | High |
 
 ## 7. Checkout - Confirmation
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK3-001 | Confirmation displayed | Order completed | 1. Complete checkout | "Thank you for your order!" message displayed | High |
-| SL-CHK3-002 | Cart cleared | Order completed | 1. View cart after order | Cart is empty, no badge | High |
-| SL-CHK3-003 | Back to products | On confirmation page | 1. Click "Back Home" | Returns to inventory page | High |
-
-### UI/UX Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-CHK3-004 | Success image displayed | Order completed | 1. View confirmation page | Pony Express image or checkmark visible | Medium |
-| SL-CHK3-005 | Order dispatch message | Order completed | 1. View confirmation page | "Your order has been dispatched" or similar message | Medium |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-CHK3-001 | Confirmation page displays the success message | Message visible | High |
+| SL-CHK3-002 | Back Home button returns to Product Inventory | Navigates to inventory | High |
+| SL-CHK3-003 | Unauthenticated user cannot access Confirmation page | Redirects to login | High |
+| SL-CHK3-004 | Back Home button not accessible to restricted role | Button disabled/hidden | Medium |
+| SL-CHK3-005 | Rapid double-click of Back Home button | Single navigation event | Medium |
+| SL-CHK3-006 | Use browser Back to return to Confirmation | Navigation succeeds | Medium |
+| SL-CHK3-007 | Success image (Pony Express) displayed | Image renders | Medium |
 
 ## 8. Logout
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-LOGOUT-001 | Successful logout | User logged in | 1. Open hamburger menu<br>2. Click "Logout" | User redirected to login page | High |
-| SL-LOGOUT-002 | Session cleared | Logged out | 1. Try to access inventory directly | Redirected to login | High |
-| SL-LOGOUT-003 | Cart cleared on logout | Items in cart, logged out | 1. Log back in<br>2. Check cart | Cart is empty (session reset) | High |
-| SL-LOGOUT-004 | Back button after logout | Logged out | 1. Click browser back button | Cannot access protected pages | High |
-
----
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-LOG-001 | Click Logout redirects user to Login Page | Navigates to login | High |
+| SL-LOG-002 | Accessing a protected page after logout redirects | Redirects to login | High |
+| SL-LOG-003 | Unauthenticated user should not see Logout button | Button hidden | High |
+| SL-LOG-004 | Direct access to logout endpoint blocked | Blocked | High |
+| SL-LOG-005 | Rapid double-click Logout | Single logout event | Medium |
+| SL-LOG-006 | Browser Back after logout | Protected content blocked | High |
+| SL-LOG-007 | Cart cleared on logout | Cart is empty on next login | High |
 
 ## 9. Reset App State
 
-### Functional Tests
-
-| TC ID | Test Case | Preconditions | Steps | Expected Result | Priority |
-|-------|-----------|---------------|-------|-----------------|----------|
-| SL-RESET-001 | Reset clears cart | Items in cart | 1. Open hamburger menu<br>2. Click "Reset App State" | Cart cleared, badge removed | High |
-| SL-RESET-002 | Reset button states | Items added (buttons show "Remove") | 1. Click "Reset App State" | All "Remove" buttons revert to "Add to cart" | High |
-| SL-RESET-003 | Reset preserves login | User logged in with items | 1. Click "Reset App State" | User remains logged in | Medium |
+| TC ID | Test Case | Expected Result | Priority |
+|-------|-----------|-----------------|----------|
+| SL-RST-001 | Reset clears a populated cart and resets buttons | State cleared | High |
+| SL-RST-002 | Reset when cart is already empty keeps UI cleared | No errors thrown | Medium |
+| SL-RST-003 | Unauthenticated user cannot perform Reset App State | Blocked | High |
+| SL-RST-004 | Expired session/token prevents Reset App State | Blocked | High |
 
 ---
 
@@ -265,13 +151,13 @@
 
 | Module | Total Tests | High Priority | Medium Priority | Low Priority |
 |--------|-------------|---------------|-----------------|--------------|
-| Login | 15 | 9 | 5 | 1 |
-| Product Inventory | 17 | 10 | 7 | 0 |
-| Product Detail | 7 | 5 | 2 | 0 |
-| Shopping Cart | 10 | 6 | 4 | 0 |
-| Checkout - Information | 12 | 6 | 2 | 4 |
-| Checkout - Overview | 9 | 6 | 3 | 0 |
-| Checkout - Confirmation | 5 | 3 | 2 | 0 |
-| Logout | 4 | 4 | 0 | 0 |
-| Reset App State | 3 | 2 | 1 | 0 |
-| **TOTAL** | **82** | **51** | **26** | **5** |
+| Login | 14 | 7 | 6 | 1 |
+| Product Inventory | 12 | 7 | 5 | 0 |
+| Product Detail | 9 | 4 | 4 | 1 |
+| Shopping Cart | 9 | 5 | 1 | 3 |
+| Checkout - Information | 12 | 6 | 4 | 2 |
+| Checkout - Overview | 8 | 6 | 1 | 1 |
+| Checkout - Confirmation | 7 | 3 | 4 | 0 |
+| Logout | 7 | 6 | 1 | 0 |
+| Reset App State | 4 | 3 | 1 | 0 |
+| **TOTAL** | **82** | **47** | **27** | **8** |
