@@ -1,0 +1,1407 @@
+{
+  "project_name": "Mifos",
+  "generated_at": "2026-06-09T09:30:17.307518Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Login with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Login",
+          "on_success": "redirects to Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Login with empty required fields",
+          "actor": "<role>",
+          "conditional_branch": "required fields must be filled",
+          "terminal_action": "Login",
+          "on_success": "shows inline validation messages"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Login with invalid credentials",
+          "actor": "<role>",
+          "conditional_branch": "valid credentials",
+          "terminal_action": "Login",
+          "on_success": "shows error message"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Home Page",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Access Dashboard",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Dashboard_Button",
+          "on_success": "redirects to dashboard"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Access Dashboard",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Dashboard",
+          "on_success": "Navigates to Dashboard"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "Global Search",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open search input field",
+          "actor": "<role>",
+          "conditional_branch": "user must be logged in",
+          "terminal_action": "Search_Input",
+          "on_success": "opens search input field"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Search with results found",
+          "actor": "<role>",
+          "conditional_branch": "results are found",
+          "terminal_action": "Search_Results",
+          "on_success": "searches across Clients, Groups, Loans, and Savings accounts"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Display no results message",
+          "actor": "<role>",
+          "conditional_branch": "no matches are found",
+          "terminal_action": "No_Results_Message",
+          "on_success": "No results found"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Client Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Import Client",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import Client",
+          "on_success": "opens Bulk Import page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create Client",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates client in Pending status"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View Client Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "displays client details"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Activate Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Pending",
+          "terminal_action": "Activate",
+          "on_success": "activates client"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Edit Client",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "opens client edit form"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Reject Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Pending",
+          "terminal_action": "Reject",
+          "on_success": "rejects client"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Withdraw Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Pending",
+          "terminal_action": "Withdraw",
+          "on_success": "withdraws client"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Transfer Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Active",
+          "terminal_action": "Transfer Client",
+          "on_success": "transfers client"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Close Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Active",
+          "terminal_action": "Close",
+          "on_success": "closes client"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Reactivate Client",
+          "actor": "<role>",
+          "conditional_branch": "Status == Closed",
+          "terminal_action": "Reactivate",
+          "on_success": "reactivates client"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 6,
+      "module_title": "Group Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Group Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Group details displayed"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Import Groups",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import Groups",
+          "on_success": "Groups imported successfully"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create New Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates the group"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Upload Groups",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Upload",
+          "on_success": "Groups uploaded successfully"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Activate Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Activate",
+          "on_success": "Group activated"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Edit Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Group edited"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Close Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Close",
+          "on_success": "Group closed"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Assign Staff to Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Assign Staff",
+          "on_success": "Staff assigned to group"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Transfer Clients",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Transfer Clients",
+          "on_success": "Clients transferred"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Generate Collection Sheet",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Generate Collection Sheet",
+          "on_success": "Collection sheet generated"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Center Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Center Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "View center details"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Import Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import Center",
+          "on_success": "Centers imported successfully"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates the center"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Activate Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Activate",
+          "on_success": "Center activated"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Edit Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Center details updated"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Close Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Close",
+          "on_success": "Center closed"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Assign Staff to Center",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Assign Staff",
+          "on_success": "Staff assigned to center"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Loan Products",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Loan Product Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "opens detail view"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit Loan Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "opens detail view"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create New Loan Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Create Loan Product",
+          "on_success": "opens 6-step stepper wizard"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Complete Loan Product Creation",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Loan product created successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Savings Products",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Savings Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Savings Product",
+          "on_success": "opens stepper wizard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "View Savings Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "View details of the savings product"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Edit Savings Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Edit the savings product"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Create Fixed Deposit Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Savings Product",
+          "on_success": "opens stepper wizard"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Create Recurring Deposit Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Savings Product",
+          "on_success": "opens stepper wizard"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Share Products",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Share Product Wizard",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Create Share Product",
+          "on_success": "opens 7-step stepper wizard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Product details updated"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Delete Product",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "Product deleted"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 11,
+      "module_title": "Charges",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Edit existing charge",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "opens detail view for editing"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Delete existing charge",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "charge deleted; success message shown"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create charge",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates charge definition"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Floating Rates",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Floating Rate Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Displays full rate history"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit Floating Rate",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Opens edit form for the floating rate"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Floating Rate",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "opens creation form"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 13,
+      "module_title": "Delinquency Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Delinquency Range",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Delinquency range created; success message shown"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create Delinquency Range with optional Maximum Age Days",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Delinquency range created; success message shown"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Access Delinquency Range Classification",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Classification",
+          "on_success": "Navigated to classification details"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Create Delinquency Bucket",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Delinquency bucket created; success message shown"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Access Delinquency Bucket Name",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Bucket Name",
+          "on_success": "Navigated to bucket details"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 14,
+      "module_title": "Loan Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Loan Application",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates loan in Submitted and Pending Approval status"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 15,
+      "module_title": "Savings Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Savings Account Creation Form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates account in Submitted and Pending Approval status"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Approve Pending Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Pending",
+          "terminal_action": "Approve",
+          "on_success": "account status updated to Approved"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Reject Pending Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Pending",
+          "terminal_action": "Reject",
+          "on_success": "account application rejected"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Withdraw Application for Pending Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Pending",
+          "terminal_action": "Withdraw Application",
+          "on_success": "application withdrawn"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Activate Approved Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Approved",
+          "terminal_action": "Activate",
+          "on_success": "account activated"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Undo Approval for Approved Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Approved",
+          "terminal_action": "Undo Approval",
+          "on_success": "approval undone"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Deposit into Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Deposit",
+          "on_success": "account credited with deposit"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Withdraw from Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Withdraw",
+          "on_success": "account debited with withdrawal"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Post Interest for Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Post Interest",
+          "on_success": "interest posted to account"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Calculate Interest for Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Calculate Interest",
+          "on_success": "interest calculated"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Close Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Close",
+          "on_success": "account closed"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Block Account for Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Block Account",
+          "on_success": "account blocked"
+        },
+        {
+          "wf_id": "WF-013",
+          "name": "Block Debit for Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Block Debit",
+          "on_success": "debit blocked"
+        },
+        {
+          "wf_id": "WF-014",
+          "name": "Block Credit for Active Savings Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Block Credit",
+          "on_success": "credit blocked"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 16,
+      "module_title": "Share Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Share Account Application",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates account in Submitted and Pending Approval status"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Approve Share Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Pending",
+          "terminal_action": "Approve",
+          "on_success": "Approval process initiated"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Reject Share Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Pending",
+          "terminal_action": "Reject",
+          "on_success": "Rejection process initiated"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Activate Share Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Approved",
+          "terminal_action": "Activate",
+          "on_success": "Account activated"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Undo Approval of Share Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Approved",
+          "terminal_action": "Undo Approval",
+          "on_success": "Approval undone"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Apply Additional Shares",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Apply Additional Shares",
+          "on_success": "Additional shares applied"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Redeem Shares",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Redeem Shares",
+          "on_success": "redemption amount calculated as shares multiplied by current unit price and credited to the linked savings account"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Close Share Account",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Active",
+          "terminal_action": "Close",
+          "on_success": "Account closed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 17,
+      "module_title": "Fixed & Recurring Deposit Accounts",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Fixed Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Fixed Deposit account created successfully"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create Recurring Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Recurring Deposit account created successfully"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Approve Fixed Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Approve",
+          "on_success": "Fixed Deposit account approved"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Activate Fixed Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Activate",
+          "on_success": "Fixed Deposit account activated"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Premature Close Fixed Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Premature Close",
+          "on_success": "Fixed Deposit account closed prematurely"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Close Fixed Deposit Account on Maturity",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Close on Maturity",
+          "on_success": "Fixed Deposit account closed on maturity"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Approve Recurring Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Approve",
+          "on_success": "Recurring Deposit account approved"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Activate Recurring Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Activate",
+          "on_success": "Recurring Deposit account activated"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Deposit into Recurring Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Deposit",
+          "on_success": "Deposit made into Recurring Deposit account"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Premature Close Recurring Deposit Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Premature Close",
+          "on_success": "Recurring Deposit account closed prematurely"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Close Recurring Deposit Account on Maturity",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Close on Maturity",
+          "on_success": "Recurring Deposit account closed on maturity"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 18,
+      "module_title": "Accounting \u2014 Chart of Accounts",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Edit GL Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "GL Account details opened for editing"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Delete GL Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "GL Account deleted successfully"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create GL Account",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create GL Account",
+          "on_success": "opens the creation form"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 19,
+      "module_title": "Accounting \u2014 Journal Entries & Closures",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "+ Add Journal Entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Add Journal Entry",
+          "on_success": "opens creation form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "+ Create Closure",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Closure",
+          "on_success": "opens closure form"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 20,
+      "module_title": "Accounting Rules & Financial Activity Mappings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Accounting Rule",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Rule",
+          "on_success": "creates a new accounting rule"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit Accounting Rule",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Rule details updated"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Delete Accounting Rule",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "Rule deleted"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Create Financial Activity Mapping",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Mapping",
+          "on_success": "creates a new financial activity mapping"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 21,
+      "module_title": "Provisioning",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create new provisioning criteria",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create",
+          "on_success": "opens creation form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create provisioning entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Provisioning Entry",
+          "on_success": "generates new provisioning entries"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Review provisioning entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Review",
+          "on_success": "shows detailed breakdown by loan product and category"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Recreate provisioning entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Recreate",
+          "on_success": "recreates the provisioning entry"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "View criteria name",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Criteria Name",
+          "on_success": "navigates to criteria details"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 22,
+      "module_title": "Offices",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create a new office",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "opens creation form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit an office",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Office information updated"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 23,
+      "module_title": "Employees",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View employee details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Employee details displayed"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit employee details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Employee edit form opened"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create a new employee",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "opens creation form"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 24,
+      "module_title": "Teller & Cashier Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create a new Teller",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Teller",
+          "on_success": "opens creation form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "View Teller Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Teller Name",
+          "on_success": "opens teller detail view"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Edit Teller",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "opens edit form"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Allocate a new Cashier",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Allocate Cashier",
+          "on_success": "opens allocation form"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Allocate Cash",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Allocate Cash",
+          "on_success": "adds cash from the vault"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Settle Cash",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Settle Cash",
+          "on_success": "returns cash to the vault"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 25,
+      "module_title": "Users & Roles",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create User",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "User created successfully"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create User with Staff linked",
+          "actor": "<role>",
+          "conditional_branch": "Staff is selected",
+          "terminal_action": "Submit",
+          "on_success": "User created successfully"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View User Details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "User details displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Create Role",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Role created successfully"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Manage Permissions for Role",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save Permissions",
+          "on_success": "Permissions updated successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 26,
+      "module_title": "Reports",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Report with Parameters Form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Open Report",
+          "on_success": "Parameters form displayed for report selection"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Run Report - View on Screen",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View on Screen",
+          "on_success": "generates report as data table"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Run Report - Export to Excel",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Export to Excel",
+          "on_success": "generates report as data table"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Run Report - Export to CSV",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Export to CSV",
+          "on_success": "generates report as data table"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Run Report - Export to PDF",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Export to PDF",
+          "on_success": "generates report as data table"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 27,
+      "module_title": "Account Transfers & Standing Instructions",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Account Transfer",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "processes the transfer, debiting the source and crediting the destination"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Enable Standing Instruction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enable",
+          "on_success": "Standing instruction enabled"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Disable Standing Instruction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Disable",
+          "on_success": "Standing instruction disabled"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Delete Standing Instruction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "Standing instruction deleted"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Create Standing Instruction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Create",
+          "on_success": "creates standing instruction"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 28,
+      "module_title": "Tax Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Tax Component",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Tax Component",
+          "on_success": "creates tax component"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "View Tax Component",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Tax component details displayed"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Tax Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Tax Group",
+          "on_success": "creates tax group"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View Tax Group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Tax group details displayed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 29,
+      "module_title": "Organization Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create Holiday",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create Holiday",
+          "on_success": "opens the holiday creation form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Create Fund",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Create Fund",
+          "on_success": "opens the fund creation form"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Payment Type",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Create",
+          "on_success": "adds new payment type"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Download Bulk Import Template",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Download_Template",
+          "on_success": "downloads template"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Upload Bulk Import Data",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Upload_Interface",
+          "on_success": "data imported successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 30,
+      "module_title": "System Administration",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Start/Stop Scheduler",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Start/Stop Scheduler",
+          "on_success": "Scheduler state updated"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open Code Values",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Open_Code_Values",
+          "on_success": "Code values displayed for editing"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Data Table",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Data table created successfully"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Approve Audit Trail",
+          "actor": "<role>",
+          "conditional_branch": "maker-checker is enabled",
+          "terminal_action": "Approve",
+          "on_success": "Audit trail approved"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Reject Audit Trail",
+          "actor": "<role>",
+          "conditional_branch": "maker-checker is enabled",
+          "terminal_action": "Reject",
+          "on_success": "Audit trail rejected"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 31,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log Out from User Profile Dropdown",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log Out",
+          "on_success": "terminates authenticated session, clears authentication token, redirects to login page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Navigate to Profile Settings from User Profile Dropdown",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Profile Settings",
+          "on_success": "navigates to Profile Settings"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

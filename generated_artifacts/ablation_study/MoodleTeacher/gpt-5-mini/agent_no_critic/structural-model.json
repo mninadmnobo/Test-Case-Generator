@@ -1,0 +1,1001 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T11:58:25.420982Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "ast": {
+        "module_name": "Login",
+        "components": {
+          "Login_Form": {
+            "type": "form",
+            "fields": {
+              "Username": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Password": {
+                "type": "password",
+                "required": true
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Log in",
+                "type": "button",
+                "constraints": [
+                  "requires Username and Password"
+                ],
+                "on_success": "redirects teacher to Dashboard",
+                "on_failure": "displays inline error message; clears Password field; retains Username field"
+              }
+            ]
+          },
+          "Lost_Password_Link": {
+            "type": "link",
+            "element_name": "Lost password?",
+            "enabled": false,
+            "preconditions": [
+              "feature disabled on this test site"
+            ]
+          },
+          "Access_As_Guest": {
+            "type": "button",
+            "element_name": "Access as a guest",
+            "on_click": "grants guest access for unauthenticated browsing",
+            "preconditions": [
+              "user must be unauthenticated"
+            ]
+          },
+          "Cookies_Notice": {
+            "type": "button",
+            "element_name": "Cookies notice",
+            "on_click": "opens cookie usage information"
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "ast": {
+        "module_name": "Assignment Creation",
+        "components": {
+          "Activity_Chooser": {
+            "type": "activity_chooser",
+            "actions": [
+              {
+                "element_name": "Assignment",
+                "type": "link",
+                "navigates_to": "Assignment_Creation_Form"
+              }
+            ]
+          },
+          "Assignment_Creation_Form": {
+            "type": "form",
+            "validation_mode": "inline",
+            "panels": [
+              {
+                "panel_name": "General",
+                "collapsible": true,
+                "fields": {
+                  "Assignment_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Description": {
+                    "type": "unspecified"
+                  },
+                  "Additional_Files": {
+                    "type": "file_upload",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "panel_name": "Availability",
+                "collapsible": true,
+                "fields": {
+                  "Allow_submissions_from_Enabled": {
+                    "type": "checkbox",
+                    "constraints": [
+                      "disabled toggles exclude that date from enforcement"
+                    ]
+                  },
+                  "Allow_submissions_from": {
+                    "type": "date",
+                    "enabled_when": "Allow_submissions_from_Enabled == true"
+                  },
+                  "Due_date_Enabled": {
+                    "type": "checkbox",
+                    "constraints": [
+                      "disabled toggles exclude that date from enforcement"
+                    ]
+                  },
+                  "Due_date": {
+                    "type": "date",
+                    "enabled_when": "Due_date_Enabled == true"
+                  },
+                  "Cut_off_date_Enabled": {
+                    "type": "checkbox",
+                    "constraints": [
+                      "disabled toggles exclude that date from enforcement"
+                    ]
+                  },
+                  "Cut_off_date": {
+                    "type": "date",
+                    "enabled_when": "Cut_off_date_Enabled == true"
+                  }
+                }
+              },
+              {
+                "panel_name": "Submission Types",
+                "collapsible": true,
+                "fields": {
+                  "Online_text_submissions": {
+                    "type": "checkbox"
+                  },
+                  "File_submissions": {
+                    "type": "checkbox"
+                  },
+                  "Maximum_number_of_uploaded_files": {
+                    "type": "number",
+                    "visible_when": "File_submissions == true"
+                  },
+                  "Maximum_submission_size": {
+                    "type": "number",
+                    "visible_when": "File_submissions == true"
+                  },
+                  "Accepted_file_types": {
+                    "type": "unspecified",
+                    "visible_when": "File_submissions == true"
+                  }
+                }
+              },
+              {
+                "panel_name": "Feedback Types",
+                "collapsible": true,
+                "fields": {
+                  "Feedback_comments": {
+                    "type": "checkbox"
+                  },
+                  "Feedback_files": {
+                    "type": "checkbox"
+                  },
+                  "Offline_grading_worksheet": {
+                    "type": "checkbox"
+                  }
+                }
+              },
+              {
+                "panel_name": "Submission Settings",
+                "collapsible": true,
+                "fields": {
+                  "Require_submit_button_click": {
+                    "type": "checkbox"
+                  },
+                  "Require_submission_statements": {
+                    "type": "checkbox"
+                  },
+                  "Attempts_reopened_settings": {
+                    "type": "unspecified"
+                  },
+                  "Maximum_attempts": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "panel_name": "Group Submission Settings",
+                "collapsible": true,
+                "fields": {
+                  "Group_submissions": {
+                    "type": "checkbox"
+                  },
+                  "Require_all_group_members_to_submit": {
+                    "type": "checkbox",
+                    "enabled_when": "Group_submissions == true"
+                  },
+                  "Grouping_selection": {
+                    "type": "unspecified",
+                    "visible_when": "Group_submissions == true"
+                  }
+                }
+              },
+              {
+                "panel_name": "Notifications",
+                "collapsible": true,
+                "fields": {
+                  "Notify_graders_of_new_submissions": {
+                    "type": "checkbox"
+                  },
+                  "Notify_graders_of_late_submissions": {
+                    "type": "checkbox"
+                  }
+                }
+              },
+              {
+                "panel_name": "Grade",
+                "collapsible": true,
+                "fields": {
+                  "Grade_type": {
+                    "type": "unspecified"
+                  },
+                  "Maximum_points": {
+                    "type": "number"
+                  },
+                  "Grading_method": {
+                    "type": "unspecified"
+                  },
+                  "Grade_category": {
+                    "type": "unspecified"
+                  },
+                  "Grade_to_pass": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "panel_name": "Access Restrictions",
+                "collapsible": true,
+                "fields": {
+                  "Restrictions": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Restriction_Type": {
+                        "type": "unspecified",
+                        "required": true
+                      },
+                      "Restriction_Details": {
+                        "type": "unspecified"
+                      }
+                    }
+                  },
+                  "Add_Restriction_Button": {
+                    "type": "button",
+                    "element_name": "+ Add restriction",
+                    "action": "open_picker",
+                    "opens": "Restriction_Type_Picker"
+                  }
+                }
+              },
+              {
+                "panel_name": "Activity Completion",
+                "collapsible": true,
+                "fields": {
+                  "Completion_tracking_options": {
+                    "type": "unspecified"
+                  },
+                  "Required_conditions": {
+                    "type": "unspecified"
+                  }
+                }
+              },
+              {
+                "panel_name": "Tags",
+                "collapsible": true,
+                "fields": {
+                  "Tags": {
+                    "type": "unspecified"
+                  }
+                }
+              },
+              {
+                "panel_name": "Competencies",
+                "collapsible": true,
+                "fields": {
+                  "Competencies": {
+                    "type": "unspecified"
+                  }
+                }
+              }
+            ],
+            "submit_actions": [
+              {
+                "element_name": "Save and return to course",
+                "on_success": "creates the assignment and redirects to the course page",
+                "preconditions": [
+                  "required fields must be valid"
+                ]
+              },
+              {
+                "element_name": "Save and display",
+                "on_success": "creates the assignment and opens the new assignment's page",
+                "preconditions": [
+                  "required fields must be valid"
+                ]
+              },
+              {
+                "element_name": "Cancel",
+                "on_success": "discards all changes"
+              }
+            ]
+          },
+          "Restriction_Type_Picker": {
+            "type": "form",
+            "fields": {
+              "Restriction_Type": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Restriction_Parameters": {
+                "type": "unspecified"
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Add restriction",
+                "on_success": "adds a restriction instance to Assignment_Creation_Form.Restrictions"
+              },
+              {
+                "element_name": "Cancel",
+                "on_success": "closes picker without adding"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "ast": {
+        "module_name": "Participants Management",
+        "components": {
+          "Participants_Page": {
+            "type": "page",
+            "components": {
+              "Enrollment_Scope_Dropdown": {
+                "type": "dropdown",
+                "required": false,
+                "description": "Filters the list by enrollment context"
+              },
+              "Enrol_Users_Button": {
+                "type": "button",
+                "element_name": "Enrol users",
+                "opens_dialog": "Enrol_Users_Dialog"
+              },
+              "Filter_System": {
+                "type": "form",
+                "fields": {
+                  "Match_Type_Toggle": {
+                    "type": "unspecified",
+                    "element_name": "Any toggle",
+                    "required": false,
+                    "description": "Determines whether any or all conditions must match"
+                  },
+                  "Conditions": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Attribute": {
+                        "type": "dropdown",
+                        "required": false,
+                        "description": "Select attribute to build a condition on"
+                      }
+                    }
+                  },
+                  "Add_Condition": {
+                    "type": "button",
+                    "element_name": "+ Add condition",
+                    "action": "adds another condition row (Conditions repeating_group)"
+                  },
+                  "Clear_Filters": {
+                    "type": "button",
+                    "element_name": "Clear filters",
+                    "action": "clears all filter inputs"
+                  },
+                  "Apply_Filters": {
+                    "type": "button",
+                    "element_name": "Apply filters",
+                    "action": "applies current filter conditions"
+                  },
+                  "First_Name_Initial_Filter": {
+                    "type": "dropdown",
+                    "required": false,
+                    "options": [
+                      "All",
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E",
+                      "F",
+                      "G",
+                      "H",
+                      "I",
+                      "J",
+                      "K",
+                      "L",
+                      "M",
+                      "N",
+                      "O",
+                      "P",
+                      "Q",
+                      "R",
+                      "S",
+                      "T",
+                      "U",
+                      "V",
+                      "W",
+                      "X",
+                      "Y",
+                      "Z"
+                    ],
+                    "description": "Alphabetical quick filter for First name"
+                  },
+                  "Last_Name_Initial_Filter": {
+                    "type": "dropdown",
+                    "required": false,
+                    "options": [
+                      "All",
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E",
+                      "F",
+                      "G",
+                      "H",
+                      "I",
+                      "J",
+                      "K",
+                      "L",
+                      "M",
+                      "N",
+                      "O",
+                      "P",
+                      "Q",
+                      "R",
+                      "S",
+                      "T",
+                      "U",
+                      "V",
+                      "W",
+                      "X",
+                      "Y",
+                      "Z"
+                    ],
+                    "description": "Alphabetical quick filter for Last name"
+                  }
+                }
+              },
+              "Participants_Table": {
+                "type": "data_table",
+                "sortable_columns": [
+                  "First name",
+                  "Last name"
+                ],
+                "columns": [
+                  {
+                    "column_name": "Select",
+                    "column_type": "checkbox",
+                    "description": "Bulk selection checkbox column"
+                  },
+                  {
+                    "column_name": "First name",
+                    "column_type": "link",
+                    "sortable": true,
+                    "cell_action": {
+                      "action_name": "View Profile",
+                      "action_type": "link"
+                    }
+                  },
+                  {
+                    "column_name": "Last name",
+                    "column_type": "link",
+                    "sortable": true,
+                    "cell_action": {
+                      "action_name": "View Profile",
+                      "action_type": "link"
+                    }
+                  },
+                  {
+                    "column_name": "Email address",
+                    "column_type": "unspecified"
+                  },
+                  {
+                    "column_name": "Roles",
+                    "column_type": "unspecified"
+                  },
+                  {
+                    "column_name": "Groups",
+                    "column_type": "unspecified"
+                  },
+                  {
+                    "column_name": "Last access to course",
+                    "column_type": "unspecified"
+                  },
+                  {
+                    "column_name": "Status",
+                    "column_type": "unspecified"
+                  }
+                ],
+                "row_actions": [
+                  {
+                    "action_name": "View profile",
+                    "action_type": "link"
+                  },
+                  {
+                    "action_name": "Edit role"
+                  },
+                  {
+                    "action_name": "Send message"
+                  }
+                ],
+                "bulk_selection_enabled": true
+              },
+              "Bulk_Actions_Dropdown": {
+                "type": "dropdown",
+                "element_name": "With selected users\u2026",
+                "preconditions": [
+                  "requires at least one user selected"
+                ],
+                "description": "Applies bulk action to checked participants"
+              }
+            }
+          },
+          "Enrol_Users_Dialog": {
+            "type": "dialog",
+            "fields": {
+              "User_Search": {
+                "type": "search",
+                "required": true,
+                "description": "Search for users to enrol"
+              },
+              "Role": {
+                "type": "dropdown",
+                "required": true,
+                "description": "Role to assign for enrollment"
+              },
+              "Enrollment_Duration": {
+                "type": "unspecified",
+                "required": false,
+                "description": "Optional enrollment duration control"
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Confirm",
+                "on_success": "adds the user to the course with the specified role"
+              },
+              {
+                "element_name": "Cancel",
+                "action_type": "button"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "ast": {
+        "module_name": "Assignment \u2014 Teacher View",
+        "components": {
+          "Grade_Button": {
+            "type": "button",
+            "element_name": "Grade",
+            "on_click": "opens Grading_Interface for individual student"
+          },
+          "Grading_Interface": {
+            "type": "modal",
+            "triggered_by": [
+              "Grade_Button"
+            ],
+            "fields": {}
+          },
+          "Assignment_Page_Tabs": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "Assignment",
+                "fields": {}
+              },
+              {
+                "tab_name": "Settings",
+                "fields": {}
+              },
+              {
+                "tab_name": "Submissions",
+                "fields": {}
+              },
+              {
+                "tab_name": "Advanced grading",
+                "fields": {}
+              },
+              {
+                "tab_name": "More",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "ast": {
+        "module_name": "Assignment Submissions",
+        "components": {
+          "Submissions_View": {
+            "type": "view",
+            "fields": {
+              "Student_Search": {
+                "type": "search",
+                "required": false,
+                "applies_to": "Submissions_Table"
+              },
+              "Submission_Status_Filter": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Submitted for grading",
+                  "No submission",
+                  "Draft - not submitted"
+                ],
+                "applies_to": "Submissions_Table"
+              },
+              "Grading_Status_Filter": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Graded",
+                  "Not graded"
+                ],
+                "applies_to": "Submissions_Table"
+              },
+              "Quick_Grading_Mode": {
+                "type": "checkbox",
+                "required": false,
+                "on_enable": "enables inline grade editing in Submissions_Table",
+                "on_disable": "disables inline grade editing in Submissions_Table"
+              }
+            },
+            "components": {
+              "Submissions_Table": {
+                "ref": "Submissions_Table"
+              }
+            }
+          },
+          "Submissions_Table": {
+            "type": "data_table",
+            "row_fields": {
+              "Student_Identity": {
+                "type": "link",
+                "description": "student name + initials icon; navigates to profile",
+                "on_trigger": "navigates to student profile"
+              },
+              "Submission_Status": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Grading_Status": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Submission_DateTime": {
+                "type": "date",
+                "required": false
+              },
+              "Time_Since_Submission": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Online_Text_Preview": {
+                "type": "button",
+                "required": false,
+                "action_name": "Preview Online Text",
+                "on_trigger": "opens online text preview for this submission"
+              },
+              "File_Submissions": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "File_Link": {
+                    "type": "unspecified",
+                    "required": false,
+                    "on_trigger": "downloads or opens the submitted file"
+                  }
+                }
+              },
+              "Submission_Comments": {
+                "type": "button",
+                "required": false,
+                "action_name": "View Submission Comments",
+                "on_trigger": "opens submission comments for this row"
+              },
+              "Feedback_Comments": {
+                "type": "button",
+                "required": false,
+                "action_name": "View Feedback Comments",
+                "on_trigger": "opens feedback comments for this row"
+              },
+              "Feedback_Files": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "Feedback_File_Link": {
+                    "type": "unspecified",
+                    "required": false,
+                    "on_trigger": "downloads or opens the feedback file"
+                  }
+                }
+              },
+              "Final_Grade": {
+                "type": "unspecified",
+                "required": false,
+                "enabled_when": "Quick_Grading_Mode == true"
+              }
+            },
+            "row_actions": [
+              {
+                "action_name": "Open Grading Workflow",
+                "on_trigger": "opens grading workflow for this student submission"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "ast": {
+        "module_name": "Profile",
+        "components": {
+          "Message_Button": {
+            "type": "button",
+            "element_name": "Message"
+          },
+          "Edit_Profile_Link": {
+            "type": "link",
+            "element_name": "Edit profile"
+          },
+          "Data_Retention_Summary_Link": {
+            "type": "link",
+            "element_name": "Data retention summary"
+          },
+          "Course_Profiles": {
+            "type": "repeating_group",
+            "min": 0,
+            "item_fields": {
+              "Course_Profile_Link": {
+                "type": "link"
+              }
+            }
+          },
+          "Miscellaneous_Links": {
+            "type": "link_group",
+            "fields": {
+              "Blog_Entries_Link": {
+                "type": "link"
+              },
+              "Forum_Posts_Link": {
+                "type": "link"
+              },
+              "Forum_Discussions_Link": {
+                "type": "link"
+              },
+              "Learning_Plans_Link": {
+                "type": "link"
+              }
+            }
+          },
+          "Reports_Links": {
+            "type": "link_group",
+            "fields": {
+              "Browser_Sessions_Link": {
+                "type": "link"
+              },
+              "Grades_Overview_Link": {
+                "type": "link"
+              }
+            }
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "ast": {
+        "module_name": "Profile Edit",
+        "components": {
+          "Edit_Profile_Form": {
+            "type": "form",
+            "controls": [
+              {
+                "element_name": "Expand all",
+                "type": "link",
+                "on_action": "toggles expansion of all collapsible sections",
+                "affects_sections": [
+                  "General",
+                  "User picture",
+                  "Additional names",
+                  "Interests",
+                  "Optional fields"
+                ]
+              }
+            ],
+            "sections": [
+              {
+                "section_name": "General",
+                "collapsible": true,
+                "fields": {
+                  "First_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Last_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Email_Address": {
+                    "type": "email",
+                    "required": true
+                  },
+                  "Email_Visibility": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "MoodleNet_Profile_ID": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "City_Town": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Country": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "Timezone": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false,
+                    "constraints": [
+                      "rich text editor input"
+                    ]
+                  }
+                }
+              },
+              {
+                "section_name": "User picture",
+                "collapsible": true,
+                "fields": {
+                  "Picture_Upload": {
+                    "type": "file_upload",
+                    "required": false,
+                    "supports_drag_and_drop": true,
+                    "constraints": [
+                      "must meet site upload constraints"
+                    ]
+                  },
+                  "Picture_Description": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "section_name": "Additional names",
+                "collapsible": true,
+                "fields": {
+                  "Alternative_Name_Fields": {
+                    "type": "unspecified",
+                    "required": false,
+                    "constraints": [
+                      "contains optional fields for alternative name formats as defined by the site"
+                    ]
+                  }
+                }
+              },
+              {
+                "section_name": "Interests",
+                "collapsible": true,
+                "fields": {
+                  "Interests": {
+                    "type": "unspecified",
+                    "required": false,
+                    "constraints": [
+                      "tag-based input"
+                    ]
+                  }
+                }
+              },
+              {
+                "section_name": "Optional fields",
+                "collapsible": true,
+                "fields": {
+                  "Custom_Site_Defined_Fields": {
+                    "type": "form",
+                    "fields": {},
+                    "constraints": [
+                      "renders any site-defined custom optional fields"
+                    ]
+                  }
+                }
+              }
+            ],
+            "submit_actions": [
+              {
+                "element_name": "Update profile",
+                "type": "button",
+                "constraints": [
+                  "validates all required fields",
+                  "validates file upload constraints before saving"
+                ],
+                "on_success": "saves changes and refreshes the profile page"
+              },
+              {
+                "element_name": "Cancel",
+                "type": "button",
+                "on_success": "exits without making changes"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    }
+  ]
+}

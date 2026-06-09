@@ -1,0 +1,173 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-09T10:50:52.836004Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly represents the login form, its required fields, validation constraints, submit actions (success and failure behaviors), and the 'Forgot Password?' link.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures all interactive fields, validations, auto-formatting, and submit behaviors described for the registration page.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the single interactive element (clickable, masked Account Number) and sorting; two minor phantom items found but not blocking.",
+        "missing": [],
+        "phantoms": [
+          "components.Accounts_Table.interactive_columns['Account Number'].click_target (click target 'Account Detail' is not specified in the description)",
+          "components.Accounts_Table.row_actions[0] (Open Account row action is not mentioned in the description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the form, selection options, fields, real-time validation, conditional minimums, funding-account balance check, and success redirect.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST includes all interactive elements, conditionals, and validations described; only two minor inferred items were added.",
+        "missing": [],
+        "phantoms": [
+          "Transfer_Form.submit_actions[0].element_name (\"Transfer\" button label is not explicitly named in the description)",
+          "Transfer_Form.submit_actions[0].on_failure_messages[2] (\"invalid_amount\" / \"Invalid transfer amount.\" message is an inferred error not specified in the description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately represents the bill-payment form, its fields, matching-account validation, funds check, submit action, and success/failure behavior.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST captures all interactive elements, validations, and simulated credit engine behavior from the description; only one minor phantom (unspecified submit button label) is present.",
+        "missing": [],
+        "phantoms": [
+          "components.Request_Loan_Form.submit_actions[0].element_name (Submit Loan Request button label not explicitly specified in the description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST includes the form, all seven fields, the Update Profile submit action, validation precondition, and success/failure behaviors as described, with no missing or extraneous interactive elements.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the two forms, their fields, validations, and submit behaviors; only two minor inferred details were added but are non-critical.",
+        "missing": [],
+        "phantoms": [
+          "Card_Controls_Form.submit_actions[0].preconditions[0] (\"a card must be selected\" is an inferred precondition not explicitly stated in the description)",
+          "Card_Controls_Form.fields.Travel_Notice.item_fields.Destinations.min (min: 0 was added as an inferred constraint for the repeating destinations)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the interactive elements (both forms, their fields, validations, and submit actions) described on the Investments page with no missing or extraneous interactive items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly represents both side-by-side forms, their fields (statement period options, month/year or date range, account, paperless checkbox, email), submit actions, and success/failure behaviors with no missing or extraneous interactive elements.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the collapsible panel, the change-password form with all three password fields, the Change Password button, and the described validation and success/failure behaviors.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST includes both forms, all described interactive fields, validation constraints, and submit actions with success/failure behaviors; no missing or extraneous interactive elements found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

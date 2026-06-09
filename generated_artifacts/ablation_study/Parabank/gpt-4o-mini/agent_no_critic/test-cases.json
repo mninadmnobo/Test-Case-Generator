@@ -1,0 +1,3251 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-09T10:35:52.573855Z",
+  "model": "openai/gpt-4o-mini",
+  "modules": [
+    {
+      "module": "Login",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Successful login with valid credentials",
+          "preconditions": [
+            "User logged in as <User>"
+          ],
+          "steps": [
+            "1. Enter <valid email> in the Email/Username field",
+            "2. Enter <valid password> in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Signed in successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the Email field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email_Username field blank",
+            "2. Fill the Password field with a valid password",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Inline validation error appears on the Email_Username field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Password field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Email_Username field with a valid email",
+            "2. Leave the Password field blank",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Enter an invalid email format and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email_Username field",
+            "2. Fill the Password field with a valid password",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Inline validation error appears on the Email_Username field indicating it must be a valid email format",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Enter a password that is too short and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Email_Username field with a valid email",
+            "2. Enter <password shorter than 8 characters> in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it must be at least 8 characters",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Enter a password that does not meet complexity requirements and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Email_Username field with a valid email",
+            "2. Enter <valid password without uppercase or special character> in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it must include uppercase, lowercase, number, and special character",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Submit with incorrect email and password",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Email_Username field with <non-registered email>",
+            "2. Fill the Password field with <incorrect password>",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Form does not submit; error shown: 'Incorrect email or password. Please try again.'; Password field is cleared",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "subcategory": "boundary",
+          "test_case": "Email field with invalid format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'invalid-email' in the Email/Username field",
+            "2. Enter a valid password in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Form submission is blocked; error message indicates invalid email format.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "subcategory": "boundary",
+          "test_case": "Password with exactly 8 characters but missing special character",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a valid email in the Email/Username field",
+            "2. Enter 'Password1' in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Form submission is blocked; error message indicates password requirements are not met.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Email field with leading and trailing whitespace",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   user@example.com   ' in the Email/Username field",
+            "2. Enter a valid password in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; email is saved as 'user@example.com'.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Password with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a valid email in the Email/Username field",
+            "2. Enter 'Password@123' in the Password field",
+            "3. Click Sign In"
+          ],
+          "expected_result": "Form submission succeeds; user is redirected to Accounts Overview page.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 11,
+        "positive": 1,
+        "negative": 6,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 6,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Register",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Successful registration with valid inputs",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid first name> in the First Name field",
+            "2. Enter <valid last name> in the Last Name field",
+            "3. Enter <valid street address> in the Street Address field",
+            "4. Enter <valid city> in the City field",
+            "5. Select <valid state> from the State dropdown",
+            "6. Enter <valid ZIP code> in the ZIP Code field",
+            "7. Enter <valid phone number> in the Phone Number field",
+            "8. Enter <valid SSN> in the Social Security Number field",
+            "9. Enter <valid email> in the Username field",
+            "10. Enter <valid password> in the Password field",
+            "11. Enter <valid password> in the Confirm Password field",
+            "12. Click the Register button"
+          ],
+          "expected_result": "Account created successfully \u2014 please sign in",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the First Name field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the First_Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the First_Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Last Name field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Last_Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Last_Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Street Address field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Street_Address field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Street_Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the City field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the City field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the City field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the State field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the State field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the State field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the ZIP Code field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the ZIP_Code field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the ZIP_Code field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the Phone Number field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone_Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Phone_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Leave the Social Security Number field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Social_Security_Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Social_Security_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Leave the Username field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Username field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Username field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Leave the Password field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Password field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Leave the Confirm Password field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Confirm_Password field blank",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm_Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "test_case": "Enter an invalid format in the ZIP Code field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid ZIP code format> in the ZIP_Code field",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the ZIP_Code field indicating it must be 5 digits or 5+4 format",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "test_case": "Enter an invalid format in the Phone Number field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid phone number format> in the Phone_Number field",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Phone_Number field indicating it must follow format (123) 456-7890",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "test_case": "Enter an invalid format in the Social Security Number field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid SSN format> in the Social_Security_Number field",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Social_Security_Number field indicating it must follow format 123-45-6789",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "test_case": "Enter an invalid format in the Username field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Username field",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Username field indicating it must be a valid email format",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": null,
+          "test_case": "Enter a short password and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <password shorter than 8 characters> in the Password field",
+            "2. Fill all other required fields",
+            "3. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it must be at least 8 characters",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": null,
+          "test_case": "Enter mismatched passwords and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid password> in the Password field",
+            "2. Enter <different password> in the Confirm_Password field",
+            "3. Fill all other required fields",
+            "4. Click Register"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm_Password field indicating it must match Password",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter exactly 5 digits in the ZIP Code field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '12345' in the ZIP_Code field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "Form submits successfully; account is created with the ZIP Code '12345'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter 4 digits in the ZIP Code field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '1234' in the ZIP_Code field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "ZIP_Code field displays an error indicating the value is below the minimum allowed (must be 5 digits or 5+4 format)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter exactly 10 digits in the Phone Number field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '(123) 456-7890' in the Phone_Number field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "Form submits successfully; account is created with the Phone Number '(123) 456-7890'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter an invalid Phone Number format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '1234567890' in the Phone_Number field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "Phone_Number field displays an error indicating the format must be (123) 456-7890",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-023",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter exactly 8 characters in the Password field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'abcdefgh' in the Password field",
+            "2. Enter 'abcdefgh' in the Confirm_Password field",
+            "3. Fill all other required fields with valid data",
+            "4. Click Register"
+          ],
+          "expected_result": "Form submits successfully; account is created with the Password 'abcdefgh'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-024",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter 7 characters in the Password field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'abcdefg' in the Password field",
+            "2. Enter 'abcdefg' in the Confirm_Password field",
+            "3. Fill all other required fields with valid data",
+            "4. Click Register"
+          ],
+          "expected_result": "Password field displays an error indicating it must be at least 8 characters",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-025",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a long string in the First Name field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'A very long first name that exceeds typical lengths for a name' in the First_Name field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "Form submits successfully; account is created with the long First Name",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-026",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the Username field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'user@name.com' in the Username field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Register"
+          ],
+          "expected_result": "Form submits successfully; account is created with the Username 'user@name.com'",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 26,
+        "positive": 1,
+        "negative": 17,
+        "edge": 8,
+        "boundary": 6,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 12,
+        "medium_priority": 12,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Accounts Overview",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "View Account Number action is clickable",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Observe the Customer Accounts Table is displayed"
+          ],
+          "expected_result": "The Account Number column shows masked numbers as ****5001 for each account",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to view account number",
+          "preconditions": [
+            "User is authenticated"
+          ],
+          "steps": [
+            "1. Click on the Account Number link"
+          ],
+          "expected_result": "Action is blocked; no account number is displayed; the link is not implemented yet.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Click on Account Number to view details",
+          "preconditions": [
+            "User is logged in and on the Accounts Overview page"
+          ],
+          "steps": [
+            "1. Locate the Account Number column in the Customer Accounts Table",
+            "2. Click on the Account Number link"
+          ],
+          "expected_result": "Account Number link is clickable but does not lead to any action; no error is shown.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Verify table displays total balance correctly",
+          "preconditions": [
+            "User is logged in and on the Accounts Overview page"
+          ],
+          "steps": [
+            "1. Check the footer of the Customer Accounts Table"
+          ],
+          "expected_result": "Total balance displayed in the footer is accurate and reflects the sum of all current balances.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 4,
+        "positive": 1,
+        "negative": 1,
+        "edge": 2,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 1,
+        "medium_priority": 2,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Open New Account",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open Account with Checking type",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Funding account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Checking' from the Account Type options",
+            "2. Enter 25 in the Initial Deposit Amount field",
+            "3. Select <valid funding source account> from the Funding Source Account dropdown",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Account opened successfully!",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open Account with Savings type",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Funding account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Savings' from the Account Type options",
+            "2. Enter 100 in the Initial Deposit Amount field",
+            "3. Select <valid funding source account> from the Funding Source Account dropdown",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Account opened successfully!",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Account Type field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Account Type field blank",
+            "2. Fill Initial Deposit Amount with a valid amount",
+            "3. Select a Funding Source Account",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Account Type field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Initial Deposit Amount field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Select Checking or Savings for Account Type",
+            "2. Leave the Initial Deposit Amount field blank",
+            "3. Select a Funding Source Account",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Initial Deposit Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Enter a non-numeric value in the Initial Deposit Amount field",
+          "preconditions": [],
+          "steps": [
+            "1. Select Checking or Savings for Account Type",
+            "2. Enter <non-numeric value> in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Initial Deposit Amount field indicating it must be numeric",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Enter an Initial Deposit Amount less than required for Checking",
+          "preconditions": [],
+          "steps": [
+            "1. Select Checking for Account Type",
+            "2. Enter <amount below $25> in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Initial Deposit Amount field indicating it must be at least $25 for Checking",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Enter an Initial Deposit Amount less than required for Savings",
+          "preconditions": [],
+          "steps": [
+            "1. Select Savings for Account Type",
+            "2. Enter <amount below $100> in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Initial Deposit Amount field indicating it must be at least $100 for Savings",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the Funding Source Account field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Select Checking or Savings for Account Type",
+            "2. Enter a valid Initial Deposit Amount",
+            "3. Leave the Funding Source Account field blank",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Inline validation error appears on the Funding Source Account field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Attempt to open account without sufficient balance in funding source",
+          "preconditions": [],
+          "steps": [
+            "1. Select Checking or Savings for Account Type",
+            "2. Enter a valid Initial Deposit Amount",
+            "3. Select a Funding Source Account with insufficient balance",
+            "4. Click Open Account"
+          ],
+          "expected_result": "Form does not submit; error shown indicating funding account must have sufficient balance",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Initial deposit amount for Checking type at minimum",
+          "preconditions": [
+            "Account Type is set to Checking",
+            "Funding Source Account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Checking' for Account Type",
+            "2. Enter exactly $25 in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Account opened successfully! Redirects to accounts overview.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Initial deposit amount for Checking type just below minimum",
+          "preconditions": [
+            "Account Type is set to Checking",
+            "Funding Source Account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Checking' for Account Type",
+            "2. Enter $24.99 in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Inline error shown: 'Initial Deposit Amount must be at least $25 for Checking'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Initial deposit amount for Savings type at minimum",
+          "preconditions": [
+            "Account Type is set to Savings",
+            "Funding Source Account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Savings' for Account Type",
+            "2. Enter exactly $100 in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Account opened successfully! Redirects to accounts overview.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Initial deposit amount for Savings type just below minimum",
+          "preconditions": [
+            "Account Type is set to Savings",
+            "Funding Source Account has sufficient balance"
+          ],
+          "steps": [
+            "1. Select 'Savings' for Account Type",
+            "2. Enter $99.99 in the Initial Deposit Amount field",
+            "3. Select a Funding Source Account",
+            "4. Click 'Open Account'"
+          ],
+          "expected_result": "Inline error shown: 'Initial Deposit Amount must be at least $100 for Savings'",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 2,
+        "negative": 7,
+        "edge": 4,
+        "boundary": 4,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 7,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Transfer Funds",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit transfer to My ParaBank Account",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'My ParaBank Account' as the Transfer Type",
+            "2. Enter <valid transfer amount> in the Transfer Amount field",
+            "3. Select 'Checking' from the Source Account dropdown",
+            "4. Click Submit"
+          ],
+          "expected_result": "Transfer completed successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Submit transfer to External Account",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'External Account' as the Transfer Type",
+            "2. Enter <valid transfer amount> in the Transfer Amount field",
+            "3. Select 'Savings' from the Source Account dropdown",
+            "4. Enter <valid external account number> in the External Account Number field",
+            "5. Enter <valid external account number> in the Confirm Account Number field",
+            "6. Click Submit"
+          ],
+          "expected_result": "Transfer completed successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Transfer Amount field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'My ParaBank Account' as the Transfer Type",
+            "2. Leave the Transfer Amount field blank",
+            "3. Select a Source Account",
+            "4. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Transfer Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Submit with all required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Transfer Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Enter a negative amount in the Transfer Amount field",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'My ParaBank Account' as the Transfer Type",
+            "2. Enter <negative amount> in the Transfer Amount field",
+            "3. Select a Source Account",
+            "4. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Transfer Amount field indicating it must be a positive amount",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Attempt to submit an external transfer with mismatched account numbers",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'External Account' as the Transfer Type",
+            "2. Enter <valid external account number> in the External Account Number field",
+            "3. Enter <different account number> in the Confirm Account Number field",
+            "4. Enter <amount> in the Transfer Amount field",
+            "5. Select a Source Account",
+            "6. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears indicating 'Account numbers do not match'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Attempt to submit an external transfer with insufficient funds",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'External Account' as the Transfer Type",
+            "2. Enter <valid external account number> in the External Account Number field",
+            "3. Enter <valid external account number> in the Confirm Account Number field",
+            "4. Enter <amount exceeding available balance> in the Transfer Amount field",
+            "5. Select a Source Account",
+            "6. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears indicating 'Insufficient funds'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Transfer amount is zero",
+          "preconditions": [
+            "User selects 'External Account' as Transfer_Type",
+            "User selects a Source Account"
+          ],
+          "steps": [
+            "1. Enter '0' in the Transfer_Amount field",
+            "2. Enter a valid External_Account_Number",
+            "3. Enter the same number in the Confirm_Account_Number field",
+            "4. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; 'Transfer amount must be a positive amount' error is displayed.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Transfer amount exceeds available funds",
+          "preconditions": [
+            "User selects 'External Account' as Transfer_Type",
+            "User selects a Source Account"
+          ],
+          "steps": [
+            "1. Enter an amount greater than available funds in the Transfer_Amount field",
+            "2. Enter a valid External_Account_Number",
+            "3. Enter the same number in the Confirm_Account_Number field",
+            "4. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; 'Insufficient funds' error is displayed.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Confirm account number does not match",
+          "preconditions": [
+            "User selects 'External Account' as Transfer_Type",
+            "User selects a Source Account"
+          ],
+          "steps": [
+            "1. Enter a valid External_Account_Number",
+            "2. Enter a different number in the Confirm_Account_Number field",
+            "3. Enter a valid amount in the Transfer_Amount field",
+            "4. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; 'Account numbers do not match' error is displayed.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Transfer amount is a valid positive amount",
+          "preconditions": [
+            "User selects 'My ParaBank Account' as Transfer_Type",
+            "User selects a Source Account"
+          ],
+          "steps": [
+            "1. Enter a valid positive amount in the Transfer_Amount field",
+            "2. Click Submit"
+          ],
+          "expected_result": "Form submits successfully; 'Transfer completed successfully.' message is displayed.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a long account number",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a long string of numbers (more than typical account number length) in the External_Account_Number field",
+            "2. Enter the same long string in the Confirm_Account_Number field",
+            "3. Enter a valid amount in the Transfer_Amount field",
+            "4. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; specific error indicating account number length is shown.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in account number",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters (e.g., '@#$%') in the External_Account_Number field",
+            "2. Enter the same special characters in the Confirm_Account_Number field",
+            "3. Enter a valid amount in the Transfer_Amount field",
+            "4. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; specific error indicating invalid characters in account number is shown.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 2,
+        "negative": 5,
+        "edge": 6,
+        "boundary": 4,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 5,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Payments",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with valid details",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid payee name> in the Payee Name field",
+            "2. Enter <valid street address> in the Street Address field",
+            "3. Enter <valid city> in the City field",
+            "4. Enter <valid state> in the State field",
+            "5. Enter <valid ZIP code> in the ZIP Code field",
+            "6. Enter <valid phone number> in the Phone Number field",
+            "7. Enter <valid payee account number> in the Payee Account Number field",
+            "8. Enter the same <valid payee account number> in the Confirm Account Number field",
+            "9. Enter <valid payment amount> in the Payment Amount field",
+            "10. Select <valid source account> from the Source Account dropdown",
+            "11. Click Pay"
+          ],
+          "expected_result": "Payment submitted successfully with reference code",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the Payee Name field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Payee_Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Payee_Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Street Address field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Street_Address field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Street_Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the City field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the City field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the City field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the State field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the State field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the State field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the ZIP Code field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the ZIP_Code field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the ZIP_Code field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the Phone Number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone_Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Phone_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the Payee Account Number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Payee_Account_Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Payee_Account_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Leave the Confirm Account Number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Confirm_Account_Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm_Account_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Leave the Payment Amount field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Payment_Amount field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Payment_Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Leave the Source Account field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Source_Account field blank",
+            "2. Fill all other required fields",
+            "3. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears on the Source_Account field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-002",
+          "test_case": "Submit payment with account number mismatch",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid Payee Account Number> in the Payee_Account_Number field",
+            "2. Enter <different value> in the Confirm_Account_Number field",
+            "3. Fill all other required fields",
+            "4. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears indicating 'Account numbers do not match'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-003",
+          "test_case": "Submit payment with insufficient funds",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid Payee Account Number> in the Payee_Account_Number field",
+            "2. Enter <valid Confirm Account Number> in the Confirm_Account_Number field",
+            "3. Enter <amount exceeding available funds> in the Payment_Amount field",
+            "4. Fill all other required fields",
+            "5. Click Pay"
+          ],
+          "expected_result": "Inline validation error appears indicating 'Insufficient funds'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Confirm Account Number does not match Payee Account Number",
+          "preconditions": [
+            "Enter a valid Payee Account Number",
+            "Enter a different Confirm Account Number"
+          ],
+          "steps": [
+            "1. Enter 'Valid Payee Name' in the Payee_Name field",
+            "2. Enter '123 Main St' in the Street_Address field",
+            "3. Enter 'Anytown' in the City field",
+            "4. Enter 'CA' in the State field",
+            "5. Enter '90210' in the ZIP_Code field",
+            "6. Enter '555-1234' in the Phone_Number field",
+            "7. Enter '123456789' in the Payee_Account_Number field",
+            "8. Enter '987654321' in the Confirm_Account_Number field",
+            "9. Enter '100' in the Payment_Amount field",
+            "10. Select a valid option from the Source_Account dropdown",
+            "11. Click the Pay button"
+          ],
+          "expected_result": "Inline error displayed: 'Account numbers do not match'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Payment Amount exceeds available funds",
+          "preconditions": [
+            "Enter valid account details",
+            "Ensure the Payment Amount exceeds available funds"
+          ],
+          "steps": [
+            "1. Enter 'Valid Payee Name' in the Payee_Name field",
+            "2. Enter '123 Main St' in the Street_Address field",
+            "3. Enter 'Anytown' in the City field",
+            "4. Enter 'CA' in the State field",
+            "5. Enter '90210' in the ZIP_Code field",
+            "6. Enter '555-1234' in the Phone_Number field",
+            "7. Enter '123456789' in the Payee_Account_Number field",
+            "8. Enter '123456789' in the Confirm_Account_Number field",
+            "9. Enter '1000' in the Payment_Amount field",
+            "10. Select a valid option from the Source_Account dropdown",
+            "11. Click the Pay button"
+          ],
+          "expected_result": "Inline error displayed: 'Insufficient funds'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long input for Payee Name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200 characters in the Payee_Name field",
+            "2. Fill all other required fields with valid data",
+            "3. Click the Pay button"
+          ],
+          "expected_result": "Form submits successfully; Payee_Name displays the full 200 characters",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Special characters in Street Address",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '!@#$%^&*()' in the Street_Address field",
+            "2. Fill all other required fields with valid data",
+            "3. Click the Pay button"
+          ],
+          "expected_result": "Form submits successfully; Street_Address displays '!@#$%^&*()'",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 17,
+        "positive": 1,
+        "negative": 12,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 13,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Request Loan",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit Loan Request with Personal Loan Type",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'Personal' from the Loan Type cards",
+            "2. Enter 15000 in the Loan Amount field",
+            "3. Enter 1500 in the Down Payment Amount field",
+            "4. Select a valid Collateral Account from the dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Loan approved and created successfully!",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Submit Loan Request with Auto Loan Type",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'Auto' from the Loan Type cards",
+            "2. Enter 30000 in the Loan Amount field",
+            "3. Enter 3000 in the Down Payment Amount field",
+            "4. Select a valid Collateral Account from the dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Loan approved and created successfully!",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Submit Loan Request with Home Loan Type",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'Home' from the Loan Type cards",
+            "2. Enter 200000 in the Loan Amount field",
+            "3. Enter 20000 in the Down Payment Amount field",
+            "4. Select a valid Collateral Account from the dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Loan approved and created successfully!",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Loan Amount field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Loan Amount field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit Loan Request"
+          ],
+          "expected_result": "Inline validation error appears on the Loan Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the Down Payment Amount field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Leave the Down Payment Amount field blank",
+            "4. Click Submit Loan Request"
+          ],
+          "expected_result": "Inline validation error appears on the Down Payment Amount field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Enter Down Payment Amount greater than Loan Amount",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <down payment amount greater than loan amount> in the Down Payment Amount field",
+            "4. Click Submit Loan Request"
+          ],
+          "expected_result": "Inline validation error appears on the Down Payment Amount field indicating it must be less than Loan Amount",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Enter Down Payment Amount less than 10% of Loan Amount",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <down payment amount less than 10% of loan amount> in the Down Payment Amount field",
+            "4. Click Submit Loan Request"
+          ],
+          "expected_result": "Inline validation error appears on the Down Payment Amount field indicating it must be at least 10% of Loan Amount",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Attempt to submit with insufficient collateral funds",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <valid down payment amount> in the Down Payment Amount field",
+            "4. Select <collateral account with insufficient funds> from the Collateral Account dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Inadequate collateral value'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Attempt to submit with collateral value less than 20% of loan amount",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <valid down payment amount> in the Down Payment Amount field",
+            "4. Select <collateral account with value less than 20% of loan amount> from the Collateral Account dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'must be at least 20% of collateral value'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "test_case": "Submit Loan Request with Personal Loan Type but insufficient credit history",
+          "preconditions": [],
+          "steps": [
+            "1. Select Personal as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <valid down payment amount> in the Down Payment Amount field",
+            "4. Select <valid collateral account> from the Collateral Account dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Insufficient credit history'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-002",
+          "test_case": "Submit Loan Request with Auto Loan Type but insufficient credit history",
+          "preconditions": [],
+          "steps": [
+            "1. Select Auto as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <valid down payment amount> in the Down Payment Amount field",
+            "4. Select <valid collateral account> from the Collateral Account dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Insufficient credit history'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-003",
+          "test_case": "Submit Loan Request with Home Loan Type but insufficient credit history",
+          "preconditions": [],
+          "steps": [
+            "1. Select Home as Loan Type",
+            "2. Enter <valid loan amount> in the Loan Amount field",
+            "3. Enter <valid down payment amount> in the Down Payment Amount field",
+            "4. Select <valid collateral account> from the Collateral Account dropdown",
+            "5. Click Submit Loan Request"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Insufficient credit history'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Test Down Payment at minimum required for Personal Loan",
+          "preconditions": [
+            "Select 'Personal' loan type"
+          ],
+          "steps": [
+            "1. Enter $1,000 in the Loan Amount field",
+            "2. Enter $100 in the Down Payment Amount field"
+          ],
+          "expected_result": "Form submits successfully; loan request is created with Down Payment of $100 (10% of Loan Amount)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Test Down Payment just below minimum required for Personal Loan",
+          "preconditions": [
+            "Select 'Personal' loan type"
+          ],
+          "steps": [
+            "1. Enter $1,000 in the Loan Amount field",
+            "2. Enter $99 in the Down Payment Amount field"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Down Payment must be at least 10% of Loan Amount'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Test Loan Amount at maximum for Auto Loan",
+          "preconditions": [
+            "Select 'Auto' loan type"
+          ],
+          "steps": [
+            "1. Enter $75,000 in the Loan Amount field",
+            "2. Enter $7,500 in the Down Payment Amount field"
+          ],
+          "expected_result": "Form submits successfully; loan request is created with Loan Amount of $75,000",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Test Loan Amount just above maximum for Auto Loan",
+          "preconditions": [
+            "Select 'Auto' loan type"
+          ],
+          "steps": [
+            "1. Enter $75,001 in the Loan Amount field",
+            "2. Enter $7,500 in the Down Payment Amount field"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Loan Amount must be between $5,000 and $75,000'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Test Down Payment just below 20% of Collateral for Home Loan",
+          "preconditions": [
+            "Select 'Home' loan type"
+          ],
+          "steps": [
+            "1. Enter $50,000 in the Loan Amount field",
+            "2. Enter $10,000 in the Collateral Account field",
+            "3. Enter $9,999 in the Down Payment Amount field"
+          ],
+          "expected_result": "Submission is blocked; error shown indicating 'Down Payment must be at least 10% of Loan Amount'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Test Down Payment at minimum required for Home Loan",
+          "preconditions": [
+            "Select 'Home' loan type"
+          ],
+          "steps": [
+            "1. Enter $50,000 in the Loan Amount field",
+            "2. Enter $10,000 in the Collateral Account field",
+            "3. Enter $5,000 in the Down Payment Amount field"
+          ],
+          "expected_result": "Form submits successfully; loan request is created with Down Payment of $5,000 (10% of Loan Amount)",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 18,
+        "positive": 3,
+        "negative": 9,
+        "edge": 6,
+        "boundary": 6,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 12,
+        "medium_priority": 6,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Update Contact Info",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Update customer profile with valid information",
+          "preconditions": [
+            "User logged in as <Customer>",
+            "Customer profile page is open with pre-filled fields"
+          ],
+          "steps": [
+            "1. Enter <valid first name> in the First Name field",
+            "2. Enter <valid last name> in the Last Name field",
+            "3. Enter <valid street address> in the Street Address field",
+            "4. Enter <valid city> in the City field",
+            "5. Enter <valid state> in the State field",
+            "6. Enter <valid ZIP code> in the ZIP Code field",
+            "7. Enter <valid phone number> in the Phone Number field",
+            "8. Click Update Profile"
+          ],
+          "expected_result": "Profile updated successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the First Name field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the First_Name field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the First_Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Last Name field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Last_Name field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the Last_Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Street Address field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Street_Address field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the Street_Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the City field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the City field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the City field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the State field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the State field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the State field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the ZIP Code field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the ZIP_Code field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the ZIP_Code field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the Phone Number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone_Number field blank",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline validation error appears on the Phone_Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in First Name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the First_Name field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in Last Name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the Last_Name field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in Street Address",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the Street_Address field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in City",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the City field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in State",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the State field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in ZIP Code",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the ZIP_Code field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "test_case": "Submit with invalid format in Phone Number",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid format> in the Phone_Number field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "highlights invalid fields and displays an inline error banner",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a long string in the First Name field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the First Name field",
+            "2. Fill all other required fields with valid formats",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline error banner displays indicating the First Name format is invalid",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the Last Name field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters in the Last Name field",
+            "2. Fill all other required fields with valid formats",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline error banner displays indicating the Last Name format is invalid",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter leading/trailing whitespace in the Street Address field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter leading and trailing whitespace in the Street Address field",
+            "2. Fill all other required fields with valid formats",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline error banner displays indicating the Street Address format is invalid",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a valid ZIP Code with incorrect format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a ZIP Code that is not in a valid format",
+            "2. Fill all other required fields with valid formats",
+            "3. Click Update Profile"
+          ],
+          "expected_result": "Inline error banner displays indicating the ZIP Code format is invalid",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 19,
+        "positive": 1,
+        "negative": 14,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 4,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 8,
+        "medium_priority": 7,
+        "low_priority": 4
+      }
+    },
+    {
+      "module": "Manage Cards",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit Card Request with valid details",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Account is in good standing"
+          ],
+          "steps": [
+            "1. Select 'Debit' from the Card Type dropdown",
+            "2. Enter <valid account> in the Account to Link field",
+            "3. Enter <complete shipping address> in the Shipping Address field",
+            "4. Click Request Card"
+          ],
+          "expected_result": "Card request submitted successfully; shows tracking ID",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Update Card Controls with valid details",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select <existing card> from the Select Existing Card dropdown",
+            "2. Enter <valid numeric limit> in the New Spending Limit field",
+            "3. Click Add under Travel Notice",
+            "4. Enter <destination> in the Destination field",
+            "5. Enter <valid start date> in the Start Date field",
+            "6. Enter <valid end date> in the End Date field",
+            "7. Select 'Active' from the Card Status dropdown",
+            "8. Click Update Controls"
+          ],
+          "expected_result": "Card controls updated successfully",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Account to Link field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Account to Link field blank",
+            "2. Fill all other required fields",
+            "3. Click Request Card"
+          ],
+          "expected_result": "Inline validation error appears on the Account to Link field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Shipping Address field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Shipping Address field blank",
+            "2. Fill all other required fields",
+            "3. Click Request Card"
+          ],
+          "expected_result": "Inline validation error appears on the Shipping Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Submit the Card Request Form with all required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Leave all required fields blank",
+            "2. Click Request Card"
+          ],
+          "expected_result": "Form does not submit; error shown on Account to Link and Shipping Address fields",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Submit with an incomplete Shipping Address",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Account to Link field",
+            "2. Fill the Shipping Address field with an incomplete address",
+            "3. Click Request Card"
+          ],
+          "expected_result": "Inline validation error appears on the Shipping Address field indicating 'address must be complete'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the Select Existing Card field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Select Existing Card field blank",
+            "2. Fill all other required fields",
+            "3. Click Update Controls"
+          ],
+          "expected_result": "Inline validation error appears on the Select Existing Card field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the New Spending Limit field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the New Spending Limit field blank",
+            "2. Fill all other required fields",
+            "3. Click Update Controls"
+          ],
+          "expected_result": "Inline validation error appears on the New Spending Limit field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Submit the Card Controls Form with all required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Leave all required fields blank",
+            "2. Click Update Controls"
+          ],
+          "expected_result": "Form does not submit; error shown on Select Existing Card, New Spending Limit, and Card Status fields",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Submit with an invalid New Spending Limit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Select Existing Card field",
+            "2. Fill the New Spending Limit field with <non-numeric input>",
+            "3. Fill all other required fields",
+            "4. Click Update Controls"
+          ],
+          "expected_result": "Inline validation error appears on the New Spending Limit field indicating 'must be a valid numeric limit'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Submit with an invalid date range in Travel Notice",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Select Existing Card field",
+            "2. Fill the New Spending Limit field",
+            "3. Fill the Travel Notice with Start_Date after End_Date",
+            "4. Click Update Controls"
+          ],
+          "expected_result": "Inline validation error appears indicating 'valid date ranges'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Attempt to update controls without account in good standing",
+          "preconditions": [
+            "account must be in good standing"
+          ],
+          "steps": [
+            "1. Fill all required fields in Card Controls Form",
+            "2. Click Update Controls"
+          ],
+          "expected_result": "Form does not submit; error shown indicating account must be in good standing",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Submit card request with incomplete address",
+          "preconditions": [
+            "Account is in good standing"
+          ],
+          "steps": [
+            "1. Select 'Debit' from Card Type dropdown",
+            "2. Enter incomplete address in Shipping Address field",
+            "3. Select an account to link",
+            "4. Click 'Request Card'"
+          ],
+          "expected_result": "Form submission is blocked; an error message indicates that the address must be complete",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Submit card controls with invalid numeric limit",
+          "preconditions": [
+            "Select an existing card"
+          ],
+          "steps": [
+            "1. Enter a negative number in New Spending Limit field",
+            "2. Select Active from Card Status dropdown",
+            "3. Click 'Update Controls'"
+          ],
+          "expected_result": "Form submission is blocked; an inline error message indicates that the limit must be a valid numeric limit",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Submit card controls with valid date range",
+          "preconditions": [
+            "Select an existing card"
+          ],
+          "steps": [
+            "1. Enter a valid destination in Travel Notice",
+            "2. Enter today's date in Start Date field",
+            "3. Enter a date in the future in End Date field",
+            "4. Click 'Update Controls'"
+          ],
+          "expected_result": "Form submits successfully; displays 'Card controls updated successfully.'",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter long text in Shipping Address",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a very long string (200+ characters) in Shipping Address field",
+            "2. Click 'Request Card'"
+          ],
+          "expected_result": "Form submission is blocked; an error message indicates the address must be complete",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 16,
+        "positive": 2,
+        "negative": 10,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 1,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 12,
+        "medium_priority": 3,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Investments",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Execute Trade for Buy action",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Customer has sufficient buying power"
+          ],
+          "steps": [
+            "1. Select 'Buy' from the Action dropdown",
+            "2. Enter <valid fund symbol> in the Fund Symbol field",
+            "3. Enter <valid quantity greater than zero> in the Quantity field",
+            "4. Select <valid funding account> from the Funding or Destination Account dropdown",
+            "5. Click Execute Trade"
+          ],
+          "expected_result": "Trade executed successfully with order ID",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Execute Trade for Sell action",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Customer has sufficient share balance"
+          ],
+          "steps": [
+            "1. Select 'Sell' from the Action dropdown",
+            "2. Enter <valid fund symbol> in the Fund Symbol field",
+            "3. Enter <valid quantity greater than zero> in the Quantity field",
+            "4. Select <valid funding account> from the Funding or Destination Account dropdown",
+            "5. Click Execute Trade"
+          ],
+          "expected_result": "Trade executed successfully with order ID",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Create Recurring Investment Plan",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Funding account has adequate balance"
+          ],
+          "steps": [
+            "1. Enter <valid fund symbol> in the Fund Symbol field",
+            "2. Enter <valid contribution amount meeting minimum> in the Contribution Amount field",
+            "3. Select <valid frequency> from the Frequency dropdown",
+            "4. Enter <valid future date> in the Start Date field",
+            "5. Select <valid funding account> from the Funding Account dropdown",
+            "6. Click Create Plan"
+          ],
+          "expected_result": "Plan created successfully",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Quantity field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Buy' from the Action dropdown",
+            "2. Leave the Quantity field blank",
+            "3. Fill in the Fund Symbol and Funding or Destination Account",
+            "4. Click Execute Trade"
+          ],
+          "expected_result": "Inline validation error appears on the Quantity field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Enter a Quantity of zero and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Buy' from the Action dropdown",
+            "2. Enter '0' in the Quantity field",
+            "3. Fill in the Fund Symbol and Funding or Destination Account",
+            "4. Click Execute Trade"
+          ],
+          "expected_result": "Inline validation error appears on the Quantity field indicating it must be greater than zero",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Submit with all required fields empty in Trade Funds Form",
+          "preconditions": [],
+          "steps": [
+            "1. Click Execute Trade"
+          ],
+          "expected_result": "Form does not submit; error shown on Action, Fund Symbol, Quantity, and Funding or Destination Account fields",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Enter an invalid Fund Symbol and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Buy' from the Action dropdown",
+            "2. Enter <invalid fund symbol> in the Fund Symbol field",
+            "3. Enter '1' in the Quantity field",
+            "4. Select a Funding or Destination Account",
+            "5. Click Execute Trade"
+          ],
+          "expected_result": "Inline validation error appears on the Fund Symbol field indicating symbol must exist",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Enter a Contribution Amount below minimum and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Click Create Plan in the Recurring Investment Plan Form",
+            "2. Enter <amount below minimum> in the Contribution Amount field",
+            "3. Fill in the Fund Symbol, Frequency, Start Date, and Funding Account",
+            "4. Click Create Plan"
+          ],
+          "expected_result": "Inline validation error appears on the Contribution Amount field indicating it must meet minimum",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Enter a Start Date in the past and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Click Create Plan in the Recurring Investment Plan Form",
+            "2. Enter <past date> in the Start Date field",
+            "3. Fill in the Fund Symbol, Contribution Amount, Frequency, and Funding Account",
+            "4. Click Create Plan"
+          ],
+          "expected_result": "Inline validation error appears on the Start Date field indicating it must be in the future",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Submit with all required fields empty in Recurring Investment Plan Form",
+          "preconditions": [],
+          "steps": [
+            "1. Click Create Plan"
+          ],
+          "expected_result": "Form does not submit; error shown on Fund Symbol, Contribution Amount, Frequency, Start Date, and Funding Account fields",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Submit with a Funding Account that has inadequate balance",
+          "preconditions": [],
+          "steps": [
+            "1. Click Create Plan in the Recurring Investment Plan Form",
+            "2. Fill in the Fund Symbol, Contribution Amount, Frequency, Start Date",
+            "3. Select a Funding Account with inadequate balance",
+            "4. Click Create Plan"
+          ],
+          "expected_result": "Inline validation error appears indicating funding account must have adequate balance",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to execute trade without sufficient buying power",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Buy' from the Action dropdown",
+            "2. Enter '1' in the Quantity field",
+            "3. Fill in the Fund Symbol and Funding or Destination Account",
+            "4. Click Execute Trade"
+          ],
+          "expected_result": "Form does not submit; error shown indicating customer must have sufficient buying power or share balance",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt to create a recurring investment plan without adequate balance in funding account",
+          "preconditions": [],
+          "steps": [
+            "1. Click Create Plan in the Recurring Investment Plan Form",
+            "2. Fill in the Fund Symbol, Contribution Amount, Frequency, Start Date",
+            "3. Select a Funding Account with inadequate balance",
+            "4. Click Create Plan"
+          ],
+          "expected_result": "Form does not submit; error shown indicating funding account must have adequate balance",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Quantity is exactly 1",
+          "preconditions": [
+            "User selects 'Buy' from Action dropdown",
+            "User selects a valid Fund Symbol",
+            "User has sufficient buying power"
+          ],
+          "steps": [
+            "1. Enter '1' in the Quantity field",
+            "2. Select a Funding or Destination Account",
+            "3. Click Execute Trade"
+          ],
+          "expected_result": "Trade executed successfully with order ID is displayed",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Quantity is 0",
+          "preconditions": [
+            "User selects 'Buy' from Action dropdown",
+            "User selects a valid Fund Symbol",
+            "User has sufficient buying power"
+          ],
+          "steps": [
+            "1. Enter '0' in the Quantity field",
+            "2. Select a Funding or Destination Account",
+            "3. Click Execute Trade"
+          ],
+          "expected_result": "Inline error displayed indicating Quantity must be greater than zero",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Start Date is today",
+          "preconditions": [
+            "User selects a valid Fund Symbol",
+            "User enters a valid Contribution Amount",
+            "User selects a Funding Account"
+          ],
+          "steps": [
+            "1. Enter today's date in the Start Date field",
+            "2. Select Frequency",
+            "3. Click Create Plan"
+          ],
+          "expected_result": "Inline error displayed indicating Start date must be in the future",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Contribution Amount meets minimum",
+          "preconditions": [
+            "User selects a valid Fund Symbol",
+            "User selects a Funding Account",
+            "User enters a valid Start Date"
+          ],
+          "steps": [
+            "1. Enter the minimum required Contribution Amount in the Contribution Amount field",
+            "2. Select Frequency",
+            "3. Click Create Plan"
+          ],
+          "expected_result": "Plan created successfully is displayed",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Contribution Amount is below minimum",
+          "preconditions": [
+            "User selects a valid Fund Symbol",
+            "User selects a Funding Account",
+            "User enters a valid Start Date"
+          ],
+          "steps": [
+            "1. Enter an amount below the minimum in the Contribution Amount field",
+            "2. Select Frequency",
+            "3. Click Create Plan"
+          ],
+          "expected_result": "Inline error displayed indicating Contribution Amount must meet minimum",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 18,
+        "positive": 3,
+        "negative": 10,
+        "edge": 5,
+        "boundary": 5,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 13,
+        "medium_priority": 5,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Account Statements",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Generate statement with valid date range and account selection",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Valid date range is available"
+          ],
+          "steps": [
+            "1. Select <valid account> from the Account dropdown",
+            "2. Enter <valid start date> and <valid end date> in the Statement Period fields",
+            "3. Click Generate Statement"
+          ],
+          "expected_result": "Statement generated successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Save e-statement preference with valid email address",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid email> in the Email Address field",
+            "2. Check the Opt into Paperless Statements checkbox",
+            "3. Click Save Preference"
+          ],
+          "expected_result": "e-Statement preference updated.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the Account dropdown blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Account dropdown blank",
+            "2. Fill in the Statement Period with valid dates",
+            "3. Click Generate Statement"
+          ],
+          "expected_result": "Inline validation error appears on the Account field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Email Address field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email Address field blank",
+            "2. Click Save Preference"
+          ],
+          "expected_result": "Inline validation error appears on the Email Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Enter an invalid email format and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email Address field",
+            "2. Click Save Preference"
+          ],
+          "expected_result": "Inline validation error appears on the Email Address field indicating it must be a valid email format",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Submit with an invalid Statement Period date range",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid date range> in the Statement Period field",
+            "2. Select a valid Account",
+            "3. Click Generate Statement"
+          ],
+          "expected_result": "Inline validation error appears on the Statement Period field indicating valid date range required",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Test valid date range for Statement Period",
+          "preconditions": [
+            "User is on the Statements page"
+          ],
+          "steps": [
+            "1. Select a valid date range for the Statement Period.",
+            "2. Select an account from the dropdown.",
+            "3. Click Generate Statement."
+          ],
+          "expected_result": "Statement generated successfully.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Test invalid date range for Statement Period",
+          "preconditions": [
+            "User is on the Statements page"
+          ],
+          "steps": [
+            "1. Select an invalid date range for the Statement Period.",
+            "2. Select an account from the dropdown.",
+            "3. Click Generate Statement."
+          ],
+          "expected_result": "Unable to generate statement \u2014 please try again later.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Test valid email format for Email Address",
+          "preconditions": [
+            "User is on the e-Statement Preference form"
+          ],
+          "steps": [
+            "1. Enter a valid email address in the Email Address field.",
+            "2. Optionally, check the Opt into Paperless Statements checkbox.",
+            "3. Click Save Preference."
+          ],
+          "expected_result": "e-Statement preference updated.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Test invalid email format for Email Address",
+          "preconditions": [
+            "User is on the e-Statement Preference form"
+          ],
+          "steps": [
+            "1. Enter an invalid email address in the Email Address field.",
+            "2. Click Save Preference."
+          ],
+          "expected_result": "highlights email field with guidance.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 10,
+        "positive": 2,
+        "negative": 4,
+        "edge": 4,
+        "boundary": 4,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 6,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Security Settings",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Change Password Successfully",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid current password> in the Current Password field",
+            "2. Enter <valid new password> in the New Password field",
+            "3. Enter the same <valid new password> in the Confirm New Password field",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Password changed successfully.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Leave Current Password blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Current Password field blank",
+            "2. Fill New Password and Confirm New Password with valid values",
+            "3. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the Current Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Leave New Password blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill Current Password with valid value",
+            "2. Leave the New Password field blank",
+            "3. Fill Confirm New Password with valid value",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the New Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "Leave Confirm New Password blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill Current Password with valid value",
+            "2. Fill New Password with valid value",
+            "3. Leave the Confirm New Password field blank",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm New Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Enter incorrect Current Password",
+          "preconditions": [],
+          "steps": [
+            "1. Fill Current Password with invalid value",
+            "2. Fill New Password with valid value",
+            "3. Fill Confirm New Password with the same valid value",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the Current Password field indicating 'must verify current password'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Enter New Password that does not meet strong-password policy",
+          "preconditions": [],
+          "steps": [
+            "1. Fill Current Password with valid value",
+            "2. Fill New Password with invalid value",
+            "3. Fill Confirm New Password with the same invalid value",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the New Password field indicating 'must meet strong-password policy'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Enter mismatched New Password and Confirm New Password",
+          "preconditions": [],
+          "steps": [
+            "1. Fill Current Password with valid value",
+            "2. Fill New Password with valid value",
+            "3. Fill Confirm New Password with a different value",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm New Password field indicating 'must match New Password'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter a strong password that meets all criteria",
+          "preconditions": [
+            "User is logged in and on the Security Settings page"
+          ],
+          "steps": [
+            "1. Enter a valid Current Password in the Current_Password field",
+            "2. Enter a strong password in the New_Password field",
+            "3. Enter the same strong password in the Confirm_New_Password field",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Password changed successfully.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter a New Password that does not meet strong-password policy",
+          "preconditions": [
+            "User is logged in and on the Security Settings page"
+          ],
+          "steps": [
+            "1. Enter a valid Current Password in the Current_Password field",
+            "2. Enter a weak password in the New_Password field",
+            "3. Enter the same weak password in the Confirm_New_Password field",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Validation error highlights the New_Password field indicating it does not meet the strong-password policy.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Enter New Password and Confirm New Password that do not match",
+          "preconditions": [
+            "User is logged in and on the Security Settings page"
+          ],
+          "steps": [
+            "1. Enter a valid Current Password in the Current_Password field",
+            "2. Enter a strong password in the New_Password field",
+            "3. Enter a different strong password in the Confirm_New_Password field",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Validation error highlights the Confirm_New_Password field indicating it must match the New Password.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long New Password",
+          "preconditions": [
+            "User is logged in and on the Security Settings page"
+          ],
+          "steps": [
+            "1. Enter a valid Current Password in the Current_Password field",
+            "2. Enter a New Password that is excessively long (over 100 characters)",
+            "3. Enter the same long password in the Confirm_New_Password field",
+            "4. Click Change Password"
+          ],
+          "expected_result": "Validation error highlights the New_Password field indicating it exceeds the maximum allowed length.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 11,
+        "positive": 1,
+        "negative": 6,
+        "edge": 4,
+        "boundary": 3,
+        "input_edge": 1,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 7,
+        "medium_priority": 3,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Support Center",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Send Message without Attachment",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid subject> in the Subject field",
+            "2. Select 'Account' from the Category dropdown",
+            "3. Enter <valid message body> in the Message Body field",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Message sent successfully with ticket ID",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Send Message with Attachment",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid subject> in the Subject field",
+            "2. Select 'Technical' from the Category dropdown",
+            "3. Enter <valid message body> in the Message Body field",
+            "4. Click 'Upload' and select a <valid attachment type>",
+            "5. Click Send Message"
+          ],
+          "expected_result": "Message sent successfully with ticket ID",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Request Callback",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select <valid reason> from the Reason for Call dropdown",
+            "2. Enter <valid date> in the Preferred Date field",
+            "3. Enter <valid time window> in the Preferred Time Window field",
+            "4. Verify Phone Number field is pre-filled and editable",
+            "5. Click Request Callback"
+          ],
+          "expected_result": "Callback request submitted and email confirmation sent",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Message Body field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Message Body field blank",
+            "2. Fill in the Subject field with valid text",
+            "3. Select a Category from the dropdown",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Inline validation error appears on the Message Body field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the Subject field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Subject field blank",
+            "2. Fill in the Message Body with valid text",
+            "3. Select a Category from the dropdown",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Inline validation error appears on the Subject field indicating it must be valid",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Submit with an invalid phone number format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid phone number format> in the Phone Number field",
+            "2. Select a Reason for Call from the dropdown",
+            "3. Enter a Preferred Date that is valid",
+            "4. Click Request Callback"
+          ],
+          "expected_result": "Inline validation error appears on the Phone Number field indicating the format must be valid",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Select a Preferred Date that is not the next business day",
+          "preconditions": [],
+          "steps": [
+            "1. Select a Preferred Date that is not the next business day",
+            "2. Select a Reason for Call from the dropdown",
+            "3. Enter a valid Phone Number",
+            "4. Click Request Callback"
+          ],
+          "expected_result": "Inline validation error appears on the Preferred Date field indicating the date must be at least the next business day",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Submit the secure message form with an invalid attachment type",
+          "preconditions": [],
+          "steps": [
+            "1. Fill in the Subject field with valid text",
+            "2. Select a Category from the dropdown",
+            "3. Fill in the Message Body with valid text",
+            "4. Upload an invalid attachment type",
+            "5. Click Send Message"
+          ],
+          "expected_result": "Inline validation error appears on the Attachment field indicating attachment types must be valid",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Subject field at minimum length",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a valid minimum length subject in the Subject field",
+            "2. Select a category from the dropdown",
+            "3. Enter a valid message body in the Message Body field",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Message sent successfully with ticket ID",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Subject field below minimum length",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a subject that is one character below the minimum length in the Subject field",
+            "2. Select a category from the dropdown",
+            "3. Enter a valid message body in the Message Body field",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Inline guidance displays an error indicating the subject length is invalid",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Preferred Date is the next business day",
+          "preconditions": [],
+          "steps": [
+            "1. Select a reason for the call from the dropdown",
+            "2. Enter the date of the next business day in the Preferred Date field",
+            "3. Enter a valid phone number in the Phone Number field",
+            "4. Click Request Callback"
+          ],
+          "expected_result": "Callback request submitted and email confirmation sent",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Preferred Date before the next business day",
+          "preconditions": [],
+          "steps": [
+            "1. Select a reason for the call from the dropdown",
+            "2. Enter a date that is one day before the next business day in the Preferred Date field",
+            "3. Enter a valid phone number in the Phone Number field",
+            "4. Click Request Callback"
+          ],
+          "expected_result": "Inline guidance displays an error indicating the date must be at least the next business day",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long subject text",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a very long subject text (200+ characters) in the Subject field",
+            "2. Select a category from the dropdown",
+            "3. Enter a valid message body in the Message Body field",
+            "4. Click Send Message"
+          ],
+          "expected_result": "Inline guidance displays an error indicating the subject length is invalid",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Special characters in message body",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a message body with special characters in the Message Body field",
+            "2. Click Send Message"
+          ],
+          "expected_result": "Message sent successfully with ticket ID",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 14,
+        "positive": 3,
+        "negative": 5,
+        "edge": 6,
+        "boundary": 4,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 8,
+        "medium_priority": 4,
+        "low_priority": 2
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 13,
+    "total_tests": 190,
+    "positive": 23,
+    "negative": 106,
+    "boundary": 42,
+    "edge": 61,
+    "high_priority": 106,
+    "medium_priority": 68,
+    "low_priority": 16
+  }
+}

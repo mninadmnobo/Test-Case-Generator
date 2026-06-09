@@ -1,0 +1,310 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T11:54:17.631091Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "ast": {
+        "module_name": "Dashboard",
+        "components": {
+          "Timeline_Block": {
+            "type": "block",
+            "fields": {
+              "Time_Range": {
+                "type": "dropdown",
+                "options": [
+                  "Next 7 days"
+                ]
+              },
+              "Sort_Order": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Search_Field": {
+                "type": "search",
+                "required": false
+              }
+            }
+          },
+          "Calendar_Block": {
+            "type": "block",
+            "fields": {
+              "All_Courses": {
+                "type": "dropdown",
+                "required": false
+              },
+              "New_Event_Button": {
+                "type": "button",
+                "on_success": "creates calendar entries"
+              },
+              "Month_Navigation": {
+                "type": "button_group",
+                "buttons": [
+                  {
+                    "element_name": "Left_Arrow",
+                    "on_success": "navigates to previous month"
+                  },
+                  {
+                    "element_name": "Right_Arrow",
+                    "on_success": "navigates to next month"
+                  }
+                ]
+              }
+            }
+          },
+          "Links": {
+            "type": "link_group",
+            "links": [
+              {
+                "element_name": "Full_Calendar",
+                "on_success": "opens dedicated calendar view"
+              },
+              {
+                "element_name": "Import_or_Export_Calendars",
+                "on_success": "opens calendar data management"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "ast": {
+        "module_name": "Course Edit Mode and Activity Chooser",
+        "components": {
+          "Course_Page": {
+            "type": "interactive_interface",
+            "fields": {
+              "Edit_Mode": {
+                "type": "button",
+                "on_success": "turns the Course page into an authoring interface"
+              },
+              "Bulk_Actions_Toolbar": {
+                "type": "toolbar",
+                "actions": [
+                  {
+                    "action_name": "Batch Edit"
+                  },
+                  {
+                    "action_name": "Batch Duplicate"
+                  },
+                  {
+                    "action_name": "Batch Hide"
+                  },
+                  {
+                    "action_name": "Batch Delete"
+                  },
+                  {
+                    "action_name": "Batch Move"
+                  }
+                ]
+              },
+              "Add_Activity_Button": {
+                "type": "button",
+                "on_success": "opens Activity Chooser modal",
+                "element_name": "+ Add an activity or resource"
+              },
+              "Add_Subsection_Control": {
+                "type": "button",
+                "on_success": "allows nesting content hierarchically",
+                "element_name": "+ Add a subsection"
+              }
+            },
+            "row_actions": [
+              {
+                "action_name": "Edit",
+                "element_name": "edit icon for quick renaming"
+              },
+              {
+                "action_name": "Three-Dot Menu",
+                "options": [
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Duplicate"
+                  },
+                  {
+                    "action_name": "Hide"
+                  },
+                  {
+                    "action_name": "Delete"
+                  },
+                  {
+                    "action_name": "Move"
+                  }
+                ]
+              },
+              {
+                "action_name": "Activity Three-Dot Menu",
+                "options": [
+                  {
+                    "action_name": "Edit Settings"
+                  },
+                  {
+                    "action_name": "Move"
+                  },
+                  {
+                    "action_name": "Duplicate"
+                  },
+                  {
+                    "action_name": "Hide"
+                  },
+                  {
+                    "action_name": "Set Access Restrictions"
+                  },
+                  {
+                    "action_name": "Delete"
+                  }
+                ]
+              }
+            ]
+          },
+          "Activity_Chooser_Modal": {
+            "type": "modal",
+            "fields": {
+              "Category_Filter_Bar": {
+                "type": "dropdown",
+                "options": [
+                  "All",
+                  "Activities",
+                  "Resources",
+                  "Recommended"
+                ]
+              },
+              "Search_Field": {
+                "type": "search",
+                "placeholder": "Search activities or resources"
+              },
+              "Activity_Resource_Tiles": {
+                "type": "grid",
+                "tiles": [
+                  {
+                    "tile_name": "Assignment"
+                  },
+                  {
+                    "tile_name": "Forum"
+                  },
+                  {
+                    "tile_name": "Quiz"
+                  },
+                  {
+                    "tile_name": "File"
+                  },
+                  {
+                    "tile_name": "Page"
+                  },
+                  {
+                    "tile_name": "Lesson"
+                  },
+                  {
+                    "tile_name": "SCORM"
+                  },
+                  {
+                    "tile_name": "URL"
+                  },
+                  {
+                    "tile_name": "Workshop"
+                  }
+                ],
+                "tile_actions": [
+                  {
+                    "action_name": "Star/Favorite Toggle",
+                    "on_success": "marks tile for quick access"
+                  },
+                  {
+                    "action_name": "Add",
+                    "on_success": "opens activity's creation form"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    }
+  ]
+}

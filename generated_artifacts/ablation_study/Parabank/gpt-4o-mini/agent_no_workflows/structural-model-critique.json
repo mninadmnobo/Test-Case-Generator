@@ -1,0 +1,218 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-09T10:37:46.970541Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and constraints described in the functional description.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Accounts_Table.footer_row",
+          "Accounts_Table.columns.Account_Number.masking"
+        ],
+        "phantoms": [
+          "Accounts_Table.row_actions[0] (View Account Details action not in description)",
+          "Accounts_Table.columns.Account_Type.type (unspecified not defined in description)",
+          "Accounts_Table.columns.Current_Balance.type (unspecified not defined in description)",
+          "Accounts_Table.columns.Account_Status.type (unspecified not defined in description)",
+          "Accounts_Table.columns.Open_Date.type (unspecified not defined in description)"
+        ],
+        "fixes": [
+          "Add footer_row to Accounts_Table",
+          "Add masking to Accounts_Table.columns.Account_Number",
+          "Remove row_actions from Accounts_Table"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and validation requirements described.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required elements and contains phantoms.",
+        "missing": [
+          "Transfer_Form.fields.Destination_Options.fields.Internal_Accounts.visible_when",
+          "Transfer_Form.submit_actions[0].on_failure"
+        ],
+        "phantoms": [
+          "Transfer_Form.fields.Destination_Options.type (unspecified type not in description)"
+        ],
+        "fixes": [
+          "Add 'visible_when' condition for Internal_Accounts based on Transfer_Type.",
+          "Add 'on_failure' action to submit_actions for failure messages."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements related to validation and denial reasons.",
+        "missing": [
+          "Loan_Application_Form.fields.Loan_Amount.constraints[2]",
+          "Loan_Application_Form.submit_actions[0].on_failure"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a constraint for Loan_Amount to validate against down payment and collateral value.",
+          "Add an on_failure message for the submit action to specify denial reasons."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required elements and contains phantoms.",
+        "missing": [
+          "Card_Request_Form.fields.Shipping_Address.constraints[0] (address must be complete is not explicitly stated in the description)",
+          "Card_Request_Form.fields.Account_to_Link (this field is missing from the AST)",
+          "Card_Controls_Form.fields.New_Spending_Limit.constraints[0] (must be a valid numeric limit is not explicitly stated in the description)",
+          "Card_Controls_Form.fields.Card_Status (this field is missing from the AST)"
+        ],
+        "phantoms": [
+          "Card_Request_Form.submit_actions[0].element_name (Request Card button not in description)",
+          "Card_Controls_Form.submit_actions[0].element_name (Update Controls button not in description)"
+        ],
+        "fixes": [
+          "Add 'Account_to_Link' field to 'Card_Request_Form.fields'",
+          "Remove 'Request Card' from 'Card_Request_Form.submit_actions'",
+          "Remove 'Update Controls' from 'Card_Controls_Form.submit_actions'",
+          "Add 'Card_Status' field to 'Card_Controls_Form.fields'",
+          "Add 'Shipping_Address' constraints to 'Card_Request_Form.fields.Shipping_Address'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required fields and contains phantoms.",
+        "missing": [
+          "Trade_Funds_Form.fields.Funding_or_Destination_Account",
+          "Recurring_Investment_Plan_Form.fields.Funding_Account"
+        ],
+        "phantoms": [
+          "Recurring_Investment_Plan_Form.fields.Funding_Account (not mentioned in description)"
+        ],
+        "fixes": [
+          "Add 'Funding_or_Destination_Account' field to 'Trade_Funds_Form.fields'",
+          "Add 'Funding_Account' field to 'Recurring_Investment_Plan_Form.fields'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the 'Generate Statement' button and has a phantom in the failure message for the e-statement preference form.",
+        "missing": [
+          "Generate_Statement_Form.submit_actions[0].element_name (Generate Statement button not in description)"
+        ],
+        "phantoms": [
+          "E_Statement_Preference_Form.submit_actions[0].on_failure (highlights the email field with guidance not in description)"
+        ],
+        "fixes": [
+          "Add 'Generate Statement' button to Generate_Statement_Form.submit_actions.",
+          "Change E_Statement_Preference_Form.submit_actions[0].on_failure to a valid failure message."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

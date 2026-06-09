@@ -1,0 +1,131 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T08:57:45.210600Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing expected elements and phantoms present in the AST.",
+        "missing": [
+          "Login_Form.fields.Username.constraints[1]",
+          "Login_Form.fields.Password.constraints[1]",
+          "Login_Form.submit_actions[0].constraints[0]"
+        ],
+        "phantoms": [
+          "Login_Form.submit_actions[0] (Login button not explicitly named in description)"
+        ],
+        "fixes": [
+          "Add a second constraint to Login_Form.fields.Username for 'Epic sadface: Username is required.'",
+          "Add a second constraint to Login_Form.fields.Password for 'Epic sadface: Password is required.'",
+          "Add a constraint to Login_Form.submit_actions[0] for 'Epic sadface: Username and password do not match any user in this service.'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the cart icon and has a phantom button for navigating to the Shopping Cart.",
+        "missing": [
+          "Navigation_Actions.buttons[1] (Shopping Cart icon not present)"
+        ],
+        "phantoms": [
+          "Navigation_Actions.buttons[1] (Go to Shopping Cart button not in description)"
+        ],
+        "fixes": [
+          "Add a button for the cart icon in Navigation_Actions",
+          "Change 'Go to Shopping Cart' to 'Cart Icon' in Navigation_Actions.buttons[1]"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the interactive elements and their expected behavior as described.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the logout functionality with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the interactive element described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

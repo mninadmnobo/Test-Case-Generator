@@ -1,0 +1,452 @@
+run_id: phptravels-20260609-170346-9ed063
+  Sidecar: generated_artifacts\.checkpoints\phptravels-20260609-170346-9ed063.json
+  Output directory: ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows
+  (use `--resume phptravels-20260609-170346-9ed063` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: phptravels-20260609-170346-9ed063
+
+[1/4] Generating Structural Model with critic-guided retry (21 module(s))...
+    [17:03:46] >> Structural Model Agent | sending request (~999 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~649 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~587 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~608 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~807 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~732 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~869 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~719 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~644 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~735 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~759 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~798 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~766 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~918 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~815 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~931 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~627 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~844 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~769 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~781 chars)
+    [17:03:46] >> Structural Model Agent | sending request (~311 chars)
+    [17:03:51] << Structural Model Agent | response in 5.4s | tokens: 2304+251=2555
+    [17:03:51] >> Structural Model Validator | sending request (~1785 chars)
+    [17:03:52] << Structural Model Agent | response in 5.6s | tokens: 2324+264=2588
+    [17:03:52] >> Structural Model Validator | sending request (~1869 chars)
+    [17:03:52] << Structural Model Agent | response in 5.6s | tokens: 2289+251=2540
+    [17:03:52] >> Structural Model Validator | sending request (~1710 chars)
+    [17:03:52] << Structural Model Agent | response in 6.2s | tokens: 2318+294=2612
+    [17:03:52] >> Structural Model Validator | sending request (~2104 chars)
+    [17:03:53] << Structural Model Agent | response in 6.8s | tokens: 2301+320=2621
+    [17:03:53] >> Structural Model Validator | sending request (~2150 chars)
+    [17:03:54] << Structural Model Agent | response in 7.8s | tokens: 2321+373=2694
+    [17:03:54] >> Structural Model Validator | sending request (~2510 chars)
+    [17:03:54] << Structural Model Agent | response in 8.1s | tokens: 2308+390=2698
+    [17:03:54] >> Structural Model Validator | sending request (~2433 chars)
+    [17:03:55] << Structural Model Agent | response in 8.5s | tokens: 2345+414=2759
+    [17:03:55] >> Structural Model Validator | sending request (~2807 chars)
+    [17:03:56] << Structural Model Agent | response in 2.2s | tokens: 2295+118=2413
+    [17:03:56] >> Structural Model Validator | sending request (~1174 chars)
+    [17:03:56] << Structural Model Agent | response in 10.4s | tokens: 2362+555=2917
+    [17:03:56] >> Structural Model Validator | sending request (~3420 chars)
+    [17:03:58] << Structural Model Agent | response in 6.7s | tokens: 2338+352=2690
+    [17:03:58] >> Structural Model Validator | sending request (~2418 chars)
+    [17:03:58] << Structural Model Agent | response in 6.5s | tokens: 2330+348=2678
+    [17:03:58] >> Structural Model Validator | sending request (~2435 chars)
+    [17:03:59] << Structural Model Agent | response in 5.6s | tokens: 2313+292=2605
+    [17:03:59] >> Structural Model Validator | sending request (~2271 chars)
+    [17:03:59] << Structural Model Agent | response in 13.2s | tokens: 2384+703=3087
+    [17:03:59] >> Structural Model Validator | sending request (~5114 chars)
+    [17:04:00] << Structural Model Agent | response in 5.7s | tokens: 2369+312=2681
+    [17:04:00] >> Structural Model Validator | sending request (~2414 chars)
+    [17:04:00] << Structural Model Agent | response in 1.6s | tokens: 2239+55=2294
+    [17:04:00] >> Structural Model Validator | sending request (~551 chars)
+    [17:04:00] << Structural Model Agent | response in 8.0s | tokens: 2317+431=2748
+    [17:04:00] >> Structural Model Validator | sending request (~3017 chars)
+    [17:04:00] << Structural Model Agent | response in 3.7s | tokens: 2320+163=2483
+    [17:04:00] >> Structural Model Validator | sending request (~1541 chars)
+    [17:04:00] << Structural Model Agent | response in 8.1s | tokens: 2347+445=2792
+    [17:04:00] >> Structural Model Validator | sending request (~2998 chars)
+    [17:04:01] << Structural Model Validator | response in 1.2s | tokens: 1315+49=1364
+  OK User Login | attempt 1/3 | 3 component(s)
+    [17:04:01] << Structural Model Validator | response in 2.3s | tokens: 1356+116=1472
+  ~~ Hotel Details & Booking | attempt 1/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [17:04:01] >> Structural Model Agent | sending request (~903 chars)
+    [17:04:01] << Structural Model Validator | response in 1.2s | tokens: 1467+50=1517
+  OK Flight Booking | attempt 1/3 | 2 component(s)
+    [17:04:01] << Structural Model Validator | response in 3.0s | tokens: 1333+210=1543
+  ~~ Forgot Password | attempt 1/3 | verdict=retry | missing=3 phantoms=2 | retrying...
+    [17:04:01] >> Structural Model Agent | sending request (~964 chars)
+    [17:04:02] << Structural Model Validator | response in 1.4s | tokens: 1191+50=1241
+  OK Currency & Language Selection | attempt 1/3 | 2 component(s)
+    [17:04:02] << Structural Model Validator | response in 2.4s | tokens: 1380+157=1537
+  ~~ Tour Details & Booking | attempt 1/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [17:04:02] >> Structural Model Agent | sending request (~957 chars)
+    [17:04:02] << Structural Model Validator | response in 2.4s | tokens: 1400+168=1568
+  ~~ User Registration | attempt 1/3 | verdict=retry | missing=3 phantoms=2 | retrying...
+    [17:04:02] >> Structural Model Agent | sending request (~977 chars)
+    [17:04:03] << Structural Model Validator | response in 1.4s | tokens: 1460+50=1510
+  OK Car Booking | attempt 1/3 | 1 component(s)
+    [17:04:03] << Structural Model Validator | response in 3.0s | tokens: 1578+152=1730
+  ~~ Hotels Search & Listing | attempt 1/3 | verdict=retry | missing=5 phantoms=0 | retrying...
+    [17:04:03] >> Structural Model Agent | sending request (~1051 chars)
+    [17:04:04] << Structural Model Validator | response in 2.9s | tokens: 1715+193=1908
+  ~~ Flights Search & Listing | attempt 1/3 | verdict=retry | missing=2 phantoms=4 | retrying...
+    [17:04:04] >> Structural Model Agent | sending request (~1056 chars)
+    [17:04:04] << Structural Model Validator | response in 4.0s | tokens: 1483+286=1769
+  ~~ Tours Search & Listing | attempt 1/3 | verdict=retry | missing=8 phantoms=0 | retrying...
+    [17:04:04] >> Structural Model Agent | sending request (~1219 chars)
+    [17:04:04] << Structural Model Validator | response in 3.5s | tokens: 1501+180=1681
+  ~~ Cars Search & Listing | attempt 1/3 | verdict=retry | missing=0 phantoms=4 | retrying...
+    [17:04:04] >> Structural Model Agent | sending request (~1063 chars)
+    [17:04:05] << Structural Model Validator | response in 2.2s | tokens: 1061+88=1149
+  ~~ Logout | attempt 1/3 | verdict=retry | missing=1 phantoms=0 | retrying...
+    [17:04:05] >> Structural Model Agent | sending request (~470 chars)
+    [17:04:06] << Structural Model Validator | response in 3.4s | tokens: 1462+214=1676
+  ~~ Payment Processing | attempt 1/3 | verdict=retry | missing=5 phantoms=0 | retrying...
+    [17:04:06] >> Structural Model Agent | sending request (~1341 chars)
+    [17:04:06] << Structural Model Validator | response in 3.7s | tokens: 1393+207=1600
+  ~~ Booking Management | attempt 1/3 | verdict=retry | missing=0 phantoms=5 | retrying...
+    [17:04:06] >> Structural Model Agent | sending request (~1150 chars)
+    [17:04:06] << Structural Model Validator | response in 3.8s | tokens: 1948+136=2084
+  ~~ Home Page & Search | attempt 1/3 | verdict=retry | missing=1 phantoms=1 | retrying...
+    [17:04:06] >> Structural Model Agent | sending request (~1237 chars)
+    [17:04:06] << Structural Model Validator | response in 2.8s | tokens: 1561+177=1738
+  ~~ Visa Services | attempt 1/3 | verdict=retry | missing=4 phantoms=2 | retrying...
+    [17:04:06] >> Structural Model Agent | sending request (~1049 chars)
+    [17:04:06] << Structural Model Validator | response in 2.5s | tokens: 1254+143=1397
+  ~~ Offers & Deals | attempt 1/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [17:04:06] >> Structural Model Agent | sending request (~998 chars)
+    [17:04:06] << Structural Model Agent | response in 9.9s | tokens: 2324+516=2840
+    [17:04:06] >> Structural Model Validator | sending request (~3395 chars)
+    [17:04:09] << Structural Model Agent | response in 14.0s | tokens: 2341+735=3076
+    [17:04:09] >> Structural Model Validator | sending request (~4851 chars)
+    [17:04:10] << Structural Model Validator | response in 5.3s | tokens: 1601+282=1883
+  ~~ User Dashboard | attempt 1/3 | verdict=retry | missing=5 phantoms=5 | retrying...
+    [17:04:10] >> Structural Model Agent | sending request (~1321 chars)
+    [17:04:10] << Structural Model Agent | response in 5.5s | tokens: 2390+220=2610
+    [17:04:10] >> Structural Model Validator | sending request (~1556 chars)
+    [17:04:11] << Structural Model Agent | response in 6.3s | tokens: 2367+248=2615
+    [17:04:11] >> Structural Model Validator | sending request (~1954 chars)
+    [17:04:12] << Structural Model Agent | response in 3.3s | tokens: 2274+93=2367
+    [17:04:12] >> Structural Model Validator | sending request (~729 chars)
+    [17:04:12] << Structural Model Agent | response in 6.4s | tokens: 2373+227=2600
+    [17:04:12] >> Structural Model Validator | sending request (~1743 chars)
+    [17:04:14] << Structural Model Agent | response in 8.2s | tokens: 2370+284=2654
+    [17:04:14] >> Structural Model Validator | sending request (~2094 chars)
+    [17:04:15] << Structural Model Agent | response in 8.4s | tokens: 2418+303=2721
+    [17:04:15] >> Structural Model Validator | sending request (~2248 chars)
+    [17:04:15] << Structural Model Agent | response in 4.8s | tokens: 2390+148=2538
+    [17:04:15] >> Structural Model Validator | sending request (~1683 chars)
+    [17:04:15] << Structural Model Validator | response in 1.7s | tokens: 1640+50=1690
+  OK Reviews & Ratings | attempt 1/3 | 3 component(s)
+    [17:04:17] << Structural Model Agent | response in 10.8s | tokens: 2441+391=2832
+    [17:04:17] >> Structural Model Validator | sending request (~2434 chars)
+    [17:04:18] << Structural Model Validator | response in 2.8s | tokens: 1914+165=2079
+  ~~ Search & Filters | attempt 1/3 | verdict=retry | missing=3 phantoms=1 | retrying...
+    [17:04:18] >> Structural Model Agent | sending request (~1114 chars)
+    [17:04:18] << Structural Model Validator | response in 2.2s | tokens: 1290+133=1423
+  ~~ Forgot Password | attempt 2/3 | verdict=retry | missing=3 phantoms=0 | retrying...
+    [17:04:18] >> Structural Model Agent | sending request (~870 chars)
+    [17:04:18] << Structural Model Agent | response in 5.9s | tokens: 2378+204=2582
+    [17:04:18] >> Structural Model Validator | sending request (~1724 chars)
+    [17:04:18] << Structural Model Validator | response in 1.2s | tokens: 1376+50=1426
+  OK Hotel Details & Booking | attempt 2/3 | 1 component(s)
+    [17:04:19] << Structural Model Validator | response in 1.2s | tokens: 1387+53=1440
+  OK User Registration | attempt 2/3 | 1 component(s)
+    [17:04:19] << Structural Model Agent | response in 9.6s | tokens: 2463+309=2772
+    [17:04:19] >> Structural Model Validator | sending request (~2369 chars)
+    [17:04:20] << Structural Model Validator | response in 2.0s | tokens: 1099+91=1190
+  ~~ Logout | attempt 2/3 | verdict=retry | missing=0 phantoms=1 | retrying...
+    [17:04:20] >> Structural Model Agent | sending request (~475 chars)
+    [17:04:20] << Structural Model Agent | response in 13.8s | tokens: 2397+478=2875
+    [17:04:20] >> Structural Model Validator | sending request (~3138 chars)
+    [17:04:20] << Structural Model Validator | response in 2.3s | tokens: 1313+130=1443
+  ~~ Tour Details & Booking | attempt 2/3 | verdict=retry | missing=2 phantoms=0 | retrying...
+    [17:04:20] >> Structural Model Agent | sending request (~934 chars)
+    [17:04:21] << Structural Model Validator | response in 1.7s | tokens: 1243+82=1325
+  ~~ Booking Management | attempt 2/3 | verdict=retry | missing=1 phantoms=0 | retrying...
+    [17:04:21] >> Structural Model Agent | sending request (~948 chars)
+    [17:04:22] << Structural Model Validator | response in 3.3s | tokens: 1456+214=1670
+  ~~ Cars Search & Listing | attempt 2/3 | verdict=retry | missing=4 phantoms=3 | retrying...
+    [17:04:22] >> Structural Model Agent | sending request (~1028 chars)
+    [17:04:22] << Structural Model Agent | response in 15.5s | tokens: 2412+535=2947
+    [17:04:22] >> Structural Model Validator | sending request (~3373 chars)
+    [17:04:22] << Structural Model Validator | response in 2.4s | tokens: 1295+145=1440
+  ~~ Offers & Deals | attempt 2/3 | verdict=retry | missing=3 phantoms=0 | retrying...
+    [17:04:22] >> Structural Model Agent | sending request (~1132 chars)
+    [17:04:23] << Structural Model Validator | response in 1.3s | tokens: 1639+50=1689
+  OK Hotels Search & Listing | attempt 2/3 | 3 component(s)
+    [17:04:24] << Structural Model Validator | response in 4.8s | tokens: 1484+350=1834
+  ~~ Tours Search & Listing | attempt 2/3 | verdict=retry | missing=8 phantoms=0 | retrying...
+    [17:04:24] >> Structural Model Agent | sending request (~1411 chars)
+    [17:04:24] << Structural Model Agent | response in 2.4s | tokens: 2276+84=2360
+    [17:04:24] >> Structural Model Validator | sending request (~684 chars)
+    [17:04:24] << Structural Model Validator | response in 3.1s | tokens: 1454+210=1664
+  ~~ Payment Processing | attempt 2/3 | verdict=retry | missing=4 phantoms=2 | retrying...
+    [17:04:24] >> Structural Model Agent | sending request (~1189 chars)
+    [17:04:25] << Structural Model Agent | response in 13.0s | tokens: 2381+462=2843
+    [17:04:25] >> Structural Model Validator | sending request (~2776 chars)
+    [17:04:26] << Structural Model Agent | response in 6.4s | tokens: 2365+233=2598
+    [17:04:26] >> Structural Model Validator | sending request (~1602 chars)
+    [17:04:28] << Structural Model Agent | response in 13.1s | tokens: 2445+480=2925
+    [17:04:28] >> Structural Model Validator | sending request (~3137 chars)
+    [17:04:29] << Structural Model Validator | response in 4.7s | tokens: 1693+311=2004
+  ~~ Flights Search & Listing | attempt 2/3 | verdict=retry | missing=7 phantoms=2 | retrying...
+    [17:04:29] >> Structural Model Agent | sending request (~1321 chars)
+    [17:04:29] << Structural Model Agent | response in 5.9s | tokens: 2347+251=2598
+    [17:04:29] >> Structural Model Validator | sending request (~2192 chars)
+    [17:04:29] << Structural Model Validator | response in 2.8s | tokens: 1090+134=1224
+  !! Logout | max attempts reached | missing=1 phantoms=1 | shipping final attempt
+    [17:04:29] << Structural Model Agent | response in 5.1s | tokens: 2403+197=2600
+    [17:04:29] >> Structural Model Validator | sending request (~1654 chars)
+    [17:04:29] << Structural Model Agent | response in 18.7s | tokens: 2437+704=3141
+    [17:04:29] >> Structural Model Validator | sending request (~5094 chars)
+    [17:04:31] << Structural Model Validator | response in 1.4s | tokens: 1362+50=1412
+  OK Booking Management | attempt 3/3 | 1 component(s)
+    [17:04:31] << Structural Model Validator | response in 2.6s | tokens: 1303+144=1447
+  !! Forgot Password | max attempts reached | missing=1 phantoms=1 | shipping final attempt
+    [17:04:33] << Structural Model Agent | response in 8.6s | tokens: 2410+333=2743
+    [17:04:33] >> Structural Model Validator | sending request (~2398 chars)
+    [17:04:33] << Structural Model Validator | response in 3.9s | tokens: 1552+239=1791
+  ~~ Visa Services | attempt 2/3 | verdict=retry | missing=5 phantoms=5 | retrying...
+    [17:04:33] >> Structural Model Agent | sending request (~1079 chars)
+    [17:04:33] << Structural Model Validator | response in 4.0s | tokens: 1637+252=1889
+  ~~ User Dashboard | attempt 2/3 | verdict=retry | missing=5 phantoms=3 | retrying...
+    [17:04:33] >> Structural Model Agent | sending request (~1281 chars)
+    [17:04:33] << Structural Model Validator | response in 2.0s | tokens: 1945+106=2051
+  ~~ Home Page & Search | attempt 2/3 | verdict=retry | missing=1 phantoms=0 | retrying...
+    [17:04:33] >> Structural Model Agent | sending request (~1165 chars)
+    [17:04:34] << Structural Model Agent | response in 11.3s | tokens: 2375+273=2648
+    [17:04:34] >> Structural Model Validator | sending request (~1961 chars)
+    [17:04:34] << Structural Model Validator | response in 3.2s | tokens: 1288+207=1495
+  !! Offers & Deals | max attempts reached | missing=4 phantoms=1 | shipping final attempt
+    [17:04:34] << Structural Model Agent | response in 9.6s | tokens: 2514+391=2905
+    [17:04:34] >> Structural Model Validator | sending request (~2434 chars)
+    [17:04:35] << Structural Model Validator | response in 3.0s | tokens: 1487+206=1693
+  !! Cars Search & Listing | max attempts reached | missing=0 phantoms=4 | shipping final attempt
+    [17:04:36] << Structural Model Agent | response in 16.5s | tokens: 2417+688=3105
+    [17:04:36] >> Structural Model Validator | sending request (~4748 chars)
+    [17:04:37] << Structural Model Agent | response in 9.2s | tokens: 2428+353=2781
+    [17:04:37] >> Structural Model Validator | sending request (~2507 chars)
+    [17:04:38] << Structural Model Validator | response in 3.2s | tokens: 1484+162=1646
+  !! Tours Search & Listing | max attempts reached | missing=6 phantoms=0 | shipping final attempt
+    [17:04:38] << Structural Model Validator | response in 1.9s | tokens: 1878+83=1961
+  ~~ Search & Filters | attempt 2/3 | verdict=retry | missing=1 phantoms=0 | retrying...
+    [17:04:38] >> Structural Model Agent | sending request (~977 chars)
+    [17:04:39] << Structural Model Validator | response in 4.9s | tokens: 1363+260=1623
+  !! Tour Details & Booking | max attempts reached | missing=3 phantoms=4 | shipping final attempt
+    [17:04:41] << Structural Model Validator | response in 3.4s | tokens: 1495+233=1728
+  !! Payment Processing | max attempts reached | missing=7 phantoms=3 | shipping final attempt
+    [17:04:43] << Structural Model Agent | response in 10.5s | tokens: 2391+381=2772
+    [17:04:43] >> Structural Model Validator | sending request (~2368 chars)
+    [17:04:46] << Structural Model Agent | response in 16.9s | tokens: 2494+638=3132
+    [17:04:46] >> Structural Model Validator | sending request (~3758 chars)
+    [17:04:46] << Structural Model Validator | response in 3.2s | tokens: 1464+245=1709
+  !! Visa Services | max attempts reached | missing=8 phantoms=2 | shipping final attempt
+    [17:04:47] << Structural Model Agent | response in 13.6s | tokens: 2438+508=2946
+    [17:04:47] >> Structural Model Validator | sending request (~3301 chars)
+    [17:04:50] << Structural Model Validator | response in 3.5s | tokens: 1671+248=1919
+  !! User Dashboard | max attempts reached | missing=15 phantoms=1 | shipping final attempt
+    [17:04:50] << Structural Model Validator | response in 4.5s | tokens: 1810+366=2176
+  !! Flights Search & Listing | max attempts reached | missing=3 phantoms=11 | shipping final attempt
+    [17:04:52] << Structural Model Agent | response in 18.4s | tokens: 2429+698=3127
+    [17:04:52] >> Structural Model Validator | sending request (~5057 chars)
+    [17:04:55] << Structural Model Validator | response in 3.3s | tokens: 1943+238=2181
+  !! Home Page & Search | max attempts reached | missing=4 phantoms=1 | shipping final attempt
+    [17:04:57] << Structural Model Agent | response in 18.9s | tokens: 2374+639=3013
+    [17:04:57] >> Structural Model Validator | sending request (~3935 chars)
+    [17:04:59] << Structural Model Validator | response in 2.3s | tokens: 1753+134=1887
+  !! Search & Filters | max attempts reached | missing=1 phantoms=1 | shipping final attempt
+  Done in 73.0s
+
+[2/4] Extracting & critiquing workflows (21 module(s))...
+  OK Home Page & Search | skipping workflow extraction (ablation)
+  OK User Registration | skipping workflow extraction (ablation)
+  OK User Login | skipping workflow extraction (ablation)
+  OK Forgot Password | skipping workflow extraction (ablation)
+  OK Hotels Search & Listing | skipping workflow extraction (ablation)
+  OK Hotel Details & Booking | skipping workflow extraction (ablation)
+  OK Flights Search & Listing | skipping workflow extraction (ablation)
+  OK Flight Booking | skipping workflow extraction (ablation)
+  OK Tours Search & Listing | skipping workflow extraction (ablation)
+  OK Tour Details & Booking | skipping workflow extraction (ablation)
+  OK Cars Search & Listing | skipping workflow extraction (ablation)
+  OK Car Booking | skipping workflow extraction (ablation)
+  OK Visa Services | skipping workflow extraction (ablation)
+  OK User Dashboard | skipping workflow extraction (ablation)
+  OK Booking Management | skipping workflow extraction (ablation)
+  OK Payment Processing | skipping workflow extraction (ablation)
+  OK Currency & Language Selection | skipping workflow extraction (ablation)
+  OK Search & Filters | skipping workflow extraction (ablation)
+  OK Reviews & Ratings | skipping workflow extraction (ablation)
+  OK Offers & Deals | skipping workflow extraction (ablation)
+  OK Logout | skipping workflow extraction (ablation)
+  Done in 0.0s
+
+[3/4] Generating test cases (63 calls across 21 module(s), types: edge/negative/positive)...
+    [17:04:59] >> Test-Positive | sending request (~5104 chars)
+    [17:04:59] >> Test-Negative | sending request (~5104 chars)
+    [17:04:59] >> Test-Edge | sending request (~5104 chars)
+    [17:04:59] >> Test-Positive | sending request (~2140 chars)
+    [17:04:59] >> Test-Negative | sending request (~2140 chars)
+    [17:04:59] >> Test-Edge | sending request (~2140 chars)
+    [17:04:59] >> Test-Positive | sending request (~1749 chars)
+    [17:04:59] >> Test-Negative | sending request (~1749 chars)
+    [17:04:59] >> Test-Edge | sending request (~1749 chars)
+    [17:04:59] >> Test-Positive | sending request (~1646 chars)
+    [17:04:59] >> Test-Negative | sending request (~1646 chars)
+    [17:04:59] >> Test-Edge | sending request (~1646 chars)
+    [17:04:59] >> Test-Positive | sending request (~3190 chars)
+    [17:04:59] >> Test-Negative | sending request (~3190 chars)
+    [17:04:59] >> Test-Edge | sending request (~3190 chars)
+    [17:04:59] >> Test-Positive | sending request (~2006 chars)
+    [17:04:59] >> Test-Negative | sending request (~2006 chars)
+    [17:04:59] >> Test-Edge | sending request (~2006 chars)
+    [17:04:59] >> Test-Positive | sending request (~3811 chars)
+    [17:04:59] >> Test-Negative | sending request (~3811 chars)
+    [17:04:59] >> Test-Edge | sending request (~3811 chars)
+    [17:04:59] >> Test-Positive | sending request (~2553 chars)
+    [17:04:59] >> Test-Negative | sending request (~2553 chars)
+    [17:04:59] >> Test-Edge | sending request (~2553 chars)
+    [17:04:59] >> Test-Positive | sending request (~2485 chars)
+    [17:04:59] >> Test-Negative | sending request (~2485 chars)
+    [17:04:59] >> Test-Edge | sending request (~2485 chars)
+    [17:04:59] >> Test-Positive | sending request (~2012 chars)
+    [17:04:59] >> Test-Negative | sending request (~2012 chars)
+    [17:04:59] >> Test-Edge | sending request (~2012 chars)
+    [17:04:59] >> Test-Positive | sending request (~2448 chars)
+    [17:04:59] >> Test-Negative | sending request (~2448 chars)
+    [17:04:59] >> Test-Edge | sending request (~2448 chars)
+    [17:04:59] >> Test-Positive | sending request (~2475 chars)
+    [17:04:59] >> Test-Negative | sending request (~2475 chars)
+    [17:04:59] >> Test-Edge | sending request (~2475 chars)
+    [17:04:59] >> Test-Positive | sending request (~2410 chars)
+    [17:04:59] >> Test-Negative | sending request (~2410 chars)
+    [17:04:59] >> Test-Edge | sending request (~2410 chars)
+    [17:04:59] >> Test-Positive | sending request (~3344 chars)
+    [17:04:59] >> Test-Negative | sending request (~3344 chars)
+    [17:04:59] >> Test-Edge | sending request (~3344 chars)
+    [17:04:59] >> Test-Positive | sending request (~2239 chars)
+    [17:04:59] >> Test-Negative | sending request (~2239 chars)
+    [17:04:59] >> Test-Edge | sending request (~2239 chars)
+    [17:04:59] >> Test-Positive | sending request (~2554 chars)
+    [17:04:59] >> Test-Negative | sending request (~2554 chars)
+    [17:04:59] >> Test-Edge | sending request (~2554 chars)
+    [17:04:59] >> Test-Positive | sending request (~1232 chars)
+    [17:04:59] >> Test-Negative | sending request (~1232 chars)
+    [17:04:59] >> Test-Edge | sending request (~1232 chars)
+    [17:04:59] >> Test-Positive | sending request (~3980 chars)
+    [17:04:59] >> Test-Negative | sending request (~3980 chars)
+    [17:04:59] >> Test-Edge | sending request (~3980 chars)
+    [17:04:59] >> Test-Positive | sending request (~3441 chars)
+    [17:04:59] >> Test-Negative | sending request (~3441 chars)
+    [17:04:59] >> Test-Edge | sending request (~3441 chars)
+    [17:04:59] >> Test-Positive | sending request (~1697 chars)
+    [17:04:59] >> Test-Negative | sending request (~1697 chars)
+    [17:04:59] >> Test-Edge | sending request (~1697 chars)
+    [17:04:59] >> Test-Positive | sending request (~719 chars)
+    [17:04:59] >> Test-Negative | sending request (~719 chars)
+    [17:04:59] >> Test-Edge | sending request (~719 chars)
+    [17:05:04] << Test-Positive | response in 5.2s | tokens: 4294+294=4588
+    [17:05:05] << Test-Positive | response in 5.5s | tokens: 4305+306=4611
+    [17:05:05] << Test-Positive | response in 5.8s | tokens: 4377+282=4659
+    [17:05:12] << Test-Edge | response in 13.3s | tokens: 3114+569=3683
+    [17:05:13] << Test-Positive | response in 13.4s | tokens: 4936+764=5700
+    [17:05:13] << Test-Edge | response in 13.5s | tokens: 3186+579=3765
+    [17:05:15] << Test-Positive | response in 10.2s | tokens: 4632+723=5355
+    [17:05:16] << Test-Negative | response in 11.8s | tokens: 3182+483=3665
+    [17:05:16] << Test-Negative | response in 17.2s | tokens: 3193+600=3793
+  OK User Login | 11 test(s) (pos=2 neg=5 edge=5)
+    [17:05:17] << Test-Positive | response in 4.3s | tokens: 4369+258=4627
+    [17:05:23] << Test-Edge | response in 18.3s | tokens: 3103+765=3868
+  OK Forgot Password | 12 test(s) (pos=2 neg=4 edge=8)
+    [17:05:24] << Test-Positive | response in 7.8s | tokens: 4803+539=5342
+    [17:05:24] << Test-Edge | response in 25.3s | tokens: 3745+1094=4839
+    [17:05:30] << Test-Positive | response in 5.6s | tokens: 4458+396=4854
+    [17:05:33] << Test-Edge | response in 20.9s | tokens: 3441+918=4359
+    [17:05:35] << Test-Edge | response in 19.2s | tokens: 3178+852=4030
+    [17:05:36] << Test-Negative | response in 23.5s | tokens: 3520+803=4323
+  OK Hotels Search & Listing | 17 test(s) (pos=5 neg=6 edge=10)
+    [17:05:36] << Test-Negative | response in 37.0s | tokens: 3265+1254=4519
+  OK User Registration | 17 test(s) (pos=1 neg=12 edge=6)
+    [17:05:37] << Test-Positive | response in 3.5s | tokens: 4477+223=4700
+    [17:05:41] << Test-Positive | response in 4.7s | tokens: 4356+226=4582
+    [17:05:41] << Test-Negative | response in 24.1s | tokens: 3691+793=4484
+    [17:05:43] << Test-Negative | response in 19.0s | tokens: 3346+621=3967
+    [17:05:44] << Test-Negative | response in 28.4s | tokens: 3257+991=4248
+  OK Hotel Details & Booking | 16 test(s) (pos=1 neg=9 edge=10)
+    [17:05:49] << Test-Edge | response in 13.1s | tokens: 3286+563=3849
+    [17:05:49] << Test-Edge | response in 19.3s | tokens: 3267+854=4121
+  OK Flight Booking | 13 test(s) (pos=2 neg=4 edge=11)
+    [17:05:52] << Test-Edge | response in 28.7s | tokens: 3612+1261=4873
+  OK Flights Search & Listing | 16 test(s) (pos=4 neg=5 edge=11)
+    [17:05:52] << Test-Positive | response in 11.4s | tokens: 4480+875=5355
+    [17:05:54] << Test-Negative | response in 16.6s | tokens: 3244+569=3813
+    [17:05:58] << Test-Positive | response in 8.7s | tokens: 4451+551=5002
+    [17:06:00] << Test-Edge | response in 16.5s | tokens: 3289+821=4110
+    [17:06:02] << Test-Positive | response in 9.8s | tokens: 4455+578=5033
+    [17:06:04] << Test-Negative | response in 64.5s | tokens: 3824+2175=5999
+  OK Home Page & Search | 29 test(s) (pos=4 neg=18 edge=11)
+    [17:06:04] << Test-Edge | response in 22.9s | tokens: 3165+966=4131
+  OK Tour Details & Booking | 13 test(s) (pos=1 neg=5 edge=11)
+    [17:06:08] << Test-Positive | response in 4.0s | tokens: 4353+287=4640
+    [17:06:08] << Test-Negative | response in 24.7s | tokens: 3368+701=4069
+  OK Cars Search & Listing | 17 test(s) (pos=7 neg=6 edge=8)
+    [17:06:09] << Test-Edge | response in 17.4s | tokens: 3260+796=4056
+    [17:06:13] << Test-Positive | response in 13.4s | tokens: 4661+995=5656
+    [17:06:14] << Test-Negative | response in 38.5s | tokens: 3365+1189=4554
+  OK Tours Search & Listing | 15 test(s) (pos=1 neg=10 edge=6)
+    [17:06:15] << Test-Edge | response in 11.5s | tokens: 3470+523=3993
+    [17:06:17] << Test-Edge | response in 9.3s | tokens: 3162+444=3606
+    [17:06:18] << Test-Positive | response in 9.1s | tokens: 4486+675=5161
+    [17:06:20] << Test-Edge | response in 22.3s | tokens: 3264+961=4225
+    [17:06:23] << Test-Negative | response in 15.5s | tokens: 3241+339=3580
+  OK Booking Management | 8 test(s) (pos=2 neg=3 edge=3)
+    [17:06:26] << Test-Positive | response in 11.2s | tokens: 4184+758=4942
+    [17:06:29] << Test-Edge | response in 10.7s | tokens: 2993+425=3418
+    [17:06:30] << Test-Negative | response in 35.9s | tokens: 3343+855=4198
+  OK Visa Services | 17 test(s) (pos=3 neg=6 edge=14)
+    [17:06:32] << Test-Negative | response in 42.6s | tokens: 3339+1001=4340
+  OK Car Booking | 18 test(s) (pos=3 neg=9 edge=10)
+    [17:06:32] << Test-Negative | response in 29.9s | tokens: 3549+712=4261
+  OK User Dashboard | 20 test(s) (pos=10 neg=6 edge=4)
+    [17:06:33] << Test-Negative | response in 15.8s | tokens: 3072+265=3337
+  OK Currency & Language Selection | 13 test(s) (pos=8 neg=2 edge=3)
+    [17:06:36] << Test-Edge | response in 22.1s | tokens: 3295+1014=4309
+    [17:06:38] << Test-Negative | response in 14.7s | tokens: 3633+270=3903
+    [17:06:38] << Test-Positive | response in 5.9s | tokens: 4280+372=4652
+    [17:06:38] << Test-Positive | response in 9.7s | tokens: 4632+644=5276
+    [17:06:39] << Test-Edge | response in 13.0s | tokens: 3554+596=4150
+    [17:06:41] << Test-Positive | response in 2.9s | tokens: 4080+142=4222
+    [17:06:47] << Test-Positive | response in 26.5s | tokens: 4745+1014=5759
+  OK Search & Filters | 15 test(s) (pos=8 neg=2 edge=7)
+    [17:06:47] << Test-Edge | response in 10.6s | tokens: 3089+407=3496
+    [17:06:47] << Test-Edge | response in 8.4s | tokens: 2889+302=3191
+    [17:06:48] << Test-Negative | response in 9.7s | tokens: 2968+148=3116
+  OK Logout | 4 test(s) (pos=1 neg=1 edge=2)
+    [17:06:49] << Test-Negative | response in 15.2s | tokens: 3168+266=3434
+  OK Offers & Deals | 8 test(s) (pos=3 neg=2 edge=3)
+    [17:06:53] << Test-Negative | response in 23.8s | tokens: 3520+508=4028
+    [17:06:57] << Test-Edge | response in 25.4s | tokens: 3441+980=4421
+  OK Reviews & Ratings | 15 test(s) (pos=4 neg=4 edge=9)
+    [17:07:00] << Test-Negative | response in 46.8s | tokens: 3374+1052=4426
+  OK Payment Processing | 20 test(s) (pos=5 neg=8 edge=11)
+  Done in 121.1s
+
+[4/4] Saving output...
+  Saved Structural Model to:       ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\structural-model.json
+  Saved critique to:     ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\structural-model-critique.json
+  Saved critique (md):   ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\Phptravels-openai-gpt-4o-mini-critique.md
+  Saved test cases to:   ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\test-cases.json  (314 total)
+  Saved test cases (md): ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\Phptravels-openai-gpt-4o-mini-tests.md
+  Saved workflows to:    ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\workflows.json  (0 total)
+  Saved wf-critique to:  ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\workflow-validator-critique.json
+  Saved wf-critique(md): ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows\Phptravels-openai-gpt-4o-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 21 module(s).
+  Structural Model:     ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows/structural-model.json
+  Critique:   ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows/structural-model-critique.json
+  Tests:      ablation_study\PHPTravels\gpt-4o-mini\agent_no_workflows/test-cases.json
+

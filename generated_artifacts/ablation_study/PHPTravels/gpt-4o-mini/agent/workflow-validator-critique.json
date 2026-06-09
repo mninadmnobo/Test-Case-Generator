@@ -1,0 +1,313 @@
+{
+  "project_name": "Phptravels",
+  "generated_at": "2026-06-09T11:00:56.567305Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Home Page & Search",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows for the search actions are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "User Registration",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows for the registration form are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "User Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form submit actions.",
+        "missing": [
+          "No workflow for Login_Form: submit_action=Login with precondition=valid credentials"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Login_Form: submit_action=Login with precondition=valid credentials"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Forgot Password",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined according to the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Hotels Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflow for form submit action 'Search' in Hotels_Search_Form.",
+        "missing": [
+          "No workflow for Hotels_Search_Form: action=Search"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Hotels_Search_Form: action=Search"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Hotel Details & Booking",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correct with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Flights Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflow for the Flights_Search_Form submit action.",
+        "missing": [
+          "No workflow for Flights_Search_Form: action=Search Flights"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Flights_Search_Form: action=Search Flights"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Flight Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for optional fields Meal Preferences and Seat Selection.",
+        "missing": [
+          "No workflow for Booking_Form: action=Continue_Button with Meal_Preferences is empty",
+          "No workflow for Booking_Form: action=Continue_Button with Seat_Selection is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for Booking_Form: action=Continue_Button with Meal_Preferences is empty",
+          "Add workflows for Booking_Form: action=Continue_Button with Seat_Selection is empty"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Tours Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for the Sidebar_Filters form submit action.",
+        "missing": [
+          "No workflow for Sidebar_Filters: action=Search"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Sidebar_Filters: action=Search"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Tour Details & Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form submit actions.",
+        "missing": [
+          "No workflow for Tour_Booking_Form: submit_action=Book Now with precondition=user must be logged in"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Tour_Booking_Form: submit_action=Book Now with precondition=user must be logged in"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Cars Search & Listing",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 12,
+      "module_title": "Car Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflow for form submit action Confirm Booking.",
+        "missing": [
+          "No workflow for Booking_Form: submit_action=Confirm Booking"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Booking_Form: submit_action=Confirm Booking"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Visa Services",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form submit actions and potential phantom workflows.",
+        "missing": [
+          "No workflow for Visa_Requirements_Form: terminal_action=Submit"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Visa_Requirements_Form: terminal_action=Submit"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 14,
+      "module_title": "User Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for the My_Bookings data_table actions.",
+        "missing": [
+          "No workflow for data_table: action=View Details",
+          "No workflow for data_table: action=Cancel",
+          "No workflow for data_table: action=Modify"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for My_Bookings row_actions: View Details, Cancel, Modify"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 15,
+      "module_title": "Booking Management",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined according to the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 16,
+      "module_title": "Payment Processing",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined for the payment form actions.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 17,
+      "module_title": "Currency & Language Selection",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for the Currency and Language selectors' submit actions.",
+        "missing": [
+          "No workflow for Currency_Selector: action=Select",
+          "No workflow for Language_Selector: action=Select"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for Currency_Selector and Language_Selector with terminal_action=Select"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 18,
+      "module_title": "Search & Filters",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for listing-specific filters and sorting controls.",
+        "missing": [
+          "No workflow for Filter_Section: terminal action=Apply Filters for Hotels, Flights, Tours, Cars",
+          "No workflow for Filter_Section: terminal action=Sort By"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for Filter_Section: terminal action=Apply Filters for Hotels, Flights, Tours, Cars",
+          "Add workflow for Filter_Section: terminal action=Sort By"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 19,
+      "module_title": "Reviews & Ratings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow for the form submit action is missing due to the absence of a matching workflow for the required conditions.",
+        "missing": [
+          "No workflow for Submit_Review: action=Submit Review"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for Submit_Review: action=Submit Review"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 20,
+      "module_title": "Offers & Deals",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows for the form submit actions are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 21,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correct with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

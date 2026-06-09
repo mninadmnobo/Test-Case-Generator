@@ -1,0 +1,305 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-09T10:35:52.585122Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Successful login",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sign In",
+          "on_success": "Signed in successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Failed login attempt",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sign In",
+          "on_success": "Incorrect email or password. Please try again."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Standard Registration Submission",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Register",
+          "on_success": "Account created successfully \u2014 please sign in"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Account Number",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View Account Number",
+          "on_success": "N/A"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Account with Checking type",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Initial_Deposit_Amount >= 25 AND Funding_Source_Account has sufficient balance",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully!"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open Account with Savings type",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Initial_Deposit_Amount >= 100 AND Funding_Source_Account has sufficient balance",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully!"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit transfer to My ParaBank Account",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == 'My ParaBank Account'",
+          "terminal_action": "Submit",
+          "on_success": "Transfer completed successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit transfer to External Account",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == 'External Account'",
+          "terminal_action": "Submit",
+          "on_success": "Transfer completed successfully."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit payment with valid details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Pay",
+          "on_success": "Payment submitted successfully with reference code"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit payment with account number mismatch",
+          "actor": "<role>",
+          "conditional_branch": "account numbers must match",
+          "terminal_action": "Pay",
+          "on_success": "Account numbers do not match"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Submit payment with insufficient funds",
+          "actor": "<role>",
+          "conditional_branch": "must have sufficient funds",
+          "terminal_action": "Pay",
+          "on_success": "Insufficient funds"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Loan Request with Personal Loan Type",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal",
+          "terminal_action": "Submit_Loan_Request",
+          "on_success": "Loan approved and created successfully!"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit Loan Request with Auto Loan Type",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto",
+          "terminal_action": "Submit_Loan_Request",
+          "on_success": "Loan approved and created successfully!"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Submit Loan Request with Home Loan Type",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home",
+          "terminal_action": "Submit_Loan_Request",
+          "on_success": "Loan approved and created successfully!"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Update Profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "Profile updated successfully."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Request Card",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Card",
+          "on_success": "Card request submitted successfully"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Update Controls",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Controls",
+          "on_success": "Card controls updated successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Execute Trade for Buy action",
+          "actor": "<role>",
+          "conditional_branch": "Action == Buy",
+          "terminal_action": "Execute Trade",
+          "on_success": "executes same-day trade, updates holdings, displays Trade executed successfully with order ID"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Execute Trade for Sell action",
+          "actor": "<role>",
+          "conditional_branch": "Action == Sell",
+          "terminal_action": "Execute Trade",
+          "on_success": "executes same-day trade, updates holdings, displays Trade executed successfully with order ID"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Create Recurring Investment Plan",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Create Plan",
+          "on_success": "stores the schedule, displays Plan created successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Generate Statement",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Generate Statement",
+          "on_success": "Statement generated successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Save e-Statement Preference",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save Preference",
+          "on_success": "e-Statement preference updated."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Change Password",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Change Password",
+          "on_success": "Password changed successfully."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Send Message without Attachment",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send Message",
+          "on_success": "Message sent successfully with ticket ID"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Send Message with Attachment",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send Message",
+          "on_success": "Message sent successfully with ticket ID"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Request Callback",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Callback",
+          "on_success": "Callback request submitted and email confirmation sent"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

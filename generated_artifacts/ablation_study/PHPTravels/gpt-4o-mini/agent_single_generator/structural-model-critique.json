@@ -1,0 +1,406 @@
+{
+  "project_name": "Phptravels",
+  "generated_at": "2026-06-09T11:10:09.880552Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Home Page & Search",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required fields and contains phantoms.",
+        "missing": [
+          "Search_Widget.tabs[1].fields.Travel_Dates.fields.Return_Date",
+          "Search_Widget.tabs[2].fields.Travel_Date_Range.fields.End_Date"
+        ],
+        "phantoms": [
+          "Search_Button.constraints[0] (inline errors not mentioned in description)"
+        ],
+        "fixes": [
+          "Add 'Return_Date' as a required field under 'Search_Widget.tabs[1].fields.Travel_Dates.fields'",
+          "Add 'End_Date' as a required field under 'Search_Widget.tabs[2].fields.Travel_Date_Range.fields'",
+          "Remove inline errors from 'Search_Button.constraints' as they are not mentioned in the description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "User Registration",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "User Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Forgot Password",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the confirmation password field and has a phantom in the precondition for the reset link.",
+        "missing": [
+          "Password_Reset_Page.fields.Confirm_Password"
+        ],
+        "phantoms": [
+          "Forgot_Password_Form.submit_actions[0].preconditions[0] (email must exist in the system is not explicitly stated in the description)"
+        ],
+        "fixes": [
+          "Add a Confirm_Password field to Password_Reset_Page.fields",
+          "Remove the precondition from Forgot_Password_Form.submit_actions[0]"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Hotels Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Filters_Sidebar.fields.Price_Range",
+          "Filters_Sidebar.fields.Star_Rating.options",
+          "Filters_Sidebar.fields.Facilities_Amenities",
+          "Filters_Sidebar.fields.Hotel_Type.options",
+          "Filters_Sidebar.fields.Board_Basis.options",
+          "Active_Filters.remove_buttons.type",
+          "Active_Filters.reset_all.type"
+        ],
+        "phantoms": [
+          "Filters_Sidebar.fields.Facilities_Amenities (not specified in description)",
+          "Hotel_Listing.row_actions[0].action_name (Book Now button not explicitly mentioned)"
+        ],
+        "fixes": [
+          "Add Filters_Sidebar.fields.Price_Range as an unspecified field.",
+          "Add Filters_Sidebar.fields.Star_Rating.options as an empty array.",
+          "Remove Filters_Sidebar.fields.Facilities_Amenities as it is not mentioned.",
+          "Add Filters_Sidebar.fields.Hotel_Type.options as an empty array.",
+          "Add Filters_Sidebar.fields.Board_Basis.options as an empty array.",
+          "Add Active_Filters.remove_buttons.type as button.",
+          "Add Active_Filters.reset_all.type as button."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Hotel Details & Booking",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Flights Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items and phantoms identified in the AST.",
+        "missing": [
+          "Flights_Listing.expandable_rows.fields.Baggage_Allowance",
+          "Flights_Listing.expandable_rows.fields.Fare_Rules",
+          "Flights_Listing.expandable_rows.fields.Seat_Availability",
+          "Sidebar_Filters.fields.Airlines",
+          "Sidebar_Filters.fields.Number_of_Stops",
+          "Sidebar_Filters.fields.Departure_Time_Range",
+          "Sidebar_Filters.fields.Arrival_Time_Range",
+          "Sidebar_Filters.fields.Price_Range"
+        ],
+        "phantoms": [
+          "Flights_Listing.row_actions[0] (Select button not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Add missing fields to Sidebar_Filters: Airlines, Number_of_Stops, Departure_Time_Range, Arrival_Time_Range, Price_Range",
+          "Ensure expandable rows in Flights_Listing are correctly defined as per description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Flight Booking",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Tours Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required fields and contains phantoms.",
+        "missing": [
+          "Tours_Search_Form.fields.Budget_Range",
+          "Sidebar_Filters.fields.Destination_Filter",
+          "Sidebar_Filters.fields.Price_Range_Filter",
+          "Sidebar_Filters.fields.Duration_Filter",
+          "Sidebar_Filters.fields.Departure_Dates_Filter"
+        ],
+        "phantoms": [
+          "Sidebar_Filters.fields.Destination_Filter (not explicitly mentioned in description)",
+          "Sidebar_Filters.fields.Price_Range_Filter (not explicitly mentioned in description)",
+          "Sidebar_Filters.fields.Duration_Filter (not explicitly mentioned in description)",
+          "Sidebar_Filters.fields.Departure_Dates_Filter (not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Add Budget_Range field to Tours_Search_Form.fields",
+          "Remove Destination_Filter, Price_Range_Filter, Duration_Filter, and Departure_Dates_Filter from Sidebar_Filters.fields"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Tour Details & Booking",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 11,
+      "module_title": "Cars Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "There are missing items and phantoms in the AST.",
+        "missing": [
+          "Vehicle_Listing.row_actions[0].action_name (Book Now button is not explicitly named in the description)",
+          "Sidebar_Filters.fields.Price_Range (should be required based on context)"
+        ],
+        "phantoms": [
+          "Sidebar_Filters.fields.Rental_Company (no options provided in description)"
+        ],
+        "fixes": [
+          "Update Vehicle_Listing.row_actions[0].action_name to 'Book Now' as per description.",
+          "Make Sidebar_Filters.fields.Price_Range required.",
+          "Remove Sidebar_Filters.fields.Rental_Company as it has no options in the description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Car Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items: 1 critical (full pricing breakdown), Phantoms: 1 minor (Terms_Review button not in description).",
+        "missing": [
+          "Booking_Form.fields.Pricing_Breakdown"
+        ],
+        "phantoms": [
+          "Terms_Review (button not mentioned in description)"
+        ],
+        "fixes": [
+          "Add a field for full pricing breakdown in Booking_Form.",
+          "Remove Terms_Review button from components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Visa Services",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 14,
+      "module_title": "User Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items and phantoms identified in the AST.",
+        "missing": [
+          "My_Bookings.fields.Cancellation_Policy",
+          "My_Bookings.fields.Transaction_History",
+          "My_Bookings.fields.Download_Confirmations",
+          "My_Bookings.fields.Download_Invoices",
+          "My_Bookings.fields.Download_Vouchers",
+          "Wallet_Credits.fields.Transaction_History"
+        ],
+        "phantoms": [
+          "My_Profile.fields.Personal_Information (not explicitly mentioned in description)",
+          "Reviews.fields.Rating (not explicitly mentioned in description)",
+          "Reviews.fields.Review (not explicitly mentioned in description)",
+          "Settings.fields.Change_Password (not explicitly mentioned in description)",
+          "Settings.fields.Notification_Preferences (not explicitly mentioned in description)",
+          "Settings.fields.Default_Currency (not explicitly mentioned in description)",
+          "Settings.fields.Default_Language (not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Add My_Bookings.fields.Cancellation_Policy to capture cancellation policy details.",
+          "Add My_Bookings.fields.Transaction_History to capture transaction history.",
+          "Add My_Bookings.fields.Download_Confirmations to capture download confirmation functionality.",
+          "Add My_Bookings.fields.Download_Invoices to capture download invoice functionality.",
+          "Add My_Bookings.fields.Download_Vouchers to capture download voucher functionality.",
+          "Add Wallet_Credits.fields.Transaction_History to capture transaction history."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 15,
+      "module_title": "Booking Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST contains several phantoms and missing elements related to the booking details and actions.",
+        "missing": [
+          "Booking_Detail_View.fields.Confirmation_Number",
+          "Booking_Detail_View.fields.Full_Service_Information",
+          "Booking_Detail_View.fields.Traveler_Details",
+          "Booking_Detail_View.fields.Payment_Information",
+          "Booking_Detail_View.fields.Current_Booking_Status",
+          "Booking_Detail_View.actions[0].fields.Travel_Dates",
+          "Booking_Detail_View.actions[0].fields.Special_Requests",
+          "Booking_Detail_View.actions[0].fields.Traveler_Information",
+          "Booking_Detail_View.actions[1].fields.Refund_Amount"
+        ],
+        "phantoms": [
+          "Booking_Detail_View.actions[0].fields.Travel_Dates (not explicitly mentioned in description)",
+          "Booking_Detail_View.actions[0].fields.Special_Requests (not explicitly mentioned in description)",
+          "Booking_Detail_View.actions[0].fields.Traveler_Information (not explicitly mentioned in description)",
+          "Booking_Detail_View.actions[1].fields.Refund_Amount (not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Remove all phantom fields from the actions in Booking_Detail_View.",
+          "Ensure that all fields in Booking_Detail_View are explicitly defined based on the description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 16,
+      "module_title": "Payment Processing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Payment_Form.fields.Base_Price",
+          "Payment_Form.fields.Taxes",
+          "Payment_Form.fields.Service_Fees",
+          "Payment_Form.fields.Applicable_Discounts",
+          "Payment_Form.fields.Total",
+          "Payment_Form.submit_actions[0].on_success (confirmation email not mentioned)",
+          "Payment_Form.submit_actions[1].on_success (error message not mentioned)"
+        ],
+        "phantoms": [
+          "Payment_Form.fields.Cardholder_Name (not specified as a field in the description)",
+          "Payment_Form.fields.Card_Number (not specified as a field in the description)",
+          "Payment_Form.fields.Expiration_Date (not specified as a field in the description)",
+          "Payment_Form.fields.CVV (not specified as a field in the description)",
+          "Payment_Form.fields.Save_Card_Option (not specified as a field in the description)"
+        ],
+        "fixes": [
+          "Add fields for Base_Price, Taxes, Service_Fees, Applicable_Discounts, and Total to Payment_Form.",
+          "Update submit_actions to include confirmation email and error message handling."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 17,
+      "module_title": "Currency & Language Selection",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 18,
+      "module_title": "Search & Filters",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items: 1 critical (dynamic results update), Phantoms: 0.",
+        "missing": [
+          "Active_Filters_Summary.fields.Result_Count (dynamic update of result count not represented)"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add dynamic update mechanism for result count in Active_Filters_Summary."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 19,
+      "module_title": "Reviews & Ratings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 20,
+      "module_title": "Offers & Deals",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing elements related to promotional banners and featured deal cards, and phantoms related to the Terms and Conditions link.",
+        "missing": [
+          "Offers_Page.fields.Promotional_Banners",
+          "Offers_Page.fields.Featured_Deal_Cards"
+        ],
+        "phantoms": [
+          "Offers_Page.fields.Terms_and_Conditions_Link (not mentioned in description)"
+        ],
+        "fixes": [
+          "Add 'Promotional_Banners' and 'Featured_Deal_Cards' fields to the Offers_Page.",
+          "Add 'Terms_and_Conditions_Link' field to the Offers_Page."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 21,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and logic described.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

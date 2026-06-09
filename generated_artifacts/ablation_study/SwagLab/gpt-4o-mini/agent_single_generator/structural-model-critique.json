@@ -1,0 +1,123 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:01:25.018251Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items: 1 critical (error messages), and there are phantoms present.",
+        "missing": [
+          "Login_Form.submit_actions[0].error_messages"
+        ],
+        "phantoms": [
+          "Login_Form.fields.Username.constraints[0] (constraint inferred from UX intuition, not stated in the description)",
+          "Login_Form.fields.Password.constraints[0] (constraint inferred from UX intuition, not stated in the description)"
+        ],
+        "fixes": [
+          "Add error_messages to Login_Form.submit_actions[0] with values: ['Epic sadface: Username is required.', 'Epic sadface: Password is required.', 'Epic sadface: Username and password do not match any user in this service.', 'Epic sadface: Sorry, this user has been locked out.']",
+          "Remove Login_Form.fields.Username.constraints[0] as it is a phantom",
+          "Remove Login_Form.fields.Password.constraints[0] as it is a phantom"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the logout functionality with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the interactive element described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

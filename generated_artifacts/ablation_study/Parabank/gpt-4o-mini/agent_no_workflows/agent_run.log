@@ -1,0 +1,268 @@
+run_id: parabank-20260609-163556-909f18
+  Sidecar: generated_artifacts\.checkpoints\parabank-20260609-163556-909f18.json
+  Output directory: ablation_study\Parabank\gpt-4o-mini\agent_no_workflows
+  (use `--resume parabank-20260609-163556-909f18` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: parabank-20260609-163556-909f18
+
+[1/4] Generating Structural Model with critic-guided retry (13 module(s))...
+    [16:35:56] >> Structural Model Agent | sending request (~785 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~1071 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~595 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~678 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~822 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~700 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~823 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~522 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~979 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~1231 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~858 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~538 chars)
+    [16:35:56] >> Structural Model Agent | sending request (~952 chars)
+    [16:35:59] << Structural Model Agent | response in 3.8s | tokens: 2297+115=2412
+    [16:35:59] >> Structural Model Validator | sending request (~1145 chars)
+    [16:36:00] << Structural Model Agent | response in 4.0s | tokens: 2301+205=2506
+    [16:36:00] >> Structural Model Validator | sending request (~1666 chars)
+    [16:36:00] << Structural Model Agent | response in 4.2s | tokens: 2333+212=2545
+    [16:36:00] >> Structural Model Validator | sending request (~1821 chars)
+    [16:36:01] << Structural Model Agent | response in 5.3s | tokens: 2321+302=2623
+    [16:36:01] >> Structural Model Validator | sending request (~2219 chars)
+    [16:36:01] << Structural Model Agent | response in 5.4s | tokens: 2279+319=2598
+    [16:36:01] >> Structural Model Validator | sending request (~2126 chars)
+    [16:36:01] << Structural Model Agent | response in 5.7s | tokens: 2361+332=2693
+    [16:36:01] >> Structural Model Validator | sending request (~2208 chars)
+    [16:36:02] << Structural Model Agent | response in 6.0s | tokens: 2325+298=2623
+    [16:36:02] >> Structural Model Validator | sending request (~2395 chars)
+    [16:36:02] << Structural Model Validator | response in 1.2s | tokens: 1280+44=1324
+  OK Open New Account | attempt 1/3 | 1 component(s)
+    [16:36:03] << Structural Model Agent | response in 6.9s | tokens: 2411+377=2788
+    [16:36:03] >> Structural Model Validator | sending request (~3160 chars)
+    [16:36:03] << Structural Model Validator | response in 1.5s | tokens: 1325+50=1375
+  OK Login | attempt 1/3 | 2 component(s)
+    [16:36:04] << Structural Model Validator | response in 1.5s | tokens: 1391+49=1440
+  OK Update Contact Info | attempt 1/3 | 1 component(s)
+    [16:36:04] << Structural Model Agent | response in 4.3s | tokens: 2276+171=2447
+    [16:36:04] >> Structural Model Validator | sending request (~1400 chars)
+    [16:36:04] << Structural Model Agent | response in 8.4s | tokens: 2401+424=2825
+    [16:36:04] >> Structural Model Validator | sending request (~3216 chars)
+    [16:36:04] << Structural Model Agent | response in 8.8s | tokens: 2363+437=2800
+    [16:36:04] >> Structural Model Validator | sending request (~3255 chars)
+    [16:36:05] << Structural Model Validator | response in 3.0s | tokens: 1426+128=1554
+  ~~ Payments | attempt 1/3 | verdict=retry | missing=0 phantoms=2 | retrying...
+    [16:36:05] >> Structural Model Agent | sending request (~879 chars)
+    [16:36:05] << Structural Model Validator | response in 4.3s | tokens: 1186+223=1409
+  ~~ Accounts Overview | attempt 1/3 | verdict=retry | missing=5 phantoms=2 | retrying...
+    [16:36:05] >> Structural Model Agent | sending request (~1026 chars)
+    [16:36:06] << Structural Model Validator | response in 2.8s | tokens: 1408+134=1542
+  ~~ Transfer Funds | attempt 1/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [16:36:06] >> Structural Model Agent | sending request (~1102 chars)
+    [16:36:06] << Structural Model Agent | response in 6.3s | tokens: 2336+268=2604
+    [16:36:06] >> Structural Model Validator | sending request (~2129 chars)
+    [16:36:06] << Structural Model Validator | response in 1.9s | tokens: 1225+50=1275
+  OK Security Settings | attempt 1/3 | 1 component(s)
+    [16:36:06] << Structural Model Validator | response in 2.0s | tokens: 1641+47=1688
+  OK Register | attempt 1/3 | 1 component(s)
+    [16:36:07] << Structural Model Validator | response in 4.7s | tokens: 1465+214=1679
+  ~~ Request Loan | attempt 1/3 | verdict=retry | missing=3 phantoms=2 | retrying...
+    [16:36:07] >> Structural Model Agent | sending request (~1224 chars)
+    [16:36:08] << Structural Model Validator | response in 4.0s | tokens: 1589+158=1747
+  ~~ Investments | attempt 1/3 | verdict=retry | missing=2 phantoms=2 | retrying...
+    [16:36:08] >> Structural Model Agent | sending request (~1447 chars)
+    [16:36:09] << Structural Model Agent | response in 8.7s | tokens: 2357+348=2705
+    [16:36:09] >> Structural Model Validator | sending request (~2711 chars)
+    [16:36:09] << Structural Model Agent | response in 3.4s | tokens: 2392+151=2543
+    [16:36:09] >> Structural Model Validator | sending request (~1245 chars)
+    [16:36:10] << Structural Model Agent | response in 5.3s | tokens: 2367+288=2655
+    [16:36:10] >> Structural Model Validator | sending request (~2162 chars)
+    [16:36:10] << Structural Model Validator | response in 1.4s | tokens: 1498+49=1547
+  OK Support Center | attempt 1/3 | 2 component(s)
+    [16:36:10] << Structural Model Validator | response in 4.3s | tokens: 1381+199=1580
+  ~~ Account Statements | attempt 1/3 | verdict=retry | missing=2 phantoms=2 | retrying...
+    [16:36:10] >> Structural Model Agent | sending request (~1116 chars)
+    [16:36:10] << Structural Model Validator | response in 6.1s | tokens: 1607+247=1854
+  ~~ Manage Cards | attempt 1/3 | verdict=retry | missing=3 phantoms=2 | retrying...
+    [16:36:10] >> Structural Model Agent | sending request (~1462 chars)
+    [16:36:11] << Structural Model Agent | response in 5.2s | tokens: 2382+302=2684
+    [16:36:11] >> Structural Model Validator | sending request (~2489 chars)
+    [16:36:11] << Structural Model Validator | response in 1.5s | tokens: 1416+50=1466
+  OK Payments | attempt 2/3 | 1 component(s)
+    [16:36:11] << Structural Model Validator | response in 2.9s | tokens: 1218+137=1355
+  ~~ Accounts Overview | attempt 2/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [16:36:11] >> Structural Model Agent | sending request (~895 chars)
+    [16:36:12] << Structural Model Agent | response in 5.0s | tokens: 2447+324=2771
+    [16:36:12] >> Structural Model Validator | sending request (~2108 chars)
+    [16:36:14] << Structural Model Agent | response in 6.1s | tokens: 2465+403=2868
+    [16:36:14] >> Structural Model Validator | sending request (~3322 chars)
+    [16:36:14] << Structural Model Agent | response in 4.1s | tokens: 2398+266=2664
+    [16:36:14] >> Structural Model Validator | sending request (~2108 chars)
+    [16:36:14] << Structural Model Agent | response in 2.9s | tokens: 2363+176=2539
+    [16:36:14] >> Structural Model Validator | sending request (~1424 chars)
+    [16:36:15] << Structural Model Validator | response in 3.9s | tokens: 1423+179=1602
+  ~~ Transfer Funds | attempt 2/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [16:36:15] >> Structural Model Agent | sending request (~1125 chars)
+    [16:36:16] << Structural Model Validator | response in 3.4s | tokens: 1451+152=1603
+  ~~ Request Loan | attempt 2/3 | verdict=retry | missing=2 phantoms=2 | retrying...
+    [16:36:16] >> Structural Model Agent | sending request (~1056 chars)
+    [16:36:17] << Structural Model Agent | response in 6.1s | tokens: 2485+408=2893
+    [16:36:17] >> Structural Model Validator | sending request (~3001 chars)
+    [16:36:17] << Structural Model Validator | response in 3.3s | tokens: 1619+156=1775
+  ~~ Investments | attempt 2/3 | verdict=retry | missing=2 phantoms=2 | retrying...
+    [16:36:17] >> Structural Model Agent | sending request (~1427 chars)
+    [16:36:17] << Structural Model Validator | response in 3.1s | tokens: 1379+130=1509
+  ~~ Account Statements | attempt 2/3 | verdict=retry | missing=1 phantoms=1 | retrying...
+    [16:36:17] >> Structural Model Agent | sending request (~1099 chars)
+    [16:36:19] << Structural Model Validator | response in 5.0s | tokens: 1250+179=1429
+  !! Accounts Overview | max attempts reached | missing=2 phantoms=5 | shipping final attempt
+    [16:36:20] << Structural Model Agent | response in 5.7s | tokens: 2403+310=2713
+    [16:36:20] >> Structural Model Validator | sending request (~2480 chars)
+    [16:36:22] << Structural Model Agent | response in 5.9s | tokens: 2415+318=2733
+    [16:36:22] >> Structural Model Validator | sending request (~2230 chars)
+    [16:36:22] << Structural Model Agent | response in 4.8s | tokens: 2391+252=2643
+    [16:36:22] >> Structural Model Validator | sending request (~1986 chars)
+    [16:36:23] << Structural Model Validator | response in 6.4s | tokens: 1561+305=1866
+  ~~ Manage Cards | attempt 2/3 | verdict=retry | missing=6 phantoms=4 | retrying...
+    [16:36:23] >> Structural Model Agent | sending request (~1386 chars)
+    [16:36:24] << Structural Model Agent | response in 6.6s | tokens: 2461+344=2805
+    [16:36:24] >> Structural Model Validator | sending request (~3007 chars)
+    [16:36:24] << Structural Model Validator | response in 3.4s | tokens: 1425+128=1553
+  !! Transfer Funds | max attempts reached | missing=2 phantoms=1 | shipping final attempt
+    [16:36:24] << Structural Model Validator | response in 2.7s | tokens: 1455+112=1567
+  !! Request Loan | max attempts reached | missing=2 phantoms=0 | shipping final attempt
+    [16:36:26] << Structural Model Validator | response in 3.6s | tokens: 1357+150=1507
+  !! Account Statements | max attempts reached | missing=1 phantoms=1 | shipping final attempt
+    [16:36:27] << Structural Model Validator | response in 3.1s | tokens: 1556+137=1693
+  !! Investments | max attempts reached | missing=2 phantoms=1 | shipping final attempt
+    [16:36:30] << Structural Model Agent | response in 6.9s | tokens: 2468+375=2843
+    [16:36:30] >> Structural Model Validator | sending request (~2786 chars)
+    [16:36:39] << Structural Model Validator | response in 8.8s | tokens: 1522+265=1787
+  !! Manage Cards | max attempts reached | missing=4 phantoms=2 | shipping final attempt
+  Done in 43.1s
+
+[2/4] Extracting & critiquing workflows (13 module(s))...
+  OK Login | skipping workflow extraction (ablation)
+  OK Register | skipping workflow extraction (ablation)
+  OK Accounts Overview | skipping workflow extraction (ablation)
+  OK Open New Account | skipping workflow extraction (ablation)
+  OK Transfer Funds | skipping workflow extraction (ablation)
+  OK Payments | skipping workflow extraction (ablation)
+  OK Request Loan | skipping workflow extraction (ablation)
+  OK Update Contact Info | skipping workflow extraction (ablation)
+  OK Manage Cards | skipping workflow extraction (ablation)
+  OK Investments | skipping workflow extraction (ablation)
+  OK Account Statements | skipping workflow extraction (ablation)
+  OK Security Settings | skipping workflow extraction (ablation)
+  OK Support Center | skipping workflow extraction (ablation)
+  Done in 0.0s
+
+[3/4] Generating test cases (39 calls across 13 module(s), types: edge/negative/positive)...
+    [16:36:39] >> Test-Positive | sending request (~1855 chars)
+    [16:36:39] >> Test-Negative | sending request (~1855 chars)
+    [16:36:39] >> Test-Edge | sending request (~1855 chars)
+    [16:36:39] >> Test-Positive | sending request (~3253 chars)
+    [16:36:39] >> Test-Negative | sending request (~3253 chars)
+    [16:36:39] >> Test-Edge | sending request (~3253 chars)
+    [16:36:39] >> Test-Positive | sending request (~1470 chars)
+    [16:36:39] >> Test-Negative | sending request (~1470 chars)
+    [16:36:39] >> Test-Edge | sending request (~1470 chars)
+    [16:36:39] >> Test-Positive | sending request (~1711 chars)
+    [16:36:39] >> Test-Negative | sending request (~1711 chars)
+    [16:36:39] >> Test-Edge | sending request (~1711 chars)
+    [16:36:39] >> Test-Positive | sending request (~2523 chars)
+    [16:36:39] >> Test-Negative | sending request (~2523 chars)
+    [16:36:39] >> Test-Edge | sending request (~2523 chars)
+    [16:36:39] >> Test-Positive | sending request (~2199 chars)
+    [16:36:39] >> Test-Negative | sending request (~2199 chars)
+    [16:36:39] >> Test-Edge | sending request (~2199 chars)
+    [16:36:39] >> Test-Positive | sending request (~2271 chars)
+    [16:36:39] >> Test-Negative | sending request (~2271 chars)
+    [16:36:39] >> Test-Edge | sending request (~2271 chars)
+    [16:36:39] >> Test-Positive | sending request (~2174 chars)
+    [16:36:39] >> Test-Negative | sending request (~2174 chars)
+    [16:36:39] >> Test-Edge | sending request (~2174 chars)
+    [16:36:39] >> Test-Positive | sending request (~2827 chars)
+    [16:36:39] >> Test-Negative | sending request (~2827 chars)
+    [16:36:39] >> Test-Edge | sending request (~2827 chars)
+    [16:36:39] >> Test-Positive | sending request (~3047 chars)
+    [16:36:39] >> Test-Negative | sending request (~3047 chars)
+    [16:36:39] >> Test-Edge | sending request (~3047 chars)
+    [16:36:39] >> Test-Positive | sending request (~2033 chars)
+    [16:36:39] >> Test-Negative | sending request (~2033 chars)
+    [16:36:39] >> Test-Edge | sending request (~2033 chars)
+    [16:36:39] >> Test-Positive | sending request (~1446 chars)
+    [16:36:39] >> Test-Negative | sending request (~1446 chars)
+    [16:36:39] >> Test-Edge | sending request (~1446 chars)
+    [16:36:39] >> Test-Positive | sending request (~2754 chars)
+    [16:36:39] >> Test-Negative | sending request (~2754 chars)
+    [16:36:39] >> Test-Edge | sending request (~2754 chars)
+    [16:36:42] << Test-Positive | response in 3.5s | tokens: 4241+172=4413
+    [16:36:42] << Test-Positive | response in 3.5s | tokens: 4315+173=4488
+    [16:36:42] << Test-Negative | response in 3.6s | tokens: 3129+165=3294
+    [16:36:45] << Test-Positive | response in 6.7s | tokens: 4631+313=4944
+    [16:36:46] << Test-Positive | response in 7.0s | tokens: 4272+346=4618
+    [16:36:47] << Test-Edge | response in 7.8s | tokens: 3050+437=3487
+  OK Accounts Overview | 5 test(s) (pos=1 neg=1 edge=3)
+    [16:36:49] << Test-Edge | response in 10.2s | tokens: 3124+590=3714
+    [16:36:52] << Test-Positive | response in 9.3s | tokens: 4416+542=4958
+    [16:36:52] << Test-Negative | response in 13.1s | tokens: 3203+765=3968
+  OK Login | 11 test(s) (pos=1 neg=6 edge=8)
+    [16:36:52] << Test-Positive | response in 5.7s | tokens: 4406+323=4729
+    [16:36:52] << Test-Edge | response in 10.2s | tokens: 3081+585=3666
+    [16:36:55] << Test-Negative | response in 12.8s | tokens: 3160+807=3967
+  OK Open New Account | 12 test(s) (pos=2 neg=6 edge=8)
+    [16:36:56] << Test-Negative | response in 10.7s | tokens: 3304+648=3952
+    [16:36:59] << Test-Edge | response in 20.2s | tokens: 3440+1177=4617
+    [16:37:00] << Test-Positive | response in 5.2s | tokens: 4383+260=4643
+    [16:37:02] << Test-Positive | response in 10.7s | tokens: 4446+537=4983
+    [16:37:04] << Test-Edge | response in 12.8s | tokens: 3215+657=3872
+    [16:37:06] << Test-Positive | response in 5.9s | tokens: 4513+314=4827
+    [16:37:06] << Test-Edge | response in 20.7s | tokens: 3225+1113=4338
+  OK Transfer Funds | 15 test(s) (pos=3 neg=5 edge=11)
+    [16:37:09] << Test-Negative | response in 16.5s | tokens: 3334+1003=4337
+    [16:37:10] << Test-Negative | response in 31.1s | tokens: 3519+1920=5439
+  OK Register | 27 test(s) (pos=1 neg=17 edge=15)
+    [16:37:11] << Test-Negative | response in 21.9s | tokens: 3294+1354=4648
+  OK Payments | 18 test(s) (pos=1 neg=12 edge=7)
+    [16:37:12] << Test-Negative | response in 9.5s | tokens: 3401+551=3952
+    [16:37:12] << Test-Edge | response in 13.3s | tokens: 3192+598=3790
+    [16:37:12] << Test-Positive | response in 6.3s | tokens: 4547+375=4922
+    [16:37:15] << Test-Positive | response in 5.2s | tokens: 4348+273=4621
+    [16:37:16] << Test-Positive | response in 4.1s | tokens: 4216+198=4414
+    [16:37:19] << Test-Negative | response in 12.4s | tokens: 3435+761=4196
+    [16:37:20] << Test-Edge | response in 15.3s | tokens: 3322+749=4071
+  OK Manage Cards | 11 test(s) (pos=2 neg=4 edge=8)
+    [16:37:22] << Test-Edge | response in 29.2s | tokens: 3255+1505=4760
+  OK Request Loan | 21 test(s) (pos=3 neg=8 edge=20)
+    [16:37:22] << Test-Negative | response in 11.6s | tokens: 3236+474=3710
+    [16:37:23] << Test-Edge | response in 10.7s | tokens: 3157+563=3720
+  OK Account Statements | 10 test(s) (pos=2 neg=4 edge=6)
+    [16:37:23] << Test-Positive | response in 6.8s | tokens: 4489+335=4824
+    [16:37:25] << Test-Negative | response in 28.4s | tokens: 3271+1682=4953
+  OK Update Contact Info | 20 test(s) (pos=1 neg=15 edge=4)
+    [16:37:26] << Test-Negative | response in 13.7s | tokens: 3104+770=3874
+    [16:37:30] << Test-Edge | response in 21.5s | tokens: 3356+869=4225
+  OK Investments | 14 test(s) (pos=2 neg=6 edge=10)
+    [16:37:33] << Test-Negative | response in 13.9s | tokens: 3377+707=4084
+    [16:37:35] << Test-Edge | response in 20.1s | tokens: 3025+890=3915
+  OK Security Settings | 12 test(s) (pos=1 neg=6 edge=8)
+    [16:37:46] << Test-Edge | response in 26.7s | tokens: 3298+1164=4462
+  OK Support Center | 15 test(s) (pos=2 neg=5 edge=14)
+  Done in 67.8s
+
+[4/4] Saving output...
+  Saved Structural Model to:       ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\structural-model.json
+  Saved critique to:     ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\structural-model-critique.json
+  Saved critique (md):   ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\Parabank-openai-gpt-4o-mini-critique.md
+  Saved test cases to:   ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\test-cases.json  (191 total)
+  Saved test cases (md): ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\Parabank-openai-gpt-4o-mini-tests.md
+  Saved workflows to:    ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\workflows.json  (0 total)
+  Saved wf-critique to:  ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\workflow-validator-critique.json
+  Saved wf-critique(md): ablation_study\Parabank\gpt-4o-mini\agent_no_workflows\Parabank-openai-gpt-4o-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 13 module(s).
+  Structural Model:     ablation_study\Parabank\gpt-4o-mini\agent_no_workflows/structural-model.json
+  Critique:   ablation_study\Parabank\gpt-4o-mini\agent_no_workflows/structural-model-critique.json
+  Tests:      ablation_study\Parabank\gpt-4o-mini\agent_no_workflows/test-cases.json
+

@@ -1,0 +1,398 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T12:05:06.151192Z",
+  "model": "openai/gpt-5-mini",
+  "modules": [
+    {
+      "module": "Dashboard \u2014 Edit Mode",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Enable Edit mode shows edit controls",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard has at least one block"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Toggle 'Edit mode' checkbox to ON"
+          ],
+          "expected_result": "Dashboard switches to Edit state: 'Reset page to default' button visible top-right; '+ Add a block' button visible below the Dashboard heading; each existing block shows move handle and three-dot options menu",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Disable Edit mode hides edit controls",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard currently in Edit mode"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Toggle 'Edit mode' checkbox to OFF"
+          ],
+          "expected_result": "Dashboard switches to View state: 'Reset page to default' and '+ Add a block' are not visible; move handles and three-dot options are not visible on blocks",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-008",
+          "test_case": "Attempt edit-only actions when Edit mode is off are blocked/invisible",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in View state (Edit mode OFF)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Attempt to locate or click '+ Add a block' button",
+            "3. Attempt to click move handle on a block",
+            "4. Attempt to open three-dot options menu on a block"
+          ],
+          "expected_result": "No edit-only UI elements are available: '+ Add a block' not visible; move handles and options menus are not visible and cannot be interacted with",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-002",
+          "test_case": "Open Add a block page from '+ Add a block' in Edit mode",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click '+ Add a block' button"
+          ],
+          "expected_result": "Add a block page opens listing all available block types (Comments, Course overview, Latest announcements, Latest badges, Learning plans, Logged in user, Mentees, Online users, Private files, Random glossary entry, Recently accessed courses, Starred courses, Tags, Text, Upcoming events) and shows 'Add selected block' button and 'Cancel' link",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-002",
+          "test_case": "'+ Add a block' not available when Edit mode is off",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in View state (Edit mode OFF)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Look for '+ Add a block' button below the Dashboard heading"
+          ],
+          "expected_result": "'+ Add a block' button is not present in the UI and cannot be clicked",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-002",
+          "test_case": "Add a new block (Text) from Add a block page",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click '+ Add a block'",
+            "3. Select 'Text' from the list of block types",
+            "4. Click 'Add selected block' button"
+          ],
+          "expected_result": "The selected 'Text' block is added to the user's dashboard (visible in the Blocks container) and layout change persists for the current user (block remains after page reload)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-003",
+          "test_case": "Cancel Add a block returns to Dashboard without changes",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click '+ Add a block'",
+            "3. Click 'Cancel' link at the bottom of Add a block page"
+          ],
+          "expected_result": "Returns to Dashboard view in Edit mode and no new block is added to the Blocks container",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-006",
+          "test_case": "Open Configure for a block from options menu",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "At least one block present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. For a block, open the three-dot options menu",
+            "3. Click 'Configure' option"
+          ],
+          "expected_result": "Block configuration UI opens for that block (configuration panel/modal/page is displayed)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-006",
+          "test_case": "Delete a block from options menu",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "At least one block present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. For a block, open the three-dot options menu",
+            "3. Click 'Delete' option"
+          ],
+          "expected_result": "The block is removed from the Blocks container and the layout change persists for the current user (block remains removed after page reload)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-006",
+          "test_case": "Initiate move via options menu 'Move' action",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "At least two blocks present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. For a block, open the three-dot options menu",
+            "3. Click 'Move' option",
+            "4. Complete the move as prompted by the UI (if move mode requires additional steps)"
+          ],
+          "expected_result": "Move mode is initiated or block is reordered as appropriate and layout change persists for the current user",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-005",
+          "test_case": "Drag reorder blocks using move handle",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "At least two blocks present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Use move handle on a block to drag it to a new position within the Blocks container",
+            "3. Release to drop the block"
+          ],
+          "expected_result": "Blocks reorder visually to reflect new order and layout change persists for the current user (order remains after page reload)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-004",
+          "test_case": "Reset page to default reverts user layout",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "User layout differs from default"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click 'Reset page to default' button at top-right",
+            "3. Confirm reset if a confirmation is shown"
+          ],
+          "expected_result": "Layout reverts to the default dashboard for the current user: any added/removed/reordered blocks are restored to default positions; change persists for the current user (after reload remains default)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-007",
+          "test_case": "Layout changes persist across sessions for the same user",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. While logged in, add a 'Text' block and reorder blocks",
+            "2. Save changes implicitly (by UI persistence) and log out",
+            "3. Log back in as the same user and navigate to Dashboard"
+          ],
+          "expected_result": "The added block and reordering persist and are visible after login (layout retained for the same user)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-007",
+          "test_case": "Layout changes isolated per user (user B unaffected by user A changes)",
+          "category": "edge",
+          "preconditions": [
+            "User A and User B have separate accounts",
+            "User A has modified their dashboard layout"
+          ],
+          "steps": [
+            "1. Log in as User A and add or reorder blocks",
+            "2. Log out",
+            "3. Log in as User B and navigate to Dashboard"
+          ],
+          "expected_result": "User B sees their own dashboard layout (no changes made by User A are visible to User B)",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-002",
+          "test_case": "Add the same block type twice",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click '+ Add a block'",
+            "3. Select 'Text' and click 'Add selected block'",
+            "4. Repeat steps 2-3 to add another 'Text' block"
+          ],
+          "expected_result": "Both 'Text' blocks are added to the Blocks container (duplicates allowed) and both persist for the current user",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to add a block without selecting a Block Type (validation)",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click '+ Add a block'",
+            "3. Do NOT select any block type",
+            "4. Click 'Add selected block' button"
+          ],
+          "expected_result": "Add action is blocked and a validation error is shown indicating 'Block Type' is required; no block is added to the Dashboard",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-002",
+          "test_case": "Add a large number of blocks (scale test)",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)"
+          ],
+          "steps": [
+            "1. Repeat: Click '+ Add a block', select 'Text', click 'Add selected block' until 100 blocks have been added",
+            "2. Observe UI responsiveness and layout after additions"
+          ],
+          "expected_result": "100 blocks are added to the Blocks container; UI remains responsive and displays scroll/overflow as appropriate; layout changes persist for the current user",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-005",
+          "test_case": "Attempt to drag reorder when Edit mode is off fails",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in View state (Edit mode OFF)",
+            "At least two blocks present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Attempt to drag a block by where the move handle would appear (move handle should not be visible)"
+          ],
+          "expected_result": "No drag handle is present; user cannot start a drag reorder action; blocks remain in original order",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-006",
+          "test_case": "Delete all blocks until Blocks container is empty",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "One or more blocks present"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. For each block, open three-dot options and click 'Delete' until no blocks remain",
+            "3. Reload the page"
+          ],
+          "expected_result": "All blocks are removed; Blocks container displays an empty state (no blocks visible); the empty layout persists for the current user after reload",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-004",
+          "test_case": "Click Reset when no changes made (no-op)",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Student",
+            "Dashboard in Edit mode (Edit mode ON)",
+            "User layout is already default"
+          ],
+          "steps": [
+            "1. Navigate to Dashboard",
+            "2. Click 'Reset page to default' button at top-right"
+          ],
+          "expected_result": "Action completes with no visible layout changes (no-op) and dashboard remains in default layout; user remains on Dashboard in Edit mode",
+          "priority": "low"
+        }
+      ],
+      "summary": {
+        "total": 20,
+        "positive": 10,
+        "negative": 4,
+        "edge": 6,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 11,
+        "medium_priority": 8,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Course Page",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "test_cases": [],
+      "summary": {
+        "total": 0,
+        "positive": 0,
+        "negative": 0,
+        "boundary": 0,
+        "edge": 0,
+        "high_priority": 0,
+        "medium_priority": 0,
+        "low_priority": 0
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 2,
+    "total_tests": 20,
+    "positive": 10,
+    "negative": 4,
+    "boundary": 0,
+    "edge": 6,
+    "high_priority": 11,
+    "medium_priority": 8,
+    "low_priority": 1
+  }
+}

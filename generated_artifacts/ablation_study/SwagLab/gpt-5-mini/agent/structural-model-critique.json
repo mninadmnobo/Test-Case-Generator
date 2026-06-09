@@ -1,0 +1,118 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:06:35.194174Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the form fields, validation messages, and submit behavior; only a single minor inferred constraint is present.",
+        "missing": [],
+        "phantoms": [
+          "components.Login_Form.submit_actions[0].constraints[0] (authentication performed server-side not stated in description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately models the interactive elements: sort dropdown with four options, clickable product name/image opening product detail, add/remove row actions with cart badge updates, and login precondition.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the interactive elements (stateful Add/Remove action, Back to products navigation, and Cart icon navigation) with no missing or extraneous items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the interactive elements: per-item Remove row action, Continue Shopping link, and Checkout button; no missing or extraneous interactive items found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly models the form fields (First Name, Last Name, Postal Code), the Continue and Cancel actions with their navigation targets, and the required-field validation and error banners.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the single Overview wizard step and the two interactive actions (Finish and Cancel); no missing interactive elements or extraneous items were found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly models the single interactive element (Back Home button with navigation + clear cart action); no missing or extraneous interactive items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the single interactive element (Logout) and its consequences; only a single minor inferred precondition is present but is acceptable.",
+        "missing": [],
+        "phantoms": [
+          "components.Logout_Button.preconditions[0] (user must be logged in)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the single interactive element \u2014 a 'Reset App State' button that clears the cart and resets in-app state without logging the user out.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

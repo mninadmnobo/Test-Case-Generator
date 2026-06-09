@@ -1,0 +1,159 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-09T12:05:52.764248Z",
+  "model": "openai/gpt-4o-mini",
+  "modules": [
+    {
+      "module": "Grades",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Display student's own grades in the Grades table",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page"
+          ],
+          "expected_result": "The Grades table displays the student's grades with the correct columns: Grade item, Calculated weight, Grade, Range, Percentage, Feedback, and Contribution to course total.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Check visibility of AGGREGATION Course total row",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page"
+          ],
+          "expected_result": "The AGGREGATION Course total row displays the cumulative grade across all weighted items.",
+          "priority": "high",
+          "category": "positive"
+        }
+      ],
+      "summary": {
+        "total": 2,
+        "positive": 2,
+        "negative": 0,
+        "edge": 0,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 0,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Activities",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Navigate to an activity's page from the Assignments section",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignments section is visible"
+          ],
+          "steps": [
+            "1. Click on the activity name in the Assignments section"
+          ],
+          "expected_result": "redirects to activity's page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Attempt to navigate to an activity without any activities listed",
+          "preconditions": [],
+          "steps": [
+            "1. Open the Activities page",
+            "2. Observe that there are no activities listed"
+          ],
+          "expected_result": "No activities are displayed; user remains on the Activities page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Attempt to expand collapsed sections without any activities",
+          "preconditions": [],
+          "steps": [
+            "1. Open the Activities page",
+            "2. Click to expand the Forums section",
+            "3. Click to expand the Resources section"
+          ],
+          "expected_result": "Sections expand but no content is displayed; user remains on the Activities page",
+          "priority": "medium",
+          "category": "negative"
+        }
+      ],
+      "summary": {
+        "total": 3,
+        "positive": 1,
+        "negative": 2,
+        "edge": 0,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 1,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Logout",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "User logs out successfully",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the Logout button"
+          ],
+          "expected_result": "terminates the current authenticated session and redirects to the login page",
+          "priority": "high",
+          "category": "positive"
+        }
+      ],
+      "summary": {
+        "total": 1,
+        "positive": 1,
+        "negative": 0,
+        "edge": 0,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 1,
+        "medium_priority": 0,
+        "low_priority": 0
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 3,
+    "total_tests": 6,
+    "positive": 4,
+    "negative": 2,
+    "boundary": 0,
+    "edge": 0,
+    "high_priority": 5,
+    "medium_priority": 1,
+    "low_priority": 0
+  }
+}

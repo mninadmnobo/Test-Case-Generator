@@ -1,0 +1,1659 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:06:35.194174Z",
+  "model": "openai/gpt-5-mini",
+  "modules": [
+    {
+      "module": "Login",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Successful login with valid credentials redirects to Product Inventory",
+          "preconditions": [
+            "User on Login page",
+            "User logged out",
+            "Test accounts (including 'standard_user') are available"
+          ],
+          "steps": [
+            "1. Enter standard_user in the Username field",
+            "2. Enter secret_sauce in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "authenticates user and redirects to Product Inventory page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Login attempt by locked_out_user shows locked account error",
+          "preconditions": [
+            "User on Login page",
+            "User logged out",
+            "Test accounts (including 'locked_out_user') are available"
+          ],
+          "steps": [
+            "1. Enter locked_out_user in the Username field",
+            "2. Enter secret_sauce in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Epic sadface: Sorry, this user has been locked out.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Login with invalid credentials shows mismatch error",
+          "preconditions": [
+            "User on Login page",
+            "User logged out"
+          ],
+          "steps": [
+            "1. Enter <invalid username> in the Username field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Epic sadface: Username and password do not match any user in this service.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Submitting with missing Username shows required-username error",
+          "preconditions": [
+            "User on Login page",
+            "User logged out"
+          ],
+          "steps": [
+            "1. Leave the Username field empty",
+            "2. Enter secret_sauce in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Epic sadface: Username is required.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Submitting with missing Password shows required-password error",
+          "preconditions": [
+            "User on Login page",
+            "User logged out"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Leave the Password field empty",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Epic sadface: Password is required.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-004",
+          "test_case": "Submit with Username blank (required Username validation)",
+          "preconditions": [
+            "User is on the Login page",
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Ensure the Username field is empty",
+            "2. Enter <valid password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Form does not submit; an error banner displays: \"Epic sadface: Username is required.\" and the Username field shows an inline required validation; user remains on the Login page (no redirect to Product Inventory).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-005",
+          "test_case": "Submit with Password blank (required Password validation)",
+          "preconditions": [
+            "User is on the Login page",
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Ensure the Password field is empty",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Form does not submit; an error banner displays: \"Epic sadface: Password is required.\" and the Password field shows an inline required validation; user remains on the Login page (no redirect to Product Inventory).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Submit with both Username and Password blank (all required fields empty)",
+          "preconditions": [
+            "User is on the Login page",
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Ensure the Username field is empty",
+            "2. Ensure the Password field is empty",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Form does not submit; error banners display both \"Epic sadface: Username is required.\" and \"Epic sadface: Password is required.\"; both fields show required validation indicators; user remains on the Login page (no redirect).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt login with locked_out_user account (locked-out user constraint)",
+          "preconditions": [
+            "User is on the Login page",
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Enter 'locked_out_user' in the Username field",
+            "2. Enter <correct shared password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Authentication is blocked; an error banner displays exactly: \"Epic sadface: Sorry, this user has been locked out.\"; user is not authenticated and is not redirected to the Product Inventory page.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt login with credentials that do not match any user (invalid credentials)",
+          "preconditions": [
+            "User is on the Login page",
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Enter <unknown username> in the Username field",
+            "2. Enter <incorrect password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Authentication is blocked; an error banner displays exactly: \"Epic sadface: Username and password do not match any user in this service.\"; user is not authenticated and remains on the Login page (no redirect).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Username with leading and trailing whitespace that otherwise matches a valid user",
+          "preconditions": [
+            "Login page is displayed",
+            "A valid test user exists in the service (one of the listed test usernames)"
+          ],
+          "steps": [
+            "1. Enter a username in the Username field that has leading and trailing whitespace but is otherwise identical to a known valid username (e.g. ' <valid username> ')",
+            "2. Enter the shared password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Login is blocked; error banner 'Epic sadface: Username and password do not match any user in this service.' is shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Exact-match boundary for locked_out_user vs one-character difference (trailing space)",
+          "preconditions": [
+            "Login page is displayed",
+            "Test user 'locked_out_user' exists in the service"
+          ],
+          "steps": [
+            "1. Enter \"locked_out_user \" (locked_out_user plus one trailing space) in the Username field",
+            "2. Enter the shared password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Login is blocked; error banner 'Epic sadface: Username and password do not match any user in this service.' is shown (the input does not match the exact locked_out_user equality condition)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Username that differs only by letter case from a valid username",
+          "preconditions": [
+            "Login page is displayed",
+            "A valid test user exists in the service"
+          ],
+          "steps": [
+            "1. Enter a username in the Username field that is identical to a known valid username except for letter case differences (e.g. change uppercase/lowercase of one or more letters)",
+            "2. Enter the shared password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Login is blocked; error banner 'Epic sadface: Username and password do not match any user in this service.' is shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click of Login with valid credentials",
+          "preconditions": [
+            "Login page is displayed",
+            "A valid test user and the shared password are known"
+          ],
+          "steps": [
+            "1. Enter a valid username in the Username field",
+            "2. Enter the shared password in the Password field",
+            "3. Click the Login button",
+            "4. Immediately click the Login button again within one second of the first click"
+          ],
+          "expected_result": "First submission succeeds and redirects to the Product Inventory page; the immediate second click is ignored and does not produce an additional navigation or an error banner",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 14,
+        "positive": 5,
+        "negative": 5,
+        "edge": 4,
+        "boundary": 1,
+        "input_edge": 2,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 8,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Product Inventory",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open Product Detail by clicking product Name",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. In the Products table, click the <target product> Name column cell"
+          ],
+          "expected_result": "opens Product Detail page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open Product Detail by clicking product Image",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. In the Products table, click the <target product> Image"
+          ],
+          "expected_result": "opens Product Detail page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Add a product to the cart from the Products table when product is not in cart",
+          "preconditions": [
+            "User logged in as <role>",
+            "The <target product> is not in the cart"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. In the row for <target product>, click the Add to cart button"
+          ],
+          "expected_result": "adds item to cart; changes button to Remove; increments cart badge count",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Remove a product from the cart from the Products table when product is in cart",
+          "preconditions": [
+            "User logged in as <role>",
+            "The <target product> is in the cart"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. In the row for <target product>, click the Remove button"
+          ],
+          "expected_result": "removes item from cart; changes button to Add to cart; decrements cart badge count",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Sort products by Price (Low\u2192High) using the Sort dropdown",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. Open the Sort dropdown",
+            "3. Select 'Price (Low\u2013High)' from the Sort dropdown"
+          ],
+          "expected_result": "Products table displays rows sorted by Price (Low\u2192High); product Prices increase from the top row to subsequent rows",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Sort products by Name (Z\u2192A) using the Sort dropdown",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Inventory page",
+            "2. Open the Sort dropdown",
+            "3. Select 'Name (Z\u2013A)' from the Sort dropdown"
+          ],
+          "expected_result": "Products table displays rows sorted by Name (Z\u2192A); product Names appear in descending alphabetical order from top to bottom",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user cannot access Product Inventory page",
+          "preconditions": [
+            "user is logged out"
+          ],
+          "steps": [
+            "1. Open the Product Inventory page URL in the browser without logging in"
+          ],
+          "expected_result": "User is redirected to the Login page; the Products table is not displayed on the page (no product rows, no sort dropdown, no Add/Remove buttons).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "test_case": "Unauthenticated user cannot open Product Detail by clicking product Name",
+          "preconditions": [
+            "user is logged out",
+            "a product <product> exists"
+          ],
+          "steps": [
+            "1. Attempt to open the Product Detail page for <product> by navigating directly to its Product Detail URL (or by clicking the product Name link) while not logged in"
+          ],
+          "expected_result": "User is redirected to the Login page; Product Detail page for <product> does not open and product details are not displayed.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "test_case": "Unauthenticated user cannot open Product Detail by clicking product Image",
+          "preconditions": [
+            "user is logged out",
+            "a product <product> exists with an image"
+          ],
+          "steps": [
+            "1. Attempt to open the Product Detail page for <product> by navigating directly to its Product Detail URL (or by clicking the product Image) while not logged in"
+          ],
+          "expected_result": "User is redirected to the Login page; Product Detail page for <product> does not open and product details are not displayed.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-003",
+          "test_case": "Add to cart control is not available for a product that is already in the cart",
+          "preconditions": [
+            "user is logged in as <role>",
+            "<product> is already in the user's cart"
+          ],
+          "steps": [
+            "1. Log in as <role>",
+            "2. Ensure <product> is present in the cart (use the UI to add it if needed)",
+            "3. Navigate to the Product Inventory page",
+            "4. Locate the row for <product>"
+          ],
+          "expected_result": "The row for <product> does not display an 'Add to cart' button. Instead the row displays a 'Remove' button. There is no visible control to perform 'Add to cart' for that product and the cart badge count remains unchanged when attempting to find/click an Add control (no successful add occurs).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-004",
+          "test_case": "Remove control is not available for a product that is not in the cart",
+          "preconditions": [
+            "user is logged in as <role>",
+            "<product> is not present in the user's cart"
+          ],
+          "steps": [
+            "1. Log in as <role>",
+            "2. Ensure <product> is not present in the cart (use the UI to remove it if needed)",
+            "3. Navigate to the Product Inventory page",
+            "4. Locate the row for <product>"
+          ],
+          "expected_result": "The row for <product> does not display a 'Remove' button. Instead the row displays an 'Add to cart' button. There is no visible control to perform 'Remove' for that product and the cart badge count remains unchanged because no removal is possible.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click Add to cart on a single product",
+          "preconditions": [
+            "User is logged in and on the Product Inventory page",
+            "The target product is visible in the products table",
+            "The target product is NOT in the cart (button shows 'Add to cart')",
+            "Cart badge shows current count"
+          ],
+          "steps": [
+            "1. Click the target product's 'Add to cart' button",
+            "2. Immediately click the same product's 'Add to cart' button a second time (before UI updates)"
+          ],
+          "expected_result": "First Add to cart click succeeds; second click is ignored/blocked by the UI. The product row button displays 'Remove'; the cart badge increments by exactly one; only one instance of the product appears in the cart UI.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Click Add then immediately click Remove before initial action completes",
+          "preconditions": [
+            "User is logged in and on the Product Inventory page",
+            "The target product is visible in the products table",
+            "The target product is NOT in the cart (button shows 'Add to cart')",
+            "Cart badge shows current count"
+          ],
+          "steps": [
+            "1. Click the target product's 'Add to cart' button",
+            "2. Immediately click the same product's 'Remove' button (before the first action's UI response completes)"
+          ],
+          "expected_result": "The initial Add to cart action succeeds; the immediate Remove click is ignored/blocked until the add completes. Final visible state is the product in cart: button displays 'Remove' and the cart badge has incremented by one. No duplicate additions or negative counts occur.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Click product Name then Image in quick succession to open Product Detail",
+          "preconditions": [
+            "User is logged in and on the Product Inventory page",
+            "The target product is visible in the products table with clickable Name and Image columns"
+          ],
+          "steps": [
+            "1. Click the target product's Name column",
+            "2. Immediately click the target product's Image column before navigation completes"
+          ],
+          "expected_result": "Navigation to the Product Detail page succeeds once; the Product Detail page opens and is displayed. No duplicate navigations or multiple detail pages are produced and the product detail UI is visible.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Very long product name rendering and navigation to detail",
+          "preconditions": [
+            "User is logged in and on the Product Inventory page",
+            "A product exists whose Name is far longer than the typical display width (very long name)"
+          ],
+          "steps": [
+            "1. Observe the product Name cell in the products table",
+            "2. Click the long Name in the products table",
+            "3. Observe the product Name displayed on the Product Detail page"
+          ],
+          "expected_result": "In the products table the Name cell is truncated with a visible ellipsis (table row shows truncated text). Clicking the Name succeeds and opens the Product Detail page; the Product Detail page displays the full product name (no truncation) or otherwise shows the full name in a visible field.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 15,
+        "positive": 6,
+        "negative": 5,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 3,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 9,
+        "medium_priority": 5,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Product Detail",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Add product to cart when product is not in cart",
+          "preconditions": [
+            "User logged in as <role>",
+            "Product exists and is in Not In Cart state"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for <target product>",
+            "2. Verify the action button shows 'Add to cart' on the Product Detail page",
+            "3. Click the 'Add to cart' button"
+          ],
+          "expected_result": "adds product to cart \u2014 Action button label changes to 'Remove' on the Product Detail page indicating the product is in cart",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Remove product from cart when product is in cart",
+          "preconditions": [
+            "User logged in as <role>",
+            "Product exists and is in In Cart state"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for <target product>",
+            "2. Verify the action button shows 'Remove' on the Product Detail page",
+            "3. Click the 'Remove' button"
+          ],
+          "expected_result": "removes product from cart \u2014 Action button label changes to 'Add to cart' on the Product Detail page indicating the product is not in cart",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Navigate back to Product Inventory via Back to products link",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for <target product>",
+            "2. Click the 'Back to products' link"
+          ],
+          "expected_result": "navigates to Product Inventory page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Open Shopping Cart via cart icon from Product Detail",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for <target product>",
+            "2. Click the Cart icon"
+          ],
+          "expected_result": "navigates to Shopping Cart",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to add product when product is already in cart (Add button should not be available)",
+          "preconditions": [
+            "User is on Product Detail page context",
+            "Product is already in the Shopping Cart (entity_state == In Cart)"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for the product that is already in the cart",
+            "2. Attempt to click the 'Add to cart' button"
+          ],
+          "expected_result": "The 'Add to cart' button is not visible on the Product Detail page (no clickable control labeled 'Add to cart'); the 'Remove' button is visible instead. The Shopping Cart contents and item count remain unchanged (no duplicate item is added).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to remove product when product is not in cart (Remove button should not be available)",
+          "preconditions": [
+            "User is on Product Detail page context",
+            "Product is not present in the Shopping Cart (entity_state == Not In Cart)"
+          ],
+          "steps": [
+            "1. Navigate to the Product Detail page for the product that is not in the cart",
+            "2. Attempt to click the 'Remove' button"
+          ],
+          "expected_result": "The 'Remove' button is not visible on the Product Detail page (no clickable control labeled 'Remove'); the 'Add to cart' button is visible instead. The Shopping Cart contents and item count remain unchanged (nothing is removed).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Rapid double-click Add to cart should not create duplicate cart entries",
+          "preconditions": [
+            "Product Detail page is open for a product",
+            "The product's current entity_state is Not In Cart"
+          ],
+          "steps": [
+            "1. Click the \"Add to cart\" button",
+            "2. Immediately (before UI finishes updating) click the \"Add to cart\" button again",
+            "3. Click the \"Cart icon\" link to navigate to the Shopping Cart page",
+            "4. Observe the Shopping Cart page and return to Product Detail"
+          ],
+          "expected_result": "First Add to cart action succeeds; the immediate second click is ignored/blocked so no duplicate entry is created. Shopping Cart displays only one entry for that product. Product Detail action bar shows the In Cart state (button now reads \"Remove\").",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "subcategory": "state_edge",
+          "test_case": "Rapid Add then immediate Remove (consecutive state transitions) yields a stable final state",
+          "preconditions": [
+            "Product Detail page is open for a product",
+            "The product's current entity_state is Not In Cart"
+          ],
+          "steps": [
+            "1. Click the \"Add to cart\" button",
+            "2. Immediately click the \"Remove\" button (before or as the Add finishes)",
+            "3. Observe the Product Detail action bar state",
+            "4. Click the \"Cart icon\" link to open the Shopping Cart page and verify contents"
+          ],
+          "expected_result": "The rapid Add then Remove sequence succeeds as discrete state transitions; final visible state on Product Detail is Not In Cart (button reads \"Add to cart\"). Shopping Cart does not contain the product after the sequence (the Remove succeeded and no duplicate entries were created).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Start Add to cart then immediately navigate Back to products",
+          "preconditions": [
+            "Product Detail page is open for a product",
+            "The product's current entity_state is Not In Cart"
+          ],
+          "steps": [
+            "1. Click the \"Add to cart\" button",
+            "2. Immediately click the \"Back to products\" link",
+            "3. On the Product Inventory page, locate the same product and observe its cart indicator/button",
+            "4. Optionally click the product to re-open Product Detail and observe the action bar state"
+          ],
+          "expected_result": "The Add to cart action succeeds before navigation cancels it; on Product Inventory the product shows the In Cart indicator (or the action bar on re-opened Product Detail shows \"Remove\"). Navigation did not create duplicate cart entries. (Action succeeds.)",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "interaction_edge",
+          "test_case": "Navigate to Shopping Cart after add, then press browser Back \u2014 ensure no duplicate add on back",
+          "preconditions": [
+            "Product Detail page is open for a product",
+            "The product's current entity_state is Not In Cart"
+          ],
+          "steps": [
+            "1. Click the \"Add to cart\" button",
+            "2. Click the \"Cart icon\" link to navigate to the Shopping Cart page",
+            "3. Use the browser Back button to return to the Product Detail page",
+            "4. Click the \"Cart icon\" link again to re-open the Shopping Cart page and observe contents"
+          ],
+          "expected_result": "Adding the product succeeds and pressing Back does not cause an additional add. Product Detail shows In Cart state after going back. Shopping Cart still shows only one entry for that product (no duplicate entries were created by navigation).",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-002",
+          "subcategory": "state_edge",
+          "test_case": "Rapid double-click Remove when product is In Cart should not cause errors or multiple removals",
+          "preconditions": [
+            "Product Detail page is open for a product",
+            "The product's current entity_state is In Cart"
+          ],
+          "steps": [
+            "1. Click the \"Remove\" button",
+            "2. Immediately click the \"Remove\" button again",
+            "3. Click the \"Cart icon\" link to navigate to the Shopping Cart page",
+            "4. Return to Product Detail and observe the action bar state"
+          ],
+          "expected_result": "First Remove action succeeds; the immediate second click is ignored/blocked so no inconsistent state occurs. Shopping Cart does not contain the product after the remove. Product Detail action bar shows Not In Cart state (button reads \"Add to cart\").",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 11,
+        "positive": 4,
+        "negative": 2,
+        "edge": 5,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 2,
+        "state_edge": 3,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 3,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Shopping Cart",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Remove an item from the cart via row Remove action",
+          "preconditions": [
+            "User logged in as <role>",
+            "Shopping Cart contains at least one item with quantity shown as 1 and a description"
+          ],
+          "steps": [
+            "1. Navigate to the Shopping Cart page",
+            "2. Locate the row for <cart item> in the Cart Items table",
+            "3. Click the Remove button on the row for <cart item>",
+            "4. Confirm removal if a confirmation dialog appears by clicking Confirm"
+          ],
+          "expected_result": "The row for <cart item> is no longer present in the Cart Items table",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Use Continue Shopping link to return to Product Inventory",
+          "preconditions": [
+            "User logged in as <role>",
+            "Shopping Cart page is accessible"
+          ],
+          "steps": [
+            "1. Navigate to the Shopping Cart page",
+            "2. Click the Continue Shopping link in the page action bar"
+          ],
+          "expected_result": "The Product Inventory page is displayed (navigation to Product Inventory occurs)",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Begin checkout from the Shopping Cart using the Checkout button",
+          "preconditions": [
+            "User logged in as <role>",
+            "Shopping Cart contains at least one item"
+          ],
+          "steps": [
+            "1. Navigate to the Shopping Cart page",
+            "2. Click the Checkout button in the page action bar"
+          ],
+          "expected_result": "The Checkout page is displayed and the checkout process begins",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user cannot view Shopping Cart page",
+          "preconditions": [
+            "User is not authenticated (not logged in)"
+          ],
+          "steps": [
+            "1. As an <unauthenticated user>, navigate to the Shopping Cart page (e.g., /cart)"
+          ],
+          "expected_result": "Access is blocked: user is redirected to the Login page; the Shopping Cart page is not displayed and the Login form is shown (user cannot view cart contents)",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-003",
+          "test_case": "Unauthenticated user cannot begin checkout (Checkout redirects to login)",
+          "preconditions": [
+            "User is not authenticated (not logged in)"
+          ],
+          "steps": [
+            "1. As an <unauthenticated user>, navigate to the Shopping Cart page",
+            "2. Click the Checkout button"
+          ],
+          "expected_result": "Checkout is blocked: user is redirected to the Login page; the checkout process does not begin and the Shopping Cart remains unchanged; the Login form is displayed",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid consecutive clicks on Remove (double-click) for a single item",
+          "preconditions": [
+            "A user is on the Shopping Cart page with at least one item in the Cart_Items_Table"
+          ],
+          "steps": [
+            "1. On the Shopping Cart page, locate the row for the item to remove",
+            "2. Click the row's Remove button",
+            "3. Immediately click the same Remove button again (within 1 second)"
+          ],
+          "expected_result": "First Remove click succeeds: the item's row is removed and the Cart_Items_Table no longer contains that item. The immediate second click is blocked (no additional removal occurs and no duplicate removal error is shown).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Remove when cart contains exactly one item",
+          "preconditions": [
+            "A user is on the Shopping Cart page and the Cart_Items_Table contains exactly one row (one item)"
+          ],
+          "steps": [
+            "1. On the Shopping Cart page, click the only row's Remove button"
+          ],
+          "expected_result": "Remove succeeds: the Cart_Items_Table displays zero rows (no items remain). The page shows an empty cart state (no item rows are visible).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Very long product description displayed in cart (>200 characters)",
+          "preconditions": [
+            "An item with a very long description (longer than 200 characters) has been added to the cart"
+          ],
+          "steps": [
+            "1. Navigate to the Shopping Cart page"
+          ],
+          "expected_result": "Adding the item to cart succeeds; on the Shopping Cart page the description cell either displays the full long description or displays a visible truncated form (ellipsis) with a clear affordance to view the full text (e.g., tooltip/expand). In either case the long-text presence is visible and no error is shown.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Product description containing special characters and emoji",
+          "preconditions": [
+            "An item whose description contains special characters and emoji has been added to the cart"
+          ],
+          "steps": [
+            "1. Navigate to the Shopping Cart page",
+            "2. Observe the description cell for that item",
+            "3. Click the Checkout button in the Cart_Page_Actions"
+          ],
+          "expected_result": "Displaying the item in the cart succeeds: the special characters and emoji render visibly in the description cell (not shown as replacement characters). Clicking Checkout succeeds and begins the checkout process (navigation to checkout) without losing or corrupting the special-character/emoji description.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 9,
+        "positive": 3,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 3,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Checkout - Information",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Continue with valid information navigates to Overview step",
+          "preconditions": [
+            "User logged in as <role>",
+            "Checkout - Information page is open"
+          ],
+          "steps": [
+            "1. Enter <valid first name> in the First Name field",
+            "2. Enter <valid last name> in the Last Name field",
+            "3. Enter <valid postal code> in the Postal Code field",
+            "4. Click the Continue button"
+          ],
+          "expected_result": "Overview_Step panel is displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Click Cancel returns user to Shopping Cart",
+          "preconditions": [
+            "User logged in as <role>",
+            "Checkout - Information page is open"
+          ],
+          "steps": [
+            "1. Click the Cancel button"
+          ],
+          "expected_result": "Shopping_Cart page is displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Continue blocked when First Name is left blank (other required fields filled)",
+          "preconditions": [
+            "User is on the Checkout - Information page"
+          ],
+          "steps": [
+            "1. Leave the First Name field blank",
+            "2. Enter <valid Last Name> in the Last Name field",
+            "3. Enter <valid Postal Code> in the Postal Code field",
+            "4. Click the Continue button"
+          ],
+          "expected_result": "Form does not submit and the page remains on Checkout - Information; an error banner is shown stating exactly 'Error: First Name is required'; no navigation to Overview_Step occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "Continue blocked when all required fields are empty",
+          "preconditions": [
+            "User is on the Checkout - Information page"
+          ],
+          "steps": [
+            "1. Leave the First Name field blank",
+            "2. Leave the Last Name field blank",
+            "3. Leave the Postal Code field blank",
+            "4. Click the Continue button"
+          ],
+          "expected_result": "Form does not submit and the page remains on Checkout - Information; error banners are shown stating exactly 'Error: First Name is required', 'Error: Last Name is required', and 'Error: Postal Code is required'; no navigation to Overview_Step occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Continue blocked when Postal Code is left blank (other required fields filled)",
+          "preconditions": [
+            "User is on the Checkout - Information page"
+          ],
+          "steps": [
+            "1. Enter <valid First Name> in the First Name field",
+            "2. Enter <valid Last Name> in the Last Name field",
+            "3. Leave the Postal Code field blank",
+            "4. Click the Continue button"
+          ],
+          "expected_result": "Form does not submit and the page remains on Checkout - Information; an error banner is shown stating exactly 'Error: Postal Code is required'; no navigation to Overview_Step occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Whitespace-only in required First Name is treated as empty",
+          "preconditions": [
+            "User is on the Checkout - Information form"
+          ],
+          "steps": [
+            "1. Enter whitespace-only characters into First_Name",
+            "2. Enter non-empty text into Last_Name",
+            "3. Enter non-empty text into Postal_Code",
+            "4. Click Continue"
+          ],
+          "expected_result": "Continue is blocked; the error banner displays \"Error: First Name is required\"",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Very long Postal Code input (200+ chars) is submitted",
+          "preconditions": [
+            "User is on the Checkout - Information form"
+          ],
+          "steps": [
+            "1. Enter <very long string (200+ characters)> into Postal_Code",
+            "2. Enter non-empty text into First_Name",
+            "3. Enter non-empty text into Last_Name",
+            "4. Click Continue"
+          ],
+          "expected_result": "Continue succeeds; the UI navigates to the Overview Step and no required-field error banners are shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click on Continue after filling form",
+          "preconditions": [
+            "User is on the Checkout - Information form"
+          ],
+          "steps": [
+            "1. Enter non-empty text into First_Name",
+            "2. Enter non-empty text into Last_Name",
+            "3. Enter non-empty text into Postal_Code",
+            "4. Click Continue twice rapidly (double-click)"
+          ],
+          "expected_result": "Continue succeeds once; the first click navigates to the Overview Step and the second click is ignored (no duplicate navigation or additional error banner shown)",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Click Cancel with required fields empty bypasses validation",
+          "preconditions": [
+            "User is on the Checkout - Information form"
+          ],
+          "steps": [
+            "1. Leave First_Name empty",
+            "2. Leave Last_Name empty",
+            "3. Leave Postal_Code empty",
+            "4. Click Cancel"
+          ],
+          "expected_result": "Navigation to Shopping_Cart succeeds; no required-field error banners are shown",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 9,
+        "positive": 2,
+        "negative": 3,
+        "edge": 4,
+        "boundary": 1,
+        "input_edge": 1,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 5,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Checkout - Overview",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Finish checkout from Overview step",
+          "preconditions": [
+            "User logged in as <Customer>",
+            "Checkout - Overview is open with at least one cart item and payment and shipping information present"
+          ],
+          "steps": [
+            "1. On the Checkout - Overview step confirm the order summary (cart items) and totals section (Item total, Tax, Total) are displayed",
+            "2. Click the Finish button"
+          ],
+          "expected_result": "completes the order and navigates to the confirmation page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Cancel checkout from Overview step",
+          "preconditions": [
+            "User logged in as <Customer>",
+            "Checkout - Overview is open with at least one cart item"
+          ],
+          "steps": [
+            "1. On the Checkout - Overview step confirm the Cancel button is visible",
+            "2. Click the Cancel button"
+          ],
+          "expected_result": "exits checkout",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user cannot access Checkout Overview",
+          "preconditions": [
+            "User is not authenticated (no valid session)"
+          ],
+          "steps": [
+            "1. Open the <Checkout Overview URL> in the browser"
+          ],
+          "expected_result": "User is redirected to the <login page>; Checkout Overview content is not displayed; Finish and Cancel controls are not visible or accessible (checkout cannot be completed without signing in).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click of Finish on Overview",
+          "preconditions": [
+            "User is signed in (if required) and on the Checkout - Overview step",
+            "Cart is populated and payment & shipping information are displayed"
+          ],
+          "steps": [
+            "1. Ensure the Overview page is visible with the Finish button in view",
+            "2. Click the Finish button",
+            "3. Immediately click the Finish button again (within a fraction of a second)"
+          ],
+          "expected_result": "Second click is ignored / blocked; user is navigated to the confirmation page only once and no second navigation or duplicated confirmation UI appears. The UI shows the confirmation page on success.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Press browser Back after successful Finish then attempt to Finish again",
+          "preconditions": [
+            "User is on Checkout - Overview and Finish has not yet been clicked",
+            "Cart and payment/shipping info are present"
+          ],
+          "steps": [
+            "1. Click the Finish button",
+            "2. Wait until the confirmation page loads",
+            "3. Use the browser Back button to return to the Checkout - Overview page",
+            "4. Attempt to click the Finish button again"
+          ],
+          "expected_result": "Second submission attempt is blocked; clicking Finish after returning via browser Back does not create a second successful completion. The UI either prevents the action (button disabled) or shows a visible inline message indicating the order cannot be re-submitted; user is not navigated to a second confirmation page.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "interaction_edge",
+          "test_case": "Click Cancel immediately after clicking Finish (race between Finish and Cancel)",
+          "preconditions": [
+            "User is on Checkout - Overview with cart, payment, and shipping info displayed"
+          ],
+          "steps": [
+            "1. Click the Finish button",
+            "2. Immediately click the Cancel button before navigation completes"
+          ],
+          "expected_result": "Race resolved deterministically by the UI: either Finish completes and user is navigated to confirmation (Cancel click is ignored) or Cancel takes precedence and user exits checkout. The UI must show one clear outcome \u2014 either the confirmation page (Finish succeeds) or the post-cancel exit state \u2014 and must not leave the user in an intermediate/inconsistent state.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Very long shipping/payment text shown on Overview (display/overflow handling)",
+          "preconditions": [
+            "User has a cart and the shipping address and payment name fields contain very long values (200+ characters)",
+            "User has navigated to Checkout - Overview"
+          ],
+          "steps": [
+            "1. View the shipping information section on the Overview step",
+            "2. View the payment information section on the Overview step"
+          ],
+          "expected_result": "Overview display handles long text safely: long shipping/payment fields are either visibly truncated with an affordance to view the full value (e.g., ellipsis + 'Show more') or cause the content area to allow scrolling without breaking layout. There is a visible indicator if truncation occurs; the UI remains usable.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 7,
+        "positive": 2,
+        "negative": 1,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 3,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 4,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Checkout - Confirmation",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Click Back Home from Confirmation clears cart and returns to Product Inventory",
+          "preconditions": [
+            "User logged in as <role>",
+            "Confirmation page is open showing an order success message"
+          ],
+          "steps": [
+            "1. Click the 'Back Home' button on the Confirmation page"
+          ],
+          "expected_result": "Product Inventory page is displayed and the shopping cart is cleared: no items are listed in the cart and the cart badge shows 0 items",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Back Home button non-functional (no navigation and cart not cleared)",
+          "preconditions": [
+            "User has completed checkout and is on the Confirmation page",
+            "There are <items in the cart> immediately prior to confirmation (cart contains items)"
+          ],
+          "steps": [
+            "1. On the Confirmation page, verify the success message is visible",
+            "2. Click the 'Back Home' button"
+          ],
+          "expected_result": "No navigation occurs; the user remains on the Confirmation page showing the success message; the cart is NOT cleared (cart still contains <items in the cart> as indicated by the cart badge or cart view); the 'Back Home' button remains visible. The on_success behaviour 'navigates to Product Inventory and clears the cart' did not occur.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Navigation succeeds but cart is not cleared (partial failure)",
+          "preconditions": [
+            "User has completed checkout and is on the Confirmation page",
+            "There are <items in the cart> immediately prior to confirmation (cart contains items)"
+          ],
+          "steps": [
+            "1. On the Confirmation page, verify the success message is visible",
+            "2. Click the 'Back Home' button"
+          ],
+          "expected_result": "The app navigates to the Product Inventory page but the cart was NOT cleared: the cart icon/badge on Product Inventory still displays <items in the cart> (or the cart view still lists the items). The on_success requirement to both navigate to Product Inventory AND clear the cart is only partially fulfilled; clearing the cart failed.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click of Back Home while navigation is in progress",
+          "preconditions": [
+            "User is on the Confirmation Page displaying the success message"
+          ],
+          "steps": [
+            "1. Click the Back Home button once",
+            "2. Immediately click the Back Home button a second time before the first navigation completes"
+          ],
+          "expected_result": "First click succeeds: UI navigates to Product Inventory and the cart is cleared. The immediate second click is ignored (no additional navigation or error). Product Inventory is displayed once and the cart remains cleared; no duplicate side-effects occur.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Click Back Home when the cart is already empty",
+          "preconditions": [
+            "User is on the Confirmation Page",
+            "The user's cart is already empty prior to clicking Back Home"
+          ],
+          "steps": [
+            "1. Click the Back Home button"
+          ],
+          "expected_result": "Navigation to Product Inventory succeeds; the cart remains empty and no error message is shown. Product Inventory displays with an empty cart.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Press browser Back immediately after clicking Back Home (rapid re-navigation)",
+          "preconditions": [
+            "User is on the Confirmation Page"
+          ],
+          "steps": [
+            "1. Click the Back Home button",
+            "2. Immediately press the browser Back button"
+          ],
+          "expected_result": "Clicking Back Home succeeds: UI navigates to Product Inventory and the cart is cleared. Immediately pressing Back does not re-trigger the cart-clear side-effect. If the Confirmation Page is restored from history, it is shown as a cached page and no additional server-side clear runs; cart remains cleared and no error is shown.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Open Back Home in a new tab (middle-click / open in new tab)",
+          "preconditions": [
+            "User is on the Confirmation Page"
+          ],
+          "steps": [
+            "1. Open the Back Home action in a new browser tab (middle-click or context menu -> open in new tab)",
+            "2. Switch to the newly opened tab"
+          ],
+          "expected_result": "Opening Back Home in a new tab succeeds: the new tab displays Product Inventory and the user's cart is cleared in-session. The original tab either remains on Confirmation Page or reflects the cleared cart; no inconsistent session state or error is shown and no duplicate side-effects occur.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 7,
+        "positive": 1,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 3,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Logout",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Click Logout button redirects to Login page",
+          "preconditions": [
+            "User logged in as <role>",
+            "Logout button is visible in the application header"
+          ],
+          "steps": [
+            "1. Click the Logout button in the header"
+          ],
+          "expected_result": "ends session and redirects to Login page. The Login page is displayed with the login form visible.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to invoke Logout while not authenticated (precondition not met)",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Open the application in a new browser session where no user is logged in",
+            "2. In the browser address bar, navigate to the application's Logout URL (or click any visible Logout link/button if present)"
+          ],
+          "expected_result": "Navigation is blocked/redirected: the Login page is displayed (login form visible). The Logout action is not performed because the precondition 'user must be logged in' is not met; no protected page is shown.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Click Logout a second time after already logging out (idempotent/precondition timing)",
+          "preconditions": [
+            "User is logged in as <role>"
+          ],
+          "steps": [
+            "1. Log in as <role>",
+            "2. Click the Logout button",
+            "3. After the app redirects to the Login page, attempt to click Logout again (or navigate to the Logout URL) without logging in"
+          ],
+          "expected_result": "Second Logout attempt is blocked/treated as no-op: the Login page remains displayed (login form visible). No error or protected page is presented; the system does not transition to an authenticated state and no unexpected behavior occurs. This verifies the precondition 'user must be logged in' prevents a logout action when already logged out.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Access protected page (inventory) after Logout is performed",
+          "preconditions": [
+            "User is logged in as <role>"
+          ],
+          "steps": [
+            "1. Log in as <role>",
+            "2. Click the Logout button",
+            "3. From the Login page, attempt to navigate to the Inventory page (e.g., enter /inventory or click an Inventory link)"
+          ],
+          "expected_result": "Access is blocked: the user is redirected to the Login page (login form visible); the Inventory page is not displayed. This confirms the consequence 'protected pages are not accessible without logging in again' after logout.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Rapid double-click of Logout button",
+          "preconditions": [
+            "User is logged in and on a protected page"
+          ],
+          "steps": [
+            "1. Ensure the protected page is visible (user is authenticated)",
+            "2. Click the Logout button once",
+            "3. Immediately click the Logout button again (double-click / second click before redirect completes)"
+          ],
+          "expected_result": "First click succeeds: session ends and the user is redirected to the Login page. The immediate second click is ignored or treated as a no-op; no duplicate logout errors are shown and no additional sessions are created (no visible error).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Use browser Back button after successful logout",
+          "preconditions": [
+            "User is logged in and on a protected page"
+          ],
+          "steps": [
+            "1. Click the Logout button",
+            "2. Observe redirection to the Login page",
+            "3. Press the browser Back button once"
+          ],
+          "expected_result": "Navigation back is blocked / error shown: the protected page is not displayed. The user remains on the Login page or is immediately redirected back to the Login page; protected content is not accessible without re-authentication.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Logout while the browser is offline (network interruption)",
+          "preconditions": [
+            "User is logged in and on a protected page",
+            "Ability to toggle the browser/network offline mode"
+          ],
+          "steps": [
+            "1. Toggle the browser to offline mode (simulate network loss)",
+            "2. Click the Logout button",
+            "3. Toggle the browser back to online mode"
+          ],
+          "expected_result": "Logout attempt is blocked / error shown while offline: a visible network error/toast is displayed and the user remains authenticated in the current tab. After returning online, the user may need to click Logout again; no silent session termination should be assumed while offline.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Logout in one tab then immediately logout in another tab without refreshing",
+          "preconditions": [
+            "User is logged in in two browser tabs (Tab A and Tab B) viewing protected pages"
+          ],
+          "steps": [
+            "1. In Tab A, click the Logout button",
+            "2. Without refreshing Tab B, switch to Tab B and click the Logout button"
+          ],
+          "expected_result": "First click (Tab A) succeeds: session ends and Tab A is redirected to the Login page. The subsequent logout click in Tab B is blocked / error shown or treated as a no-op: Tab B should either be redirected to the Login page or show that the session is no longer authenticated, with no server error displayed.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 8,
+        "positive": 1,
+        "negative": 3,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 2,
+        "state_edge": 2,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 4,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Reset App State",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Reset App State clears a populated cart and restores add/remove button states while keeping user logged in",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User is on the <App page> where the Reset App State button is visible",
+            "Cart contains one or more items; cart badge shows a positive count; at least one product action button shows the 'Remove' state"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button"
+          ],
+          "expected_result": "clears cart and resets in-app state (cart badge and add/remove button states) without logging the user out \u2014 Cart badge is no longer visible (or shows '0') and the cart contents area shows no items; product action buttons now display the 'Add' state instead of 'Remove'; the user's profile/avatar or account menu remains visible indicating the user is still logged in",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Reset App State is idempotent when the cart is already empty and does not log the user out",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User is on the <App page> where the Reset App State button is visible",
+            "Cart is already empty; cart badge is not visible; product action buttons are in the 'Add' state"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button"
+          ],
+          "expected_result": "clears cart and resets in-app state (cart badge and add/remove button states) without logging the user out \u2014 Cart remains empty with no cart badge visible; product action buttons remain in the 'Add' state; the user's profile/avatar or account menu remains visible indicating the user is still logged in",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Unauthenticated user attempts to press Reset App State",
+          "preconditions": [
+            "User is not authenticated (logged out)"
+          ],
+          "steps": [
+            "1. Navigate to the page that contains the Reset App State button",
+            "2. Attempt to click the Reset App State button"
+          ],
+          "expected_result": "User is redirected to the Login page and the Reset App State action is not executed; the cart is not cleared and the cart badge and add/remove button states remain unchanged (no visible UI change from Reset App State).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "User without required role attempts to access Reset App State",
+          "preconditions": [
+            "Logged in as <user without the role required to perform Reset App State>"
+          ],
+          "steps": [
+            "1. Navigate to the page that normally contains the Reset App State button",
+            "2. Look for the Reset App State button (attempt to click it if visible)"
+          ],
+          "expected_result": "Reset App State button is not visible (or is disabled); the user cannot invoke the action. The cart is not cleared and the cart badge and add/remove button states remain unchanged; the user remains logged in.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Reset with populated cart and toggled add/remove button states",
+          "preconditions": [
+            "User is logged in",
+            "Cart contains one or more items",
+            "At least one product's add/remove button is showing the 'remove' state",
+            "Cart badge is showing a non-zero count"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button"
+          ],
+          "expected_result": "Click succeeds; cart is cleared (cart listing shows no items and cart badge is zero or hidden), all add/remove buttons revert to their initial 'add' state, and the user remains logged in (user avatar/menu remains visible). No logout occurs and no error is shown.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Reset when cart is already empty (idempotency)",
+          "preconditions": [
+            "User is logged in",
+            "Cart is empty and cart badge is not showing a count"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button"
+          ],
+          "expected_result": "Click succeeds; UI remains unchanged for cart (still empty, no items listed), no error or warning is shown, in-app state remains default, and the user remains logged in. The action is idempotent and does not produce a new error or log the user out.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click of Reset App State",
+          "preconditions": [
+            "User is logged in",
+            "Cart contains one or more items",
+            "Reset App State button is visible and enabled"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button",
+            "2. Immediately click the 'Reset App State' button again (within a short interval)"
+          ],
+          "expected_result": "First click succeeds and clears the cart; second click is ignored or has no additional effect (no duplicate side effects). The cart remains empty, UI is stable (no error messages), and the user remains logged in. No duplicate state transitions or visible errors occur.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Reset while an in-progress checkout is open",
+          "preconditions": [
+            "User is logged in",
+            "User has initiated checkout / is on the checkout page with items in cart",
+            "Pay/continue buttons are visible as part of the checkout UI"
+          ],
+          "steps": [
+            "1. Click the 'Reset App State' button"
+          ],
+          "expected_result": "Click succeeds; cart is cleared (checkout UI updates to reflect an empty cart \u2014 e.g., no items listed or a clear empty-cart state is shown), checkout actions that require cart items become disabled or indicate empty cart, and the user remains logged in. No logout occurs and no unexpected error is shown.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 8,
+        "positive": 2,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 2,
+        "state_edge": 2,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 3,
+        "low_priority": 2
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 9,
+    "total_tests": 88,
+    "positive": 26,
+    "negative": 25,
+    "boundary": 2,
+    "edge": 37,
+    "high_priority": 42,
+    "medium_priority": 34,
+    "low_priority": 12
+  }
+}

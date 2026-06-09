@@ -1,0 +1,307 @@
+run_id: phptravels-20260609-171013-07cfe1
+  Sidecar: generated_artifacts\.checkpoints\phptravels-20260609-171013-07cfe1.json
+  Output directory: ablation_study\PHPTravels\gpt-5-mini\agent_no_critic
+  (use `--resume phptravels-20260609-171013-07cfe1` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: phptravels-20260609-171013-07cfe1
+
+[1/4] Generating Structural Model with critic-guided retry (21 module(s))...
+    [17:10:13] >> Structural Model Agent | sending request (~999 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~649 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~587 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~608 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~807 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~732 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~869 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~719 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~644 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~735 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~759 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~798 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~766 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~918 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~815 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~931 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~627 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~844 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~769 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~781 chars)
+    [17:10:13] >> Structural Model Agent | sending request (~311 chars)
+    [17:10:46] << Structural Model Agent | response in 32.5s | tokens: 2303+1978=4281
+  OK Forgot Password | attempt 1 (no critic) | 3 component(s)
+    [17:10:48] << Structural Model Agent | response in 34.8s | tokens: 2288+2173=4461
+  OK User Login | attempt 1 (no critic) | 2 component(s)
+    [17:10:53] << Structural Model Agent | response in 40.2s | tokens: 2300+2544=4844
+  OK User Registration | attempt 1 (no critic) | 1 component(s)
+    [17:10:56] << Structural Model Agent | response in 43.4s | tokens: 2320+2270=4590
+  OK Flight Booking | attempt 1 (no critic) | 1 component(s)
+    [17:10:58] << Structural Model Agent | response in 45.4s | tokens: 2323+2826=5149
+  OK Hotel Details & Booking | attempt 1 (no critic) | 3 component(s)
+    [17:10:59] << Structural Model Agent | response in 46.2s | tokens: 2344+2948=5292
+  OK Hotels Search & Listing | attempt 1 (no critic) | 2 component(s)
+    [17:11:01] << Structural Model Agent | response in 48.4s | tokens: 2383+3044=5427
+  OK Home Page & Search | attempt 1 (no critic) | 1 component(s)
+    [17:11:02] << Structural Model Agent | response in 48.8s | tokens: 2307+3081=5388
+  OK Tours Search & Listing | attempt 1 (no critic) | 3 component(s)
+    [17:11:05] << Structural Model Agent | response in 52.1s | tokens: 2317+3242=5559
+  OK Tour Details & Booking | attempt 1 (no critic) | 2 component(s)
+    [17:11:14] << Structural Model Agent | response in 61.0s | tokens: 2361+3890=6251
+  OK Flights Search & Listing | attempt 1 (no critic) | 4 component(s)
+    [17:11:20] << Structural Model Agent | response in 31.8s | tokens: 2329+2084=4413
+  OK Car Booking | attempt 1 (no critic) | 1 component(s)
+    [17:11:27] << Structural Model Agent | response in 41.7s | tokens: 2337+2772=5109
+  OK Cars Search & Listing | attempt 1 (no critic) | 2 component(s)
+    [17:11:31] << Structural Model Agent | response in 29.3s | tokens: 2294+1966=4260
+  OK Currency & Language Selection | attempt 1 (no critic) | 1 component(s)
+    [17:11:32] << Structural Model Agent | response in 12.8s | tokens: 2238+806=3044
+  OK Logout | attempt 1 (no critic) | 1 component(s)
+    [17:11:38] << Structural Model Agent | response in 44.5s | tokens: 2316+2896=5212
+  OK Visa Services | attempt 1 (no critic) | 4 component(s)
+    [17:11:47] << Structural Model Agent | response in 48.2s | tokens: 2312+3094=5406
+  OK Booking Management | attempt 1 (no critic) | 1 component(s)
+    [17:11:48] << Structural Model Agent | response in 33.9s | tokens: 2319+1974=4293
+  OK Offers & Deals | attempt 1 (no critic) | 3 component(s)
+    [17:11:54] << Structural Model Agent | response in 54.6s | tokens: 2368+3602=5970
+  OK Payment Processing | attempt 1 (no critic) | 2 component(s)
+    [17:11:57] << Structural Model Agent | response in 51.8s | tokens: 2323+3394=5717
+  OK Reviews & Ratings | attempt 1 (no critic) | 3 component(s)
+    [17:12:06] << Structural Model Agent | response in 64.6s | tokens: 2340+4255=6595
+  OK Search & Filters | attempt 1 (no critic) | 4 component(s)
+    [17:12:14] << Structural Model Agent | response in 77.4s | tokens: 2346+5174=7520
+  OK User Dashboard | attempt 1 (no critic) | 7 component(s)
+  Done in 120.8s
+
+[2/4] Extracting & critiquing workflows (21 module(s))...
+    [17:12:14] >> Workflow-Extractor | sending request (~6036 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2695 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2662 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2280 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~5444 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2722 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~6092 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2738 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3318 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2921 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3845 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2660 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3735 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~5919 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3368 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3763 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3049 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~8501 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~3824 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~2440 chars)
+    [17:12:14] >> Workflow-Extractor | sending request (~773 chars)
+    [17:12:19] << Workflow-Extractor | response in 5.6s | tokens: 1827+287=2114
+  OK Flight Booking | attempt 1 (no critic) | 1 workflow(s)
+    [17:12:29] << Workflow-Extractor | response in 14.7s | tokens: 1817+941=2758
+  OK User Registration | attempt 1 (no critic) | 2 workflow(s)
+    [17:12:33] << Workflow-Extractor | response in 19.5s | tokens: 2613+1313=3926
+  OK Flights Search & Listing | attempt 1 (no critic) | 7 workflow(s)
+    [17:12:35] << Workflow-Extractor | response in 15.7s | tokens: 2068+987=3055
+  OK Cars Search & Listing | attempt 1 (no critic) | 2 workflow(s)
+    [17:12:35] << Workflow-Extractor | response in 21.5s | tokens: 2465+1466=3931
+  OK Home Page & Search | attempt 1 (no critic) | 5 workflow(s)
+    [17:12:37] << Workflow-Extractor | response in 8.8s | tokens: 1835+482=2317
+  OK Car Booking | attempt 1 (no critic) | 1 workflow(s)
+    [17:12:43] << Workflow-Extractor | response in 29.0s | tokens: 1999+1826=3825
+  OK Tours Search & Listing | attempt 1 (no critic) | 5 workflow(s)
+    [17:12:43] << Workflow-Extractor | response in 29.6s | tokens: 1830+1914=3744
+  OK User Login | attempt 1 (no critic) | 5 workflow(s)
+    [17:12:44] << Workflow-Extractor | response in 29.8s | tokens: 1867+1902=3769
+  OK Hotel Details & Booking | attempt 1 (no critic) | 2 workflow(s)
+    [17:12:49] << Workflow-Extractor | response in 35.2s | tokens: 1893+2221=4114
+  OK Tour Details & Booking | attempt 1 (no critic) | 5 workflow(s)
+    [17:12:56] << Workflow-Extractor | response in 21.0s | tokens: 1868+1088=2956
+  OK Booking Management | attempt 1 (no critic) | 3 workflow(s)
+    [17:12:57] << Workflow-Extractor | response in 43.0s | tokens: 1767+2699=4466
+  OK Forgot Password | attempt 1 (no critic) | 5 workflow(s)
+    [17:12:57] << Workflow-Extractor | response in 23.7s | tokens: 2058+1258=3316
+  OK Visa Services | attempt 1 (no critic) | 4 workflow(s)
+    [17:13:06] << Workflow-Extractor | response in 10.0s | tokens: 1426+507=1933
+  OK Logout | attempt 1 (no critic) | 1 workflow(s)
+    [17:13:09] << Workflow-Extractor | response in 26.6s | tokens: 1810+1471=3281
+  OK Currency & Language Selection | attempt 1 (no critic) | 4 workflow(s)
+    [17:13:15] << Workflow-Extractor | response in 25.7s | tokens: 1785+1332=3117
+  OK Offers & Deals | attempt 1 (no critic) | 3 workflow(s)
+    [17:13:15] << Workflow-Extractor | response in 61.0s | tokens: 2394+3634=6028
+  OK Hotels Search & Listing | attempt 1 (no critic) | 11 workflow(s)
+    [17:13:23] << Workflow-Extractor | response in 45.2s | tokens: 2067+2544=4611
+  OK Payment Processing | attempt 1 (no critic) | 6 workflow(s)
+    [17:13:24] << Workflow-Extractor | response in 48.7s | tokens: 2529+2744=5273
+  OK User Dashboard | attempt 1 (no critic) | 14 workflow(s)
+    [17:13:33] << Workflow-Extractor | response in 49.9s | tokens: 2073+2890=4963
+  OK Reviews & Ratings | attempt 1 (no critic) | 6 workflow(s)
+    [17:13:40] << Workflow-Extractor | response in 56.3s | tokens: 2947+3341=6288
+  OK Search & Filters | attempt 1 (no critic) | 26 workflow(s)
+  Done in 85.9s
+
+[3/4] Generating test cases (63 calls across 21 module(s), types: edge/negative/positive)...
+    [17:13:40] >> Test-Positive | sending request (~6929 chars)
+    [17:13:40] >> Test-Negative | sending request (~6929 chars)
+    [17:13:40] >> Test-Edge | sending request (~6929 chars)
+    [17:13:40] >> Test-Positive | sending request (~3132 chars)
+    [17:13:40] >> Test-Negative | sending request (~3132 chars)
+    [17:13:40] >> Test-Edge | sending request (~3132 chars)
+    [17:13:40] >> Test-Positive | sending request (~3570 chars)
+    [17:13:40] >> Test-Negative | sending request (~3570 chars)
+    [17:13:40] >> Test-Edge | sending request (~3570 chars)
+    [17:13:40] >> Test-Positive | sending request (~3320 chars)
+    [17:13:40] >> Test-Negative | sending request (~3320 chars)
+    [17:13:40] >> Test-Edge | sending request (~3320 chars)
+    [17:13:40] >> Test-Positive | sending request (~6968 chars)
+    [17:13:40] >> Test-Negative | sending request (~6968 chars)
+    [17:13:40] >> Test-Edge | sending request (~6968 chars)
+    [17:13:40] >> Test-Positive | sending request (~3084 chars)
+    [17:13:40] >> Test-Negative | sending request (~3084 chars)
+    [17:13:40] >> Test-Edge | sending request (~3084 chars)
+    [17:13:40] >> Test-Positive | sending request (~7173 chars)
+    [17:13:40] >> Test-Negative | sending request (~7173 chars)
+    [17:13:40] >> Test-Edge | sending request (~7173 chars)
+    [17:13:40] >> Test-Positive | sending request (~2911 chars)
+    [17:13:40] >> Test-Negative | sending request (~2911 chars)
+    [17:13:40] >> Test-Edge | sending request (~2911 chars)
+    [17:13:40] >> Test-Positive | sending request (~4035 chars)
+    [17:13:40] >> Test-Negative | sending request (~4035 chars)
+    [17:13:40] >> Test-Edge | sending request (~4035 chars)
+    [17:13:40] >> Test-Positive | sending request (~3717 chars)
+    [17:13:40] >> Test-Negative | sending request (~3717 chars)
+    [17:13:40] >> Test-Edge | sending request (~3717 chars)
+    [17:13:40] >> Test-Positive | sending request (~4134 chars)
+    [17:13:40] >> Test-Negative | sending request (~4134 chars)
+    [17:13:40] >> Test-Edge | sending request (~4134 chars)
+    [17:13:40] >> Test-Positive | sending request (~2841 chars)
+    [17:13:40] >> Test-Negative | sending request (~2841 chars)
+    [17:13:40] >> Test-Edge | sending request (~2841 chars)
+    [17:13:40] >> Test-Positive | sending request (~4533 chars)
+    [17:13:40] >> Test-Negative | sending request (~4533 chars)
+    [17:13:40] >> Test-Edge | sending request (~4533 chars)
+    [17:13:40] >> Test-Positive | sending request (~7983 chars)
+    [17:13:40] >> Test-Negative | sending request (~7983 chars)
+    [17:13:40] >> Test-Edge | sending request (~7983 chars)
+    [17:13:40] >> Test-Positive | sending request (~4161 chars)
+    [17:13:40] >> Test-Negative | sending request (~4161 chars)
+    [17:13:40] >> Test-Edge | sending request (~4161 chars)
+    [17:13:40] >> Test-Positive | sending request (~5175 chars)
+    [17:13:40] >> Test-Negative | sending request (~5175 chars)
+    [17:13:40] >> Test-Edge | sending request (~5175 chars)
+    [17:13:40] >> Test-Positive | sending request (~3875 chars)
+    [17:13:40] >> Test-Negative | sending request (~3875 chars)
+    [17:13:40] >> Test-Edge | sending request (~3875 chars)
+    [17:13:40] >> Test-Positive | sending request (~13003 chars)
+    [17:13:40] >> Test-Negative | sending request (~13003 chars)
+    [17:13:40] >> Test-Edge | sending request (~13003 chars)
+    [17:13:40] >> Test-Positive | sending request (~5025 chars)
+    [17:13:40] >> Test-Negative | sending request (~5025 chars)
+    [17:13:40] >> Test-Edge | sending request (~5025 chars)
+    [17:13:40] >> Test-Positive | sending request (~3037 chars)
+    [17:13:40] >> Test-Negative | sending request (~3037 chars)
+    [17:13:40] >> Test-Edge | sending request (~3037 chars)
+    [17:13:40] >> Test-Positive | sending request (~1097 chars)
+    [17:13:40] >> Test-Negative | sending request (~1097 chars)
+    [17:13:40] >> Test-Edge | sending request (~1097 chars)
+    [17:14:21] << Test-Positive | response in 41.7s | tokens: 4571+2056=6627
+    [17:14:24] << Test-Positive | response in 44.1s | tokens: 4707+2211=6918
+    [17:14:28] << Test-Positive | response in 48.7s | tokens: 5339+2442=7781
+    [17:14:47] << Test-Positive | response in 67.1s | tokens: 4660+3248=7908
+    [17:14:49] << Test-Negative | response in 69.3s | tokens: 3595+3435=7030
+    [17:15:01] << Test-Edge | response in 81.0s | tokens: 3516+4048=7564
+  OK User Login | 18 test(s) (pos=5 neg=6 edge=10)
+    [17:15:08] << Test-Negative | response in 88.3s | tokens: 4227+4359=8586
+    [17:15:08] << Test-Edge | response in 88.4s | tokens: 4148+4372=8520
+  OK Home Page & Search | 21 test(s) (pos=5 neg=8 edge=15)
+    [17:15:09] << Test-Edge | response in 89.4s | tokens: 3380+4420=7800
+    [17:15:25] << Test-Negative | response in 105.8s | tokens: 3459+5305=8764
+  OK User Registration | 16 test(s) (pos=2 neg=9 edge=5)
+    [17:15:40] << Test-Negative | response in 78.8s | tokens: 3548+3905=7453
+    [17:15:41] << Test-Positive | response in 72.8s | tokens: 5429+3644=9073
+    [17:15:41] << Test-Edge | response in 77.7s | tokens: 3469+3797=7266
+  OK Forgot Password | 19 test(s) (pos=5 neg=8 edge=10)
+    [17:15:58] << Test-Positive | response in 56.9s | tokens: 4623+2899=7522
+    [17:16:17] << Test-Negative | response in 90.1s | tokens: 4317+4457=8774
+    [17:16:30] << Test-Positive | response in 80.7s | tokens: 5539+4174=9713
+    [17:16:42] << Test-Negative | response in 76.2s | tokens: 4427+4042=8469
+    [17:16:49] << Test-Positive | response in 67.9s | tokens: 4531+3798=8329
+    [17:16:50] << Test-Negative | response in 68.8s | tokens: 3419+3767=7186
+    [17:16:51] << Test-Edge | response in 122.4s | tokens: 4238+6621=10859
+  OK Hotels Search & Listing | 32 test(s) (pos=11 neg=10 edge=21)
+    [17:16:55] << Test-Negative | response in 106.5s | tokens: 3511+5919=9430
+    [17:16:56] << Test-Edge | response in 107.8s | tokens: 3432+6037=9469
+  OK Hotel Details & Booking | 19 test(s) (pos=3 neg=8 edge=14)
+    [17:17:01] << Test-Edge | response in 80.4s | tokens: 4348+4698=9046
+  OK Flights Search & Listing | 25 test(s) (pos=8 neg=8 edge=14)
+    [17:17:05] << Test-Positive | response in 47.7s | tokens: 4852+3280=8132
+    [17:17:12] << Test-Negative | response in 42.7s | tokens: 3740+2942=6682
+    [17:17:23] << Test-Edge | response in 85.8s | tokens: 3340+5297=8637
+  OK Flight Booking | 19 test(s) (pos=4 neg=7 edge=9)
+    [17:17:50] << Test-Positive | response in 55.2s | tokens: 4804+3696=8500
+    [17:17:53] << Test-Edge | response in 71.6s | tokens: 3661+4875=8536
+  OK Tours Search & Listing | 20 test(s) (pos=6 neg=5 edge=15)
+    [17:18:02] << Test-Positive | response in 72.9s | tokens: 4757+4920=9677
+    [17:18:02] << Test-Positive | response in 57.7s | tokens: 4541+3708=8249
+    [17:18:03] << Test-Edge | response in 72.0s | tokens: 3566+4797=8363
+    [17:18:13] << Test-Negative | response in 77.2s | tokens: 3692+5070=8762
+    [17:18:15] << Test-Negative | response in 84.4s | tokens: 3645+5591=9236
+  OK Tour Details & Booking | 20 test(s) (pos=6 neg=7 edge=11)
+    [17:18:20] << Test-Negative | response in 67.8s | tokens: 3429+4388=7817
+    [17:18:26] << Test-Edge | response in 85.2s | tokens: 3613+5722=9335
+  OK Cars Search & Listing | 20 test(s) (pos=6 neg=7 edge=9)
+    [17:18:31] << Test-Edge | response in 67.4s | tokens: 3350+4529=7879
+  OK Car Booking | 16 test(s) (pos=4 neg=8 edge=5)
+    [17:18:40] << Test-Positive | response in 50.3s | tokens: 4888+3449=8337
+    [17:18:52] << Test-Negative | response in 58.4s | tokens: 3776+4102=7878
+    [17:18:55] << Test-Positive | response in 40.4s | tokens: 4675+2920=7595
+    [17:19:04] << Test-Positive | response in 62.1s | tokens: 5681+4541=10222
+    [17:19:05] << Test-Edge | response in 51.9s | tokens: 4490+3890=8380
+    [17:19:26] << Test-Edge | response in 84.3s | tokens: 3697+6147=9844
+  OK Visa Services | 21 test(s) (pos=5 neg=8 edge=10)
+    [17:19:28] << Test-Positive | response in 57.3s | tokens: 5037+4125=9162
+    [17:19:30] << Test-Positive | response in 34.7s | tokens: 4656+2430=7086
+    [17:19:31] << Test-Edge | response in 65.5s | tokens: 3484+4807=8291
+    [17:19:32] << Test-Negative | response in 71.5s | tokens: 3563+5154=8717
+  OK Booking Management | 20 test(s) (pos=3 neg=10 edge=10)
+    [17:19:32] << Test-Negative | response in 89.1s | tokens: 4569+6513=11082
+  OK User Dashboard | 35 test(s) (pos=14 neg=13 edge=14)
+    [17:19:52] << Test-Negative | response in 71.8s | tokens: 3925+5148=9073
+    [17:19:53] << Test-Edge | response in 61.1s | tokens: 3846+4383=8229
+  OK Payment Processing | 21 test(s) (pos=8 neg=6 edge=9)
+    [17:19:57] << Test-Edge | response in 51.7s | tokens: 3465+3434=6899
+    [17:20:13] << Test-Negative | response in 68.6s | tokens: 3544+4600=8144
+  OK Currency & Language Selection | 12 test(s) (pos=4 neg=4 edge=4)
+    [17:20:19] << Test-Edge | response in 48.9s | tokens: 5438+3198=8636
+    [17:20:30] << Test-Positive | response in 64.1s | tokens: 6629+4477=11106
+    [17:20:33] << Test-Negative | response in 64.6s | tokens: 5517+4556=10073
+  OK Search & Filters | 36 test(s) (pos=26 neg=7 edge=3)
+    [17:20:34] << Test-Positive | response in 63.0s | tokens: 5013+4471=9484
+    [17:20:39] << Test-Positive | response in 26.3s | tokens: 4160+2064=6224
+    [17:20:40] << Test-Negative | response in 47.6s | tokens: 3473+3516=6989
+    [17:20:44] << Test-Positive | response in 52.3s | tokens: 4585+3864=8449
+    [17:20:47] << Test-Edge | response in 50.1s | tokens: 3394+3799=7193
+  OK Offers & Deals | 16 test(s) (pos=5 neg=4 edge=9)
+    [17:20:50] << Test-Negative | response in 77.9s | tokens: 3901+5725=9626
+    [17:20:52] << Test-Edge | response in 79.9s | tokens: 3822+5867=9689
+  OK Reviews & Ratings | 24 test(s) (pos=6 neg=8 edge=17)
+    [17:20:53] << Test-Negative | response in 34.4s | tokens: 3048+2768=5816
+    [17:21:14] << Test-Edge | response in 43.8s | tokens: 2969+3489=6458
+  OK Logout | 8 test(s) (pos=2 neg=2 edge=4)
+  Done in 454.5s
+
+[4/4] Saving output...
+  Saved Structural Model to:       ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\structural-model.json
+  Saved critique to:     ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\structural-model-critique.json
+  Saved critique (md):   ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\Phptravels-openai-gpt-5-mini-critique.md
+  Saved test cases to:   ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\test-cases.json  (438 total)
+  Saved test cases (md): ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\Phptravels-openai-gpt-5-mini-tests.md
+  Saved workflows to:    ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\workflows.json  (118 total)
+  Saved wf-critique to:  ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\workflow-validator-critique.json
+  Saved wf-critique(md): ablation_study\PHPTravels\gpt-5-mini\agent_no_critic\Phptravels-openai-gpt-5-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 21 module(s).
+  Structural Model:     ablation_study\PHPTravels\gpt-5-mini\agent_no_critic/structural-model.json
+  Critique:   ablation_study\PHPTravels\gpt-5-mini\agent_no_critic/structural-model-critique.json
+  Tests:      ablation_study\PHPTravels\gpt-5-mini\agent_no_critic/test-cases.json
+

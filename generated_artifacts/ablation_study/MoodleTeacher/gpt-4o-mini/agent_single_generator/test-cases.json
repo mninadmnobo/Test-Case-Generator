@@ -1,0 +1,211 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T11:54:17.635107Z",
+  "model": "openai/gpt-4o-mini",
+  "modules": [
+    {
+      "module": "Dashboard",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "test_cases": [],
+      "summary": {
+        "total": 0,
+        "positive": 0,
+        "negative": 0,
+        "boundary": 0,
+        "edge": 0,
+        "high_priority": 0,
+        "medium_priority": 0,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Course Edit Mode and Activity Chooser",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Enable Edit Mode",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Course page is open"
+          ],
+          "steps": [
+            "1. Click on the 'Edit Mode' button"
+          ],
+          "expected_result": "The Course page turns into an authoring interface",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Add Activity using Activity Chooser",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled"
+          ],
+          "steps": [
+            "1. Click on the '+ Add an activity or resource' button",
+            "2. Select 'Assignment' tile",
+            "3. Click 'Add'"
+          ],
+          "expected_result": "Activity creation form for 'Assignment' opens",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Batch Delete Activities",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Multiple activities are selected"
+          ],
+          "steps": [
+            "1. Click on 'Batch Delete' in the Bulk Actions Toolbar",
+            "2. Confirm deletion"
+          ],
+          "expected_result": "Selected activities are deleted from the Course page",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to Add Activity without Edit Mode",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Course page is open but Edit Mode is disabled"
+          ],
+          "steps": [
+            "1. Click on the '+ Add an activity or resource' button"
+          ],
+          "expected_result": "Button is disabled or no action occurs",
+          "priority": "high"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Search for Non-existent Activity",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled"
+          ],
+          "steps": [
+            "1. Click on the '+ Add an activity or resource' button",
+            "2. Enter 'Non-existent Activity' in the search field"
+          ],
+          "expected_result": "No results found message is displayed",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Add Activity with Empty Search Field",
+          "category": "edge",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled"
+          ],
+          "steps": [
+            "1. Click on the '+ Add an activity or resource' button",
+            "2. Leave the search field empty",
+            "3. Click 'Search'"
+          ],
+          "expected_result": "All activity/resource tiles are displayed",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Add Subsection",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled"
+          ],
+          "steps": [
+            "1. Click on the '+ Add a subsection' button"
+          ],
+          "expected_result": "A new subsection is created and visible in the Course page",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Batch Move Activities",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Multiple activities are selected"
+          ],
+          "steps": [
+            "1. Click on 'Batch Move' in the Bulk Actions Toolbar",
+            "2. Select destination for moving"
+          ],
+          "expected_result": "Selected activities are moved to the specified destination",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Edit Activity Settings",
+          "category": "positive",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled",
+            "Activity exists"
+          ],
+          "steps": [
+            "1. Click on the activity's three-dot menu",
+            "2. Select 'Edit Settings'"
+          ],
+          "expected_result": "Activity settings form opens for editing",
+          "priority": "medium"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Attempt to Batch Delete without Selection",
+          "category": "negative",
+          "preconditions": [
+            "User logged in as Instructor",
+            "Edit Mode is enabled"
+          ],
+          "steps": [
+            "1. Click on 'Batch Delete' in the Bulk Actions Toolbar"
+          ],
+          "expected_result": "No action occurs or an error message is displayed",
+          "priority": "high"
+        }
+      ],
+      "summary": {
+        "total": 10,
+        "positive": 6,
+        "negative": 3,
+        "edge": 1,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 6,
+        "low_priority": 0
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 2,
+    "total_tests": 10,
+    "positive": 6,
+    "negative": 3,
+    "boundary": 0,
+    "edge": 1,
+    "high_priority": 4,
+    "medium_priority": 6,
+    "low_priority": 0
+  }
+}

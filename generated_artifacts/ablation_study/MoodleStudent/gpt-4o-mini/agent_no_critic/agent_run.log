@@ -1,0 +1,393 @@
+run_id: moodlestudent-20260609-180556-85921c
+  Sidecar: generated_artifacts\.checkpoints\moodlestudent-20260609-180556-85921c.json
+  Output directory: ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic
+  (use `--resume moodlestudent-20260609-180556-85921c` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: moodlestudent-20260609-180556-85921c
+
+[1/4] Generating Structural Model with critic-guided retry (10 module(s))...
+    [18:05:56] >> Structural Model Agent | sending request (~658 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~1391 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~727 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~598 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~777 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~662 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~838 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~635 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~1249 chars)
+    [18:05:56] >> Structural Model Agent | sending request (~282 chars)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:00] !! Structural Model Agent | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 4.1s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:00] !! Structural Model Agent | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 4.3s
+    [18:06:01] << Structural Model Agent | response in 5.3s | tokens: 2309+233=2542
+  OK Login | attempt 1 (no critic) | 4 component(s)
+    [18:06:01] << Structural Model Agent | response in 5.3s | tokens: 2231+62=2293
+  OK Logout | attempt 1 (no critic) | 1 component(s)
+    [18:06:02] << Structural Model Agent | response in 5.9s | tokens: 2298+266=2564
+  OK Course Page | attempt 1 (no critic) | 3 component(s)
+    [18:06:02] << Structural Model Agent | response in 6.5s | tokens: 2296+174=2470
+  OK Activities | attempt 1 (no critic) | 4 component(s)
+    [18:06:03] << Structural Model Agent | response in 6.8s | tokens: 2348+181=2529
+  OK Assignment | attempt 1 (no critic) | 3 component(s)
+    [18:06:03] << Structural Model Agent | response in 7.6s | tokens: 2315+236=2551
+  OK Grades | attempt 1 (no critic) | 1 component(s)
+    [18:06:06] << Structural Model Agent | response in 10.2s | tokens: 2460+484=2944
+  OK Dashboard | attempt 1 (no critic) | 5 component(s)
+    [18:06:07] << Structural Model Agent | response in 11.6s | tokens: 2420+566=2986
+  OK Profile | attempt 1 (no critic) | 2 component(s)
+  !! Failed for My Courses: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  !! Failed for Participants: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  Done in 11.6s
+
+[2/4] Extracting & critiquing workflows (8 module(s))...
+    [18:06:07] >> Workflow-Extractor | sending request (~1762 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~3631 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~1896 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~1882 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~1676 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~1423 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~4243 chars)
+    [18:06:07] >> Workflow-Extractor | sending request (~620 chars)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:11] << Workflow-Extractor | response in 3.3s | tokens: 1677+22=1699
+  OK Grades | attempt 1 (no critic) | 0 workflow(s)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:11] !! Workflow-Extractor | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.7s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:11] !! Workflow-Extractor | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.8s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:11] !! Workflow-Extractor | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.9s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:11] !! Workflow-Extractor | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 4.0s
+    [18:06:12] << Workflow-Extractor | response in 4.7s | tokens: 1631+313=1944
+  OK Assignment | attempt 1 (no critic) | 5 workflow(s)
+    [18:06:13] << Workflow-Extractor | response in 5.8s | tokens: 2133+260=2393
+  OK Profile | attempt 1 (no critic) | 4 workflow(s)
+    [18:06:15] << Workflow-Extractor | response in 7.4s | tokens: 1649+264=1913
+  OK Login | attempt 1 (no critic) | 4 workflow(s)
+  !! Workflow extraction failed for Dashboard: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  !! Workflow extraction failed for Course Page: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  !! Workflow extraction failed for Activities: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  !! Workflow extraction failed for Logout: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times
+  Done in 7.4s
+
+[3/4] Generating test cases (24 calls across 8 module(s), types: edge/negative/positive)...
+  Skipping 2 module(s) with no AST.
+    [18:06:15] >> Test-Positive | sending request (~2335 chars)
+    [18:06:15] >> Test-Negative | sending request (~2335 chars)
+    [18:06:15] >> Test-Edge | sending request (~2335 chars)
+    [18:06:15] >> Test-Positive | sending request (~3631 chars)
+    [18:06:15] >> Test-Negative | sending request (~3631 chars)
+    [18:06:15] >> Test-Edge | sending request (~3631 chars)
+    [18:06:15] >> Test-Positive | sending request (~1896 chars)
+    [18:06:15] >> Test-Negative | sending request (~1896 chars)
+    [18:06:15] >> Test-Edge | sending request (~1896 chars)
+    [18:06:15] >> Test-Positive | sending request (~1882 chars)
+    [18:06:15] >> Test-Negative | sending request (~1882 chars)
+    [18:06:15] >> Test-Edge | sending request (~1882 chars)
+    [18:06:15] >> Test-Positive | sending request (~2355 chars)
+    [18:06:15] >> Test-Negative | sending request (~2355 chars)
+    [18:06:15] >> Test-Edge | sending request (~2355 chars)
+    [18:06:15] >> Test-Positive | sending request (~1423 chars)
+    [18:06:15] >> Test-Negative | sending request (~1423 chars)
+    [18:06:15] >> Test-Edge | sending request (~1423 chars)
+    [18:06:15] >> Test-Positive | sending request (~4819 chars)
+    [18:06:15] >> Test-Negative | sending request (~4819 chars)
+    [18:06:15] >> Test-Edge | sending request (~4819 chars)
+    [18:06:15] >> Test-Positive | sending request (~620 chars)
+    [18:06:15] >> Test-Negative | sending request (~620 chars)
+    [18:06:15] >> Test-Edge | sending request (~620 chars)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:18] !! Test-Edge | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.7s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:19] !! Test-Positive | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.8s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:19] !! Test-Positive | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.8s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:19] !! Test-Edge | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.9s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:19] !! Test-Negative | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.9s
+  OK Login | 0 test(s) (pos=0 neg=0 edge=0)
+    [18:06:19] << Test-Negative | response in 4.7s | tokens: 3209+268=3477
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:22] !! Test-Negative | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.6s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:22] !! Test-Edge | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.8s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:23] !! Test-Negative | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 4.2s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:23] !! Test-Positive | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.9s
+    [18:06:25] << Test-Negative | response in 10.5s | tokens: 3609+498=4107
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:27] << Test-Negative | response in 4.7s | tokens: 3121+185=3306
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:31] << Test-Edge | response in 16.0s | tokens: 3130+558=3688
+  OK Course Page | 6 test(s) (pos=0 neg=2 edge=4)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:31] !! Test-Positive | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 4.1s
+    [18:06:32] << Test-Positive | response in 17.7s | tokens: 4339+389=4728
+  OK Grades | 3 test(s) (pos=3 neg=0 edge=0)
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:35] !! Test-Negative | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.9s
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+    [18:06:35] !! Test-Edge | LiteLLM error (RateLimitError): litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times after 3.7s
+  OK Logout | 0 test(s) (pos=0 neg=0 edge=0)
+    [18:06:35] << Test-Edge | response in 16.4s | tokens: 3268+573=3841
+    [18:06:36] << Test-Edge | response in 14.0s | tokens: 3042+548=3590
+  OK Activities | 5 test(s) (pos=0 neg=1 edge=4)
+    [18:06:37] << Test-Positive | response in 18.7s | tokens: 4459+530=4989
+  OK Assignment | 9 test(s) (pos=5 neg=0 edge=6)
+    [18:06:37] << Test-Positive | response in 14.8s | tokens: 4933+459=5392
+    [18:06:39] << Test-Negative | response in 16.0s | tokens: 3821+621=4442
+    [18:06:43] << Test-Edge | response in 17.2s | tokens: 3742+725=4467
+  OK Profile | 14 test(s) (pos=4 neg=5 edge=7)
+    [18:06:44] << Test-Positive | response in 29.7s | tokens: 4721+1042=5763
+  OK Dashboard | 15 test(s) (pos=10 neg=5 edge=0)
+  Done in 29.7s
+
+[4/4] Saving output...
+  Saved Structural Model to:       ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\structural-model.json
+  Saved critique to:     ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\structural-model-critique.json
+  Saved critique (md):   ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\Moodlestudent-openai-gpt-4o-mini-critique.md
+  Saved test cases to:   ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\test-cases.json  (52 total)
+  Saved test cases (md): ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\Moodlestudent-openai-gpt-4o-mini-tests.md
+  Saved workflows to:    ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\workflows.json  (13 total)
+  Saved wf-critique to:  ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\workflow-validator-critique.json
+  Saved wf-critique(md): ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic\Moodlestudent-openai-gpt-4o-mini-workflow-validator-critique.md
+  Done in 0.1s
+
+Done! Generated for 10 module(s).
+  Structural Model:     ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic/structural-model.json
+  Critique:   ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic/structural-model-critique.json
+  Tests:      ablation_study\MoodleStudent\gpt-4o-mini\agent_no_critic/test-cases.json
+

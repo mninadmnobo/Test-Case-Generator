@@ -18,7 +18,7 @@ load_dotenv()
 
 import test_case_generation
 from test_case_generation.framework.agents.base import set_max_concurrency
-from test_case_generation.framework.orchestrator.generator import TestGenerationPipeline
+from test_case_generation.framework.orchestrator.generator import UIASTGenerator
 from test_case_generation.framework.orchestrator.runs import (
     make_run_id,
     make_run_metadata,
@@ -64,6 +64,11 @@ def main():
         metavar="TYPE",
         help="Test types to generate: positive, negative, edge (default: all). Example: --type positive negative",
     )
+    
+    # Ablation Flags
+    parser.add_argument("--disable-critic", action="store_true", help="Disable the structural and workflow validator agents")
+    parser.add_argument("--skip-workflows", action="store_true", help="Skip the workflow extraction stage entirely")
+    parser.add_argument("--single-test-agent", action="store_true", help="Use a single combined test generator agent instead of specialized parallel agents")
 
     args = parser.parse_args()
 
@@ -159,6 +164,9 @@ def _generate(args):
             output_dir=output_dir,
             resume=resume,
             test_types=test_types,
+            disable_critic=args.disable_critic,
+            skip_workflows=args.skip_workflows,
+            single_test_agent=args.single_test_agent,
         ))
     finally:
         generator.close()

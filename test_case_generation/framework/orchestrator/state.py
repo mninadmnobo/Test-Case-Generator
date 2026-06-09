@@ -28,6 +28,11 @@ class PipelineState(TypedDict, total=False):
     # Test type filter — subset of {"positive", "negative", "edge"}
     test_types: Annotated[Set[str], _last_value]
 
+    # Ablation Flags
+    disable_critic: Annotated[bool, _last_value]
+    skip_workflows: Annotated[bool, _last_value]
+    single_test_agent: Annotated[bool, _last_value]
+
     # Structural Model results (one entry per module)
     structural_model_results: Annotated[List[Dict[str, Any]], _last_value]
 

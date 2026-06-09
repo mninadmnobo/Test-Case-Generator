@@ -1,0 +1,127 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:01:25.024101Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for required field combinations and invalid credentials.",
+        "missing": [
+          "No workflow for Login_Form: action=Login with Username='standard_user' and Password='secret_sauce'",
+          "No workflow for Login_Form: action=Login with Username='problem_user' and Password='secret_sauce'",
+          "No workflow for Login_Form: action=Login with Username='performance_glitch_user' and Password='secret_sauce'",
+          "No workflow for Login_Form: action=Login with Username='error_user' and Password='secret_sauce'",
+          "No workflow for Login_Form: action=Login with Username='visual_user' and Password='secret_sauce'"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for valid credentials with each accepted username."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form actions related to the Add to cart and Remove buttons.",
+        "missing": [
+          "No workflow for data_table: action=Add to cart",
+          "No workflow for data_table: action=Remove"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the actions Add to cart and Remove"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined according to the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows match the actions defined in the AST and there are no missing or phantom workflows.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correct.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are accounted for and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are accounted for and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

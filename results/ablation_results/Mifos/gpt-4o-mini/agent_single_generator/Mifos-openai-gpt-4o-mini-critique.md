@@ -1,0 +1,839 @@
+# Semantic Critique — Mifos
+
+Generated: 2026-06-09T09:49:13.862814Z
+
+## Login
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required elements and contains phantoms.
+
+**Missing:**
+
+- Login_Form.fields.Tenant.required
+- Login_Form.submit_actions[0].constraints[0] (missing 'invalid credentials' handling)
+
+**Phantoms (hallucinations):**
+
+- Login_Form.fields.Remember_me (not explicitly mentioned in description)
+- Login_Form.submit_actions[1] (Forgot Password? link not described as a submit action)
+
+**Fixes applied:**
+
+- Set Login_Form.fields.Tenant.required to true
+- Add handling for invalid credentials in Login_Form.submit_actions[0].constraints
+- Remove Login_Form.fields.Remember_me
+- Remove Login_Form.submit_actions[1] and replace with a link element
+
+---
+
+## Home Page
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST correctly represents the interactive elements described with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Dashboard
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+Missing items: 3 summary cards and the Client Trends chart are absent from the AST.
+
+**Missing:**
+
+- components.Client_Trends_Chart
+- components.Summary_Cards[0]
+- components.Summary_Cards[1]
+
+**Phantoms:** none
+
+**Fixes applied:**
+
+- Add components.Client_Trends_Chart to represent the chart visualizing client growth.
+- Add components.Summary_Cards[0] for 'Amount Pending / Disbursed'.
+- Add components.Summary_Cards[1] for 'Amount Collected'.
+
+---
+
+## Global Search
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST correctly represents all interactive elements from the description with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Client Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing critical elements and contains phantoms.
+
+**Missing:**
+
+- Client_Detail_Page.tabs[0].fields.Close
+- Client_Detail_Page.tabs[0].fields.Transfer_Client
+- Client_Detail_Page.tabs[0].fields.Add_Charge
+- Client_Detail_Page.tabs[0].fields.New_Loan
+- Client_Detail_Page.tabs[0].fields.New_Savings
+- Client_Detail_Page.tabs[0].fields.New_Share_Account
+- Client_Detail_Page.tabs[0].fields.Reactivate
+- Client_Detail_Page.tabs[0].fields.Edit (for Active status)
+- Client_Detail_Page.tabs[0].fields.Reject (for Active status)
+- Client_Detail_Page.tabs[0].fields.Withdraw (for Active status)
+- Client_Detail_Page.tabs[0].fields.Reject (for Rejected status)
+- Client_Detail_Page.tabs[0].fields.Withdraw (for Withdrawn status)
+
+**Phantoms (hallucinations):**
+
+- Bulk_Import_Page.fields.Download_Template (button not in description)
+- Client_Detail_Page.tabs[0].fields.Activate (button not in description)
+
+**Fixes applied:**
+
+- Add missing action buttons for Client_Detail_Page.tabs[0] based on status.
+- Remove phantom elements from Bulk_Import_Page and Client_Detail_Page.
+
+---
+
+## Group Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing critical elements and contains phantoms.
+
+**Missing:**
+
+- Groups_Page.columns[0] (Group Name column is missing)
+- Bulk_Import_Groups_Page.fields.Groups_Upload.fields.Upload (Upload button is missing)
+- Group_Detail_Page.fields.Group_Name (Group Name should be required)
+
+**Phantoms (hallucinations):**
+
+- Groups_Page.row_actions[0] (View action not mentioned in description)
+- Bulk_Import_Groups_Page.fields.Groups_Template.fields.Download (Download button not mentioned in description)
+- Group_Detail_Page.fields.Status (Status should not be a field as it is a passive display)
+
+**Fixes applied:**
+
+- Add 'Group_Name' column to 'Groups_Page.columns'
+- Add 'Upload' button to 'Bulk_Import_Groups_Page.fields.Groups_Upload'
+- Change 'Group_Name' field in 'Group_Detail_Page.fields' to required
+
+---
+
+## Center Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST contains several missing items and phantoms.
+
+**Missing:**
+
+- Centers_Page.row_actions[0].action_name (View action not explicitly mentioned in description)
+- Center_Detail_Page.tabs[0].fields.Center_Name (Center name should be required)
+- Center_Detail_Page.tabs[0].fields.Status (Status should be required)
+- Center_Detail_Page.tabs[0].fields.Office (Office should be required)
+- Center_Detail_Page.tabs[0].fields.Staff (Staff should be required)
+
+**Phantoms (hallucinations):**
+
+- Bulk_Import_Centers_Page.fields.Template_Download (Template download not mentioned in description)
+- Center_Detail_Page.tabs[0].fields.Center_Name (Passive display field not in description)
+- Center_Detail_Page.tabs[0].fields.Status (Passive display field not in description)
+- Center_Detail_Page.tabs[0].fields.Office (Passive display field not in description)
+- Center_Detail_Page.tabs[0].fields.Staff (Passive display field not in description)
+
+**Fixes applied:**
+
+- Remove 'View' action from Centers_Page.row_actions
+- Remove 'Template_Download' field from Bulk_Import_Centers_Page.fields
+- Make Center_Name, Status, Office, and Staff fields required in Center_Detail_Page.tabs[0].fields
+
+---
+
+## Loan Products
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+Missing items and phantoms identified in the AST.
+
+**Missing:**
+
+- Loan_Product_Stepper.steps[2].fields.Principal_Amount.constraints[0] (Minimum value must be specified)
+- Loan_Product_Stepper.steps[2].fields.Principal_Amount.constraints[1] (Default value must be specified)
+- Loan_Product_Stepper.steps[2].fields.Principal_Amount.constraints[2] (Maximum value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Grace_Period.constraints[0] (Minimum value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Grace_Period.constraints[1] (Default value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Grace_Period.constraints[2] (Maximum value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Arrears_Tolerance.constraints[0] (Minimum value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Arrears_Tolerance.constraints[1] (Default value must be specified)
+- Loan_Product_Stepper.steps[3].fields.Arrears_Tolerance.constraints[2] (Maximum value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Number_of_Repayments.constraints[0] (Minimum value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Number_of_Repayments.constraints[1] (Default value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Number_of_Repayments.constraints[2] (Maximum value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Nominal_Interest_Rate.constraints[0] (Minimum value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Nominal_Interest_Rate.constraints[1] (Default value must be specified)
+- Loan_Product_Stepper.steps[4].fields.Nominal_Interest_Rate.constraints[2] (Maximum value must be specified)
+
+**Phantoms (hallucinations):**
+
+- Loan_Products_Page.row_actions[0].action_name (View action not in description)
+- Loan_Product_Stepper.steps[5].fields (Empty fields in Charges step not in description)
+
+**Fixes applied:**
+
+- Add constraints for Principal_Amount in step 2.
+- Add constraints for Grace_Period and Arrears_Tolerance in step 3.
+- Add constraints for Number_of_Repayments and Nominal_Interest_Rate in step 4.
+- Remove View action from row_actions as it is not mentioned in the description.
+- Remove empty fields in Charges step as they are not mentioned in the description.
+
+---
+
+## Savings Products
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing several required fields and contains phantoms.
+
+**Missing:**
+
+- Savings_Product_Stepper.steps[5].fields
+- Savings_Product_Stepper.steps[6].fields.GL_Account_Mappings.fields
+- Fixed_Deposit_Products_Stepper.steps[7].fields.Tiered_Rates.item_fields
+- Recurring_Deposit_Products_Stepper.steps[5].fields.Is_Mandatory_Deposit
+
+**Phantoms (hallucinations):**
+
+- Savings_Product_Stepper.steps[6].fields.Accounting_Method (not explicitly mentioned in description)
+- Fixed_Deposit_Products_Stepper.steps[5].fields.Pre_Mature_Closure_Applicable (not explicitly mentioned in description)
+- Recurring_Deposit_Products_Stepper.steps[5].fields.Recurring_Frequency (not explicitly mentioned in description)
+
+**Fixes applied:**
+
+- Add missing fields for Charges step in Savings_Product_Stepper.
+- Add missing fields for GL Account Mappings in Accounting step of Savings_Product_Stepper.
+- Add missing fields for Tiered Rates in Interest Rate Chart step of Fixed_Deposit_Products_Stepper.
+- Add missing Is Mandatory Deposit checkbox in Mandatory Deposit step of Recurring_Deposit_Products_Stepper.
+
+---
+
+## Share Products
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+There are missing required fields and phantoms present in the AST.
+
+**Missing:**
+
+- Share_Product_Stepper.steps[2].fields.Currency
+- Share_Product_Stepper.steps[2].fields.Decimal_Places
+- Share_Product_Stepper.steps[2].fields.Currency_In_Multiples_Of
+- Share_Product_Stepper.steps[4].fields.Minimum_Shares_per_Client
+- Share_Product_Stepper.steps[4].fields.Maximum_Shares_per_Client
+- Share_Product_Stepper.steps[4].fields.Nominal_Shares_per_Client
+- Share_Product_Stepper.steps[4].fields.Minimum_Active_Period_Frequency
+- Share_Product_Stepper.steps[4].fields.Lock_in_Period
+- Share_Product_Stepper.steps[6].fields.Charges_Interface
+
+**Phantoms (hallucinations):**
+
+- Share_Product_Stepper.steps[3].fields.Nominal_Unit_Price (field name not in description)
+- Share_Product_Stepper.steps[4].fields.Nominal_Shares_per_Client (field name not in description)
+- Share_Product_Stepper.steps[6].fields.Charges_Interface (field name not in description)
+
+**Fixes applied:**
+
+- Add required fields for Currency, Decimal Places, and Currency In Multiples Of in step 2.
+- Add required fields for Minimum Shares per Client, Maximum Shares per Client, Nominal Shares per Client, Minimum Active Period Frequency, and Lock-in Period in step 4.
+- Add Charges Interface field in step 6.
+
+---
+
+## Charges
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Create_Charge_Form.fields.Charge_Time_Type (required status missing)
+- Create_Charge_Form.fields.Charge_Calculation_Type (required status missing)
+
+**Phantoms (hallucinations):**
+
+- Charges_Table.columns[1] (Charge Applies To type unspecified not in description)
+- Charges_Table.columns[2] (Is Penalty type unspecified not in description)
+- Charges_Table.columns[3] (Is Active type unspecified not in description)
+- Charges_Table.columns[4] (Is Paid Derived type unspecified not in description)
+
+**Fixes applied:**
+
+- Create_Charge_Form.fields.Charge_Time_Type: set required to true
+- Create_Charge_Form.fields.Charge_Calculation_Type: set required to true
+- Charges_Table.columns[1]: change type to 'dropdown'
+- Charges_Table.columns[2]: change type to 'checkbox'
+- Charges_Table.columns[3]: change type to 'checkbox'
+- Charges_Table.columns[4]: change type to 'unspecified'
+
+---
+
+## Floating Rates
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required elements and contains phantoms.
+
+**Missing:**
+
+- Detail_View.fields (missing Edit option)
+
+**Phantoms (hallucinations):**
+
+- Creation_Form.fields.Rate_Periods (no explicit mention of Rate Periods table in description)
+
+**Fixes applied:**
+
+- Add 'Edit' option to 'Detail_View.fields'
+- Remove 'Rate_Periods' from 'Creation_Form.fields' as it is not explicitly mentioned
+
+---
+
+## Delinquency Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required elements and contains phantoms.
+
+**Missing:**
+
+- Create_Delinquency_Bucket_Form.fields.Delinquency_Ranges.item_fields.Range_Name (expected to have specific range naming)
+- Create_Delinquency_Bucket_Form.fields.Delinquency_Ranges.item_fields.Days (expected to have specific range days)
+
+**Phantoms (hallucinations):**
+
+- Create_Delinquency_Bucket_Form.fields.Delinquency_Ranges (inferred from description but not explicitly stated)
+
+**Fixes applied:**
+
+- Create_Delinquency_Bucket_Form.fields.Delinquency_Ranges.item_fields.Range_Name: specify the expected range naming convention.
+- Create_Delinquency_Bucket_Form.fields.Delinquency_Ranges.item_fields.Days: specify the expected range days.
+
+---
+
+## Loan Account
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing several expected elements and contains phantoms.
+
+**Missing:**
+
+- Loan_Detail_Page.tabs[1].fields.Installment_Number
+- Loan_Detail_Page.tabs[1].fields.Due_Date
+- Loan_Detail_Page.tabs[1].fields.Principal_Due
+- Loan_Detail_Page.tabs[1].fields.Interest_Due
+- Loan_Detail_Page.tabs[1].fields.Fees_Due
+- Loan_Detail_Page.tabs[1].fields.Penalties_Due
+- Loan_Detail_Page.tabs[1].fields.Total_Due
+- Loan_Detail_Page.tabs[1].fields.Amounts_Paid
+- Loan_Detail_Page.tabs[1].fields.Total_Outstanding
+- Loan_Detail_Page.tabs[2].fields.Date
+- Loan_Detail_Page.tabs[2].fields.Type
+- Loan_Detail_Page.tabs[2].fields.Amount
+- Loan_Detail_Page.tabs[2].fields.Principal_Interest_Fees_Penalties_Portion
+- Loan_Detail_Page.tabs[2].fields.Outstanding_Balance
+- Loan_Detail_Page.tabs[3].fields.Amount
+- Loan_Detail_Page.tabs[3].fields.Due_Date
+- Loan_Detail_Page.tabs[3].fields.Paid
+- Loan_Detail_Page.tabs[3].fields.Waived
+- Loan_Detail_Page.tabs[3].fields.Outstanding
+
+**Phantoms (hallucinations):**
+
+- Loan_Detail_Page.tabs[0].fields.Loan_Account_Number (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[0].fields.Product_Name (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[0].fields.Client_Name (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[0].fields.Status (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[0].fields.Loan_Balance (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[1].fields.Status_Indicators (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[3].fields.Charge_Name (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[4].fields.Collateral_Items (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[5].fields.Note_Text (not explicitly mentioned in description)
+- Loan_Detail_Page.tabs[6].fields.Document_Name (not explicitly mentioned in description)
+
+**Fixes applied:**
+
+- Add missing fields to Loan_Detail_Page.tabs[1] for repayment schedule details.
+- Add missing fields to Loan_Detail_Page.tabs[2] for transaction details.
+- Add missing fields to Loan_Detail_Page.tabs[3] for charges details.
+
+---
+
+## Savings Account
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Savings_Account_Creation_Form.fields.Field_Officer
+- Savings_Account_Creation_Form.fields.Submitted_On
+
+**Phantoms (hallucinations):**
+
+- Savings_Account_Detail_Tabs.tabs[1].row_actions[0] (View action not in description)
+- Savings_Account_Detail_Tabs.tabs[1].row_actions[1] (Edit action not in description)
+- Savings_Account_Detail_Tabs.tabs[1].row_actions[2] (Delete action not in description)
+
+**Fixes applied:**
+
+- Add 'Field_Officer' field to 'Savings_Account_Creation_Form.fields'
+- Add 'Submitted_On' field to 'Savings_Account_Creation_Form.fields'
+- Remove 'View' action from 'Savings_Account_Detail_Tabs.tabs[1].row_actions'
+- Remove 'Edit' action from 'Savings_Account_Detail_Tabs.tabs[1].row_actions'
+- Remove 'Delete' action from 'Savings_Account_Detail_Tabs.tabs[1].row_actions'
+
+---
+
+## Share Account
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+There are missing items and phantoms in the AST.
+
+**Missing:**
+
+- Share_Account_Detail_Page.display_fields.share_account_number
+- Share_Account_Detail_Page.display_fields.product_name
+- Share_Account_Detail_Page.display_fields.client_name
+- Share_Account_Detail_Page.display_fields.status_badge
+- Share_Account_Detail_Page.display_fields.total_approved_shares
+- Share_Account_Detail_Page.display_fields.total_pending_shares
+- Share_Account_Detail_Page.display_fields.unit_price
+
+**Phantoms (hallucinations):**
+
+- Share_Account_Application_Form.fields.Charges (unspecified type not in description)
+- Share_Account_Detail_Page.tabs[0].fields.Type (unspecified type not in description)
+- Share_Account_Detail_Page.tabs[0].fields.Status (unspecified type not in description)
+- Share_Account_Detail_Page.tabs[1].fields.Amount_Per_Share (type number inferred without textual anchor)
+- Share_Account_Detail_Page.tabs[1].fields.Total_Amount (type number inferred without textual anchor)
+
+**Fixes applied:**
+
+- Add display fields for share account details in Share_Account_Detail_Page.
+- Remove unspecified types from Share_Account_Application_Form.fields.Charges.
+- Remove unspecified types from Share_Account_Detail_Page.tabs[0].fields.Type and Status.
+- Specify types for Share_Account_Detail_Page.tabs[1].fields.Amount_Per_Share and Total_Amount.
+
+---
+
+## Fixed & Recurring Deposit Accounts
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+Missing items: 3+ and phantoms: 0.
+
+**Missing:**
+
+- FD_Account_Detail_Page.fields.deposit_amount
+- FD_Account_Detail_Page.fields.maturity_date
+- FD_Account_Detail_Page.fields.maturity_amount
+- FD_Account_Detail_Page.fields.interest_rate
+- FD_Account_Detail_Page.fields.status
+- RD_Account_Detail_Page.fields.deposit_schedule
+- RD_Account_Detail_Page.fields.total_deposits_made
+- RD_Account_Detail_Page.fields.maturity_details
+- RD_Account_Detail_Page.fields.interest_rate
+- RD_Account_Detail_Page.fields.status
+
+**Phantoms:** none
+
+**Fixes applied:**
+
+- Add fields for FD_Account_Detail_Page: deposit_amount, maturity_date, maturity_amount, interest_rate, status.
+- Add fields for RD_Account_Detail_Page: deposit_schedule, total_deposits_made, maturity_details, interest_rate, status.
+
+---
+
+## Accounting — Chart of Accounts
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing several expected elements and contains phantoms.
+
+**Missing:**
+
+- Create_GL_Account_Form.fields.Manual_Entries_Allowed
+- Create_GL_Account_Form.fields.Description
+- Create_GL_Account_Form.fields.Tag
+- Chart_of_Accounts.columns[2] (Account_Type should be color-coded)
+- Chart_of_Accounts.row_actions[0] (Edit action is missing)
+- Chart_of_Accounts.row_actions[1] (Delete action is missing)
+
+**Phantoms (hallucinations):**
+
+- Chart_of_Accounts.columns[2] (Account_Type color-coding is not specified in the description)
+
+**Fixes applied:**
+
+- Add Manual_Entries_Allowed field to Create_GL_Account_Form.fields
+- Add Description field to Create_GL_Account_Form.fields
+- Add Tag field to Create_GL_Account_Form.fields
+- Remove phantom color-coding from Chart_of_Accounts.columns[2]
+- Ensure Edit action is included in Chart_of_Accounts.row_actions
+- Ensure Delete action is included in Chart_of_Accounts.row_actions
+
+---
+
+## Accounting — Journal Entries & Closures
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required elements and contains phantoms.
+
+**Missing:**
+
+- Journal_Entry_Creation_Form.fields.Entry_Lines.item_fields.Add_Row
+- Journal_Entry_Creation_Form.constraints[1] (validation error blocking submission not present)
+- Closure_Creation_Form.constraints[0] (preventing journal entries not present)
+
+**Phantoms (hallucinations):**
+
+- Journal_Entry_Creation_Form.fields.Entry_Lines.item_fields.GL_Account (inferred field without description)
+- Journal_Entry_Creation_Form.fields.Entry_Lines.item_fields.Amount (inferred field without description)
+
+**Fixes applied:**
+
+- Add 'Add_Row' field to 'Journal_Entry_Creation_Form.fields.Entry_Lines.item_fields'
+- Add validation error constraint to 'Journal_Entry_Creation_Form.constraints'
+- Add constraint for preventing journal entries to 'Closure_Creation_Form.constraints'
+
+---
+
+## Accounting Rules & Financial Activity Mappings
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required elements and contains phantoms.
+
+**Missing:**
+
+- Financial_Activity_Mappings_Table.row_actions[0] (Create Mapping button not in description)
+- Financial_Activity_Mappings_Table.sortable_columns[0] (Financial Activity column not in description)
+
+**Phantoms (hallucinations):**
+
+- Create_Mapping_Form.fields.GL_Account.options[0] (GL Account 1 not in description)
+- Create_Mapping_Form.fields.GL_Account.options[1] (GL Account 2 not in description)
+- Create_Mapping_Form.fields.GL_Account.options[2] (GL Account 3 not in description)
+- Create_Rule_Form.fields.Debit_Tags_Debit_Account.options[0] (GL Account 1 not in description)
+- Create_Rule_Form.fields.Debit_Tags_Debit_Account.options[1] (GL Account 2 not in description)
+- Create_Rule_Form.fields.Debit_Tags_Debit_Account.options[2] (GL Account 3 not in description)
+- Create_Rule_Form.fields.Credit_Tags_Credit_Account.options[0] (GL Account 1 not in description)
+- Create_Rule_Form.fields.Credit_Tags_Credit_Account.options[1] (GL Account 2 not in description)
+- Create_Rule_Form.fields.Credit_Tags_Credit_Account.options[2] (GL Account 3 not in description)
+
+**Fixes applied:**
+
+- Remove Create Mapping button from Financial_Activity_Mappings_Table.row_actions
+- Remove Financial Activity column from Financial_Activity_Mappings_Table.sortable_columns
+- Remove options for GL_Account in Create_Mapping_Form.fields.GL_Account
+- Remove options for Debit_Tags_Debit_Account in Create_Rule_Form.fields.Debit_Tags_Debit_Account
+- Remove options for Credit_Tags_Credit_Account in Create_Rule_Form.fields.Credit_Tags_Credit_Account
+
+---
+
+## Provisioning
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST accurately reflects the interactive elements described with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Offices
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST accurately reflects the interactive elements described with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Employees
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST accurately reflects the interactive elements described with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Teller & Cashier Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+There are missing items and phantoms in the AST.
+
+**Missing:**
+
+- Tellers_Table.row_actions[0].action_name (View action not specified in description)
+- Teller_Detail.fields.Cashiers.row_actions (Cashiers section should have row actions)
+- Cashier_Transactions_List.sortable_columns[1] (Type column is missing)
+
+**Phantoms (hallucinations):**
+
+- Teller_Detail.fields.Edit (Edit option not explicitly mentioned in description)
+- Cashier_Detail.fields.Opening_Balance (Opening Balance not mentioned in description)
+- Cashier_Detail.fields.Cash_In_Hand (Cash In Hand not mentioned in description)
+
+**Fixes applied:**
+
+- Add 'View' action to Tellers_Table.row_actions
+- Add row_actions to Teller_Detail.fields.Cashiers
+- Add 'Type' column to Cashier_Transactions_List.sortable_columns
+- Remove Edit button from Teller_Detail.fields
+- Remove Opening_Balance and Cash_In_Hand from Cashier_Detail.fields
+
+---
+
+## Users & Roles
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Create_User_Form.fields.Staff
+- Create_Role_Form.fields.Permissions
+- Permissions_Page.fields.Permissions
+
+**Phantoms (hallucinations):**
+
+- Create_User_Form.fields.Roles (not explicitly mentioned in description)
+- Create_Role_Form.fields.Description (not explicitly mentioned in description)
+- Permissions_Page.fields.Permissions (not explicitly mentioned in description)
+
+**Fixes applied:**
+
+- Create_User_Form.fields.Staff should be required: true
+- Create_Role_Form.fields.Permissions should be removed
+- Permissions_Page.fields.Permissions should be removed
+
+---
+
+## Reports
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Reports_Page.row_actions[0].fields.Parameters_Form.fields.Category
+- Reports_Page.row_actions[0].fields.Parameters_Form.fields.Output_Options
+
+**Phantoms (hallucinations):**
+
+- Reports_Page.row_actions[0].fields.Parameters_Form.fields.Output_Options (Output options not explicitly mentioned in description)
+
+**Fixes applied:**
+
+- Add 'Category' field to 'Reports_Page.row_actions[0].fields.Parameters_Form.fields'
+- Add 'Output_Options' field to 'Reports_Page.row_actions[0].fields.Parameters_Form.fields'
+
+---
+
+## Account Transfers & Standing Instructions
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Account_Transfers_Form.fields.From_Office
+- Account_Transfers_Form.fields.From_Client
+- Account_Transfers_Form.fields.From_Account
+- Account_Transfers_Form.fields.To_Office
+- Account_Transfers_Form.fields.To_Client
+- Account_Transfers_Form.fields.To_Account_Type
+- Account_Transfers_Form.fields.To_Account
+- Create_Standing_Instruction_Form.fields.From_Account
+- Create_Standing_Instruction_Form.fields.To_Account
+- Create_Standing_Instruction_Form.fields.Transfer_Type
+- Create_Standing_Instruction_Form.fields.Priority
+- Create_Standing_Instruction_Form.fields.Amount
+- Create_Standing_Instruction_Form.fields.Validity_From
+- Create_Standing_Instruction_Form.fields.Validity_Till
+- Create_Standing_Instruction_Form.fields.Recurrence_Frequency
+- Create_Standing_Instruction_Form.fields.Recurrence_Interval
+
+**Phantoms (hallucinations):**
+
+- Create_Standing_Instruction_Form.fields.From_Account (not specified in description)
+- Create_Standing_Instruction_Form.fields.To_Account (not specified in description)
+- Create_Standing_Instruction_Form.fields.Transfer_Type (not specified in description)
+- Create_Standing_Instruction_Form.fields.Priority (not specified in description)
+- Create_Standing_Instruction_Form.fields.Amount (not specified in description)
+- Create_Standing_Instruction_Form.fields.Validity_From (not specified in description)
+- Create_Standing_Instruction_Form.fields.Validity_Till (not specified in description)
+- Create_Standing_Instruction_Form.fields.Recurrence_Frequency (not specified in description)
+- Create_Standing_Instruction_Form.fields.Recurrence_Interval (not specified in description)
+
+**Fixes applied:**
+
+- Add required fields to Account_Transfers_Form: From_Office, From_Client, From_Account, To_Office, To_Client, To_Account_Type, To_Account
+- Remove phantoms from Create_Standing_Instruction_Form: From_Account, To_Account, Transfer_Type, Priority, Amount, Validity_From, Validity_Till, Recurrence_Frequency, Recurrence_Interval
+
+---
+
+## Tax Management
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing required fields and contains phantoms.
+
+**Missing:**
+
+- Create_Tax_Component_Form.fields.Debit_Account
+- Create_Tax_Group_Form.fields.Tax_Components.item_fields.Credit_Account
+
+**Phantoms (hallucinations):**
+
+- Create_Tax_Group_Form.fields.Tax_Components.item_fields.Credit_Account_Type (not mentioned in description)
+
+**Fixes applied:**
+
+- Add 'Debit_Account' as a required field in 'Create_Tax_Component_Form.fields'
+- Add 'Credit_Account' as a required field in 'Create_Tax_Group_Form.fields.Tax_Components.item_fields'
+
+---
+
+## Organization Settings
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+There are missing items and phantoms in the AST.
+
+**Missing:**
+
+- Holidays_Page.submit_actions[0].fields.Repayements_Rescheduled_To
+- Bulk_Import_Page.fields.Upload_Interface
+
+**Phantoms (hallucinations):**
+
+- Funds_Page.submit_actions[0].element_name (Create Fund button not in description)
+- Payment_Types_Page.submit_actions[0].element_name (+ Create button not in description)
+
+**Fixes applied:**
+
+- Add 'Repayments_Rescheduled_To' field to Holidays_Page.submit_actions[0].fields
+- Remove 'Create Fund' button from Funds_Page.submit_actions[0].element_name
+- Remove '+ Create' button from Payment_Types_Page.submit_actions[0].element_name
+
+---
+
+## System Administration
+
+**Verdict:** retry (forced ship)  
+**Forced ship:** yes  
+
+The AST is missing several expected interactive elements and contains phantoms.
+
+**Missing:**
+
+- Manage_Scheduler_Jobs.row_actions[0] (Edit button for jobs not in description)
+- Manage_Scheduler_Jobs.row_actions[1] (Delete button for jobs not in description)
+- Manage_Scheduler_Jobs.columns.Previous_Run_Status (not defined in AST)
+- Global_Configuration.columns.Value (not defined in AST)
+- Manage_Codes.row_actions[1] (Deactivate button for codes not in description)
+- Audit_Trails.columns.Processing_Result (not defined in AST)
+- Audit_Trails.columns.Client_Loan_Savings_Details (not defined in AST)
+
+**Phantoms (hallucinations):**
+
+- Manage_Scheduler_Jobs.global_actions[0] (Start/Stop Scheduler toggle not in description)
+- Manage_Data_Tables.fields.Column_Definitions.item_fields.Type.options (dropdown options inferred without explicit mention)
+
+**Fixes applied:**
+
+- Add Edit button for jobs in Manage_Scheduler_Jobs.row_actions
+- Add Delete button for jobs in Manage_Scheduler_Jobs.row_actions
+- Add Previous_Run_Status column in Manage_Scheduler_Jobs.columns
+- Add Value column in Global_Configuration.columns
+- Add Deactivate button for codes in Manage_Codes.row_actions
+- Add Processing_Result column in Audit_Trails.columns
+- Add Client_Loan_Savings_Details column in Audit_Trails.columns
+- Remove Start/Stop Scheduler toggle from Manage_Scheduler_Jobs.global_actions
+- Remove inferred dropdown options from Manage_Data_Tables.fields.Column_Definitions.item_fields.Type.options
+
+---
+
+## Logout
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST accurately reflects the interactive elements described, with no missing items or phantoms.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---

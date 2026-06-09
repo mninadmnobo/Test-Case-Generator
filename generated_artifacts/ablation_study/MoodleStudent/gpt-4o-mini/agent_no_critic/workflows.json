@@ -1,0 +1,161 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-09T12:06:45.051266Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log in with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "redirects to Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Log in with invalid or empty credentials",
+          "actor": "<role>",
+          "conditional_branch": "valid credentials == false",
+          "terminal_action": "Log in",
+          "on_success": "shows inline error message"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Access as a guest",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Access as a guest",
+          "on_success": "Guest access granted"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View cookies notice",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cookies notice",
+          "on_success": "Displays cookie usage information"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "workflows": [],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open submission form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add_Submission_Button",
+          "on_success": "opens the submission form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit with Online Text Editor",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Submission created"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Submit with File Upload",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Submission created"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View submission status",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Displays submission details"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Edit submission",
+          "actor": "<role>",
+          "conditional_branch": "due date has not passed AND teacher permits resubmission",
+          "terminal_action": "Edit",
+          "on_success": "Submission edited"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Update Profile with all required fields filled",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "saves profile changes"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel profile editing",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "exits without changes"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Open Profile Form from Profile Page",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "open_profile_form",
+          "on_success": "Profile form is displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Send Message from Profile Page",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "send_message",
+          "on_success": "Message sent successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    }
+  ]
+}

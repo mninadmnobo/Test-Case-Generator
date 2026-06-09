@@ -1,0 +1,625 @@
+{
+  "project_name": "Phptravels",
+  "generated_at": "2026-06-09T11:03:43.027481Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Home Page & Search",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Search Hotels",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to corresponding results listing page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Search Flights",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to corresponding results listing page"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Search Tours",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to corresponding results listing page"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Search Cars",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to corresponding results listing page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "User Registration",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Successful registration without mobile number",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates account"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Successful registration with mobile number",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "creates account"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "User Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Login with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Login",
+          "on_success": "redirects to dashboard or previous page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Login with invalid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Login",
+          "on_success": "shows error message"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Login with multiple failed attempts requiring CAPTCHA",
+          "actor": "<role>",
+          "conditional_branch": "multiple consecutive failed attempts occur",
+          "terminal_action": "Login",
+          "on_success": "redirects to dashboard or previous page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "Forgot Password",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Reset Password with existing email",
+          "actor": "<role>",
+          "conditional_branch": "email must exist in the system",
+          "terminal_action": "Reset Password",
+          "on_success": "sends reset link to email"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Change Password after clicking reset link",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Change Password",
+          "on_success": "redirects to login page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Hotels Search & Listing",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Search for hotels",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to listing page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Book a hotel",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Book Now",
+          "on_success": "Booking confirmed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 6,
+      "module_title": "Hotel Details & Booking",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Book Now after logging in",
+          "actor": "<role>",
+          "conditional_branch": "user must be logged in",
+          "terminal_action": "Book Now",
+          "on_success": "proceeds to payment page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Flights Search & Listing",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Search Flights with required fields",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search Flights",
+          "on_success": "redirects to listing page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Select a flight from the listing",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "Flight selected for booking"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Flight Booking",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit booking form with all required fields completed",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Continue",
+          "on_success": "proceeds to the payment page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Tours Search & Listing",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Search for tours",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to listing page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Tour Details & Booking",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Book Now for authenticated user",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Book Now",
+          "on_success": "redirects to booking confirmation"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 11,
+      "module_title": "Cars Search & Listing",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Search for cars",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "redirects to listing page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Book a vehicle",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Book Now",
+          "on_success": "Booking confirmed; success message shown"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Car Booking",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Confirm Booking with valid fields",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Confirm Booking",
+          "on_success": "proceeds to payment"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 13,
+      "module_title": "Visa Services",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Visa Requirements Form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Visa requirements displayed based on nationality and destination country"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit Visa Application Form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Application submitted; success message shown"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Track Application Status",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Track Application Status",
+          "on_success": "Application status displayed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 14,
+      "module_title": "User Dashboard",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View booking details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View Details",
+          "on_success": "Booking details displayed"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel booking",
+          "actor": "<role>",
+          "conditional_branch": "booking type and cancellation policy permit",
+          "terminal_action": "Cancel",
+          "on_success": "Booking cancelled; success message shown"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Modify booking",
+          "actor": "<role>",
+          "conditional_branch": "booking type and cancellation policy permit",
+          "terminal_action": "Modify",
+          "on_success": "Booking modified; success message shown"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Download confirmations",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Download Confirmations",
+          "on_success": "Confirmations downloaded"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Download invoices",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Download Invoices",
+          "on_success": "Invoices downloaded"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Download vouchers",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Download Vouchers",
+          "on_success": "Vouchers downloaded"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Edit profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit",
+          "on_success": "Profile edited; success message shown"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Logout",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "End Session",
+          "on_success": "Session ended; user logged out"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 15,
+      "module_title": "Booking Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Modify booking details",
+          "actor": "<role>",
+          "conditional_branch": "booking type and cancellation policy permit modification",
+          "terminal_action": "Modify_Button",
+          "on_success": "allows changing travel dates, adding special requests, or updating traveler information"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel booking",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel_Button",
+          "on_success": "refund initiated to original payment method"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 16,
+      "module_title": "Payment Processing",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Payment with successful transaction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit Payment",
+          "on_success": "redirects to booking confirmation page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Retry Payment after failed transaction",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Retry Payment",
+          "on_success": "allows user to retry payment without losing booking details"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 17,
+      "module_title": "Currency & Language Selection",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Select USD currency",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "updates all prices displayed across the site in real-time"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Select EUR currency",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "updates all prices displayed across the site in real-time"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Select GBP currency",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "updates all prices displayed across the site in real-time"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Select JPY currency",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "updates all prices displayed across the site in real-time"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Select English language",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "switches the entire site interface to the chosen language"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Select Arabic language",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "switches the entire site interface to the chosen language"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Select Spanish language",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "switches the entire site interface to the chosen language"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Select French language",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Select",
+          "on_success": "switches the entire site interface to the chosen language"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 18,
+      "module_title": "Search & Filters",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Apply filters for Hotels",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters",
+          "on_success": "Results update dynamically based on selected filters"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Apply filters for Flights",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters",
+          "on_success": "Results update dynamically based on selected filters"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Apply filters for Tours",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters",
+          "on_success": "Results update dynamically based on selected filters"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Apply filters for Cars",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters",
+          "on_success": "Results update dynamically based on selected filters"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Remove individual filter",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Remove Filter",
+          "on_success": "Active filters updated; results refresh accordingly"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Reset all filters",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Reset all filters",
+          "on_success": "All filters cleared; results refresh to show all listings"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Sort results by Price: Low to High",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort",
+          "on_success": "Results sorted by price from low to high"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Sort results by Price: High to Low",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort",
+          "on_success": "Results sorted by price from high to low"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Sort results by Rating: High to Low",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort",
+          "on_success": "Results sorted by rating from high to low"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Sort results by Most Popular",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort",
+          "on_success": "Results sorted by popularity"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 19,
+      "module_title": "Reviews & Ratings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit Review without Photos",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit_Review",
+          "on_success": "Review submitted successfully"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit Review with Photos",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit_Review",
+          "on_success": "Review submitted successfully"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 20,
+      "module_title": "Offers & Deals",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Book Now for any offer",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Book Now",
+          "on_success": "applies promotional code automatically or redirects to pre-filled search"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 21,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Logout and terminate session",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Logout_Button",
+          "on_success": "terminates the current session and redirects to the home page"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

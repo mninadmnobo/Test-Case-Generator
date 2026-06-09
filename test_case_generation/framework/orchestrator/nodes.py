@@ -11,6 +11,7 @@ from test_case_generation.framework.agents.structural_model_validator import Str
 from test_case_generation.framework.agents.edge_test_case_generator import EdgeTestCaseGeneratorAgent
 from test_case_generation.framework.agents.negative_test_case_generator import NegativeTestCaseGeneratorAgent
 from test_case_generation.framework.agents.positive_test_case_generator import PositiveTestCaseGeneratorAgent
+from test_case_generation.framework.agents.single_test_case_generator import SingleTestCaseGeneratorAgent
 from test_case_generation.framework.agents.structural_model_generator import StructuralModelGeneratorAgent
 from test_case_generation.framework.agents.workflow_validator import WorkflowValidatorAgent
 from test_case_generation.framework.agents.workflow_extractor import WorkflowExtractorAgent
@@ -61,6 +62,12 @@ async def generate_and_critique_node(state: PipelineState) -> Dict[str, Any]:
             label = f"attempt {attempt + 1}/{MAX_ATTEMPTS}"
 
             ast = await ast_agent.arun(module, fixes=fixes if fixes else None)
+
+            if state.get("disable_critic"):
+                critique = {"verdict": "yes", "summary": "Critic disabled by ablation study.", "missing": [], "phantoms": [], "fixes": []}
+                n = len(ast.get("components", {}))
+                print(f"  OK {module['title']} | attempt 1 (no critic) | {n} component(s)")
+                return {"ast": ast, "critique": critique, "attempts": 1}
 
             critique = await critic_agent.arun(desc, ast)
             verdict = critique.get("verdict", "retry")
@@ -142,6 +149,10 @@ async def extract_workflows_node(state: PipelineState) -> Dict[str, Any]:
     print(f"\n[2/4] Extracting & critiquing workflows ({len(runnable)} module(s))...")
 
     async def _extract_module(module: Dict[str, Any]) -> Dict[str, Any]:
+        if state.get("skip_workflows"):
+            print(f"  OK {module['title']} | skipping workflow extraction (ablation)")
+            return {"workflows": [], "critique": {"verdict": "yes", "summary": "Skipped workflow extraction", "missing": [], "phantoms": [], "fixes": []}, "attempts": 0}
+
         module_dir = _module_debug_dir(state, module["title"])
         extractor = WorkflowExtractorAgent(**_agent_kwargs(state, "02b_workflow_extractor.log", module_dir))
         critic = WorkflowValidatorAgent(**_agent_kwargs(state, "02c_workflow_validator.log", module_dir))
@@ -156,6 +167,11 @@ async def extract_workflows_node(state: PipelineState) -> Dict[str, Any]:
 
             result = await extractor.arun(module["title"], ast, desc, fixes=fixes if fixes else None)
             workflows = result.get("workflows", [])
+
+            if state.get("disable_critic"):
+                critique = {"verdict": "yes", "summary": "Critic disabled by ablation study.", "missing": [], "phantoms": [], "fixes": []}
+                print(f"  OK {module['title']} | attempt 1 (no critic) | {len(workflows)} workflow(s)")
+                return {"workflows": workflows, "critique": critique, "attempts": 1}
 
             critique = await critic.arun(desc, ast, workflows)
             verdict = critique.get("verdict", "retry")
@@ -257,14 +273,25 @@ async def generate_tests_node(state: PipelineState) -> Dict[str, Any]:
             agent = agent_cls(**_agent_kwargs(state, log_file, module_dir))
             return await agent.arun(title, ast, desc, workflows=workflows)
 
-        pos, neg, edge = await asyncio.gather(
-            _run_if(PositiveTestCaseGeneratorAgent, "03_positive_test_case_generator.log", "positive"),
-            _run_if(NegativeTestCaseGeneratorAgent, "04_negative_test_case_generator.log", "negative"),
-            _run_if(EdgeTestCaseGeneratorAgent, "05_edge_test_case_generator.log", "edge"),
-            return_exceptions=True,
-        )
+        if state.get("single_test_agent"):
+            agent = SingleTestCaseGeneratorAgent(**_agent_kwargs(state, "03_single_test_case_generator.log", module_dir))
+            try:
+                res = await agent.arun(title, ast, desc, workflows=workflows)
+                merged = _format_single_agent_tests(title, res)
+            except Exception as e:
+                merged = e
+        else:
+            pos, neg, edge = await asyncio.gather(
+                _run_if(PositiveTestCaseGeneratorAgent, "03_positive_test_case_generator.log", "positive"),
+                _run_if(NegativeTestCaseGeneratorAgent, "04_negative_test_case_generator.log", "negative"),
+                _run_if(EdgeTestCaseGeneratorAgent, "05_edge_test_case_generator.log", "edge"),
+                return_exceptions=True,
+            )
+            merged = _merge_module_tests(title, pos, neg, edge)
+            
+        if isinstance(merged, Exception):
+            raise merged
 
-        merged = _merge_module_tests(title, pos, neg, edge)
         total = merged["summary"]["total"]
         print(f"  OK {title} | {total} test(s) (pos={merged['summary']['positive']} neg={merged['summary']['negative']} edge={merged['summary']['boundary'] + merged['summary']['edge']})")
         return merged
@@ -288,6 +315,38 @@ async def generate_tests_node(state: PipelineState) -> Dict[str, Any]:
     print(f"  Done in {time.time() - t0:.1f}s")
     return {"test_results": test_results}
 
+
+def _format_single_agent_tests(module_title: str, result: Any) -> Dict[str, Any]:
+    if isinstance(result, Exception) or not isinstance(result, dict):
+        cases = []
+    else:
+        cases = result.get("test_cases", [])
+    
+    for i, tc in enumerate(cases, 1):
+        tc["tc_id"] = f"TC-{i:03d}"
+        if "category" not in tc:
+            tc["category"] = "positive"
+
+    def _count(priority: str) -> int:
+        return sum(1 for c in cases if c.get("priority", "").lower() == priority)
+
+    def _count_cat(category: str) -> int:
+        return sum(1 for c in cases if c.get("category", "").lower() == category)
+
+    return {
+        "module": module_title,
+        "test_cases": cases,
+        "summary": {
+            "total": len(cases),
+            "positive": _count_cat("positive"),
+            "negative": _count_cat("negative"),
+            "edge": _count_cat("edge"),
+            "boundary": 0, "input_edge": 0, "interaction_edge": 0, "state_edge": 0, "data_edge": 0,
+            "high_priority": _count("high"),
+            "medium_priority": _count("medium"),
+            "low_priority": _count("low"),
+        },
+    }
 
 def _merge_module_tests(
     module_title: str,

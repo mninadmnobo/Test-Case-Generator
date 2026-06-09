@@ -506,58 +506,68 @@ def copy_existing_agent(src_str: str, dest: Path, website: str, model_key: str):
     return True
 
 
-def run_agent(website: str, model_key: str, model_str: str, api_key: str,
+def run_agent(approach: str, website: str, model_key: str, model_str: str, api_key: str,
               spec_info: dict, dry_run: bool):
-    dest = out_dir(website, model_key, "agent")
+    dest = out_dir(website, model_key, approach)
     result_file = dest / "test-cases.json"
 
     # Already copied/run?
     if result_file.exists():
-        log(f"{website}/{model_key}/agent - already exists", "SKIP")
+        log(f"{website}/{model_key}/{approach} - already exists", "SKIP")
         _counts["skip"] += 1
         return
 
     # Use pre-existing output from generated_artifacts/?
-    existing = spec_info.get("existing_agent", {}).get(model_key)
-    if existing:
-        log(f"Copying existing agent output: {website}/{model_key}/agent ...")
-        copy_existing_agent(existing, dest, website, model_key)
-        return
+    if approach == "agent":
+        existing = spec_info.get("existing_agent", {}).get(model_key)
+        if existing:
+            log(f"Copying existing agent output: {website}/{model_key}/{approach} ...")
+            if copy_existing_agent(existing, dest, website, model_key):
+                return
+            log(f"Fallback to running fresh agent for {website}/{model_key}/{approach} ...")
 
     # Fresh agent run
     if dry_run:
-        log(f"[DRY-RUN] would run agent: {website}/{model_key}/agent")
+        log(f"[DRY-RUN] would run agent: {website}/{model_key}/{approach}")
         return
 
     dest.mkdir(parents=True, exist_ok=True)
     cmd = [
-        sys.executable, "-m", "autospectest",
+        sys.executable, "-m", "test_case_generation.cli",
         "--generate",
         "--input",   spec_info["spec"],
         "--api-key", api_key,
         "--model",   model_str,
         "--output",  str(dest),
     ]
-    log(f"Running agent: {website}/{model_key}/agent ...")
+    
+    if approach == "agent_no_critic":
+        cmd.append("--disable-critic")
+    elif approach == "agent_no_workflows":
+        cmd.append("--skip-workflows")
+    elif approach == "agent_single_generator":
+        cmd.append("--single-test-agent")
+        
+    log(f"Running agent: {website}/{model_key}/{approach} ...")
     try:
         proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=900,
+            cmd, capture_output=True, text=True, timeout=3600,
             env={**os.environ, MODELS[model_key]["api_key_env"]: api_key},
         )
         log_file = dest / "agent_run.log"
         log_file.write_text(proc.stdout + "\n" + proc.stderr, encoding="utf-8")
 
         if proc.returncode == 0:
-            log(f"Done: {website}/{model_key}/agent", "OK")
+            log(f"Done: {website}/{model_key}/{approach}", "OK")
             _counts["done"] += 1
         else:
-            log(f"Agent failed (rc={proc.returncode}): {website}/{model_key}/agent", "ERR")
+            log(f"Agent failed (rc={proc.returncode}): {website}/{model_key}/{approach}", "ERR")
             _counts["error"] += 1
     except subprocess.TimeoutExpired:
-        log(f"TIMEOUT (>15 min): {website}/{model_key}/agent", "ERR")
+        log(f"TIMEOUT (>15 min): {website}/{model_key}/{approach}", "ERR")
         _counts["error"] += 1
     except Exception as exc:
-        log(f"ERROR: {website}/{model_key}/agent: {exc}", "ERR")
+        log(f"ERROR: {website}/{model_key}/{approach}: {exc}", "ERR")
         _counts["error"] += 1
 
 # =============================================================================
@@ -657,10 +667,12 @@ async def main():
     parser = argparse.ArgumentParser(description="AutoSpecTest Experiment Runner")
     parser.add_argument("--dry-run", action="store_true",
                         help="Preview all runs without making any LLM calls")
+    parser.add_argument("--ablation-study", action="store_true",
+                        help="Run the architectural ablation study (saves to ablation_study/ directory)")
     parser.add_argument("--approaches", nargs="+",
                         choices=["zero_shot", "few_shot",
                                  "zero_shot_per_module", "few_shot_per_module",
-                                 "agent"],
+                                 "agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"],
                         default=["zero_shot", "few_shot",
                                  "zero_shot_per_module", "few_shot_per_module",
                                  "agent"],
@@ -676,6 +688,13 @@ async def main():
     parser.add_argument("--summary-only", action="store_true",
                         help="Skip all runs; just regenerate the summary report")
     args = parser.parse_args()
+
+    global RESULTS_DIR
+    if args.ablation_study:
+        RESULTS_DIR = Path("generated_artifacts/ablation_study")
+        # Automatically select the ablation approaches if none were explicitly provided
+        if "--approaches" not in sys.argv:
+            args.approaches = ["agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"]
 
     if args.summary_only:
         write_summary()
@@ -750,9 +769,10 @@ async def main():
                 await asyncio.gather(*per_module_coros)
 
             # Agent runs sequentially (subprocess)
-            if "agent" in args.approaches:
-                run_agent(website, model_key, model_str, api_key,
-                          spec_info, args.dry_run)
+            for ap in args.approaches:
+                if ap in ("agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"):
+                    run_agent(ap, website, model_key, model_str, api_key,
+                              spec_info, args.dry_run)
 
         print()
 

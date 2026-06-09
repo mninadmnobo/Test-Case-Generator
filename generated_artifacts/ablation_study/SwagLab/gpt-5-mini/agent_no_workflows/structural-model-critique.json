@@ -1,0 +1,116 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:11:53.949290Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly models the login form, required-field validations, submit action with success redirect, and the described failure cases (including locked_out_user); no extraneous interactive elements found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the interactive elements (login precondition, sort dropdown, product links/images navigation, Add/Remove row actions and their effects, Product Detail page) with only a minor omitted explicit Cart_Badge component.",
+        "missing": [
+          "Product_Inventory_Page.components.Cart_Badge"
+        ],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST includes the state-bound Add/Remove actions, Back to products navigation, and Cart icon \u2014 matches the described interactive elements with no significant extras or omissions.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the interactive elements (Remove row action, Continue Shopping link, Checkout button) with no extraneous or missing interactive items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST matches the description: form fields, required validations with error messages, Continue and Cancel actions with correct outcomes are present.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the Overview step with no interactive fields and the two buttons (Finish and Cancel) with their outcomes.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly captures the single interactive element (Back Home button) and omits passive display text.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly captures the logout action and the protected-pages behavior; no expected interactive elements are missing and there are no extraneous items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly represents the single interactive element (Reset App State button) and its described behavior; no missing or extraneous items found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}
