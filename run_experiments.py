@@ -444,12 +444,17 @@ async def run_baseline_whole_file(approach: str, website: str, model_key: str,
     sem = get_semaphore(model_key)
     try:
         async with sem:
+            sys_msg = "You are generating a comprehensive test suite for an entire application. You must output an exhaustive list of test cases for ALL modules described. Do NOT stop after a few examples; generate as many test cases as possible to fully cover the specification."
             response = await litellm.acompletion(
                 model=model_str,
-                messages=[{"role": "user", "content": prompt}],
+                messages=[
+                    {"role": "system", "content": sys_msg},
+                    {"role": "user", "content": prompt}
+                ],
                 api_key=api_key,
                 temperature=0,
                 num_retries=5,
+                max_tokens=16384,
             )
         raw = response.choices[0].message.content
 
