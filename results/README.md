@@ -1,6 +1,11 @@
-# AutoSpecTest Experiment Results & Coverage Analysis
+# Experiment Results & Evaluation Methodology Hub
 
-This directory contains the complete experimental data, generated test suites, and comprehensive coverage analysis reports evaluating Large Language Models (LLMs) and agentic workflows on the task of automated software test case generation.
+This directory contains the complete experimental data, generated test suites, and comprehensive analysis reports evaluating Large Language Models (LLMs) and agentic workflows on the task of automated software test case generation. 
+
+Our evaluation framework is built on three distinct pillars:
+1. **Coverage Analysis** (Behavioral Alignment)
+2. **Correctness Verification** (Hallucination Tracking)
+3. **Architectural Ablation Study** (Isolating Component Value)
 
 ---
 
@@ -11,16 +16,22 @@ The results are organized systematically to mirror our multi-stage validation an
 *   **`[Project Name]/`**: Individual folders for each of the 6 evaluated applications (e.g., `Mifos`, `SwagLab`).
     *   **`gpt-5-mini/` & `gpt-4o-mini/`**: Contain the raw LLM outputs and parsed JSON test cases for each strategy.
         *   `agent/`, `zero_shot_per_module/`, etc.: Outputs from the models.
-    *   **`coverage/`**: The auditing hub for this dataset.
-        *   *Individual Audits:* Contains the detailed markdown reports mapping each generated test suite against the human-authored Ground Truth (GT).
-        *   *Dataset Consolidation:* Contains the merged dataset-wide coverage report (e.g., `coverage-mifos.md`).
-*   **`results.md`**: The final master document. All 6 dataset-wide coverage reports are merged and audited into this single file to generate the global findings.
+    *   **`coverage/`**: The auditing hub for behavioral coverage mapping.
+        *   *Individual Audits:* Detailed markdown reports mapping generated suites against Ground Truth.
+        *   *Dataset Consolidation:* Merged dataset-wide coverage reports.
+    *   **`correctness_verification/`**: The auditing hub for manual hallucination tracking.
+*   **Root Results Directory**:
+    *   `coverage_results.md`: The Tier-3 master global coverage document.
+    *   `correctness_results.md`: The Tier-3 master global correctness document.
+    *   `ablation_study_methodology.md`: The detailed ablation methodology.
 
 ---
 
-## 🏆 1. Coverage Comparison & Key Findings
+## 🏆 Pillar 1: Coverage Comparison & Key Findings
 
-By aggregating the coverage data across all 6 projects (detailed fully in `results.md`), a striking and consistent story emerges about how AI approaches QA tasks.
+*   **Master Report:** [Coverage Metrics & Analysis](coverage_results.md)
+
+By aggregating the coverage data across all 6 projects, a striking and consistent story emerges about how AI approaches QA tasks.
 
 ### 🤖 The Dominance of the Agentic Loop
 The **GPT-5-mini Agent** crushed the competition, achieving an astonishing **80–88% coverage** across every single project. Instead of guessing once, the agent thinks step-by-step. In highly restricted applications (like a student portal), the Agent was 21% better than standard prompting because it actively iterated to discover what a user *isn't* allowed to do.
@@ -33,26 +44,7 @@ While adding an agent loop to the weaker GPT-4o-mini gave it a massive 23% cover
 
 ---
 
-## 🧪 2. How Results Are Generated
-
-The raw test generation is orchestrated by `run_experiments.py` at the project root. This script systematically queries the OpenAI API across a matrix of variables:
-
-*   **6 Target Specifications:** Ranging from simple e-commerce (SwagLab) to highly complex enterprise ERPs (Mifos).
-*   **2 Models:** `gpt-5-mini` (Premium/Advanced) and `gpt-4o-mini` (Fast/Efficient).
-*   **3 Core Strategies:**
-    1.  **Zero-Shot:** The model is given the raw specification without any examples.
-    2.  **Few-Shot:** The model is provided with high-quality example test cases.
-    3.  **Agent:** The model operates within the AutoSpecTest framework, utilizing an iterative loop to generate, review, and refine its test cases dynamically.
-
-*   **2 Prompting Structures (for Baseline Strategies):**
-    1.  **Monolithic (Whole-file):** The entire application specification is passed to the model in a single prompt.
-    2.  **Modular (Per-module):** The specification is split into logical sections, and the model is prompted iteratively for each module.
-
-For baseline strategies, the LLM is queried directly. For the agent strategy, a dedicated subprocess runs the multi-agent workflow. The final output is standardized into parsed `test-cases.json` files alongside the raw text responses.
-
----
-
-## 📊 3. How Coverage is Calculated
+## 📊 How Coverage is Calculated
 
 Coverage is not measured by naive keyword matching or superficial text similarity. **Coverage is a measure of behavioral alignment**. We ask: *"Did the agent independently discover and test the same business logic and edge cases that a human expert deemed necessary?"*
 
@@ -75,23 +67,75 @@ To completely automate the grading process while maintaining human-level QA judg
 **How the Skill File is used:**
 1.  **Context Loading:** The evaluation agent is fed three things: the human-authored Ground Truth (GT) suite, the model-Generated (GEN) suite, and this Skill File.
 2.  **Autonomous Reasoning:** Instead of relying on a rigid, hardcoded python script for string matching, the agent reads the SOP and uses its LLM reasoning capabilities to apply the "Core Principles" defined above. It autonomously handles the complex, fuzzy logic of "behavioral alignment" and "semantic equivalence."
-3.  **Strict Output Formatting:** The Skill File also enforces a strict document structure. The agent is instructed to output its findings using the exact markdown template provided in the SOP. This ensures every single coverage report generated across all projects perfectly adheres to the required layout: Executive Summary -> Per-Module Coverage -> Gaps -> Extras.
-
-This workflow allows for massive scalability without losing the nuanced, relaxed evaluation rules required when comparing AI outputs to human text.
-
-### 📈 The Audit & Aggregation Pipeline
-To ensure absolute accuracy, coverage data flows through a strict three-tier auditing pipeline mirrored by the folder structure:
-
-1.  **Tier 1: Individual Audit (`[Project]/coverage/[strategy]-coverage.md`)**  
-    Each raw generated result (`test-cases.json`) is rigorously validated and audited against the human Ground Truth using the Skill File SOP. The output is a standalone markdown report.
-2.  **Tier 2: Dataset Consolidation (`[Project]/coverage/coverage-[project].md`)**  
-    All individual coverage audits for a particular dataset are merged. The aggregated data is audited to generate a single, comprehensive coverage file that compares all models and strategies for that specific dataset.
-3.  **Tier 3: Master Consolidation (`results.md`)**  
-    Finally, all 6 dataset-level coverage files are merged and audited one last time to generate the global Key Findings found in `results.md` at the root of this directory.
+3.  **Strict Output Formatting:** The Skill File also enforces a strict document structure. The agent is instructed to output its findings using the exact markdown template provided in the SOP. This ensures every single coverage report generated across all projects perfectly adheres to the required layout.
 
 ---
 
-## 📜 4. Agent Evaluator SOP (Skill File Instructions)
+## 🛡️ Pillar 2: Correctness Verification & Hallucination Tracking
+
+*   **Master Report:** [Correctness Metrics & Analysis](correctness_results.md)
+
+Because the Agentic Pipeline often discovers and generates far more valid edge cases than baseline ground truths, simply measuring coverage against a baseline is insufficient. We manually inspect the generated test cases to verify their logical correctness and track "Domain Drift" (hallucination).
+
+**The Hallucination Taxonomy:**
+This manual verification checks three core components for hallucination or logical errors:
+1. **Preconditions:** Are the preconditions valid and possible within the application state? (e.g., The model assumes an infrastructure state or prior configuration that does not exist in the spec, like a "Verified Biometric Profile" in a basic banking app).
+2. **Test Steps:** Are the steps logically sound, achievable, and grounded in the system's features? (e.g., The model invents UI elements absent from the spec, like "draw a polygon on the interactive map").
+3. **Expected Result:** Is the expected outcome correct according to the system's business rules? (e.g., The model assumes dynamic real-time feedback where the spec describes static workflows).
+
+*Finding:* The Agentic approach suppresses "Enterprise Domain Drift" and acts as an internal QA filter, maximizing both test volume and safety.
+
+---
+
+## 🔬 Pillar 3: Architectural Ablation Study Methodology
+
+*   **Objective:** To systematically evaluate the contribution of each architectural component within the Agentic Pipeline. By stripping away individual modules while holding the underlying LLM constant, we isolate the performance impact of Structural Modeling, Workflow Extraction, and Critic Validation.
+
+This study uses the following four configurations:
+
+### 1. No Structural Model (`agent_no_ast`)
+*   **Configuration:** The pipeline explicitly skips generating the UI-AST, feeding an empty structural model (`{}`) into the subsequent agents.
+*   **ON:** Workflow Extraction, Critic Validation.
+*   **OFF:** Structural Model (UI-AST).
+*   **Purpose:** Tests if the Agent framework can successfully extract workflows and generate edge-case tests using *only* the raw Functional Description without any structural scaffolding.
+
+### 2. Structure + Workflows, No Reflection (`agent_no_critic`)
+*   **Configuration:** The pipeline generates both the UI-AST and Workflows, but all reflection/validator agents are bypassed.
+*   **ON:** Structural Model (UI-AST), Workflow Extraction.
+*   **OFF:** Critic Validation (`StructuralModelValidatorAgent`, `WorkflowValidatorAgent`).
+*   **Purpose:** Evaluates the necessity of the self-correction loops. It proves whether the initial generative passes are sufficient, or if the "Critic" framework is required to catch missing phantoms and structural hallucinations before test generation.
+
+### 3. Structure + Reflection, No Workflows (`agent_no_workflows`)
+*   **Configuration:** The pipeline generates the UI-AST and critiques it, but skips the Workflow Extraction stage. The final test agents only receive the structural model and the raw spec.
+*   **ON:** Structural Model (UI-AST), Critic Validation (`StructuralModelValidatorAgent`).
+*   **OFF:** Workflow Extraction, Critic Validation (`WorkflowValidatorAgent`).
+*   **Purpose:** **Isolates the value of explicitly enumerating execution paths.** If the test suite quality drops without the workflow list, it proves that simply giving an LLM the structural elements (UI-AST) is not enough for it to systematically deduce complex interaction permutations. If quality doesn't drop, it proves the Workflow Extractor is redundant overhead.
+
+### 4. Full Agentic Pipeline (`agent`)
+*   **Configuration:** The complete framework is executed.
+*   **ON:** Structural Model (UI-AST), Workflow Extraction, Critic Validation.
+*   **OFF:** None.
+*   **Purpose:** Serves as the upper-bound baseline to measure the degraded configurations against.
+
+---
+
+## ⚙️ Test Generation Methodology
+
+The raw test generation is orchestrated by `run_experiments.py` at the project root. This script systematically queries the OpenAI API across a matrix of variables:
+
+*   **6 Target Specifications:** Ranging from simple e-commerce (SwagLab) to highly complex enterprise ERPs (Mifos).
+*   **2 Models:** `gpt-5-mini` (Premium/Advanced) and `gpt-4o-mini` (Fast/Efficient).
+*   **3 Core Strategies:**
+    1.  **Zero-Shot:** The model is given the raw specification without any examples.
+    2.  **Few-Shot:** The model is provided with high-quality example test cases.
+    3.  **Agent:** The model operates within the AutoSpecTest framework, utilizing an iterative loop to generate, review, and refine its test cases dynamically.
+*   **2 Prompting Structures (for Baseline Strategies):**
+    1.  **Monolithic (Whole-file):** The entire application specification is passed to the model in a single prompt.
+    2.  **Modular (Per-module):** The specification is split into logical sections, and the model is prompted iteratively for each module.
+
+---
+
+## 📜 Agent Evaluator SOP (Skill File Instructions)
 
 *This section serves as the explicit prompt/skill file for the LLM agent tasked with generating coverage reports. It defines the exact output structure, tone, and formatting required. You can feed this entire document to an agent to evaluate new coverage.*
 

@@ -36,7 +36,11 @@ def _render_test_cases_md(data: dict) -> str:
 
     _CATEGORY_ORDER = [("positive", "Positive Tests"), ("negative", "Negative Tests"), ("edge", "Edge & Boundary Tests")]
 
-    for module in data.get("modules", []):
+    modules = data.get("modules", [])
+    if not modules and "test_cases" in data:
+        modules = [data]
+
+    for module in modules:
         module_name = module.get("module", "Unknown")
         lines.append(f"## {module_name}")
         lines.append("")
@@ -106,6 +110,11 @@ def main():
     count = 0
     for root, dirs, files in os.walk(results_dir):
         if "test-cases.json" in files:
+            # Only process baseline folders, exclude per_module and agent
+            folder_name = os.path.basename(root)
+            if folder_name not in ["few_shot", "zero_shot"]:
+                continue
+                
             json_path = os.path.join(root, "test-cases.json")
             md_path = os.path.join(root, "test-cases.md")
             
