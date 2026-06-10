@@ -34,7 +34,7 @@ class UIASTGenerator:
         test_types: Optional[Set[str]] = None,
         disable_critic: bool = False,
         skip_workflows: bool = False,
-        single_test_agent: bool = False,
+        skip_ast: bool = False,
     ) -> Optional[Dict[str, Any]]:
         print("=" * 60)
         print("TEST CASE GENERATION  (Structural Model Pipeline)")
@@ -56,12 +56,12 @@ class UIASTGenerator:
             CHECKPOINT_DB.parent.mkdir(parents=True, exist_ok=True)
             async with AsyncSqliteSaver.from_conn_string(str(CHECKPOINT_DB)) as checkpointer:
                 graph = build_graph(checkpointer=checkpointer)
-                return await self._invoke(graph, functional_desc, output_dir, resume, test_types, disable_critic, skip_workflows, single_test_agent)
+                return await self._invoke(graph, functional_desc, output_dir, resume, test_types, disable_critic, skip_workflows, skip_ast)
         else:
             graph = build_graph()
-            return await self._invoke(graph, functional_desc, output_dir, resume, test_types, disable_critic, skip_workflows, single_test_agent)
+            return await self._invoke(graph, functional_desc, output_dir, resume, test_types, disable_critic, skip_workflows, skip_ast)
 
-    async def _invoke(self, graph, functional_desc, output_dir: str, resume: bool, test_types: Optional[Set[str]] = None, disable_critic: bool = False, skip_workflows: bool = False, single_test_agent: bool = False):
+    async def _invoke(self, graph, functional_desc, output_dir: str, resume: bool, test_types: Optional[Set[str]] = None, disable_critic: bool = False, skip_workflows: bool = False, skip_ast: bool = False):
         config = {"configurable": {"thread_id": self.run_id}} if self.run_id else None
 
         if resume:
@@ -78,7 +78,7 @@ class UIASTGenerator:
                 "test_types": test_types or {"positive", "negative", "edge"},
                 "disable_critic": disable_critic,
                 "skip_workflows": skip_workflows,
-                "single_test_agent": single_test_agent,
+                "skip_ast": skip_ast,
             }
             final_state = (
                 await graph.ainvoke(initial_state, config=config)

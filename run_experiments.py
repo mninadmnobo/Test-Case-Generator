@@ -545,8 +545,8 @@ def run_agent(approach: str, website: str, model_key: str, model_str: str, api_k
         cmd.append("--disable-critic")
     elif approach == "agent_no_workflows":
         cmd.append("--skip-workflows")
-    elif approach == "agent_single_generator":
-        cmd.append("--single-test-agent")
+    elif approach == "agent_no_ast":
+        cmd.append("--skip-ast")
         
     log(f"Running agent: {website}/{model_key}/{approach} ...")
     try:
@@ -672,7 +672,7 @@ async def main():
     parser.add_argument("--approaches", nargs="+",
                         choices=["zero_shot", "few_shot",
                                  "zero_shot_per_module", "few_shot_per_module",
-                                 "agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"],
+                                 "agent", "agent_no_critic", "agent_no_workflows", "agent_no_ast"],
                         default=["zero_shot", "few_shot",
                                  "zero_shot_per_module", "few_shot_per_module",
                                  "agent"],
@@ -694,7 +694,7 @@ async def main():
         RESULTS_DIR = Path("generated_artifacts/ablation_study")
         # Automatically select the ablation approaches if none were explicitly provided
         if "--approaches" not in sys.argv:
-            args.approaches = ["agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"]
+            args.approaches = ["agent_no_ast", "agent_no_workflows", "agent_no_critic", "agent"]
 
     if args.summary_only:
         write_summary()
@@ -770,7 +770,7 @@ async def main():
 
             # Agent runs sequentially (subprocess)
             for ap in args.approaches:
-                if ap in ("agent", "agent_no_critic", "agent_no_workflows", "agent_single_generator"):
+                if ap in ("agent", "agent_no_critic", "agent_no_workflows", "agent_no_ast"):
                     run_agent(ap, website, model_key, model_str, api_key,
                               spec_info, args.dry_run)
 

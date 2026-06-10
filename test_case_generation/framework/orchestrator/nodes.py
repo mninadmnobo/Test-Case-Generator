@@ -59,6 +59,12 @@ async def generate_and_critique_node(state: PipelineState) -> Dict[str, Any]:
         critique: Dict[str, Any] = {}
 
         for attempt in range(MAX_ATTEMPTS):
+            if state.get("skip_ast"):
+                ast = {"components": {}}
+                critique = {"verdict": "yes", "summary": "Skipped AST by ablation.", "missing": [], "phantoms": [], "fixes": []}
+                print(f"  OK {module['title']} | skipped AST (ablation)")
+                return {"ast": ast, "critique": critique, "attempts": 0}
+
             label = f"attempt {attempt + 1}/{MAX_ATTEMPTS}"
 
             ast = await ast_agent.arun(module, fixes=fixes if fixes else None)
@@ -273,21 +279,13 @@ async def generate_tests_node(state: PipelineState) -> Dict[str, Any]:
             agent = agent_cls(**_agent_kwargs(state, log_file, module_dir))
             return await agent.arun(title, ast, desc, workflows=workflows)
 
-        if state.get("single_test_agent"):
-            agent = SingleTestCaseGeneratorAgent(**_agent_kwargs(state, "03_single_test_case_generator.log", module_dir))
-            try:
-                res = await agent.arun(title, ast, desc, workflows=workflows)
-                merged = _format_single_agent_tests(title, res)
-            except Exception as e:
-                merged = e
-        else:
-            pos, neg, edge = await asyncio.gather(
-                _run_if(PositiveTestCaseGeneratorAgent, "03_positive_test_case_generator.log", "positive"),
-                _run_if(NegativeTestCaseGeneratorAgent, "04_negative_test_case_generator.log", "negative"),
-                _run_if(EdgeTestCaseGeneratorAgent, "05_edge_test_case_generator.log", "edge"),
-                return_exceptions=True,
-            )
-            merged = _merge_module_tests(title, pos, neg, edge)
+        pos, neg, edge = await asyncio.gather(
+            _run_if(PositiveTestCaseGeneratorAgent, "03_positive_test_case_generator.log", "positive"),
+            _run_if(NegativeTestCaseGeneratorAgent, "04_negative_test_case_generator.log", "negative"),
+            _run_if(EdgeTestCaseGeneratorAgent, "05_edge_test_case_generator.log", "edge"),
+            return_exceptions=True,
+        )
+        merged = _merge_module_tests(title, pos, neg, edge)
             
         if isinstance(merged, Exception):
             raise merged

@@ -68,7 +68,7 @@ def main():
     # Ablation Flags
     parser.add_argument("--disable-critic", action="store_true", help="Disable the structural and workflow validator agents")
     parser.add_argument("--skip-workflows", action="store_true", help="Skip the workflow extraction stage entirely")
-    parser.add_argument("--single-test-agent", action="store_true", help="Use a single combined test generator agent instead of specialized parallel agents")
+    parser.add_argument("--skip-ast", action="store_true", help="Skip structural model generation (pass empty AST)")
 
     args = parser.parse_args()
 
@@ -166,7 +166,7 @@ def _generate(args):
             test_types=test_types,
             disable_critic=args.disable_critic,
             skip_workflows=args.skip_workflows,
-            single_test_agent=args.single_test_agent,
+            skip_ast=args.skip_ast,
         ))
     finally:
         generator.close()

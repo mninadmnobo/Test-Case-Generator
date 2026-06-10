@@ -31,7 +31,7 @@ class PipelineState(TypedDict, total=False):
     # Ablation Flags
     disable_critic: Annotated[bool, _last_value]
     skip_workflows: Annotated[bool, _last_value]
-    single_test_agent: Annotated[bool, _last_value]
+    skip_ast: Annotated[bool, _last_value]
 
     # Structural Model results (one entry per module)
     structural_model_results: Annotated[List[Dict[str, Any]], _last_value]
