@@ -1,0 +1,1906 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:42:20.844479Z",
+  "model": "openai/gpt-4o-mini",
+  "modules": [
+    {
+      "module": "Login",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Log in with valid credentials",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Enter <valid password> in the Password field",
+            "3. Click Log in"
+          ],
+          "expected_result": "redirects to Dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Log in with invalid credentials",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click Log in"
+          ],
+          "expected_result": "shows inline error message",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Access as a guest",
+          "preconditions": [
+            "User logged in as <Guest>"
+          ],
+          "steps": [
+            "1. Click Access as a guest"
+          ],
+          "expected_result": "Allows unauthenticated browsing",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "View cookies notice",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click Cookies notice"
+          ],
+          "expected_result": "Provides cookie usage information",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the Username field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Username field blank",
+            "2. Fill the Password field with <valid password>",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline validation error appears on the Username field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the Password field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Username field with <valid username>",
+            "2. Leave the Password field blank",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Submit with both fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Username field blank",
+            "2. Leave the Password field blank",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline validation error appears on the Username field indicating it is required; Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Submit with invalid Username format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid username format> in the Username field",
+            "2. Fill the Password field with <valid password>",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline error message is shown; password field is cleared and username is retained for correction",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Submit with invalid Password format",
+          "preconditions": [],
+          "steps": [
+            "1. Fill the Username field with <valid username>",
+            "2. Enter <invalid password format> in the Password field",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline error message is shown; password field is cleared and username is retained for correction",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Attempt to log in as a guest without authentication",
+          "preconditions": [],
+          "steps": [
+            "1. Click Access as a guest"
+          ],
+          "expected_result": "Allows unauthenticated browsing",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Attempt to view cookies notice",
+          "preconditions": [],
+          "steps": [
+            "1. Click Cookies notice"
+          ],
+          "expected_result": "Provides cookie usage information",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Enter empty Username and Password",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Username field empty",
+            "2. Leave the Password field empty",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline error message is shown indicating that both fields are required; password field is cleared.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter long Username and Password",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the Username field",
+            "2. Enter a string of 200+ characters in the Password field",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline error message is shown indicating that the input exceeds the maximum allowed length.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter Username with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a Username containing special characters (e.g., !@#$%^&*)",
+            "2. Enter a valid Password",
+            "3. Click Log in"
+          ],
+          "expected_result": "Inline error message is shown indicating that the Username contains invalid characters.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Rapid consecutive logins with valid credentials",
+          "preconditions": [],
+          "steps": [
+            "1. Enter valid Username",
+            "2. Enter valid Password",
+            "3. Click Log in",
+            "4. Immediately click Log in again after redirection to Dashboard"
+          ],
+          "expected_result": "User remains on the Dashboard; no second login attempt is processed.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 15,
+        "positive": 4,
+        "negative": 7,
+        "edge": 4,
+        "boundary": 1,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 5,
+        "medium_priority": 8,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Dashboard",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Create a new calendar event",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Edit mode is enabled"
+          ],
+          "steps": [
+            "1. Click the 'New Event' button"
+          ],
+          "expected_result": "A personal calendar entry is created",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Navigate to previous month",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the 'Previous Month' button"
+          ],
+          "expected_result": "The calendar displays the previous month",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Navigate to next month",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the 'Next Month' button"
+          ],
+          "expected_result": "The calendar displays the next month",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Reset dashboard to default settings",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Edit mode is enabled"
+          ],
+          "steps": [
+            "1. Click the 'Reset page to default' button"
+          ],
+          "expected_result": "The dashboard resets to default settings",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Add a new block",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Edit mode is enabled"
+          ],
+          "steps": [
+            "1. Click the '+ Add a block' button"
+          ],
+          "expected_result": "A page listing all available block types opens",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Configure existing block",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on an existing block",
+            "2. Select 'Configure'"
+          ],
+          "expected_result": "Configuration options for the block open",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Move existing block",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on an existing block",
+            "2. Select 'Move'"
+          ],
+          "expected_result": "The block moving process is initiated",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Delete existing block",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on an existing block",
+            "2. Select 'Delete'"
+          ],
+          "expected_result": "The block is removed from the dashboard",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Open full calendar view",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the 'Full calendar' link"
+          ],
+          "expected_result": "The dedicated calendar view opens",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Open calendar data management",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click the 'Import or export calendars' link"
+          ],
+          "expected_result": "The calendar data management opens",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Attempt to create a new calendar event without filling required fields",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'New event' button"
+          ],
+          "expected_result": "Form does not submit; no calendar entry is created; error shown on the required fields",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Attempt to reset the dashboard while not in Edit mode",
+          "preconditions": [
+            "User is not in Edit mode"
+          ],
+          "steps": [
+            "1. Click on the 'Reset page to default' button"
+          ],
+          "expected_result": "Status remains unchanged; no reset occurs; error message displayed indicating action is not allowed",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "test_case": "Attempt to add a new block while not in Edit mode",
+          "preconditions": [
+            "User is not in Edit mode"
+          ],
+          "steps": [
+            "1. Click on the '+ Add a block' button"
+          ],
+          "expected_result": "Status remains unchanged; no block is added; error message displayed indicating action is not allowed",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "test_case": "Attempt to navigate to the previous month while no events are present",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Previous Month' button"
+          ],
+          "expected_result": "Status remains unchanged; no navigation occurs; error message displayed indicating no events found",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "test_case": "Attempt to navigate to the next month while no events are present",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Next Month' button"
+          ],
+          "expected_result": "Status remains unchanged; no navigation occurs; error message displayed indicating no events found",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-004",
+          "subcategory": "state_edge",
+          "test_case": "Rapid consecutive state transitions between Edit and default states",
+          "preconditions": [
+            "User is in Edit mode"
+          ],
+          "steps": [
+            "1. Click 'Reset page to default'",
+            "2. Immediately click 'Reset page to default' again"
+          ],
+          "expected_result": "Second reset action is blocked; a message indicates the dashboard is already at default settings",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-005",
+          "subcategory": "boundary",
+          "test_case": "Attempt to add a block in Edit mode when no blocks exist",
+          "preconditions": [
+            "User is in Edit mode",
+            "No blocks are currently added"
+          ],
+          "steps": [
+            "1. Click '+ Add a block'"
+          ],
+          "expected_result": "Opens page listing all available block types; user can select a block to add",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search activities with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters in the 'Search Activities' field"
+          ],
+          "expected_result": "Search results are displayed or a specific error is shown indicating invalid characters",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search activities with leading/trailing whitespace",
+          "preconditions": [],
+          "steps": [
+            "1. Enter leading and trailing spaces in the 'Search Activities' field"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the search results has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Navigate to previous month rapidly",
+          "preconditions": [],
+          "steps": [
+            "1. Click 'Previous Month'",
+            "2. Immediately click 'Previous Month' again"
+          ],
+          "expected_result": "Second navigation attempt is blocked; the calendar remains on the current month",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Navigate to next month rapidly",
+          "preconditions": [],
+          "steps": [
+            "1. Click 'Next Month'",
+            "2. Immediately click 'Next Month' again"
+          ],
+          "expected_result": "Second navigation attempt is blocked; the calendar remains on the current month",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "positive": 10,
+        "negative": 5,
+        "edge": 6,
+        "boundary": 2,
+        "input_edge": 2,
+        "interaction_edge": 2,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 12,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "My Courses",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Star a course",
+          "preconditions": [
+            "User logged in as <Student>",
+            "At least one course is displayed in the Course Grid"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on a course card",
+            "2. Select 'Star this course' from the menu"
+          ],
+          "expected_result": "A success message is shown; the course is pinned to the top of the Course Grid",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Remove a course from view",
+          "preconditions": [
+            "User logged in as <Student>",
+            "At least one course is displayed in the Course Grid"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on a course card",
+            "2. Select 'Remove from view' from the menu"
+          ],
+          "expected_result": "A success message is shown; the course is no longer visible in the Course Grid",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Attempt to star a course without being logged in",
+          "preconditions": [
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Click on 'Star this course' for any course"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Attempt to remove a course from view without being logged in",
+          "preconditions": [
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Click on 'Remove from view' for any course"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to star a course when the user is not enrolled",
+          "preconditions": [
+            "User is not enrolled in the course"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Click on 'Star this course' for a course"
+          ],
+          "expected_result": "Action is blocked; no course is starred",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to remove a course from view that is already hidden",
+          "preconditions": [
+            "Course is already hidden"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Click on 'Remove from view' for the hidden course"
+          ],
+          "expected_result": "Action is blocked; course remains hidden",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapidly star a course twice",
+          "preconditions": [
+            "User is on the My Courses page with at least one course displayed"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on a course card",
+            "2. Click 'Star this course'",
+            "3. Immediately click the three-dot menu again on the same course card",
+            "4. Click 'Star this course' again"
+          ],
+          "expected_result": "Only one success message is shown; the course remains starred without duplication.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapidly remove a course from view twice",
+          "preconditions": [
+            "User is on the My Courses page with at least one course displayed"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on a course card",
+            "2. Click 'Remove from view'",
+            "3. Immediately click the three-dot menu again on the same course card",
+            "4. Click 'Remove from view' again"
+          ],
+          "expected_result": "Only one success message is shown; the course is removed from view without duplication.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search with leading and trailing whitespace",
+          "preconditions": [
+            "User is on the My Courses page"
+          ],
+          "steps": [
+            "1. Enter '   Course Name   ' in the Search field",
+            "2. Press Enter"
+          ],
+          "expected_result": "Search results display correctly without leading or trailing spaces in the displayed course names.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search with special characters",
+          "preconditions": [
+            "User is on the My Courses page"
+          ],
+          "steps": [
+            "1. Enter '@#Course$%^' in the Search field",
+            "2. Press Enter"
+          ],
+          "expected_result": "Search results display correctly, either showing no results or relevant courses without errors.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 10,
+        "positive": 2,
+        "negative": 4,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 4,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Course Page",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Collapse all sections",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Collapse all' link"
+          ],
+          "expected_result": "All sections are collapsed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to collapse all sections while in Edit mode",
+          "preconditions": [
+            "User is in Edit mode"
+          ],
+          "steps": [
+            "1. Click on the 'Collapse all' link"
+          ],
+          "expected_result": "Action is blocked; no sections are collapsed; user remains in Edit mode.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Attempt to submit a section with empty Activity Resource Name",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Activity Resource Name blank",
+            "2. Attempt to save the section"
+          ],
+          "expected_result": "Form does not submit; Activity Resource Name is highlighted; inline validation error appears indicating it is required.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Collapse all sections after adding maximum allowed entries",
+          "preconditions": [
+            "At least one section is present with activities and resources"
+          ],
+          "steps": [
+            "1. Add the maximum allowed number of sections to the course page",
+            "2. Click the 'Collapse all' link"
+          ],
+          "expected_result": "All sections are collapsed; no sections remain expanded",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid collapse and expand actions",
+          "preconditions": [
+            "At least one section is present"
+          ],
+          "steps": [
+            "1. Click the 'Collapse all' link",
+            "2. Immediately click the 'Collapse all' link again"
+          ],
+          "expected_result": "No error occurs; all sections remain collapsed",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Add section with maximum length name",
+          "preconditions": [
+            "No sections currently exist"
+          ],
+          "steps": [
+            "1. Add a new section with a name that is 255 characters long"
+          ],
+          "expected_result": "Section is created successfully and displayed with the full name",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Add section with special characters in name",
+          "preconditions": [
+            "No sections currently exist"
+          ],
+          "steps": [
+            "1. Add a new section with a name containing special characters like @#$%^&*()"
+          ],
+          "expected_result": "Section is created successfully and displayed with the special characters in the name",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 7,
+        "positive": 1,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Participants",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Clear all filters",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Clear Filters' button"
+          ],
+          "expected_result": "Filters cleared",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Apply filters successfully",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select <attribute> from the Select Attribute dropdown",
+            "2. Click 'Apply Filters' button"
+          ],
+          "expected_result": "Filters applied",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "View participant profile",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Participants table is visible"
+          ],
+          "steps": [
+            "1. Click on a participant's First Name or Last Name"
+          ],
+          "expected_result": "Profile displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Filter participants by First Name",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Participants table is visible"
+          ],
+          "steps": [
+            "1. Click 'First Name' alphabetical filter button"
+          ],
+          "expected_result": "Filtered by First Name",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Filter participants by Last Name",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Participants table is visible"
+          ],
+          "steps": [
+            "1. Click 'Last Name' alphabetical filter button"
+          ],
+          "expected_result": "Filtered by Last Name",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to apply filters without any conditions set",
+          "preconditions": [],
+          "steps": [
+            "1. Leave all filter fields blank",
+            "2. Click 'Apply Filters'"
+          ],
+          "expected_result": "Form does not submit; no filters applied; error shown indicating that at least one condition must be set",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to clear filters when no filters are set",
+          "preconditions": [],
+          "steps": [
+            "1. Ensure no filters are currently applied",
+            "2. Click 'Clear Filters'"
+          ],
+          "expected_result": "No action occurs; filters remain unchanged; message indicating no filters to clear",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to filter by First Name without selecting a name",
+          "preconditions": [],
+          "steps": [
+            "1. Click 'Filter by First Name'"
+          ],
+          "expected_result": "No action occurs; filters remain unchanged; message indicating a name must be selected to filter",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-005",
+          "test_case": "Attempt to filter by Last Name without selecting a name",
+          "preconditions": [],
+          "steps": [
+            "1. Click 'Filter by Last Name'"
+          ],
+          "expected_result": "No action occurs; filters remain unchanged; message indicating a name must be selected to filter",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission of Clear Filters",
+          "preconditions": [
+            "Filters are applied"
+          ],
+          "steps": [
+            "1. Click 'Clear Filters'",
+            "2. Immediately click 'Clear Filters' again"
+          ],
+          "expected_result": "Filters are cleared; the form shows no filters applied.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission of Apply Filters",
+          "preconditions": [
+            "Filters are set"
+          ],
+          "steps": [
+            "1. Click 'Apply Filters'",
+            "2. Immediately click 'Apply Filters' again"
+          ],
+          "expected_result": "Filters are applied; the table shows filtered results without duplicates.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-004",
+          "subcategory": "interaction_edge",
+          "test_case": "Filter by First Name with empty selection",
+          "preconditions": [
+            "No filters applied"
+          ],
+          "steps": [
+            "1. Click 'First Name' filter button",
+            "2. Observe the table"
+          ],
+          "expected_result": "Table displays all participants sorted by First Name.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-005",
+          "subcategory": "interaction_edge",
+          "test_case": "Filter by Last Name with empty selection",
+          "preconditions": [
+            "No filters applied"
+          ],
+          "steps": [
+            "1. Click 'Last Name' filter button",
+            "2. Observe the table"
+          ],
+          "expected_result": "Table displays all participants sorted by Last Name.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 5,
+        "negative": 4,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 4,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 9,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Grades",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Display student's grades in the Grades table",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User has grades recorded for the course"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page"
+          ],
+          "expected_result": "The Grades table displays the student's grades with columns for Grade item, Calculated weight, Grade, Range, Percentage, Feedback, and Contribution to course total",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Display aggregation course total",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User has grades recorded for the course"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page"
+          ],
+          "expected_result": "The AGGREGATION Course total row displays the cumulative grade across all weighted items",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user attempts to access the Grades page",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the Grades page without logging in"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long string in the Feedback column",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the Grades page",
+            "2. Enter a string of 200+ characters in the Feedback column"
+          ],
+          "expected_result": "Feedback column displays the entered text correctly or truncates it with an indication",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the Grade column",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the Grades page",
+            "2. Enter special characters in the Grade column"
+          ],
+          "expected_result": "Grade column displays an error indicating invalid input or accepts the special characters",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the Grade item",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the Grades page",
+            "2. Enter a Grade item with leading and trailing spaces"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the table has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 6,
+        "positive": 2,
+        "negative": 1,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 0,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Assignment",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open submission form",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click Add submission button"
+          ],
+          "expected_result": "Submission form opens",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Submit with Online Text Editor",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Submission form is open"
+          ],
+          "steps": [
+            "1. Enter text in the Online Text Editor",
+            "2. Click Submit"
+          ],
+          "expected_result": "Submission created",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Submit with File Upload",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Submission form is open"
+          ],
+          "steps": [
+            "1. Upload a valid file in the File Upload area",
+            "2. Click Submit"
+          ],
+          "expected_result": "Submission created",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "View submission",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Due date has not passed",
+            "Teacher permits resubmission"
+          ],
+          "steps": [
+            "1. Click View in the Submission Status Section"
+          ],
+          "expected_result": "Submission details displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Edit submission",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Due date has not passed",
+            "Teacher permits resubmission"
+          ],
+          "steps": [
+            "1. Click Edit in the Submission Status Section"
+          ],
+          "expected_result": "Submission form opened for editing",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to open submission form without any preconditions met",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Add submission button"
+          ],
+          "expected_result": "Submission form does not open; no action occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to view submission after due date has passed",
+          "preconditions": [
+            "due date has passed"
+          ],
+          "steps": [
+            "1. Click on the View button for a submission"
+          ],
+          "expected_result": "View action is blocked; no submission details are displayed",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-005",
+          "test_case": "Attempt to edit submission when teacher does not permit resubmission",
+          "preconditions": [
+            "teacher does not permit resubmission"
+          ],
+          "steps": [
+            "1. Click on the Edit button for a submission"
+          ],
+          "expected_result": "Edit action is blocked; no submission form opens for editing",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission after opening the submission form",
+          "preconditions": [],
+          "steps": [
+            "1. Click the 'Add submission' button",
+            "2. Immediately click the 'Add submission' button again"
+          ],
+          "expected_result": "The submission form opens successfully without errors",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long text input in the online text editor",
+          "preconditions": [],
+          "steps": [
+            "1. Click the 'Add submission' button",
+            "2. Enter a string of 200+ characters in the Online Text Editor"
+          ],
+          "expected_result": "The text is accepted and displayed correctly in the submission details",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "data_edge",
+          "test_case": "File upload at exact size limit",
+          "preconditions": [],
+          "steps": [
+            "1. Click the 'Add submission' button",
+            "2. Upload a file that is exactly at the size limit"
+          ],
+          "expected_result": "The file is uploaded successfully with a visible success indicator",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "subcategory": "data_edge",
+          "test_case": "File upload one byte over the size limit",
+          "preconditions": [],
+          "steps": [
+            "1. Click the 'Add submission' button",
+            "2. Upload a file that is one byte over the size limit"
+          ],
+          "expected_result": "An error is shown indicating the file exceeds the size limit",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 12,
+        "positive": 5,
+        "negative": 3,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 2,
+        "high_priority": 6,
+        "medium_priority": 2,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "Activities",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Navigate to Activity from Assignments Section",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click on the activity name in the Assignments section"
+          ],
+          "expected_result": "redirects to activity's page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to navigate to an activity without clicking any link",
+          "preconditions": [],
+          "steps": [
+            "1. Load the Activities page",
+            "2. Do not click any activity name"
+          ],
+          "expected_result": "No navigation occurs; the user remains on the Activities page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid navigation to activity after clicking link",
+          "preconditions": [
+            "User is on the Activities page",
+            "Assignments section is visible"
+          ],
+          "steps": [
+            "1. Click on an activity name in the Assignments section",
+            "2. Immediately click on another activity name in the Assignments section"
+          ],
+          "expected_result": "User is redirected to the second activity's page; the first activity's navigation does not occur.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long text in activity name",
+          "preconditions": [
+            "User is on the Activities page",
+            "Assignments section is visible"
+          ],
+          "steps": [
+            "1. Observe the activity names in the Assignments section",
+            "2. Verify if any activity name exceeds 200 characters"
+          ],
+          "expected_result": "Activity names are either truncated or display an error indicating the name is too long.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Special characters in activity name",
+          "preconditions": [
+            "User is on the Activities page",
+            "Assignments section is visible"
+          ],
+          "steps": [
+            "1. Check for activity names containing special characters or emojis"
+          ],
+          "expected_result": "Activity names with special characters are displayed correctly or an error is shown.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 5,
+        "positive": 1,
+        "negative": 1,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 1,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Profile",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Send a message",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Message' button"
+          ],
+          "expected_result": "Message sent",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open profile form",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Edit Profile' link"
+          ],
+          "expected_result": "Profile form opened",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "View data retention summary",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Data Retention Summary' link"
+          ],
+          "expected_result": "Data retention summary displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "View course profiles",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Course Details' link"
+          ],
+          "expected_result": "Course profiles displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "View blog entries",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Blog Entries' link"
+          ],
+          "expected_result": "Blog entries displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "View forum posts",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Forum Posts' link"
+          ],
+          "expected_result": "Forum posts displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "View forum discussions",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Forum Discussions' link"
+          ],
+          "expected_result": "Forum discussions displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "View learning plans",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Learning Plans' link"
+          ],
+          "expected_result": "Learning plans displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "View browser sessions",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Browser Sessions' link"
+          ],
+          "expected_result": "Browser sessions displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "View grades overview",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Click the 'Grades Overview' link"
+          ],
+          "expected_result": "Grades overview displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Update profile with valid data",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Profile form is open"
+          ],
+          "steps": [
+            "1. Enter <valid first name> in the First Name field",
+            "2. Enter <valid last name> in the Last Name field",
+            "3. Enter <valid email> in the Email Address field",
+            "4. Click 'Update Profile'"
+          ],
+          "expected_result": "saves profile changes",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Cancel profile update",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Profile form is open"
+          ],
+          "steps": [
+            "1. Click 'Cancel'"
+          ],
+          "expected_result": "exits without changes",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-011",
+          "test_case": "Attempt to update profile with required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Edit Profile' link",
+            "2. Leave the First Name, Last Name, and Email Address fields blank",
+            "3. Click 'Update Profile'"
+          ],
+          "expected_result": "Form does not submit; error shown on First Name, Last Name, and Email Address fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-011",
+          "test_case": "Attempt to update profile with only required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Edit Profile' link",
+            "2. Leave all required fields empty",
+            "3. Click 'Update Profile'"
+          ],
+          "expected_result": "Form does not submit; error shown on First Name, Last Name, and Email Address fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-011",
+          "test_case": "Attempt to update profile with invalid email format",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Edit Profile' link",
+            "2. Enter <invalid email format> in the Email Address field",
+            "3. Fill in valid values for First Name and Last Name",
+            "4. Click 'Update Profile'"
+          ],
+          "expected_result": "Form does not submit; error shown on Email Address field indicating it must be a valid email address",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-011",
+          "test_case": "Attempt to update profile with duplicate email",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Edit Profile' link",
+            "2. Enter <existing email> in the Email Address field",
+            "3. Fill in valid values for First Name and Last Name",
+            "4. Click 'Update Profile'"
+          ],
+          "expected_result": "Form does not submit; error shown on Email Address field indicating it must be unique",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-012",
+          "test_case": "Attempt to cancel profile update without making changes",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the 'Edit Profile' link",
+            "2. Click 'Cancel'"
+          ],
+          "expected_result": "Exits without changes; profile remains unchanged",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-011",
+          "subcategory": "boundary",
+          "test_case": "Update profile with all required fields filled correctly",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Enter valid value in the First Name field",
+            "2. Enter valid value in the Last Name field",
+            "3. Enter valid email address in the Email Address field",
+            "4. Click Update Profile"
+          ],
+          "expected_result": "Profile updates successfully; changes are saved",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-011",
+          "subcategory": "boundary",
+          "test_case": "Attempt to update profile with missing required fields",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Leave First Name field empty",
+            "2. Leave Last Name field empty",
+            "3. Leave Email Address field empty",
+            "4. Click Update Profile"
+          ],
+          "expected_result": "Profile update is blocked; error messages indicate required fields are missing",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long description in the Description field",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Enter a string of 200+ characters in the Description field",
+            "2. Click Update Profile"
+          ],
+          "expected_result": "Form submits successfully; the saved description displays the full text or is truncated with a visible indicator",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the First Name field",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Enter special characters (e.g., @#&*) in the First Name field",
+            "2. Click Update Profile"
+          ],
+          "expected_result": "Profile update is blocked; an error message indicates invalid characters",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the Email Address field",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Enter '   user@example.com   ' in the Email Address field",
+            "2. Click Update Profile"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved email address shows 'user@example.com'",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-023",
+          "wf_ref": "WF-012",
+          "subcategory": "interaction_edge",
+          "test_case": "Cancel profile update and verify no changes are made",
+          "preconditions": [
+            "User is logged in",
+            "Profile form is opened"
+          ],
+          "steps": [
+            "1. Enter changes in the First Name field",
+            "2. Click Cancel"
+          ],
+          "expected_result": "User exits without changes; profile page displays original First Name",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 23,
+        "positive": 12,
+        "negative": 5,
+        "edge": 6,
+        "boundary": 2,
+        "input_edge": 4,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 5,
+        "medium_priority": 15,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Logout",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "User logs out successfully",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click Logout_Button"
+          ],
+          "expected_result": "terminates the current authenticated session and redirects to the login page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to log out while unauthenticated",
+          "preconditions": [
+            "user must be authenticated"
+          ],
+          "steps": [
+            "1. Ensure the user is not authenticated",
+            "2. Click the Logout button"
+          ],
+          "expected_result": "Logout action is blocked; user remains on the current page and is not logged out",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Attempt to log out when not authenticated",
+          "preconditions": [
+            "user is not authenticated"
+          ],
+          "steps": [
+            "1. Click the Logout button"
+          ],
+          "expected_result": "Logout action is blocked; user remains on the current page with a visible error indicating the user must be authenticated to log out.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid consecutive logout attempts",
+          "preconditions": [
+            "user is authenticated"
+          ],
+          "steps": [
+            "1. Click the Logout button",
+            "2. Immediately click the Logout button again"
+          ],
+          "expected_result": "First logout terminates the session and redirects to the login page; second attempt is ignored or blocked.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 4,
+        "positive": 1,
+        "negative": 1,
+        "edge": 2,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 2,
+        "low_priority": 0
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 10,
+    "total_tests": 116,
+    "positive": 43,
+    "negative": 33,
+    "boundary": 5,
+    "edge": 40,
+    "high_priority": 36,
+    "medium_priority": 55,
+    "low_priority": 16
+  }
+}

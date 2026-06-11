@@ -1,0 +1,348 @@
+{
+  "project_name": "Phptravels",
+  "generated_at": "2026-06-10T20:34:50.844466Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Home Page & Search",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST contains no components.",
+        "missing": [
+          "No workflows found for any form submit actions as there are no components defined in the AST."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define the necessary components in the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "User Registration",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing the required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for form submission actions as there are no components defined in the AST."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST to match the registration form actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "User Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains phantom workflows as the terminal action 'Login' is not found in any AST node.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=Login not found in any AST node",
+          "WF-002 terminal_action=Login not found in any AST node",
+          "WF-003 terminal_action=Login not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Forgot Password",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows found for any interactive components in the AST"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add form component with submit_actions for Reset Password",
+          "Ensure workflows match the actions defined in the AST"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Hotels Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for form submit actions or other interactive components as the AST is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST to match the workflows"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Hotel Details & Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required interactive components as the AST contains no components.",
+        "missing": [
+          "No workflows for required interactive components in the AST"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for interactive components defined in the description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Flights Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for the form submit action.",
+        "missing": [
+          "No workflow for form: action=Submit"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for form: action=Submit"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Flight Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST contains no interactive elements.",
+        "missing": [
+          "No workflow for form: action=Continue"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for the form submission action 'Continue'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Tours Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty but the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the tours search form actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Tour Details & Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST contains no interactive elements.",
+        "missing": [
+          "No workflows for any interactive components as the AST is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for interactive components based on the functional description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Cars Search & Listing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for the form submit action.",
+        "missing": [
+          "No workflow for form: action=Submit"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for form: action=Submit"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Car Booking",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for form submit actions.",
+        "missing": [
+          "No workflow for form: action=Confirm Booking"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for form: action=Confirm Booking"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Visa Services",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows for any interactive components as the AST has no defined components."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Regenerate workflows to include actions based on the AST components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 14,
+      "module_title": "User Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains phantom workflows as the AST has no defined components.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=View Details not found in any AST node",
+          "WF-002 terminal_action=Cancel not found in any AST node",
+          "WF-003 terminal_action=Modify not found in any AST node",
+          "WF-004 terminal_action=Download not found in any AST node",
+          "WF-005 terminal_action=Edit not found in any AST node",
+          "WF-006 terminal_action=View not found in any AST node",
+          "WF-007 terminal_action=View not found in any AST node",
+          "WF-008 terminal_action=Submit Review not found in any AST node",
+          "WF-009 terminal_action=Change Password not found in any AST node",
+          "WF-010 terminal_action=Update Preferences not found in any AST node",
+          "WF-011 terminal_action=Change Currency not found in any AST node",
+          "WF-012 terminal_action=Change Language not found in any AST node",
+          "WF-013 terminal_action=Logout not found in any AST node"
+        ],
+        "fixes": [
+          "Remove all phantom workflows as they cannot be executed without corresponding AST components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 15,
+      "module_title": "Booking Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "There are phantom workflows as the terminal actions are not found in any AST node.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=Modify not found in any AST node",
+          "WF-002 terminal_action=Cancel not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001 and WF-002"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 16,
+      "module_title": "Payment Processing",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing critical components as the AST contains no components, indicating a failure to define any interactive elements.",
+        "missing": [
+          "No workflows defined for any interactive components as the AST is empty."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define the necessary components in the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 17,
+      "module_title": "Currency & Language Selection",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for currency selector and language selector actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 18,
+      "module_title": "Search & Filters",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module clearly has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the interactive components defined in the description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 19,
+      "module_title": "Reviews & Ratings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the review submission process as described in the functional description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 20,
+      "module_title": "Offers & Deals",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for any interactive components as the AST is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST to match the workflows"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 21,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the Logout action as it is a critical action in the module."
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

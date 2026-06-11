@@ -1,0 +1,183 @@
+# Semantic Critique — Parabank
+
+Generated: 2026-06-10T20:27:43.291432Z
+
+## Login
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately captures the login form fields, validation constraints, submit behaviors (success and failure), and the Forgot Password link as described.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Register
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST includes the form, all required fields (including State dropdown with options), validation constraints (email, phone, ZIP, SSN, password length and match), the Register submit action, success message and redirect, and failure behavior — matching the description.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Accounts Overview
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST is acceptable; it captures the interactive table, masked clickable account number, ordering, and columns, with one minor missing footer and one minor phantom action bar.
+
+**Missing:**
+
+- components.Accounts_Table.footer.Total_Balance (table footer row showing total balance across all accounts)
+
+**Phantoms (hallucinations):**
+
+- components.Account_State_Action_Bar (state_bound_action_bar not described in the spec; description only mentions an Account Status badge)
+
+---
+
+## Open New Account
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately captures the form, account-type selection, initial deposit field with conditional minimums, funding source dropdown with balance check, realtime validation, and the Open Account submit action with success redirect.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Transfer Funds
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST correctly models the form fields, conditional destination inputs, validations, and success/failure behaviors described; no critical elements are missing.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Payments
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST correctly models the payment form, fields, pay button, validations, success/failure flows; it contains two minor inferred items but no missing critical elements.
+
+**Missing:** none
+
+**Phantoms (hallucinations):**
+
+- Bill_Payment_Form.fields.Payment_Amount.constraints[0] (must be greater than 0) - not explicitly stated in description
+- Bill_Payment_Form.submit_actions[0].error_messages.validation_error (One or more fields are invalid) - generic validation message not explicitly stated
+
+---
+
+## Request Loan
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately represents the interactive elements and validations from the description; only a minor missing mapping for loan-type interest rates and one small inferred constraint present.
+
+**Missing:**
+
+- Request_Loan_Form.fields.Loan_Type.Interest_Rates
+
+**Phantoms (hallucinations):**
+
+- Request_Loan_Form.fields.Down_Payment.constraints[1] (must be >= 0)
+
+---
+
+## Update Contact Info
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately captures the editable profile form, all seven fields, validation requirements, the Update Profile button, and success/failure behaviors.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Manage Cards
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately includes both forms, all named fields, buttons, validations, and success/failure behaviors described; no significant missing or extraneous interactive elements found.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Investments
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately captures both forms, their fields, submit actions, and the described validations and success/failure behaviors with no missing or extraneous interactive elements.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Account Statements
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately represents both forms, their fields, buttons, validation rules, and success/failure messages as described.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Security Settings
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+AST accurately represents the collapsible panel, form fields, button, validation behavior, and success message as described.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---
+
+## Support Center
+
+**Verdict:** yes  
+**Forced ship:** no  
+
+The AST correctly captures both forms, all interactive fields, validation constraints, submit actions, success messages (including ticket ID and email confirmation), and inline failure behavior with no missing or extraneous interactive elements.
+
+**Missing:** none
+
+**Phantoms:** none
+
+---

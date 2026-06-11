@@ -1,0 +1,494 @@
+{
+  "project_name": "Mifos",
+  "generated_at": "2026-06-10T19:10:41.541813Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing the required form structure as there are no components defined in the AST.",
+        "missing": [
+          "No workflow for form submission: terminal action=Login"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define form components in the AST to match the workflows"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Home Page",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the interactive components present in the module."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the Dashboard module actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Global Search",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Phantom workflows detected as terminal actions are not found in any AST node.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=Select result not found in any AST node",
+          "WF-002 terminal_action=Display no results message not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001 and WF-002"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Client Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for the forms and state actions.",
+        "missing": [
+          "No workflow for form: Create Client, action=Submit",
+          "No workflow for state_bound_action_bar: state=Pending, action=Edit",
+          "No workflow for state_bound_action_bar: state=Pending, action=Reject",
+          "No workflow for state_bound_action_bar: state=Pending, action=Withdraw",
+          "No workflow for state_bound_action_bar: state=Pending, action=Activate",
+          "No workflow for state_bound_action_bar: state=Active, action=Transfer Client",
+          "No workflow for state_bound_action_bar: state=Active, action=Close",
+          "No workflow for state_bound_action_bar: state=Closed, action=Reactivate"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for form: Create Client, action=Submit",
+          "Add workflow for state_bound_action_bar: state=Pending, action=Edit",
+          "Add workflow for state_bound_action_bar: state=Pending, action=Reject",
+          "Add workflow for state_bound_action_bar: state=Pending, action=Withdraw",
+          "Add workflow for state_bound_action_bar: state=Pending, action=Activate",
+          "Add workflow for state_bound_action_bar: state=Active, action=Transfer Client",
+          "Add workflow for state_bound_action_bar: state=Active, action=Close",
+          "Add workflow for state_bound_action_bar: state=Closed, action=Reactivate"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Group Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating that there are no defined components, which leads to a critical failure as workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Center Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating a critical failure as there are interactive components described in the functional description.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Regenerate the AST to include components for forms, data tables, and action bars."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Loan Products",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST contains no components, indicating a critical failure as workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows as the AST has no components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Savings Products",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the module's interactive components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Share Products",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST contains no components, indicating a critical failure as workflows exist without corresponding actions.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove workflows WF-001, WF-002, WF-003 as they have no corresponding actions in the AST."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Charges",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components are defined, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Floating Rates",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the interactive components present in the module."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Delinquency Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the forms in the module as there are no workflows present."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 14,
+      "module_title": "Loan Account",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating a critical failure as workflows exist without corresponding interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Regenerate workflows due to empty AST"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 15,
+      "module_title": "Savings Account",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating a critical failure as there are workflows present.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Regenerate workflows due to empty AST"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 16,
+      "module_title": "Share Account",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components, yet workflows are present.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 17,
+      "module_title": "Fixed & Recurring Deposit Accounts",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing critical components as the AST contains no components, indicating a lack of defined actions.",
+        "missing": [
+          "No workflows found for any actions as the AST is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST to match the actions in the workflows"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 18,
+      "module_title": "Accounting \u2014 Chart of Accounts",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains phantom workflows as the AST has no components defined.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=+ Create GL Account not found in any AST node",
+          "WF-002 terminal_action=Edit not found in any AST node",
+          "WF-003 terminal_action=Delete not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 19,
+      "module_title": "Accounting \u2014 Journal Entries & Closures",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the forms and actions described in the Journal Entries and Closing Entries pages."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 20,
+      "module_title": "Accounting Rules & Financial Activity Mappings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST contains no components, indicating a critical failure as workflows exist for actions that should be defined in the AST.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=+ Create Rule not found in any AST node",
+          "WF-002 terminal_action=View Rule not found in any AST node",
+          "WF-003 terminal_action=Edit Rule not found in any AST node",
+          "WF-004 terminal_action=Delete Rule not found in any AST node",
+          "WF-005 terminal_action=+ Create Mapping not found in any AST node",
+          "WF-006 terminal_action=View Mapping not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003, WF-004, WF-005, WF-006"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 21,
+      "module_title": "Provisioning",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating that there are no defined components, yet workflows exist that require corresponding actions.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=+ Create not found in any AST node",
+          "WF-002 terminal_action=+ Create Provisioning Entry not found in any AST node",
+          "WF-003 terminal_action=Review not found in any AST node",
+          "WF-004 terminal_action=Recreate not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003, WF-004"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 22,
+      "module_title": "Offices",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for forms and other actions defined in the description.",
+        "missing": [
+          "No workflow for form: action=Submit Office Creation"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for form: action=Submit Office Creation"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 23,
+      "module_title": "Employees",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 24,
+      "module_title": "Teller & Cashier Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating that there are no defined components, which leads to a critical failure as workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows due to the absence of components in the AST"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 25,
+      "module_title": "Users & Roles",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows for any interactive components as the AST has no defined components."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define the components in the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 26,
+      "module_title": "Reports",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing critical components as there are no defined AST components.",
+        "missing": [
+          "No workflows for any form submit_actions or interactive components as the AST is empty."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define the AST components for forms, state_bound_action_bar, or data_table to generate workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 27,
+      "module_title": "Account Transfers & Standing Instructions",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflow for form: action=Submit",
+          "No workflow for data_table: action=+ Create Standing Instruction"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the missing form and data_table actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 28,
+      "module_title": "Tax Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the interactive components present in the module."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 29,
+      "module_title": "Organization Settings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for forms and actions described in the functional description.",
+        "missing": [
+          "No workflow for form: Create Holiday, action=Submit",
+          "No workflow for form: Create Fund, action=Submit",
+          "No workflow for form: Create Payment Type, action=Submit"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for missing forms and actions"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 30,
+      "module_title": "System Administration",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating that there are no defined components, yet workflows exist that require corresponding actions in the AST.",
+        "missing": [
+          "No workflows can be validated against an empty AST."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 31,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the logout function."
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "module": "MoodleTeacher",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": [
+        "User has valid username and password"
+      ],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter valid username",
+        "3. Enter valid password",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "User is redirected to the Dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Login attempt with empty username",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Leave username field empty",
+        "3. Enter valid password",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "Inline error message indicating username is required, password field is cleared, and username remains",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "negative",
+      "test_case": "Login attempt with empty password",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter valid username",
+        "3. Leave password field empty",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "Inline error message indicating password is required, password field is cleared, and username remains",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "negative",
+      "test_case": "Login attempt with invalid credentials",
+      "preconditions": [
+        "User has invalid username and/or password"
+      ],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter invalid username",
+        "3. Enter invalid password",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "Inline error message indicating invalid credentials, password field is cleared, and username remains",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "edge",
+      "test_case": "Login attempt with maximum length username and password",
+      "preconditions": [
+        "User has a username and password of maximum allowed length"
+      ],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter maximum length username",
+        "3. Enter maximum length password",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "User is redirected to the Dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "edge",
+      "test_case": "Login attempt with special characters in username and password",
+      "preconditions": [
+        "User has a username and password containing special characters"
+      ],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter username with special characters",
+        "3. Enter password with special characters",
+        "4. Click on 'Log in' button"
+      ],
+      "expected_result": "User is redirected to the Dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "positive",
+      "test_case": "Accessing Dashboard after successful login",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on 'Dashboard' link in the navigation bar"
+      ],
+      "expected_result": "Dashboard is displayed with personalized greeting and blocks",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "positive",
+      "test_case": "Viewing My Courses page",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on 'My Courses' link in the navigation bar"
+      ],
+      "expected_result": "My Courses page is displayed with all courses as visual cards",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "negative",
+      "test_case": "Attempting to access Dashboard without logging in",
+      "preconditions": [
+        "User is not logged in"
+      ],
+      "steps": [
+        "1. Navigate to the Dashboard URL directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "positive",
+      "test_case": "Toggling Edit mode on Dashboard",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on 'Edit mode' toggle button"
+      ],
+      "expected_result": "Edit mode is activated, showing additional options",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "negative",
+      "test_case": "Attempting to add a block without Edit mode",
+      "preconditions": [
+        "User is logged in and Edit mode is off"
+      ],
+      "steps": [
+        "1. Click on '+ Add a block' button"
+      ],
+      "expected_result": "User cannot add a block, and no action is performed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "positive",
+      "test_case": "Adding a block in Edit mode",
+      "preconditions": [
+        "User is logged in and Edit mode is on"
+      ],
+      "steps": [
+        "1. Click on '+ Add a block' button",
+        "2. Select a block type from the list",
+        "3. Click 'Add'"
+      ],
+      "expected_result": "Selected block is added to the Dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "negative",
+      "test_case": "Attempting to add a block and canceling",
+      "preconditions": [
+        "User is logged in and Edit mode is on"
+      ],
+      "steps": [
+        "1. Click on '+ Add a block' button",
+        "2. Click 'Cancel'"
+      ],
+      "expected_result": "User is returned to the Dashboard without adding a block",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "positive",
+      "test_case": "Navigating to Course page from My Courses",
+      "preconditions": [
+        "User is logged in and has courses"
+      ],
+      "steps": [
+        "1. Click on a course name link from My Courses"
+      ],
+      "expected_result": "User is redirected to the selected Course page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "positive",
+      "test_case": "Viewing Course content in collapsible sections",
+      "preconditions": [
+        "User is logged in and on a Course page"
+      ],
+      "steps": [
+        "1. Click on a section's chevron to expand it"
+      ],
+      "expected_result": "The section expands to show activities and resources",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "negative",
+      "test_case": "Attempting to access Course page without permissions",
+      "preconditions": [
+        "User is logged in but does not have access to the course"
+      ],
+      "steps": [
+        "1. Navigate to the Course page URL directly"
+      ],
+      "expected_result": "User sees an error message indicating lack of permissions",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "positive",
+      "test_case": "Creating an assignment successfully",
+      "preconditions": [
+        "User is logged in and in Edit mode on a Course page"
+      ],
+      "steps": [
+        "1. Click on '+ Add an activity or resource' button",
+        "2. Select 'Assignment' from the Activity Chooser",
+        "3. Fill in required fields",
+        "4. Click 'Save and return to course'"
+      ],
+      "expected_result": "Assignment is created and user is redirected to the Course page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "negative",
+      "test_case": "Creating an assignment with missing required fields",
+      "preconditions": [
+        "User is logged in and in Edit mode on a Course page"
+      ],
+      "steps": [
+        "1. Click on '+ Add an activity or resource' button",
+        "2. Select 'Assignment' from the Activity Chooser",
+        "3. Leave Assignment name empty",
+        "4. Click 'Save and return to course'"
+      ],
+      "expected_result": "Inline error message indicating Assignment name is required, and user remains on the creation form",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "edge",
+      "test_case": "Creating an assignment with maximum length name",
+      "preconditions": [
+        "User is logged in and in Edit mode on a Course page"
+      ],
+      "steps": [
+        "1. Click on '+ Add an activity or resource' button",
+        "2. Select 'Assignment' from the Activity Chooser",
+        "3. Enter maximum length Assignment name",
+        "4. Click 'Save and return to course'"
+      ],
+      "expected_result": "Assignment is created and user is redirected to the Course page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "positive",
+      "test_case": "Editing an existing assignment",
+      "preconditions": [
+        "User is logged in and in Edit mode on a Course page with an existing assignment"
+      ],
+      "steps": [
+        "1. Click on the three-dot menu of the existing assignment",
+        "2. Select 'Edit settings'",
+        "3. Modify the assignment details",
+        "4. Click 'Save and return to course'"
+      ],
+      "expected_result": "Assignment is updated with new details and user is redirected to the Course page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "negative",
+      "test_case": "Deleting an assignment",
+      "preconditions": [
+        "User is logged in and in Edit mode on a Course page with an existing assignment"
+      ],
+      "steps": [
+        "1. Click on the three-dot menu of the existing assignment",
+        "2. Select 'Delete'",
+        "3. Confirm deletion"
+      ],
+      "expected_result": "Assignment is deleted and no longer appears on the Course page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC022",
+      "category": "positive",
+      "test_case": "Viewing the Gradebook Grader report",
+      "preconditions": [
+        "User is logged in and has access to the Gradebook"
+      ],
+      "steps": [
+        "1. Click on 'Grades' from the user menu",
+        "2. Select 'Grader report'"
+      ],
+      "expected_result": "Grader report is displayed with grades for all students",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC023",
+      "category": "negative",
+      "test_case": "Attempting to access Gradebook without permissions",
+      "preconditions": [
+        "User is logged in but does not have access to the Gradebook"
+      ],
+      "steps": [
+        "1. Navigate to the Gradebook URL directly"
+      ],
+      "expected_result": "User sees an error message indicating lack of permissions",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC024",
+      "category": "positive",
+      "test_case": "Logging out successfully",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Log out'"
+      ],
+      "expected_result": "User is logged out and redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC025",
+      "category": "negative",
+      "test_case": "Attempting to access a protected page after logout",
+      "preconditions": [
+        "User is logged out"
+      ],
+      "steps": [
+        "1. Navigate to the Dashboard URL directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC026",
+      "category": "edge",
+      "test_case": "Editing profile with maximum length fields",
+      "preconditions": [
+        "User is logged in and on the Edit profile page"
+      ],
+      "steps": [
+        "1. Fill in all fields with maximum allowed length",
+        "2. Click 'Update profile'"
+      ],
+      "expected_result": "Profile is updated successfully and user is redirected to the Profile page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC027",
+      "category": "negative",
+      "test_case": "Editing profile with invalid email format",
+      "preconditions": [
+        "User is logged in and on the Edit profile page"
+      ],
+      "steps": [
+        "1. Enter an invalid email format",
+        "2. Click 'Update profile'"
+      ],
+      "expected_result": "Inline error message indicating invalid email format, and user remains on the Edit profile page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC028",
+      "category": "positive",
+      "test_case": "Viewing Profile page",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Profile'"
+      ],
+      "expected_result": "Profile page is displayed with user details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC029",
+      "category": "edge",
+      "test_case": "Viewing Profile with no additional names or interests",
+      "preconditions": [
+        "User is logged in and has no additional names or interests"
+      ],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Profile'"
+      ],
+      "expected_result": "Profile page displays without additional names or interests sections",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC030",
+      "category": "negative",
+      "test_case": "Attempting to edit profile without required fields",
+      "preconditions": [
+        "User is logged in and on the Edit profile page"
+      ],
+      "steps": [
+        "1. Leave required fields empty",
+        "2. Click 'Update profile'"
+      ],
+      "expected_result": "Inline error messages indicating required fields are missing, and user remains on the Edit profile page",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 30,
+    "positive": 12,
+    "negative": 13,
+    "edge": 5,
+    "high_priority": 21,
+    "medium_priority": 9,
+    "low_priority": 0
+  },
+  "_meta": {
+    "website": "MoodleTeacher",
+    "model": "gpt-4o-mini",
+    "approach": "zero_shot",
+    "generated_at": "2026-06-10T17:43:20.390568Z"
+  }
+}

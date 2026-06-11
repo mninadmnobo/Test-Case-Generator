@@ -1,0 +1,1711 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-10T21:39:17.744206Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log in (form submit)",
+          "actor": "Teacher",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "redirects teacher to Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Access as guest",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Access as a guest",
+          "on_success": "grants unauthenticated browsing"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Open cookies notice",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cookies notice",
+          "on_success": "shows cookie usage information"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Change timeline time range (items present)",
+          "actor": "<role>",
+          "conditional_branch": "Timeline_Items != none",
+          "terminal_action": "Time_Range",
+          "on_success": "Timeline updates to show activities in selected range"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Change timeline time range (no items -> empty state)",
+          "actor": "<role>",
+          "conditional_branch": "Timeline_Items == none",
+          "terminal_action": "Time_Range",
+          "on_success": "shows empty state when no items exist in selected range"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Change timeline sort order",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort_Order",
+          "on_success": "Timeline reorders activities according to selected sort order"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Search activities in timeline",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search_Activities",
+          "on_success": "Timeline filters activities by name or type"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Filter calendar by course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Course_Filter",
+          "on_success": "Calendar filters events to the selected course"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Create new calendar event",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "New event",
+          "on_success": "opens new event creation flow"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Navigate to previous month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Previous month",
+          "on_success": "navigates to previous month"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Navigate to next month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Next month",
+          "on_success": "navigates to next month"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Open full calendar view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Full calendar",
+          "on_success": "navigates to full calendar view"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Open calendar import/export management",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import or export calendars",
+          "on_success": "opens calendar import/export management"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Toggle Edit mode ON",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Edit mode",
+          "on_success": "Edit mode enabled; edit controls visible"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Toggle Edit mode OFF",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == off",
+          "terminal_action": "Edit mode",
+          "on_success": "Edit mode disabled; edit controls hidden"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Reset page to default (in Edit mode)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Reset page to default",
+          "on_success": "layout reverted to default for user"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Add Comments block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Comments block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Add Course overview block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Course overview block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Add Latest announcements block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Latest announcements block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Add Latest badges block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Latest badges block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Add Learning plans block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Learning plans block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Add Logged in user block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Logged in user block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Add Mentees block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Mentees block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Add Online users block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Online users block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Add Private files block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Private files block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-013",
+          "name": "Add Random glossary entry block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Random glossary entry block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-014",
+          "name": "Add Recently accessed courses block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Recently accessed courses block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-015",
+          "name": "Add Starred courses block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Starred courses block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-016",
+          "name": "Add Tags block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Tags block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-017",
+          "name": "Add Text block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Text block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-018",
+          "name": "Add Upcoming events block (via Add a block page)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Add Upcoming events block",
+          "on_success": "persists layout change for user"
+        },
+        {
+          "wf_id": "WF-019",
+          "name": "Cancel Add a block (returns to Dashboard)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on AND opened_via_Add_A_Block_Button",
+          "terminal_action": "Cancel",
+          "on_success": "no change to user's layout"
+        },
+        {
+          "wf_id": "WF-020",
+          "name": "Move block using drag handle (in Edit mode)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Move (drag handle)",
+          "on_success": "layout persisted for user"
+        },
+        {
+          "wf_id": "WF-021",
+          "name": "Configure block via Options menu (in Edit mode)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Configure",
+          "on_success": "configuration UI opened"
+        },
+        {
+          "wf_id": "WF-022",
+          "name": "Move block via Options menu (in Edit mode)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Move",
+          "on_success": "layout persisted for user"
+        },
+        {
+          "wf_id": "WF-023",
+          "name": "Delete block via Options menu (in Edit mode)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == on",
+          "terminal_action": "Delete",
+          "on_success": "block removed and layout persisted for user"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open course from card",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Course_Name",
+          "on_success": "Navigates to Course_Main_Page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Star a course from card menu",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Star this course",
+          "on_success": "pins the course to the top"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Remove a course from view from card menu",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Remove from view",
+          "on_success": "hides the course from the user's view without affecting enrollment"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Collapse all sections",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Collapse all",
+          "on_success": "collapses all sections"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Toggle a section expand/collapse",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Toggle section expand/collapse",
+          "on_success": "toggles section expanded/collapsed"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Open an activity or resource",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Open activity or resource",
+          "on_success": "navigates to activity or resource"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Enable Edit mode",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enable Edit mode",
+          "on_success": "enables authoring interface"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit a Section (section-level Edit)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Section",
+          "terminal_action": "Edit",
+          "on_success": "opens section edit panel"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Duplicate a Section",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Section",
+          "terminal_action": "Duplicate",
+          "on_success": "duplicates section"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Hide a Section",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Section",
+          "terminal_action": "Hide",
+          "on_success": "toggles section visibility"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Delete a Section",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Section",
+          "terminal_action": "Delete",
+          "on_success": "deletes section"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Move a Section",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Section",
+          "terminal_action": "Move",
+          "on_success": "initiates section move UI"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Edit a Subsection (subsection-level Edit)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Subsection",
+          "terminal_action": "Edit",
+          "on_success": "opens subsection edit panel"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Duplicate a Subsection",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Subsection",
+          "terminal_action": "Duplicate",
+          "on_success": "duplicates subsection"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Hide a Subsection",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Subsection",
+          "terminal_action": "Hide",
+          "on_success": "toggles subsection visibility"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Delete a Subsection",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Subsection",
+          "terminal_action": "Delete",
+          "on_success": "deletes subsection"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Move a Subsection",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Subsection",
+          "terminal_action": "Move",
+          "on_success": "initiates subsection move UI"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Edit Activity Settings (activity-level)",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Edit Settings",
+          "on_success": "opens activity settings"
+        },
+        {
+          "wf_id": "WF-013",
+          "name": "Move an Activity",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Move",
+          "on_success": "initiates move UI for activity"
+        },
+        {
+          "wf_id": "WF-014",
+          "name": "Duplicate an Activity",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Duplicate",
+          "on_success": "duplicates activity"
+        },
+        {
+          "wf_id": "WF-015",
+          "name": "Hide an Activity",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Hide",
+          "on_success": "toggles activity visibility"
+        },
+        {
+          "wf_id": "WF-016",
+          "name": "Set Access Restrictions on an Activity",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Set Access Restrictions",
+          "on_success": "opens access restriction UI"
+        },
+        {
+          "wf_id": "WF-017",
+          "name": "Delete an Activity",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled AND target == Activity",
+          "terminal_action": "Delete",
+          "on_success": "deletes activity"
+        },
+        {
+          "wf_id": "WF-018",
+          "name": "Open Activity Chooser modal via Add an activity or resource button",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled",
+          "terminal_action": "+ Add an activity or resource",
+          "on_success": "opens Activity Chooser modal"
+        },
+        {
+          "wf_id": "WF-019",
+          "name": "Add a subsection",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == enabled",
+          "terminal_action": "+ Add a subsection",
+          "on_success": "creates nested subsection under this section"
+        },
+        {
+          "wf_id": "WF-020",
+          "name": "Add selected Assignment (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Assignment",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-021",
+          "name": "Add selected Forum (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Forum",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-022",
+          "name": "Add selected Quiz (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Quiz",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-023",
+          "name": "Add selected File (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == File",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-024",
+          "name": "Add selected Page (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Page",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-025",
+          "name": "Add selected Lesson (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Lesson",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-026",
+          "name": "Add selected SCORM (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == SCORM",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-027",
+          "name": "Add selected URL (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == URL",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-028",
+          "name": "Add selected Workshop (from Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Selected_Tile == Workshop",
+          "terminal_action": "Add",
+          "on_success": "opens selected activity creation form"
+        },
+        {
+          "wf_id": "WF-029",
+          "name": "Mark Assignment as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Assignment",
+          "terminal_action": "marks Assignment as favorite",
+          "on_success": "marks Assignment as favorite"
+        },
+        {
+          "wf_id": "WF-030",
+          "name": "Mark Forum as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Forum",
+          "terminal_action": "marks Forum as favorite",
+          "on_success": "marks Forum as favorite"
+        },
+        {
+          "wf_id": "WF-031",
+          "name": "Mark Quiz as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Quiz",
+          "terminal_action": "marks Quiz as favorite",
+          "on_success": "marks Quiz as favorite"
+        },
+        {
+          "wf_id": "WF-032",
+          "name": "Mark File as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == File",
+          "terminal_action": "marks File as favorite",
+          "on_success": "marks File as favorite"
+        },
+        {
+          "wf_id": "WF-033",
+          "name": "Mark Page as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Page",
+          "terminal_action": "marks Page as favorite",
+          "on_success": "marks Page as favorite"
+        },
+        {
+          "wf_id": "WF-034",
+          "name": "Mark Lesson as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Lesson",
+          "terminal_action": "marks Lesson as favorite",
+          "on_success": "marks Lesson as favorite"
+        },
+        {
+          "wf_id": "WF-035",
+          "name": "Mark SCORM as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == SCORM",
+          "terminal_action": "marks SCORM as favorite",
+          "on_success": "marks SCORM as favorite"
+        },
+        {
+          "wf_id": "WF-036",
+          "name": "Mark URL as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == URL",
+          "terminal_action": "marks URL as favorite",
+          "on_success": "marks URL as favorite"
+        },
+        {
+          "wf_id": "WF-037",
+          "name": "Mark Workshop as favorite (in Activity Chooser)",
+          "actor": "<role>",
+          "conditional_branch": "Activity_Chooser_Modal == open AND Tile == Workshop",
+          "terminal_action": "marks Workshop as favorite",
+          "on_success": "marks Workshop as favorite"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Save and return (no optional features enabled)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save and return to course",
+          "on_success": "creates the assignment and redirects to the course page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Save and display (no optional features enabled)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save and display",
+          "on_success": "creates the assignment and opens the new assignment's page"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Cancel (no optional features enabled)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Save and return with file submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true",
+          "terminal_action": "Save and return to course",
+          "on_success": "creates the assignment and redirects to the course page"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Save and display with file submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true",
+          "terminal_action": "Save and display",
+          "on_success": "creates the assignment and opens the new assignment's page"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Cancel with file submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true",
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Save and return with group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "Group_Submissions == true",
+          "terminal_action": "Save and return to course",
+          "on_success": "creates the assignment and redirects to the course page"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Save and display with group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "Group_Submissions == true",
+          "terminal_action": "Save and display",
+          "on_success": "creates the assignment and opens the new assignment's page"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Cancel with group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "Group_Submissions == true",
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Save and return with file and group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true AND Group_Submissions == true",
+          "terminal_action": "Save and return to course",
+          "on_success": "creates the assignment and redirects to the course page"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Save and display with file and group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true AND Group_Submissions == true",
+          "terminal_action": "Save and display",
+          "on_success": "creates the assignment and opens the new assignment's page"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Cancel with file and group submissions enabled",
+          "actor": "<role>",
+          "conditional_branch": "File_Submissions == true AND Group_Submissions == true",
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        },
+        {
+          "wf_id": "WF-013",
+          "name": "Save and return with due date enabled",
+          "actor": "<role>",
+          "conditional_branch": "Due_Date_Enable == true",
+          "terminal_action": "Save and return to course",
+          "on_success": "creates the assignment and redirects to the course page"
+        },
+        {
+          "wf_id": "WF-014",
+          "name": "Save and display with due date enabled",
+          "actor": "<role>",
+          "conditional_branch": "Due_Date_Enable == true",
+          "terminal_action": "Save and display",
+          "on_success": "creates the assignment and opens the new assignment's page"
+        },
+        {
+          "wf_id": "WF-015",
+          "name": "Cancel with due date enabled",
+          "actor": "<role>",
+          "conditional_branch": "Due_Date_Enable == true",
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        },
+        {
+          "wf_id": "WF-016",
+          "name": "Add restriction via Restriction Type Picker (confirm)",
+          "actor": "<role>",
+          "conditional_branch": "Opened Restriction_Type_Picker",
+          "terminal_action": "Add",
+          "on_success": "adds a restriction to Restrictions repeating_group"
+        },
+        {
+          "wf_id": "WF-017",
+          "name": "Cancel Restriction Type Picker (close without adding)",
+          "actor": "<role>",
+          "conditional_branch": "Opened Restriction_Type_Picker",
+          "terminal_action": "Cancel",
+          "on_success": "closes modal without adding restriction"
+        },
+        {
+          "wf_id": "WF-018",
+          "name": "Add competency via Competency Picker (confirm)",
+          "actor": "<role>",
+          "conditional_branch": "Opened Competency_Picker",
+          "terminal_action": "Add",
+          "on_success": "adds selected competency to Competencies repeating_group"
+        },
+        {
+          "wf_id": "WF-019",
+          "name": "Cancel Competency Picker (close without adding)",
+          "actor": "<role>",
+          "conditional_branch": "Opened Competency_Picker",
+          "terminal_action": "Cancel",
+          "on_success": "closes modal without adding competency"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Save and display with Course end date disabled",
+          "actor": "<role>",
+          "conditional_branch": "Course_end_date_enable == false",
+          "terminal_action": "Save and display",
+          "on_success": "persists configuration and returns to the course page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel with Course end date disabled",
+          "actor": "<role>",
+          "conditional_branch": "Course_end_date_enable == false",
+          "terminal_action": "Cancel",
+          "on_success": "leaves existing settings unchanged"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Save and display with Course end date enabled",
+          "actor": "<role>",
+          "conditional_branch": "Course_end_date_enable == true",
+          "terminal_action": "Save and display",
+          "on_success": "persists configuration and returns to the course page"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Cancel with Course end date enabled",
+          "actor": "<role>",
+          "conditional_branch": "Course_end_date_enable == true",
+          "terminal_action": "Cancel",
+          "on_success": "leaves existing settings unchanged"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Enrol users dialog",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enrol users",
+          "on_success": "opens Enrol_Users_Dialog"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Confirm enrollment in Enrol users dialog",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Confirm enrollment",
+          "on_success": "adds the user to the course at the specified role"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Cancel Enrol users dialog",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "closes Enrol_Users_Dialog without changes"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Add condition in filter builder",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Add condition",
+          "on_success": "adds another condition row to Conditions"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Clear filters in filter builder",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Clear filters",
+          "on_success": "filters cleared"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Apply filters in filter builder",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply filters",
+          "on_success": "applies filter conditions to participants list"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Filter by first-name initial: All",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == All",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Filter by first-name initial: A",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == A",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Filter by first-name initial: B",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == B",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Filter by first-name initial: C",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == C",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Filter by first-name initial: D",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == D",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Filter by first-name initial: E",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == E",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-013",
+          "name": "Filter by first-name initial: F",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == F",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-014",
+          "name": "Filter by first-name initial: G",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == G",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-015",
+          "name": "Filter by first-name initial: H",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == H",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-016",
+          "name": "Filter by first-name initial: I",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == I",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-017",
+          "name": "Filter by first-name initial: J",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == J",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-018",
+          "name": "Filter by first-name initial: K",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == K",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-019",
+          "name": "Filter by first-name initial: L",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == L",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-020",
+          "name": "Filter by first-name initial: M",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == M",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-021",
+          "name": "Filter by first-name initial: N",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == N",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-022",
+          "name": "Filter by first-name initial: O",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == O",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-023",
+          "name": "Filter by first-name initial: P",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == P",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-024",
+          "name": "Filter by first-name initial: Q",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == Q",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-025",
+          "name": "Filter by first-name initial: R",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == R",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-026",
+          "name": "Filter by first-name initial: S",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == S",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-027",
+          "name": "Filter by first-name initial: T",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == T",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-028",
+          "name": "Filter by first-name initial: U",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == U",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-029",
+          "name": "Filter by first-name initial: V",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == V",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-030",
+          "name": "Filter by first-name initial: W",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == W",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-031",
+          "name": "Filter by first-name initial: X",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == X",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-032",
+          "name": "Filter by first-name initial: Y",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == Y",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-033",
+          "name": "Filter by first-name initial: Z",
+          "actor": "<role>",
+          "conditional_branch": "FirstName_Initial == Z",
+          "terminal_action": "First name alphabetical filter",
+          "on_success": "filters participants by first-name initial"
+        },
+        {
+          "wf_id": "WF-034",
+          "name": "Filter by last-name initial: All",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == All",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-035",
+          "name": "Filter by last-name initial: A",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == A",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-036",
+          "name": "Filter by last-name initial: B",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == B",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-037",
+          "name": "Filter by last-name initial: C",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == C",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-038",
+          "name": "Filter by last-name initial: D",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == D",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-039",
+          "name": "Filter by last-name initial: E",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == E",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-040",
+          "name": "Filter by last-name initial: F",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == F",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-041",
+          "name": "Filter by last-name initial: G",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == G",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-042",
+          "name": "Filter by last-name initial: H",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == H",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-043",
+          "name": "Filter by last-name initial: I",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == I",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-044",
+          "name": "Filter by last-name initial: J",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == J",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-045",
+          "name": "Filter by last-name initial: K",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == K",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-046",
+          "name": "Filter by last-name initial: L",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == L",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-047",
+          "name": "Filter by last-name initial: M",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == M",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-048",
+          "name": "Filter by last-name initial: N",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == N",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-049",
+          "name": "Filter by last-name initial: O",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == O",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-050",
+          "name": "Filter by last-name initial: P",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == P",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-051",
+          "name": "Filter by last-name initial: Q",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == Q",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-052",
+          "name": "Filter by last-name initial: R",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == R",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-053",
+          "name": "Filter by last-name initial: S",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == S",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-054",
+          "name": "Filter by last-name initial: T",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == T",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-055",
+          "name": "Filter by last-name initial: U",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == U",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-056",
+          "name": "Filter by last-name initial: V",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == V",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-057",
+          "name": "Filter by last-name initial: W",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == W",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-058",
+          "name": "Filter by last-name initial: X",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == X",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-059",
+          "name": "Filter by last-name initial: Y",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == Y",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-060",
+          "name": "Filter by last-name initial: Z",
+          "actor": "<role>",
+          "conditional_branch": "LastName_Initial == Z",
+          "terminal_action": "Last name alphabetical filter",
+          "on_success": "filters participants by last-name initial"
+        },
+        {
+          "wf_id": "WF-061",
+          "name": "View user profile from participants table row",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View profile",
+          "on_success": "navigates to user profile"
+        },
+        {
+          "wf_id": "WF-062",
+          "name": "Edit role for a participant from row actions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit role",
+          "on_success": "opens role editing for that user"
+        },
+        {
+          "wf_id": "WF-063",
+          "name": "Send message to a participant from row actions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send message",
+          "on_success": "opens message composer to that user"
+        },
+        {
+          "wf_id": "WF-064",
+          "name": "Open bulk actions dropdown (With selected users\u2026)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "With selected users\u2026",
+          "on_success": "opens bulk actions dropdown for selected users"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Grading interface via Grade button",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Grade",
+          "on_success": "opens Grading_Interface for individual students"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Navigate to Assignment tab",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to Assignment tab",
+          "on_success": "Assignment tab displayed"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Navigate to Settings tab",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to Settings tab",
+          "on_success": "Settings tab displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Navigate to Submissions tab",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to Submissions tab",
+          "on_success": "Submissions tab displayed"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Navigate to Advanced grading tab",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to Advanced grading tab",
+          "on_success": "Advanced grading tab displayed"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Navigate to More tab",
+          "actor": "teacher",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to More tab",
+          "on_success": "More tab displayed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Enable Quick grading mode",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Quick_Grading_Mode",
+          "on_success": "enables inline grade entry in the table"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open grading workflow for a student (row action)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Open Grading Workflow",
+          "on_success": "opens grading workflow for student"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Navigate to student profile via row link",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Student_Profile_Link",
+          "on_success": "navigates to student profile"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Open online text preview from row",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Online_Text_Preview",
+          "on_success": "opens online text preview for this submission"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Download or open a submitted file from row",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "File_Submissions.File_Link",
+          "on_success": "download or open submitted file"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Download or open a feedback file from row",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Feedback_Files.File_Link",
+          "on_success": "download or open feedback file"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Edit final grade inline when Quick grading enabled",
+          "actor": "<role>",
+          "conditional_branch": "Quick_Grading_Mode == true",
+          "terminal_action": "Final_Grade_Inline",
+          "on_success": "editable inline when Quick grading mode is enabled"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Switch report type",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Switch report type",
+          "on_success": "Report view switches to the selected report type"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Filter rows by user search",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Filter by user search",
+          "on_success": "Rows narrowed to matching students based on the search"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Filter rows by group",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Filter by group",
+          "on_success": "Rows narrowed to the selected group"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Enable Edit mode to edit inline",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enable Edit mode",
+          "on_success": "Grade cells become editable inline"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Save changes with valid grades",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == true AND all grade values within configured activity grade ranges",
+          "terminal_action": "Save changes",
+          "on_success": "applies edits"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Attempt to save changes with invalid grades",
+          "actor": "<role>",
+          "conditional_branch": "Edit_Mode == true AND some grade values outside configured activity grade ranges",
+          "terminal_action": "Save changes",
+          "on_success": "Flags invalid values inline; prevents saving"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Edit activity settings from column header",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit activity settings",
+          "on_success": "Opens activity grade settings for that activity"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Edit individual grade via cell action",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit grade",
+          "on_success": "Updates the student's grade"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Send Message to user",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Message",
+          "on_success": "Opens the messaging composer or conversation interface for this user."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit_Profile",
+          "on_success": "Navigates to the Edit Profile page."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View Data Retention Summary",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Data_Retention_Summary",
+          "on_success": "Navigates to the Data Retention Summary page."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Open associated course profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Course_Profile_Link",
+          "on_success": "Navigates to the selected course profile page."
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "View Blog Entries",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Blog_Entries",
+          "on_success": "Navigates to this user's Blog Entries list."
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "View Forum Posts",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Forum_Posts",
+          "on_success": "Navigates to this user's Forum Posts list."
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "View Forum Discussions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Forum_Discussions",
+          "on_success": "Navigates to this user's Forum Discussions list."
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "View Learning Plans",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Learning_Plans",
+          "on_success": "Navigates to this user's Learning Plans."
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "View Browser Sessions report",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Browser_Sessions",
+          "on_success": "Navigates to the Browser Sessions report for this user."
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "View Grades Overview report",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Grades_Overview",
+          "on_success": "Navigates to the Grades Overview report for this user."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Update profile (save changes)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update profile",
+          "on_success": "refreshes the profile page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel profile edit (discard changes)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "exits without making changes"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Click Log out to terminate session",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log out",
+          "on_success": "terminates the current authenticated session and redirects to the login page; access to protected pages requires re-authentication after logout"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

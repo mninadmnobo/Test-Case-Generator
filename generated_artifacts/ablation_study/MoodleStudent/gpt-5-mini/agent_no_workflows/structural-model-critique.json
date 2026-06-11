@@ -1,0 +1,154 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:53:47.304064Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately captures all interactive elements (Username, Password, Log in submit, disabled Lost password link, Access as a guest button, Cookies notice button) and the described success/failure behaviors.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST covers all interactive elements from the description; only minor inferred config pages were added but they are reasonable and non-critical.",
+        "missing": [],
+        "phantoms": [
+          "components.Timeline_Configuration_Page (configuration page not explicitly named in description)",
+          "components.Calendar_Configuration_Page (configuration page not explicitly named in description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the interactive elements (filter controls, search, layout, sortable control, course link navigation, and card actions) with no significant missing or phantom items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly models the interactive elements described: navigation tab bar (empty tabs object since none named), repeating collapsible sections with per-section toggle, activity/resource links, and the 'Collapse all' link; no unsupported or missing interactive items detected.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately represents the interactive elements described; only minor inferred items are present.",
+        "missing": [],
+        "phantoms": [
+          "Participants_Table.sortable_columns[1] (\"First name\" - inferred separate column; description only specified \"First/Last name\" as sortable)",
+          "Participants_Table.sortable_columns[2] (\"Last name\" - inferred separate column; description only specified \"First/Last name\" as sortable)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the required aggregation/footer row and a clear mapping for the Grade item (course name) group header and does contains a minor phantom action name for the toggle; regenerate with the aggregation row and clearer header mapping.",
+        "missing": [
+          "Grades_Page.aggregation_row (AGGREGATION Course total footer row displaying cumulative grade across weighted items)",
+          "Grades_Page.grouping.group_header.field_name (explicit field representing the 'Grade item' course-name header)",
+          "Grades_Page.report_type (source indicated as 'User report' per description)"
+        ],
+        "phantoms": [
+          "Grades_Page.grouping.group_header.toggle_action.action_name ('Toggle' label is not specified in the description)"
+        ],
+        "fixes": [
+          "Add an aggregation/footer row at Grades_Page.aggregation_row with label 'AGGREGATION Course total' and fields showing cumulative values for Calculated weight, Grade (cumulative), Percentage (cumulative), and Contribution to course total; position it as the table footer and include a note: 'displays the cumulative grade across all weighted items'.",
+          "Add Grades_Page.grouping.group_header.field_name and set it to 'Grade item (course name)' or include an explicit field object: Grades_Page.grouping.group_header.field = { \"name\": \"Grade item\", \"content\": \"course name (collapsible header)\" } so the header maps to the 'Grade item' column.",
+          "Add Grades_Page.report_type = 'User report' (or Grades_Page.data_source = 'User report') to reflect that this view is the user's own grades via a User report.",
+          "Replace or generalize Grades_Page.grouping.group_header.toggle_action.action_name 'Toggle' with a non-labeled action descriptor, e.g. Grades_Page.grouping.group_header.toggle_action = { \"type\": \"expand_collapse\" } (remove the literal 'Toggle' label which is not specified in the description).",
+          "Explicitly indicate indentation of graded activities under the header by adding Grades_Page.grouping.item_rows.indentation = 'indented under header' or an equivalent property to make the nested structure explicit."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly covers the interactive elements (add/edit/view submission, conditional form fields, submit action, and state-bound actions) with only minor inferred items.",
+        "missing": [],
+        "phantoms": [
+          "components.Submission_Action_Bar.states.Graded.available_actions[1] (View feedback action not explicitly named in description; description only says feedback appears on the page)",
+          "components.Submission_Action_Bar.states.Submitted for grading.available_actions[1].preconditions[2] (\"submission not graded\" precondition is not stated in the description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the described interactive elements (collapsible sections, default states, assignments table with clickable Name) with only minor inferred properties.",
+        "missing": [],
+        "phantoms": [
+          "Activities_Page.components.Additional_Activity_Sections.item_fields.collapsed_by_default (inferred field; description did not specify a configurable 'collapsed_by_default' field for additional sections)",
+          "Activities_Page.components.Additional_Activity_Sections.item_fields.toggle_control (inferred field; description only said sections are expandable via an arrow but did not define a per-item toggle_control field)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the interactive elements described (buttons, links, form with collapsible panels, fields, and submit actions); only a minor inferred action is present.",
+        "missing": [],
+        "phantoms": [
+          "Profile_Page.elements.Message_Button.on_success (opens message composer)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly models the single interactive element (Log out) and its effects; the only minor inferred item is a precondition.",
+        "missing": [],
+        "phantoms": [
+          "components.Logout_Button.preconditions[0] (user must be logged in)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

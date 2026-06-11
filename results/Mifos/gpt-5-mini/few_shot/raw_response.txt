@@ -1,0 +1,1320 @@
+{
+  "module": "Mifos",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Top navigation and left sidebar navigate to Clients page",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Click Institution menu in the top navigation bar",
+        "2. Select Clients from the Institution dropdown",
+        "3. Click the Clients icon in the left sidebar"
+      ],
+      "expected_result": "Clients listing page opens in the main content area; breadcrumbs show Institution > Clients",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Open global search and navigate to a client detail from results",
+      "preconditions": ["User logged in", "At least one client exists"],
+      "steps": [
+        "1. Click the search icon in the top toolbar",
+        "2. Type part of an existing client's name",
+        "3. Select the matching client from the dropdown results"
+      ],
+      "expected_result": "User navigates to the selected client's detail page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "Login with valid credentials and default tenant",
+      "preconditions": ["Application accessible"],
+      "steps": [
+        "1. Navigate to login page",
+        "2. Ensure Tenant dropdown is 'default'",
+        "3. Enter valid Username and Password",
+        "4. Click Login"
+      ],
+      "expected_result": "User is redirected to the Home page and welcome card displays 'Welcome, mifos!'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Attempt login with incorrect password",
+      "preconditions": ["Login page open"],
+      "steps": [
+        "1. Enter valid username and incorrect password",
+        "2. Click Login"
+      ],
+      "expected_result": "An error message is displayed indicating invalid credentials; user remains on login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Login with extremely long username and password fields",
+      "preconditions": ["Login page open"],
+      "steps": [
+        "1. Enter 1024-character username and 1024-character password",
+        "2. Click Login"
+      ],
+      "expected_result": "Either validation prevents submission or system responds with invalid credentials without crashing",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Home page 'Dashboard' button opens Dashboard",
+      "preconditions": ["User logged in and on Home page"],
+      "steps": [
+        "1. On Home page click the 'Dashboard' button"
+      ],
+      "expected_result": "Dashboard view loads with Client Trends chart and summary cards",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "Dashboard displays 'No Data' when office has no metrics",
+      "preconditions": ["User logged in", "Selected office has no data"],
+      "steps": [
+        "1. Open Dashboard",
+        "2. Select the office with no data"
+      ],
+      "expected_result": "Client Trends may show empty state; summary cards display 'No Data'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Global search is case-insensitive and supports partial matches",
+      "preconditions": ["User logged in", "Entities exist with known names"],
+      "steps": [
+        "1. Click global search",
+        "2. Type lowercase partial string of an entity's name with mixed case in stored data"
+      ],
+      "expected_result": "Matching entities appear in dropdown grouped by type irrespective of case",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Global search shows 'No results found' for non-matching query",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Click global search",
+        "2. Type a random string that matches no entity"
+      ],
+      "expected_result": "Dropdown displays 'No results found' message",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Open Clients listing and sort, filter, paginate results",
+      "preconditions": ["User logged in", "Multiple clients exist"],
+      "steps": [
+        "1. Navigate to Clients page",
+        "2. Use filter bar to filter by Active status",
+        "3. Click column header to sort by Name",
+        "4. Use pagination controls to move to page 2"
+      ],
+      "expected_result": "Table updates to show filtered, sorted, and paginated client rows",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "Create a new client using Create Client wizard with minimal required fields",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Go to Clients page and click Create Client",
+        "2. Step 1: Fill required fields Office, First Name, Last Name, Submitted On; leave optional fields blank",
+        "3. Proceed through steps (Address, Family Members, Identifiers) without adding optional data",
+        "4. Click Submit"
+      ],
+      "expected_result": "Client is created in Pending status and Client Detail page displays client info",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Attempt to submit Create Client with missing required fields",
+      "preconditions": ["User logged in", "Create Client wizard open"],
+      "steps": [
+        "1. Leave Office, First Name, Last Name, or Submitted On empty in Step 1",
+        "2. Click Submit"
+      ],
+      "expected_result": "Inline validation messages appear for required fields and submission is blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Create Client with maximum length names and unique External ID",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Client wizard",
+        "2. Enter very long First Name and Last Name at allowed maximum length and a unique External ID",
+        "3. Fill required fields and Submit"
+      ],
+      "expected_result": "Client is created successfully without data truncation; UI displays full names as allowed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "Bulk import clients with valid Excel file",
+      "preconditions": ["User logged in", "Valid Excel import file prepared"],
+      "steps": [
+        "1. Navigate to Clients page and click Import Client",
+        "2. Download template, populate it correctly, and upload the file",
+        "3. Submit import"
+      ],
+      "expected_result": "Import job appears in import history; Completed count equals Total Records and Success Count > 0",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Bulk import clients with duplicate External IDs",
+      "preconditions": ["User logged in", "Excel file contains duplicate External ID value"],
+      "steps": [
+        "1. Upload template with duplicates via Import Client",
+        "2. Submit import"
+      ],
+      "expected_result": "Import history shows Failure Count > 0 and downloadable error details highlighting duplicate External ID",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "Activate a Pending client with valid activation date after submission date",
+      "preconditions": ["User logged in as Admin", "A client exists in Pending status with known submission date"],
+      "steps": [
+        "1. Open Client Detail page for Pending client",
+        "2. Click Activate",
+        "3. Enter Activation Date after Submitted On date",
+        "4. Click Submit"
+      ],
+      "expected_result": "Client status badge updates to 'Active' (green) and Activation Date displays",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Attempt to activate Pending client with Activation Date before Submitted On",
+      "preconditions": ["User logged in", "Pending client exists"],
+      "steps": [
+        "1. Open Pending client's Detail page",
+        "2. Click Activate",
+        "3. Enter Activation Date before the Submitted On date",
+        "4. Click Submit"
+      ],
+      "expected_result": "Validation error displayed stating Activation Date cannot be before submission date; activation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "Activate client with Activation Date equal to Submitted On date",
+      "preconditions": ["User logged in", "Pending client exists"],
+      "steps": [
+        "1. Open Pending client's Detail page",
+        "2. Click Activate",
+        "3. Enter Activation Date equal to Submitted On date",
+        "4. Click Submit"
+      ],
+      "expected_result": "Activation succeeds if business rule allows same-day activation; client becomes Active",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-011",
+      "category": "positive",
+      "test_case": "Edit Active client details successfully",
+      "preconditions": ["User logged in", "Active client exists"],
+      "steps": [
+        "1. Open Active client's Detail page",
+        "2. Click Edit",
+        "3. Modify Mobile Number and Email Address",
+        "4. Click Save"
+      ],
+      "expected_result": "Client details update and new values are displayed on the detail page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Attempt to close a client that has active loan accounts",
+      "preconditions": ["User logged in as Admin", "Active client exists with at least one active loan account"],
+      "steps": [
+        "1. Open client detail page",
+        "2. Click Close",
+        "3. Select closure reason",
+        "4. Click Submit"
+      ],
+      "expected_result": "Error message displayed stating client cannot be closed with active accounts; status remains Active",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-012",
+      "category": "positive",
+      "test_case": "Close a client with no active accounts",
+      "preconditions": ["User logged in", "Active client exists with no active loan/savings accounts"],
+      "steps": [
+        "1. Open client detail page",
+        "2. Click Close",
+        "3. Select closure reason",
+        "4. Click Submit"
+      ],
+      "expected_result": "Client status updates to 'Closed' (gray) and closure reason recorded",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Attempt to add duplicate Identifier document type/key",
+      "preconditions": ["User logged in", "Client detail page open"],
+      "steps": [
+        "1. Open Identifiers tab",
+        "2. Add an identifier with Document Type X and Document Key Y",
+        "3. Attempt to add the same Document Type X and Document Key Y again"
+      ],
+      "expected_result": "System prevents adding duplicate identifier and shows validation message",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-013",
+      "category": "positive",
+      "test_case": "Add a family member in Create Client wizard step and submit",
+      "preconditions": ["User logged in", "Create Client wizard open"],
+      "steps": [
+        "1. Proceed to Step 3 (Family Members)",
+        "2. Add a family member record with required fields",
+        "3. Complete wizard and Submit"
+      ],
+      "expected_result": "Client created and Family Members tab on client detail shows the added member",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-014",
+      "category": "positive",
+      "test_case": "Create Group and associate existing clients",
+      "preconditions": ["User logged in", "Clients exist to add"],
+      "steps": [
+        "1. Navigate to Groups page and click Create Group",
+        "2. Fill required fields Name, Office, Submitted On",
+        "3. Use Add Clients search-and-add to associate multiple existing clients",
+        "4. Click Submit"
+      ],
+      "expected_result": "Group is created; Group Detail Members tab lists the associated clients with links",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Attempt to create Group without required Office",
+      "preconditions": ["User logged in", "Groups page open"],
+      "steps": [
+        "1. Click Create Group",
+        "2. Leave Office field empty and fill other fields",
+        "3. Click Submit"
+      ],
+      "expected_result": "Inline validation error displayed for Office field and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "Create Group with maximum number of clients added",
+      "preconditions": ["User logged in", "Sufficient clients exist"],
+      "steps": [
+        "1. Open Create Group",
+        "2. Add a very large number of existing clients using Add Clients control",
+        "3. Submit"
+      ],
+      "expected_result": "Group created or import process handles large member list gracefully without UI crash",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-015",
+      "category": "positive",
+      "test_case": "Create Center and add groups",
+      "preconditions": ["User logged in", "Groups exist"],
+      "steps": [
+        "1. Navigate to Centers and click Create Center",
+        "2. Fill required fields Name, Office, Submitted On",
+        "3. Use Select and Add groups to add existing groups",
+        "4. Click Submit"
+      ],
+      "expected_result": "Center created and Groups tab lists the added groups with links",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Attempt to create Center with missing Submitted On date",
+      "preconditions": ["User logged in", "Centers page open"],
+      "steps": [
+        "1. Click Create Center",
+        "2. Leave Submitted On empty",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error displays for Submitted On field and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-016",
+      "category": "positive",
+      "test_case": "Create Loan Product through 6-step wizard with accounting mapping Cash-based",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Loan Products and click + Create Loan Product",
+        "2. Complete Steps 1-5 with valid values (Details, Currency, Settings, Terms, Charges)",
+        "3. Step 6: Choose Accounting = Cash-based and map required GL accounts",
+        "4. Click Submit"
+      ],
+      "expected_result": "Loan Product is created and appears in the products table",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Attempt to create Loan Product without required Product Name",
+      "preconditions": ["User logged in", "Loan Products page open"],
+      "steps": [
+        "1. Click + Create Loan Product",
+        "2. Leave Product Name blank in Step 1",
+        "3. Attempt to proceed or Submit"
+      ],
+      "expected_result": "Inline validation error for Product Name and proceeding blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Create Loan Product with min = max boundary values for Principal min/max",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. In Step 2 set Minimum and Maximum Principal to the same allowed boundary value",
+        "2. Complete rest of wizard and Submit"
+      ],
+      "expected_result": "Product is created; subsequent loan applications enforce exact principal constraint",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-017",
+      "category": "positive",
+      "test_case": "Create Savings Product and enable Cash-based accounting mapping",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Savings Products and click + Create Savings Product",
+        "2. Fill Steps 1-5 with valid values",
+        "3. Step 6: Choose Cash-based and map GL accounts",
+        "4. Click Submit"
+      ],
+      "expected_result": "Savings Product is created and listed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-010",
+      "category": "negative",
+      "test_case": "Attempt to create Savings Product with invalid interest compounding selection",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Savings Product wizard",
+        "2. Choose inconsistent values for Interest Compounding Period and Interest Posting Period (if business rules disallow combination)",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error prevents submission indicating incompatible period selections",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Create Savings Product with Overdraft enabled and zero Maximum Overdraft Amount",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Step 4: Check Is Overdraft Allowed and set Maximum Overdraft Amount to 0",
+        "2. Complete wizard and Submit"
+      ],
+      "expected_result": "Either product created with zero overdraft limit or validation warns; UI handles edge without crash",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-018",
+      "category": "positive",
+      "test_case": "Create Share Product and define market price rows",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Share Products and click + Create Share Product",
+        "2. Complete Steps 1-3 including required Total Shares and Unit Price",
+        "3. In Step 5 add multiple Market Price rows with From Date and Share Value",
+        "4. Complete Steps 6-7 and Submit"
+      ],
+      "expected_result": "Share Product created and Market Price table shows saved rows",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-011",
+      "category": "negative",
+      "test_case": "Attempt to create Share Product with missing Nominal/Unit Price",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Share Product",
+        "2. Leave Nominal/Unit Price blank in Step 3",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error displayed for Nominal/Unit Price and submission blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-019",
+      "category": "positive",
+      "test_case": "Create a Charge definition for Loans with Percentage calculation",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Charges and click + Create Charge",
+        "2. Fill Charge Name, Charge Applies To = Loan, Currency, Charge Time Type = Overdue Fees, Charge Calculation Type = Percentage of Amount, Amount value",
+        "3. Click Submit"
+      ],
+      "expected_result": "Charge appears in Charges table and is selectable when creating loan products",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-012",
+      "category": "negative",
+      "test_case": "Attempt to create Charge without selecting Charge Applies To",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Click + Create Charge",
+        "2. Leave Charge Applies To blank and fill other fields",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error shown for Charge Applies To and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-020",
+      "category": "positive",
+      "test_case": "Create Floating Rate with multiple rate periods and set as base lending rate",
+      "preconditions": ["User logged in as Admin", "No other base lending rate exists or test toggles base flag appropriately"],
+      "steps": [
+        "1. Navigate to Floating Rates and click + Create Floating Rate",
+        "2. Enter Floating Rate Name and check Is Base Lending Rate",
+        "3. Add multiple Rate Period rows with From Date and Interest Rate",
+        "4. Click Submit"
+      ],
+      "expected_result": "Floating Rate saved and marked as base lending rate; rate history visible in detail view",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-013",
+      "category": "negative",
+      "test_case": "Attempt to create second base lending rate when one already exists",
+      "preconditions": ["User logged in", "A base lending rate already exists"],
+      "steps": [
+        "1. Click + Create Floating Rate",
+        "2. Fill name and check Is Base Lending Rate",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error prevents creating another base lending rate; message indicates only one allowed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Create Floating Rate with differential rate rows",
+      "preconditions": ["User logged in", "Base rate exists"],
+      "steps": [
+        "1. Create Floating Rate and in Rate Periods check Is Differential Rate for some rows",
+        "2. Submit"
+      ],
+      "expected_result": "Differential rows are saved and apply relative to base rate when linked to loan products",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-021",
+      "category": "positive",
+      "test_case": "Create Delinquency Range and Bucket then link to Loan Product",
+      "preconditions": ["User logged in as Admin", "Loan Product exists"],
+      "steps": [
+        "1. Create Delinquency Range with Classification and Min/Max Age Days",
+        "2. Create Delinquency Bucket and add the created ranges in sequence",
+        "3. Link the Bucket to an existing Loan Product"
+      ],
+      "expected_result": "Bucket displays associated ranges and loan product now uses bucket for overdue classification",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-014",
+      "category": "negative",
+      "test_case": "Create Delinquency Range with Minimum Age greater than Maximum Age",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Delinquency Range",
+        "2. Set Minimum Age Days to 60 and Maximum Age Days to 30",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error indicating Min must be <= Max or logical error prevented",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-022",
+      "category": "positive",
+      "test_case": "Create a loan application for a client with product defaults prefilled",
+      "preconditions": ["User logged in", "Client exists", "Loan product configured with defaults"],
+      "steps": [
+        "1. On Client Detail click New Loan",
+        "2. Step 1: Select Product Name and observe auto-populated defaults (principal, interest, terms)",
+        "3. Fill required remaining fields and Submit"
+      ],
+      "expected_result": "Loan created in 'Submitted and Pending Approval' status and appears in client's Accounts tab",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-015",
+      "category": "negative",
+      "test_case": "Attempt to create loan with Principal outside product min/max",
+      "preconditions": ["User logged in", "Loan product has defined min/max principal"],
+      "steps": [
+        "1. Start New Loan for a client with a product selected",
+        "2. Enter Principal below minimum or above maximum",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error displayed preventing submission with message about principal bounds",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-009",
+      "category": "edge",
+      "test_case": "Apply maximum allowed number of repayments equal to product's maximum boundary",
+      "preconditions": ["User logged in", "Product defines maximum Number of Repayments"],
+      "steps": [
+        "1. In New Loan wizard set Number of Repayments to product maximum",
+        "2. Complete and Submit"
+      ],
+      "expected_result": "Loan is created successfully and repayment schedule reflects maximum installments",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-023",
+      "category": "positive",
+      "test_case": "Approve and Disburse a loan application",
+      "preconditions": ["User logged in as approver", "Loan exists in Submitted and Pending Approval"],
+      "steps": [
+        "1. Open Loan Detail for pending loan and click Approve",
+        "2. Provide Approved On Date, Approved Amount, Expected Disbursement Date and save",
+        "3. Click Disburse on Approved loan, fill Disbursed On Date, Transaction Amount and Payment Type, then Submit"
+      ],
+      "expected_result": "Loan status transitions to Active after disbursement and loan balance reflects disbursed amount",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-016",
+      "category": "negative",
+      "test_case": "Attempt to disburse more than approved amount",
+      "preconditions": ["User logged in", "Loan is Approved with Approved Amount X"],
+      "steps": [
+        "1. Click Disburse",
+        "2. Enter Transaction Amount greater than Approved Amount",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error prevents disbursement indicating amount exceeds approved amount",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-024",
+      "category": "positive",
+      "test_case": "Make a repayment equal to the exact outstanding balance to close loan obligations",
+      "preconditions": ["User logged in", "Active loan with known outstanding balance exists"],
+      "steps": [
+        "1. Open Loan Account Detail",
+        "2. Click Make Repayment",
+        "3. Enter Transaction Amount equal to outstanding balance, select Payment Type and Submit"
+      ],
+      "expected_result": "Loan status changes to 'Closed (obligations met)' and outstanding balance shows zero",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-017",
+      "category": "negative",
+      "test_case": "Attempt to make repayment with negative amount",
+      "preconditions": ["User logged in", "Active loan exists"],
+      "steps": [
+        "1. Click Make Repayment on loan",
+        "2. Enter a negative Transaction Amount and Submit"
+      ],
+      "expected_result": "Validation error displayed preventing negative transaction amount",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-010",
+      "category": "edge",
+      "test_case": "Partial repayment when repayment strategy applies to principal-first vs interest-first",
+      "preconditions": ["User logged in", "Active loan exists with configured repayment strategy"],
+      "steps": [
+        "1. Click Make Repayment",
+        "2. Enter a partial amount less than instalment due and Submit"
+      ],
+      "expected_result": "Partial payment applied according to the configured repayment strategy and balances update accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-025",
+      "category": "positive",
+      "test_case": "Create Savings Account and approve, then perform Deposit",
+      "preconditions": ["User logged in", "Client exists", "Savings product available"],
+      "steps": [
+        "1. From Client Detail click New Savings and fill required fields",
+        "2. Submit to create in Submitted status",
+        "3. Approve the savings account",
+        "4. Activate and perform Deposit with Transaction Date, Amount and Payment Type"
+      ],
+      "expected_result": "Deposit credits account; account balance and available balance update accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-018",
+      "category": "negative",
+      "test_case": "Attempt withdrawal exceeding available balance when overdraft disabled",
+      "preconditions": ["User logged in", "Active savings account with available balance B exists, overdraft disabled"],
+      "steps": [
+        "1. Click Withdraw on the savings account",
+        "2. Enter Transaction Amount > B and Submit"
+      ],
+      "expected_result": "Error displayed indicating withdrawal exceeds available balance and transaction blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-011",
+      "category": "edge",
+      "test_case": "Withdraw exact available balance and ensure minimum balance enforcement",
+      "preconditions": ["User logged in", "Savings product enforces minimum balance"],
+      "steps": [
+        "1. Attempt a withdrawal that equals available balance but breaches minimum required balance",
+        "2. Submit"
+      ],
+      "expected_result": "If enforcement active, error shown; if allowed per product settings, withdrawal succeeds and balance updates",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-026",
+      "category": "positive",
+      "test_case": "Apply for Share Account, approve and activate",
+      "preconditions": ["User logged in", "Client exists", "Share product configured"],
+      "steps": [
+        "1. From Client Detail, click New Share Account and fill fields including Requested Shares and linked Savings for charges",
+        "2. Submit application",
+        "3. Approve with Approved Shares and date",
+        "4. Activate the share account"
+      ],
+      "expected_result": "Share account moves to Active status and summary displays approved shares and unit price",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-019",
+      "category": "negative",
+      "test_case": "Attempt to request more shares than product maximum per client",
+      "preconditions": ["User logged in", "Share product defines max shares per client"],
+      "steps": [
+        "1. Start Share Account application and set Requested Shares > product max",
+        "2. Submit"
+      ],
+      "expected_result": "Validation error shown for Requested Shares exceeding maximum and submission blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-027",
+      "category": "positive",
+      "test_case": "Create Fixed Deposit account and approve then activate",
+      "preconditions": ["User logged in", "Client exists", "FD product configured"],
+      "steps": [
+        "1. From Client Detail select New Fixed Deposit and fill Deposit Amount, Period and Maturity Instructions",
+        "2. Submit application",
+        "3. Approve and then Activate the FD account"
+      ],
+      "expected_result": "FD account status progresses to Active and maturity date/amount displayed correctly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-020",
+      "category": "negative",
+      "test_case": "Attempt to create FD with Deposit Amount less than product minimum",
+      "preconditions": ["User logged in", "Fixed Deposit product has minimum deposit"],
+      "steps": [
+        "1. Create FD application with Deposit Amount < minimum and Submit"
+      ],
+      "expected_result": "Validation error displayed preventing creation",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-028",
+      "category": "positive",
+      "test_case": "Create Recurring Deposit account and record first installment deposit",
+      "preconditions": ["User logged in", "Client exists", "RD product configured"],
+      "steps": [
+        "1. From Client Detail start RD application and fill Mandatory Deposit Amount and Frequency",
+        "2. Submit, Approve and Activate",
+        "3. Perform Deposit for first installment with correct date and amount"
+      ],
+      "expected_result": "Installment recorded and total deposits reflect the payment; schedule updates",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-029",
+      "category": "positive",
+      "test_case": "Create Chart of Accounts GL account as Detail and ensure unique GL Code validation",
+      "preconditions": ["User logged in as Accounting admin"],
+      "steps": [
+        "1. Navigate to Chart of Accounts and click + Create GL Account",
+        "2. Select Account Type, choose Parent Header, enter unique GL Code and Account Name, set Usage to Detail",
+        "3. Click Submit"
+      ],
+      "expected_result": "GL Account created and appears in hierarchical tree under chosen parent",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-021",
+      "category": "negative",
+      "test_case": "Attempt to create GL Account with duplicate GL Code",
+      "preconditions": ["User logged in", "A GL Code already exists"],
+      "steps": [
+        "1. Click + Create GL Account",
+        "2. Enter a GL Code that already exists and fill other required fields",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error displayed indicating GL Code must be unique; creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-030",
+      "category": "positive",
+      "test_case": "Add balanced Journal Entry with equal debits and credits",
+      "preconditions": ["User logged in", "At least two GL Detail accounts exist"],
+      "steps": [
+        "1. Navigate to Journal Entries and click + Add Journal Entry",
+        "2. Fill Office, Currency, Transaction Date and add entry lines with equal Debit and Credit totals",
+        "3. Submit"
+      ],
+      "expected_result": "Journal entry created successfully and appears in listing",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-022",
+      "category": "negative",
+      "test_case": "Attempt to add Journal Entry where debit total does not equal credit total",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Add Journal Entry form",
+        "2. Add entry lines with unequal debit and credit totals",
+        "3. Attempt to Submit"
+      ],
+      "expected_result": "Validation error displays showing the difference and blocks submission",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-031",
+      "category": "positive",
+      "test_case": "Create accounting period closure and block prior dated journal entries",
+      "preconditions": ["User logged in as Accounting admin"],
+      "steps": [
+        "1. Navigate to Closing Entries and click + Create Closure",
+        "2. Select Office, choose Closing Date and add Comments",
+        "3. Submit closure",
+        "4. Attempt to add a Journal Entry with Transaction Date on or before Closing Date"
+      ],
+      "expected_result": "Closure created; journal entry with date on/before closing date is blocked by validation",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-032",
+      "category": "positive",
+      "test_case": "Create Accounting Rule with multiple debit and credit accounts allowed",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Go to Accounting Rules and click + Create Rule",
+        "2. Provide Rule Name, select Office or leave blank for all offices, pick multiple Debit Accounts and enable Allow Multiple Debit Entries, pick Credit Accounts and enable Allow Multiple Credit Entries",
+        "3. Submit"
+      ],
+      "expected_result": "Rule is created and visible in table with configured accounts",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-023",
+      "category": "negative",
+      "test_case": "Attempt to create Financial Activity Mapping for an activity already mapped",
+      "preconditions": ["User logged in", "An activity already mapped"],
+      "steps": [
+        "1. Navigate to Financial Activity Mappings and click + Create Mapping",
+        "2. Select a Financial Activity that is already mapped and choose a GL Account",
+        "3. Submit"
+      ],
+      "expected_result": "Validation prevents duplicate mapping and shows error indicating activity already mapped",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-033",
+      "category": "positive",
+      "test_case": "Create Provisioning Criteria with multiple rows and generate provisioning entries",
+      "preconditions": ["User logged in as Admin", "Loan portfolio has overdue loans matching criteria"],
+      "steps": [
+        "1. Create Provisioning Criteria with multiple definitions rows mapping product categories and ranges",
+        "2. Save criteria",
+        "3. Go to Provisioning Entries and click + Create Provisioning Entry"
+      ],
+      "expected_result": "Provisioning Entries created based on criteria and appear in list with breakdown details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-024",
+      "category": "negative",
+      "test_case": "Attempt to create Provisioning Criteria without selecting Liability or Expense accounts",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Provisioning Criteria and add a definitions row without selecting GL accounts",
+        "2. Submit"
+      ],
+      "expected_result": "Validation error indicating GL accounts required for provisioning rows; creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-034",
+      "category": "positive",
+      "test_case": "Create Office hierarchy and validate parent-child relationships shown",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Offices and click + Create Office",
+        "2. Enter Office Name, select Parent Office as Head Office, set Opened On Date and Submit",
+        "3. Create a sub-branch with Parent as the newly created office"
+      ],
+      "expected_result": "Offices table displays hierarchical positions; child office shows parent office correctly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-025",
+      "category": "negative",
+      "test_case": "Attempt to create Office with missing Parent Office",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Office form",
+        "2. Leave Parent Office empty and fill other fields",
+        "3. Click Submit"
+      ],
+      "expected_result": "Validation error for Parent Office (required) and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-035",
+      "category": "positive",
+      "test_case": "Create Employee marked as Loan Officer and verify availability in Loan Officer dropdown",
+      "preconditions": ["User logged in", "Office exists"],
+      "steps": [
+        "1. Go to Employees and click + Create Employee",
+        "2. Fill required fields and check Is Loan Officer",
+        "3. Submit and then open New Loan wizard for a client to verify Loan Officer dropdown includes the new employee"
+      ],
+      "expected_result": "Employee created and appears in Loan Officer dropdown when creating loans",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-026",
+      "category": "negative",
+      "test_case": "Attempt to create Employee without First Name",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Employee form",
+        "2. Leave First Name blank and fill other required fields",
+        "3. Submit"
+      ],
+      "expected_result": "Inline validation error displayed for First Name and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-036",
+      "category": "positive",
+      "test_case": "Create Teller and allocate a Cashier then perform Allocate Cash operation",
+      "preconditions": ["User logged in", "Staff record exists"],
+      "steps": [
+        "1. Create a Teller with required fields",
+        "2. On Teller Detail click + Allocate Cashier and select Staff with Start Date",
+        "3. In Cashier detail perform Allocate Cash with Amount and Transaction Date"
+      ],
+      "expected_result": "Cashier allocation recorded and Allocate Cash updates Opening Balance/Cash In Hand accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-027",
+      "category": "negative",
+      "test_case": "Attempt to allocate Cashier without Start Date",
+      "preconditions": ["User logged in", "Teller created"],
+      "steps": [
+        "1. Click + Allocate Cashier",
+        "2. Select Staff but leave Start Date empty",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error displayed for Start Date and allocation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-037",
+      "category": "positive",
+      "test_case": "Create User with roles and send password to email",
+      "preconditions": ["User logged in as Admin", "Staff record exists"],
+      "steps": [
+        "1. Navigate to Users and click + Create User",
+        "2. Fill Username, First/Last Name, Email, select Office and Staff, set Password and Repeat Password, select Roles, check Send Password to Email",
+        "3. Submit"
+      ],
+      "expected_result": "User created; system attempts to send password email (confirmation message shown)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-028",
+      "category": "negative",
+      "test_case": "Attempt to create User with non-matching passwords",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create User form",
+        "2. Enter Password and different Repeat Password",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error indicating passwords do not match and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-038",
+      "category": "positive",
+      "test_case": "Create Role and assign specific permissions matrix",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Go to Roles and click + Create Role",
+        "2. Enter Role Name and Description and submit",
+        "3. On Permissions page check specific permissions (Portfolio, Reports) and save"
+      ],
+      "expected_result": "Role created with selected permissions which control access for users assigned to it",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-039",
+      "category": "positive",
+      "test_case": "Run a report with parameters and export to Excel",
+      "preconditions": ["User logged in", "Report exists"],
+      "steps": [
+        "1. Navigate to Reports and select a Loans Summary report",
+        "2. Fill parameter filters (Office, Date Range) and click Run Report",
+        "3. After result loads click Export to Excel"
+      ],
+      "expected_result": "Report displayed as data table and Excel file downloaded",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-029",
+      "category": "negative",
+      "test_case": "Attempt to run a report with invalid date range (From after To)",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open report parameters",
+        "2. Set From date after To date and click Run Report"
+      ],
+      "expected_result": "Validation error displayed for date range and report run blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-040",
+      "category": "positive",
+      "test_case": "Perform Account Transfer between two savings accounts with sufficient balance",
+      "preconditions": ["User logged in", "From account has sufficient balance", "Both accounts active"],
+      "steps": [
+        "1. Navigate to Account Transfers and select From Office, From Client, From Account and To Office, To Client, To Account",
+        "2. Enter Transfer Amount less than or equal to available balance and Transfer Date",
+        "3. Submit"
+      ],
+      "expected_result": "Transfer processes successfully and balances update for both accounts",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-030",
+      "category": "negative",
+      "test_case": "Attempt Account Transfer with amount exceeding available balance",
+      "preconditions": ["User logged in", "From account has insufficient balance"],
+      "steps": [
+        "1. Prepare transfer where Transfer Amount > available balance",
+        "2. Submit"
+      ],
+      "expected_result": "Error displayed indicating insufficient funds and transfer blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-041",
+      "category": "positive",
+      "test_case": "Create Standing Instruction for recurring transfer",
+      "preconditions": ["User logged in", "From and To accounts exist"],
+      "steps": [
+        "1. Go to Standing Instructions and click + Create Standing Instruction",
+        "2. Fill Name, From/To accounts, Amount, Validity From/Till, Recurrence Type and Frequency",
+        "3. Submit"
+      ],
+      "expected_result": "Standing Instruction appears in listing as Active and scheduled transfers will occur per recurrence",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-031",
+      "category": "negative",
+      "test_case": "Attempt to create Standing Instruction with Validity Till before Validity From",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Standing Instruction form",
+        "2. Set Validity From to a later date than Validity Till",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error shown and creation blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-042",
+      "category": "positive",
+      "test_case": "Create Tax Component and assign to Tax Group then use in Savings Product",
+      "preconditions": ["User logged in as Admin", "GL accounts exist"],
+      "steps": [
+        "1. Create Tax Component with Percentage and Debit/Credit GL accounts and Start Date",
+        "2. Create Tax Group and add the component",
+        "3. Create or edit Savings Product and enable Withhold Tax selecting the Tax Group"
+      ],
+      "expected_result": "Savings Product saved with tax group; charges/interest apply tax per configuration",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-032",
+      "category": "negative",
+      "test_case": "Attempt to create Tax Component without Start Date",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Click + Create Tax Component",
+        "2. Fill required fields except Start Date",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error for Start Date and creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-043",
+      "category": "positive",
+      "test_case": "Create Holiday and verify repayment rescheduling behavior",
+      "preconditions": ["User logged in as Admin", "A loan with repayment due on holiday date exists"],
+      "steps": [
+        "1. Navigate to Holidays and click + Create Holiday",
+        "2. Set From and To dates to include an upcoming repayment date, choose Rescheduling Type",
+        "3. Save holiday and view the loan's repayment schedule"
+      ],
+      "expected_result": "Installments falling on holiday are rescheduled per configured Rescheduling Type",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-033",
+      "category": "negative",
+      "test_case": "Create Holiday with To Date earlier than From Date",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Open Create Holiday form",
+        "2. Set From Date to a later date than To Date",
+        "3. Submit"
+      ],
+      "expected_result": "Validation error shown and holiday creation blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-044",
+      "category": "positive",
+      "test_case": "Configure Working Days and set repayment rescheduling for non-working days",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Working Days configuration",
+        "2. Check working days and select Repayment Rescheduling option",
+        "3. Save configuration and open a loan with due date on non-working day to confirm reschedule"
+      ],
+      "expected_result": "Repayment due dates are adjusted according to the chosen rescheduling setting",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-045",
+      "category": "positive",
+      "test_case": "Create Fund and make it available in Loan Product creation",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Go to Funds and click + Create Fund, fill Fund Name and External ID, Submit",
+        "2. Open Create Loan Product wizard and verify Fund dropdown includes the new fund"
+      ],
+      "expected_result": "Fund appears in Loan Product Fund selection",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-046",
+      "category": "positive",
+      "test_case": "Create Payment Type and verify it appears in transaction forms",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Payment Types and click + Create, fill Name and Is Cash Payment flag, Submit",
+        "2. Open Deposit form for a savings account and verify the new payment type is selectable"
+      ],
+      "expected_result": "Payment Type available in transaction dropdowns across the system",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-047",
+      "category": "positive",
+      "test_case": "Use Bulk Import page to download template for Staff and upload valid file",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Bulk Import and choose Staff template",
+        "2. Download template, populate records, upload file and submit",
+        "3. Check import history for success"
+      ],
+      "expected_result": "Import completes and created staff records appear in Employees listing",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-048",
+      "category": "positive",
+      "test_case": "Toggle a Scheduler Job active/inactive and edit CRON expression",
+      "preconditions": ["User logged in as Admin", "Scheduler Jobs page accessible"],
+      "steps": [
+        "1. Open Manage Scheduler Jobs, toggle a job's Is Active switch to off",
+        "2. Edit the job's CRON Expression and save"
+      ],
+      "expected_result": "Job's active status updates and CRON expression saved successfully",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-034",
+      "category": "negative",
+      "test_case": "Attempt to set invalid CRON expression for a scheduler job",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Edit a Scheduler Job and enter an invalid CRON expression",
+        "2. Save changes"
+      ],
+      "expected_result": "Validation error displayed indicating invalid CRON expression and save blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-049",
+      "category": "positive",
+      "test_case": "Update Global Configuration toggle for a feature flag",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Global Configuration page",
+        "2. Toggle a configuration (e.g., maker-checker) to enabled or disabled and save"
+      ],
+      "expected_result": "Configuration updated and persists; subsequent flows respect the changed setting",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-050",
+      "category": "positive",
+      "test_case": "Manage Codes: add a new code value for Gender and verify dropdowns",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Open Manage Codes and select Gender code list",
+        "2. Add a new code value and save",
+        "3. Open Create Client wizard and verify new gender value exists in dropdown"
+      ],
+      "expected_result": "New code value available in relevant dropdowns throughout the system",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-035",
+      "category": "negative",
+      "test_case": "Attempt to add duplicate code value in Manage Codes",
+      "preconditions": ["User logged in as Admin", "Code value already exists"],
+      "steps": [
+        "1. In Manage Codes attempt to add a code value identical to an existing one",
+        "2. Save"
+      ],
+      "expected_result": "Validation error displayed preventing duplicate code entries",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-051",
+      "category": "positive",
+      "test_case": "Create a custom Data Table and add a field to m_client",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Navigate to Manage Data Tables and click + Create",
+        "2. Enter Data Table Name, select Application Table m_client, add a column 'riskScore' type number and save",
+        "3. Open a client profile and verify custom field is available for edit"
+      ],
+      "expected_result": "Data Table created and custom field visible on client pages",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-036",
+      "category": "negative",
+      "test_case": "Attempt to create Data Table with duplicate column names",
+      "preconditions": ["User logged in as Admin"],
+      "steps": [
+        "1. Create Data Table and add two columns with same Name",
+        "2. Submit"
+      ],
+      "expected_result": "Validation error preventing duplicate column names and creation blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-052",
+      "category": "positive",
+      "test_case": "View Audit Trails and filter by Action Name and Date Range",
+      "preconditions": ["User logged in as Admin", "Audit entries exist"],
+      "steps": [
+        "1. Open Audit Trails page",
+        "2. Enter Action Name filter and a Date Range then apply filters"
+      ],
+      "expected_result": "Audit list refreshes to show matching entries; filters narrow results accordingly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-053",
+      "category": "positive",
+      "test_case": "Logout terminates session and redirects to login page",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Click user profile icon",
+        "2. Click Log Out"
+      ],
+      "expected_result": "User is redirected to login page and authenticated pages are inaccessible until login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-037",
+      "category": "negative",
+      "test_case": "Access authenticated URL after logout should redirect to login",
+      "preconditions": ["User logged out"],
+      "steps": [
+        "1. Attempt to navigate directly to a Dashboard URL in browser after logout"
+      ],
+      "expected_result": "User is redirected to login page and access denied without authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-012",
+      "category": "edge",
+      "test_case": "Attempt to open dozens of detail pages in multiple tabs to stress UI",
+      "preconditions": ["User logged in", "Many entities exist"],
+      "steps": [
+        "1. Open multiple browser tabs and navigate to different Client, Loan, Savings Detail pages concurrently"
+      ],
+      "expected_result": "UI remains responsive and sessions handled correctly without data corruption; tabs show correct content",
+      "priority": "low"
+    }
+  ],
+  "summary": {
+    "total": 84,
+    "high_priority": 40,
+    "medium_priority": 32,
+    "low_priority": 12
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:40:06.883707Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Successful login with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "Redirect to the Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Failed login with invalid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "Inline error message shown; password field cleared"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "workflows": [],
+      "attempts": 3
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View course details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to course main page",
+          "on_success": "User is taken to the course's main page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Star a course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Star this course",
+          "on_success": "Course pinned to the top of the list"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Remove course from view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Remove from view",
+          "on_success": "Course hidden from the list"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Filter courses by status",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply status filter",
+          "on_success": "Courses filtered by selected status"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Search for a course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search",
+          "on_success": "Courses matching search criteria displayed"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Sort courses",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply sort",
+          "on_success": "Courses sorted by selected criteria"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Change layout of courses",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply layout change",
+          "on_success": "Courses displayed in selected layout"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Course Content",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View",
+          "on_success": "Course content displayed"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Collapse All Sections",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Collapse all",
+          "on_success": "All sections collapsed"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Access Activity or Resource",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Access",
+          "on_success": "Activity or resource opened"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View participant profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View profile",
+          "on_success": "Profile displayed"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "workflows": [],
+      "attempts": 3
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Add submission form opened",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add submission",
+          "on_success": "Submission form opened"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "workflows": [],
+      "attempts": 3
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Edit profile and update",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update profile",
+          "on_success": "Profile updated successfully"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit profile and cancel changes",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "Exited without changes"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log out of the current session",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log out",
+          "on_success": "Redirected to the login page"
+        }
+      ],
+      "attempts": 3
+    }
+  ]
+}

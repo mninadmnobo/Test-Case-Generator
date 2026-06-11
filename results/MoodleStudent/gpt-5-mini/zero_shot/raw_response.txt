@@ -1,0 +1,913 @@
+{
+  "module": "MoodleStudent",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "MS-001",
+      "category": "positive",
+      "test_case": "Top navigation bar displays site name linking to home",
+      "preconditions": ["User is authenticated and on any page"],
+      "steps": ["1. Observe the top navigation bar", "2. Click on the site name 'MoodleTest' on the left"],
+      "expected_result": "Clicking 'MoodleTest' navigates to the home page/dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-002",
+      "category": "positive",
+      "test_case": "Top navigation bar has Home, Dashboard, My Courses links working",
+      "preconditions": ["User is authenticated"],
+      "steps": ["1. Locate Home, Dashboard, My Courses links in the top bar", "2. Click each link one by one"],
+      "expected_result": "Each link navigates to the corresponding page (Home, Dashboard, My Courses)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-003",
+      "category": "positive",
+      "test_case": "Notifications bell opens alerts drawer",
+      "preconditions": ["User is authenticated", "There are notifications present"],
+      "steps": ["1. Click the notifications bell icon on the right side of the top bar"],
+      "expected_result": "Notifications drawer opens displaying alerts; unread count updates as appropriate",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-004",
+      "category": "edge",
+      "test_case": "Notifications bell shows empty state when no alerts",
+      "preconditions": ["User is authenticated", "User has no notifications"],
+      "steps": ["1. Click the notifications bell icon"],
+      "expected_result": "Notifications drawer opens showing an empty state message indicating no alerts",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-005",
+      "category": "positive",
+      "test_case": "Messaging icon opens messaging drawer",
+      "preconditions": ["User is authenticated"],
+      "steps": ["1. Click the messaging icon in the top bar"],
+      "expected_result": "Messaging drawer opens displaying recent messages and compose options",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-006",
+      "category": "positive",
+      "test_case": "User initials icon opens user menu dropdown with expected options",
+      "preconditions": ["User is authenticated"],
+      "steps": ["1. Click the circular user initials icon on the right", "2. Inspect the dropdown menu items"],
+      "expected_result": "Dropdown shows Profile, Grades, Calendar, Private Files, Reports, Preferences and Log out",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-007",
+      "category": "positive",
+      "test_case": "Log out option terminates session and returns to login page",
+      "preconditions": ["User is authenticated", "User menu dropdown visible"],
+      "steps": ["1. Open user menu dropdown", "2. Click 'Log out'"],
+      "expected_result": "User session ends and the app redirects to the login page; protected pages require re-login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-008",
+      "category": "negative",
+      "test_case": "Students cannot see Settings tab when viewing a course",
+      "preconditions": ["User is authenticated as a student", "User navigates to any course page"],
+      "steps": ["1. View the horizontal tab bar under the course title"],
+      "expected_result": "Tabs show Course, Participants, Grades, Activities, Competencies; no Settings tab present",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-009",
+      "category": "positive",
+      "test_case": "Course tab bar links navigate correctly",
+      "preconditions": ["User is authenticated and viewing a course"],
+      "steps": ["1. Click each tab: Course, Participants, Grades, Activities, Competencies"],
+      "expected_result": "Each click loads the corresponding tab content within the course context",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-010",
+      "category": "positive",
+      "test_case": "Breadcrumbs show full navigation path and each segment is clickable when viewing an activity",
+      "preconditions": ["User is authenticated and viewing an activity page inside a course"],
+      "steps": ["1. Observe breadcrumbs at top of activity page", "2. Click each breadcrumb segment one by one"],
+      "expected_result": "Each breadcrumb link navigates to the respective page (course home, section, etc.)",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-011",
+      "category": "positive",
+      "test_case": "Course Index sidebar displays hierarchical tree with expand/collapse",
+      "preconditions": ["User is authenticated and viewing a course page with Course Index enabled"],
+      "steps": ["1. Locate the Course Index sidebar on the left", "2. Click section expand/collapse arrows"],
+      "expected_result": "Sections expand and collapse accordingly; activities in expanded sections are visible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-012",
+      "category": "positive",
+      "test_case": "Course Index sidebar close button hides the sidebar",
+      "preconditions": ["Course Index sidebar is visible"],
+      "steps": ["1. Click the close button (X) on the Course Index sidebar"],
+      "expected_result": "The Course Index sidebar hides/closes",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-013",
+      "category": "edge",
+      "test_case": "Active item in Course Index remains highlighted after navigation",
+      "preconditions": ["User navigates using Course Index to an activity"],
+      "steps": ["1. Click an activity in the Course Index", "2. Observe the active item highlight"],
+      "expected_result": "The clicked activity remains highlighted as the active item in the sidebar",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-014",
+      "category": "positive",
+      "test_case": "Login with valid credentials redirects to Dashboard",
+      "preconditions": ["User is on the login page", "Valid username and password for a student exist"],
+      "steps": ["1. Enter valid Username", "2. Enter valid Password", "3. Click 'Log in'"],
+      "expected_result": "User is authenticated and redirected to the Dashboard with personalized greeting",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-015",
+      "category": "negative",
+      "test_case": "Login with invalid password shows inline error and clears password field",
+      "preconditions": ["User is on the login page", "Username exists but password is incorrect"],
+      "steps": ["1. Enter valid Username", "2. Enter incorrect Password", "3. Click 'Log in'"],
+      "expected_result": "Inline error message is shown, the password field is cleared, and username remains populated",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-016",
+      "category": "negative",
+      "test_case": "Login with empty username shows validation error",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Leave Username empty", "2. Enter a Password", "3. Click 'Log in'"],
+      "expected_result": "Validation error displayed indicating username required; no authentication occurs",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-017",
+      "category": "negative",
+      "test_case": "Login with empty password shows validation error and password remains empty",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter Username", "2. Leave Password empty", "3. Click 'Log in'"],
+      "expected_result": "Validation error displayed indicating password required; no authentication occurs",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-018",
+      "category": "edge",
+      "test_case": "Username retained after invalid login attempt while password cleared",
+      "preconditions": ["User is on login page", "Enter incorrect credentials"],
+      "steps": ["1. Enter Username", "2. Enter incorrect Password", "3. Click 'Log in'"],
+      "expected_result": "Username field retains the entered username, password field is cleared, inline error shown",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-019",
+      "category": "edge",
+      "test_case": "Lost password link visible but disabled on test site",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Locate 'Lost password?' link", "2. Click the 'Lost password?' link"],
+      "expected_result": "Link is present but clicking does not proceed (disabled) and possibly shows a tooltip or message",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-020",
+      "category": "positive",
+      "test_case": "Access as guest allows unauthenticated browsing",
+      "preconditions": ["User is on login page", "Guest access is enabled"],
+      "steps": ["1. Click 'Access as a guest' button"],
+      "expected_result": "User enters the site with limited guest permissions (dashboard/course browsing) without full authentication",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-021",
+      "category": "positive",
+      "test_case": "Cookies notice button opens cookie usage information",
+      "preconditions": ["User is on login page"],
+      "steps": ["1. Click 'Cookies notice' button"],
+      "expected_result": "A modal or page displays cookie usage information",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-022",
+      "category": "positive",
+      "test_case": "Dashboard shows personalized greeting",
+      "preconditions": ["User logged in and redirected to Dashboard"],
+      "steps": ["1. Observe the top of the Dashboard page"],
+      "expected_result": "A personalized greeting with the user's name is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-023",
+      "category": "positive",
+      "test_case": "Timeline block shows upcoming activities within selected time range",
+      "preconditions": ["User is on Dashboard and has upcoming activities across courses"],
+      "steps": ["1. Locate the Timeline block", "2. Select a time range like 'Next 7 days'"],
+      "expected_result": "Timeline lists activities and deadlines that fall within the selected range",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-024",
+      "category": "edge",
+      "test_case": "Timeline shows empty state when no activities in selected range",
+      "preconditions": ["User is on Dashboard and has no activities in selected range"],
+      "steps": ["1. Choose a time range with no activities", "2. Observe Timeline block"],
+      "expected_result": "An empty state message is displayed in the Timeline block",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-025",
+      "category": "positive",
+      "test_case": "Timeline time range dropdown filters correctly",
+      "preconditions": ["User has activities across multiple ranges"],
+      "steps": ["1. Open time range dropdown", "2. Select different ranges (Next 7 days, Next 30 days)", "3. Observe list updates"],
+      "expected_result": "Timeline content updates according to selected range",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-026",
+      "category": "positive",
+      "test_case": "Timeline search finds activities by name or type",
+      "preconditions": ["Dashboard has several activities with diverse names/types"],
+      "steps": ["1. Enter a search term in Timeline search field", "2. Execute search"],
+      "expected_result": "Activities matching the name or type are displayed in the Timeline",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-027",
+      "category": "positive",
+      "test_case": "Calendar block displays current month and highlights current date",
+      "preconditions": ["User is on Dashboard"],
+      "steps": ["1. Locate Calendar block", "2. Verify heading shows current month and year", "3. Check current date is highlighted"],
+      "expected_result": "Monthly view with current month/year is shown and current date is highlighted",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-028",
+      "category": "positive",
+      "test_case": "Calendar 'All courses' dropdown filters events by course",
+      "preconditions": ["User is enrolled in multiple courses with calendar events"],
+      "steps": ["1. Open 'All courses' dropdown", "2. Select a specific course", "3. Observe calendar entries"],
+      "expected_result": "Calendar displays only events belonging to the selected course",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-029",
+      "category": "positive",
+      "test_case": "Calendar New event button opens personal event creation form",
+      "preconditions": ["User is on Dashboard and has permission to create personal events"],
+      "steps": ["1. Click 'New event' button in Calendar block"],
+      "expected_result": "Personal event creation modal/form opens allowing event details entry",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-030",
+      "category": "positive",
+      "test_case": "Calendar left/right arrows navigate between months",
+      "preconditions": ["User is on Dashboard Calendar block"],
+      "steps": ["1. Click right arrow to move to next month", "2. Click left arrow to return"],
+      "expected_result": "Calendar view updates to next/previous months appropriately",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-031",
+      "category": "positive",
+      "test_case": "Dates with events display event names inline",
+      "preconditions": ["Calendar contains events on certain dates"],
+      "steps": ["1. Inspect dates in the calendar that have events"],
+      "expected_result": "Dates with events show event titles inline or as a count with hover details",
+      "priority": "low"
+    },
+    {
+      "tc_id": "positive",
+      "tc_id": "MS-032",
+      "category": "positive",
+      "test_case": "Full calendar link opens dedicated calendar view",
+      "preconditions": ["User is on Dashboard"],
+      "steps": ["1. Click 'Full calendar' link at bottom of Calendar block"],
+      "expected_result": "The full calendar view opens with more controls and listings",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-033",
+      "category": "positive",
+      "test_case": "Import or export calendars link opens calendar data management",
+      "preconditions": ["User is on Dashboard"],
+      "steps": ["1. Click 'Import or export calendars' link"],
+      "expected_result": "Calendar import/export page opens allowing data management",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-034",
+      "category": "positive",
+      "test_case": "Toggle Edit mode reveals Reset and Add a block options",
+      "preconditions": ["User is on Dashboard and Edit mode toggle is visible", "User has permission to toggle Edit mode (student may or may not have)"],
+      "steps": ["1. Toggle Edit mode on", "2. Observe changes in UI"],
+      "expected_result": "If toggleable, 'Reset page to default' appears top-right and '+ Add a block' appears below heading; blocks show move icon and three-dot menu",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-035",
+      "category": "negative",
+      "test_case": "Student cannot enable Edit mode on course pages",
+      "preconditions": ["User is a student and viewing a course page"],
+      "steps": ["1. Look for Edit mode toggle on course page", "2. Attempt to enable Edit mode"],
+      "expected_result": "Edit mode toggle is not available or cannot be enabled by the student",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-036",
+      "category": "positive",
+      "test_case": "My Courses displays enrolled courses as cards with banner and clickable name",
+      "preconditions": ["User is authenticated and enrolled in courses"],
+      "steps": ["1. Navigate to My Courses page", "2. Observe the grid of course cards", "3. Click a course name link"],
+      "expected_result": "Each card shows banner, course name and category; clicking name opens the course main page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-037",
+      "category": "positive",
+      "test_case": "My Courses status dropdown filters courses by status",
+      "preconditions": ["User has courses in various statuses (In progress, Future, Past, Starred, Hidden)"],
+      "steps": ["1. Open status dropdown", "2. Select each status option and observe displayed cards"],
+      "expected_result": "Course cards are filtered according to the selected status",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-038",
+      "category": "positive",
+      "test_case": "My Courses search field returns matching course cards",
+      "preconditions": ["User is on My Courses page with multiple courses"],
+      "steps": ["1. Enter a search term into the search field", "2. Execute search"],
+      "expected_result": "Course cards matching the search term (name or category) are displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-039",
+      "category": "positive",
+      "test_case": "My Courses sort dropdown orders courses correctly",
+      "preconditions": ["User is on My Courses page"],
+      "steps": ["1. Open the sort dropdown", "2. Choose different sort options (name, last access)", "3. Observe order change"],
+      "expected_result": "Course cards reorder according to selected sort option",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-040",
+      "category": "positive",
+      "test_case": "Layout dropdown toggles between Card, List, Summary views",
+      "preconditions": ["User is on My Courses page"],
+      "steps": ["1. Open layout dropdown", "2. Select Card, then List, then Summary", "3. Observe layout changes"],
+      "expected_result": "Course display changes to chosen layout format each time",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-041",
+      "category": "positive",
+      "test_case": "Course card three-dot menu 'Star this course' pins course to top",
+      "preconditions": ["User has at least two courses", "User is on My Courses page"],
+      "steps": ["1. Open three-dot menu on a course card", "2. Click 'Star this course'"],
+      "expected_result": "The course becomes starred and is pinned to the top of the list/grid",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-042",
+      "category": "positive",
+      "test_case": "Course card three-dot menu 'Remove from view' hides course card",
+      "preconditions": ["User is on My Courses page"],
+      "steps": ["1. Open three-dot menu on a course card", "2. Click 'Remove from view'"],
+      "expected_result": "Course card is hidden from view (without unenrolling); status updated to Hidden",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-043",
+      "category": "edge",
+      "test_case": "My Courses handles courses with very long names and special characters",
+      "preconditions": ["User is enrolled in a course with a very long name containing special characters"],
+      "steps": ["1. View My Courses page", "2. Inspect rendering of the long course name"],
+      "expected_result": "Course name displays/truncates appropriately; UI remains stable and clickable",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-044",
+      "category": "positive",
+      "test_case": "Course page lists collapsible sections and activities within",
+      "preconditions": ["User is enrolled and viewing a course with sections and activities"],
+      "steps": ["1. Observe the course page for section list", "2. Expand a section using its chevron", "3. Click an activity name"],
+      "expected_result": "Sections can be expanded/collapsed; activities are listed with type icons; clicking activity navigates to its page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-045",
+      "category": "positive",
+      "test_case": "Collapse all link collapses all sections at once",
+      "preconditions": ["Course page has multiple sections expanded"],
+      "steps": ["1. Click 'Collapse all' link at the top right of the sections area"],
+      "expected_result": "All sections collapse; activities under sections are hidden",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-046",
+      "category": "negative",
+      "test_case": "Student cannot see or use Edit mode controls on course page",
+      "preconditions": ["User is a student viewing a course page"],
+      "steps": ["1. Look for Edit mode toggle or edit controls", "2. Attempt to access any editing functionality"],
+      "expected_result": "Edit controls are absent or disabled; student is prevented from editing course content",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-047",
+      "category": "positive",
+      "test_case": "Participants page lists enrolled users and allows viewing profiles",
+      "preconditions": ["User is viewing Participants page of a course"],
+      "steps": ["1. Observe participants table", "2. Click a participant's name"],
+      "expected_result": "Participants table displays columns checkbox, name, roles, groups, last access; clicking name opens participant's profile",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-048",
+      "category": "positive",
+      "test_case": "Participants filter Any toggle and add condition functionality",
+      "preconditions": ["Participants page is open with filter controls"],
+      "steps": ["1. Use 'Any' toggle to change filter behavior", "2. Select an attribute from dropdown", "3. Click '+ Add condition' and add a condition", "4. Click 'Apply filters'"],
+      "expected_result": "Filter builder accepts conditions and filters participants accordingly when applied",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-049",
+      "category": "positive",
+      "test_case": "Participants alphabetical filters for First and Last name narrow list",
+      "preconditions": ["Participants page loaded with participants having varying name initials"],
+      "steps": ["1. Click alphabet letter A–Z or 'All' under First name filter", "2. Observe table changes", "3. Repeat for Last name filter"],
+      "expected_result": "Participants list updates to show names starting with selected initials",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-050",
+      "category": "negative",
+      "test_case": "Student cannot enrol or unenrol users or edit roles on Participants page",
+      "preconditions": ["User is a student viewing the Participants page"],
+      "steps": ["1. Attempt to find enrol/unenrol buttons or role edit controls", "2. Try to access enrolment management via any link"],
+      "expected_result": "No enrol/unenrol or role-editing controls are available to the student",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-051",
+      "category": "edge",
+      "test_case": "Participants page handles very large number of participants and pagination",
+      "preconditions": ["Course has a large enrollment list requiring pagination"],
+      "steps": ["1. Load Participants page", "2. Navigate through pages using pagination controls"],
+      "expected_result": "Participants list paginates and loads subsequent pages correctly; filters still apply",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-052",
+      "category": "positive",
+      "test_case": "Grades page displays User report with grade item hierarchy",
+      "preconditions": ["User is viewing Grades page for a course"],
+      "steps": ["1. Open Grades page", "2. Expand course grade header if collapsible", "3. Inspect grade items listed beneath"],
+      "expected_result": "User sees grade table with Grade item hierarchy, Calculated weight, Grade, Range, Percentage, Feedback, and Contribution to course total",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-053",
+      "category": "positive",
+      "test_case": "AGGREGATION Course total row displays cumulative grade",
+      "preconditions": ["Grades page loaded with graded items and weights"],
+      "steps": ["1. Scroll to bottom of grade table", "2. Identify AGGREGATION Course total row"],
+      "expected_result": "The Course total row shows the cumulative grade across weighted items",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-054",
+      "category": "negative",
+      "test_case": "Student cannot access full gradebook or other students' grades",
+      "preconditions": ["User is a student viewing Grades page"],
+      "steps": ["1. Attempt to navigate or switch to other users' grade views or full gradebook", "2. Try to access gradebook links visible to teachers"],
+      "expected_result": "Access is restricted; only the student's own grades are viewable",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-055",
+      "category": "edge",
+      "test_case": "Grades show '–' for not yet graded items",
+      "preconditions": ["Course contains activities not yet graded"],
+      "steps": ["1. Inspect Grade column entries for ungraded items"],
+      "expected_result": "Ungraded items display a '–' symbol in the Grade column and no score value",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-056",
+      "category": "positive",
+      "test_case": "Assignment page displays Opened date, Due date, and Description",
+      "preconditions": ["User views an assignment page"],
+      "steps": ["1. Open assignment page for a configured assignment", "2. Inspect header and description area"],
+      "expected_result": "Opened date, Due date, and full Description are shown prominently on the page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-057",
+      "category": "positive",
+      "test_case": "Add submission button opens submission form with configured inputs",
+      "preconditions": ["Assignment configured to allow submissions and user has permission to submit"],
+      "steps": ["1. Click 'Add submission' on assignment page"],
+      "expected_result": "Submission form opens containing configured fields (online text editor, file upload area, or both)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-058",
+      "category": "edge",
+      "test_case": "Assignment submission form accepts large file uploads within allowed limits",
+      "preconditions": ["Assignment allows file uploads", "File size is at or just below allowed upload limit"],
+      "steps": ["1. Click 'Add submission'", "2. Upload a file at the maximum allowed size", "3. Submit the assignment"],
+      "expected_result": "File uploads succeed and submission is accepted if within site limits; submission status updates",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-059",
+      "category": "negative",
+      "test_case": "Submission rejected when file exceeds allowed upload size",
+      "preconditions": ["Assignment allows file uploads", "Attempt to upload a file larger than allowed limit"],
+      "steps": ["1. Click 'Add submission'", "2. Upload a file exceeding the allowed size", "3. Attempt to submit"],
+      "expected_result": "System rejects the upload and shows an error indicating the file is too large; submission not accepted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-060",
+      "category": "positive",
+      "test_case": "Submission status table displays statuses and timestamps correctly",
+      "preconditions": ["User has or has not submitted assignment", "Assignment page open"],
+      "steps": ["1. Inspect the Submission status section on the assignment page"],
+      "expected_result": "Summary table shows rows for Submission status, Grading status, Time remaining, Last modified, and Submission comments with accurate values",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-061",
+      "category": "positive",
+      "test_case": "Student can edit submission before due date if teacher allows resubmission",
+      "preconditions": ["Assignment allows resubmissions and due date not passed", "Student has already submitted once"],
+      "steps": ["1. Open assignment page", "2. Click to view submission", "3. Edit the submission (upload new file or change text) and save"],
+      "expected_result": "Submission is updated and the Last modified timestamp changes; new version is accepted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-062",
+      "category": "edge",
+      "test_case": "Student cannot edit submission after due date when resubmission disallowed",
+      "preconditions": ["Due date has passed or resubmission not permitted", "Student has an existing submission"],
+      "steps": ["1. Open assignment page after due date", "2. Attempt to edit or resubmit"],
+      "expected_result": "Editing/resubmission controls are disabled or an error prevents modification; submission remains unchanged",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-063",
+      "category": "positive",
+      "test_case": "After grading, earned grade and written feedback appear on assignment page",
+      "preconditions": ["Teacher has graded the submission and added feedback"],
+      "steps": ["1. Open the graded assignment page", "2. Inspect grade and feedback sections"],
+      "expected_result": "Earned grade and teacher's written feedback are visible to the student",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-064",
+      "category": "positive",
+      "test_case": "Activities page groups activities by type and opens activity page on click",
+      "preconditions": ["Course has multiple activity types (Assignments, Forums, Resources)"],
+      "steps": ["1. Navigate to the Activities tab in a course", "2. Expand/collapse sections like Assignments, Forums", "3. Click an activity name"],
+      "expected_result": "Activities are grouped; Assignments section expanded by default; other sections collapsed; clicking activity navigates to its page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-065",
+      "category": "positive",
+      "test_case": "Assignments table displays Name, Due date, and Submission status",
+      "preconditions": ["Activities page is open and Assignments section contains items"],
+      "steps": ["1. Locate Assignments section", "2. Inspect table columns and entries"],
+      "expected_result": "Table lists assignments with clickable Name, Due date, and Submission status columns",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-066",
+      "category": "edge",
+      "test_case": "Collapsed sections (Forums, Resources) expand on arrow click",
+      "preconditions": ["Activities page with Forums and Resources collapsed by default"],
+      "steps": ["1. Click the expand arrow for Forums or Resources", "2. Observe content"],
+      "expected_result": "Section expands to show activities/resources within",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-067",
+      "category": "positive",
+      "test_case": "Profile page displays initials icon, full name, and Message button",
+      "preconditions": ["User navigates to their own Profile page"],
+      "steps": ["1. Open Profile page", "2. Observe header area for initials icon, full name, and 'Message' button"],
+      "expected_result": "Circular initials icon, the full name, and a Message button are visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-068",
+      "category": "positive",
+      "test_case": "Profile user details card shows email, visibility note, timezone and Edit profile link",
+      "preconditions": ["User on their Profile page"],
+      "steps": ["1. Scroll to User details card", "2. Verify display of email, visibility note, timezone and 'Edit profile' link"],
+      "expected_result": "User details card contains the specified fields and Edit profile link",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-069",
+      "category": "positive",
+      "test_case": "Clicking 'Edit profile' opens profile form with collapsible panels",
+      "preconditions": ["User on Profile page and clicks Edit profile"],
+      "steps": ["1. Click 'Edit profile' link", "2. Observe the profile form and verify presence of General, User picture, Additional names, Interests, Optional fields panels"],
+      "expected_result": "Profile edit form opens with collapsible panels containing expected fields",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-070",
+      "category": "negative",
+      "test_case": "Update profile validation prevents saving when required fields missing",
+      "preconditions": ["User opens Edit profile form", "Clear a required field like First name or Email"],
+      "steps": ["1. Remove required field value", "2. Click 'Update profile'"],
+      "expected_result": "Validation errors prevent saving and indicate missing required fields; changes not saved",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-071",
+      "category": "edge",
+      "test_case": "Profile edit accepts very long 'Description' and truncates/display appropriately",
+      "preconditions": ["User on Edit profile form"],
+      "steps": ["1. Enter a very long text into Description field (exceeding typical length)", "2. Click 'Update profile'"],
+      "expected_result": "If allowed, profile saves and UI handles long text via truncation or scroll; no UI breakage occurs",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-072",
+      "category": "positive",
+      "test_case": "User picture upload updates profile picture preview before saving",
+      "preconditions": ["User on Edit profile form with picture upload enabled"],
+      "steps": ["1. Use User picture panel to choose and upload a new image", "2. Observe preview", "3. Click 'Update profile'"],
+      "expected_result": "Preview displays new image; after saving, profile shows updated picture",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-073",
+      "category": "negative",
+      "test_case": "Profile picture upload rejects unsupported file types",
+      "preconditions": ["User on Edit profile form"],
+      "steps": ["1. Attempt to upload a non-image file (e.g. .exe) in User picture panel", "2. Click 'Update profile' if needed"],
+      "expected_result": "Upload is rejected with an error indicating unsupported file type",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-074",
+      "category": "positive",
+      "test_case": "Cancel on Edit profile exits without saving changes",
+      "preconditions": ["User has made unsaved changes in Edit profile form"],
+      "steps": ["1. Click 'Cancel' in the edit form", "2. Confirm any discard prompt if present"],
+      "expected_result": "Changes are discarded and the Profile page shows previous values",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-075",
+      "category": "positive",
+      "test_case": "Profile 'Course details' card contains links to enrolled course profiles",
+      "preconditions": ["User has enrolled courses"],
+      "steps": ["1. Open Profile page", "2. Locate 'Course details' card and click a course link"],
+      "expected_result": "Course details card lists enrolled courses as links and clicking navigates to course profile",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-076",
+      "category": "edge",
+      "test_case": "Login activity displays First and Last access dates with relative indicators",
+      "preconditions": ["User has logged in previously"],
+      "steps": ["1. Open Profile page", "2. Inspect Login activity card for First and Last access entries"],
+      "expected_result": "Exact dates and relative times (e.g., '2 days ago') are displayed for First and Last access",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-077",
+      "category": "positive",
+      "test_case": "Logout from user menu redirects to login and protects pages post-logout",
+      "preconditions": ["User is authenticated and on any protected page"],
+      "steps": ["1. Open user menu", "2. Click 'Log out'", "3. Attempt to navigate back to a protected page using browser Back or direct URL"],
+      "expected_result": "User is redirected to login page on logout; attempts to access protected pages require re-authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-078",
+      "category": "edge",
+      "test_case": "Attempt to reuse session cookie after logout is rejected",
+      "preconditions": ["User logs out", "Attempts to reuse old session cookie via developer tools or crafted request"],
+      "steps": ["1. Log out", "2. Use previous session cookie in a new request to a protected endpoint"],
+      "expected_result": "Server rejects the request and requires authentication; session is invalid",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-079",
+      "category": "positive",
+      "test_case": "Activity breadcrumbs maintain correct path after navigating via Course Index",
+      "preconditions": ["Course Index used to navigate to activity"],
+      "steps": ["1. Click an activity via Course Index", "2. Inspect breadcrumbs on the activity page"],
+      "expected_result": "Breadcrumbs reflect the course > section > activity path correctly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-080",
+      "category": "edge",
+      "test_case": "Course Index close and reopen preserves previously expanded/active state where applicable",
+      "preconditions": ["Course Index open and some sections expanded"],
+      "steps": ["1. Close Course Index via X", "2. Reopen Course Index (if control exists)"],
+      "expected_result": "Previously expanded sections/active item are preserved or UI documents behavior (consistent UX)",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-081",
+      "category": "negative",
+      "test_case": "Unauthorized navigation to course via URL denied after logout",
+      "preconditions": ["User logs out", "User tries to open a course URL directly"],
+      "steps": ["1. After logout, paste a course page URL into the browser", "2. Press enter"],
+      "expected_result": "User is redirected to the login page and cannot view course content without authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-082",
+      "category": "positive",
+      "test_case": "Dashboard Edit mode block 'Configure' option opens block settings",
+      "preconditions": ["User can toggle Edit mode and is in Edit mode"],
+      "steps": ["1. Toggle Edit mode on", "2. Click three-dot menu on a block", "3. Select 'Configure'"],
+      "expected_result": "Block configuration interface opens for the selected block",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-083",
+      "category": "positive",
+      "test_case": "Dashboard Edit mode block 'Move' allows reordering blocks",
+      "preconditions": ["Edit mode is on and multiple blocks present"],
+      "steps": ["1. Click three-dot menu on a block", "2. Select 'Move' and reposition the block", "3. Save changes if required"],
+      "expected_result": "Block is moved to new location and layout updates accordingly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-084",
+      "category": "positive",
+      "test_case": "Dashboard Edit mode block 'Delete' removes a block from page",
+      "preconditions": ["Edit mode is on and block deletions permitted"],
+      "steps": ["1. Click three-dot menu on a block", "2. Choose 'Delete' and confirm"],
+      "expected_result": "Block is removed from Dashboard; 'Reset page to default' can restore defaults",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-085",
+      "category": "positive",
+      "test_case": "Reset page to default restores Dashboard layout to original",
+      "preconditions": ["Edit mode is on and Dashboard layout modified"],
+      "steps": ["1. Click 'Reset page to default' button", "2. Confirm reset"],
+      "expected_result": "Dashboard layout reverts to default configuration and block placements",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-086",
+      "category": "edge",
+      "test_case": "Adding a block from '+ Add a block' shows available block types list",
+      "preconditions": ["Edit mode is on"],
+      "steps": ["1. Click '+ Add a block' below Dashboard heading", "2. Browse the list of available block types"],
+      "expected_result": "The page lists all available block types; selecting one adds it to the Dashboard",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-087",
+      "category": "positive",
+      "test_case": "Clicking course name on My Courses navigates to that course main page",
+      "preconditions": ["User is on My Courses page"],
+      "steps": ["1. Click the course name link on a course card"],
+      "expected_result": "User navigates to the selected course's main page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MS-088",
+      "category": "negative",
+      "test_case": "My Courses search with no matches displays 'no courses found' message",
+      "preconditions": ["User is on My Courses page"],
+      "steps": ["1. Enter a gibberish/non-matching search term into search field", "2. Execute search"],
+      "expected_result": "An appropriate 'no courses found' or empty state message is displayed",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-089",
+      "category": "edge",
+      "test_case": "My Courses handles hidden courses and toggle to show hidden courses",
+      "preconditions": ["User has hidden courses"],
+      "steps": ["1. Open status dropdown and select 'Hidden' or toggle to view hidden courses if available"],
+      "expected_result": "Hidden courses are displayed when filtered; otherwise they remain hidden from default view",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-090",
+      "category": "positive",
+      "test_case": "Participants table sorting by First/Last name sorts results",
+      "preconditions": ["Participants page loaded with multiple names"],
+      "steps": ["1. Click column header for First/Last name to sort ascending/descending", "2. Observe ordering"],
+      "expected_result": "Participants table sorts alphabetically by selected column",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-091",
+      "category": "positive",
+      "test_case": "Participant's profile view accessible from Participants page and shows details",
+      "preconditions": ["Participants page lists participant with a profile to view"],
+      "steps": ["1. Click a participant's name", "2. Inspect profile page content including message button and details cards"],
+      "expected_result": "Participant profile loads with initials icon, name, message button, and information cards",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-092",
+      "category": "negative",
+      "test_case": "Applying invalid filter condition shows no results or error gracefully",
+      "preconditions": ["Participants filter builder present"],
+      "steps": ["1. Add a filter condition that yields no matches (e.g., non-existent attribute value)", "2. Click 'Apply filters'"],
+      "expected_result": "No matching participants displayed and a clear empty state shown; no system error occurs",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-093",
+      "category": "positive",
+      "test_case": "Grades table percentage and ranges display correct formatting",
+      "preconditions": ["Grades for multiple items present"],
+      "steps": ["1. Inspect Percentage and Range columns in Grades table"],
+      "expected_result": "Percentage values and ranges are displayed with consistent formatting (e.g., % sign and min-max ranges)",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-094",
+      "category": "edge",
+      "test_case": "Grade feedback shows rich text or attachments if teacher provided them",
+      "preconditions": ["Teacher provided written feedback with formatting or attachments"],
+      "steps": ["1. Open graded item on Grades or Assignment page", "2. Check Feedback column/section"],
+      "expected_result": "Feedback shows formatted text and links/attachments correctly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-095",
+      "category": "positive",
+      "test_case": "Activities parent section shown below assignment name in activities list",
+      "preconditions": ["Activities list shows assignment with parent section association"],
+      "steps": ["1. Locate an assignment row and observe parent section text beneath the assignment name"],
+      "expected_result": "Parent section name is displayed under the assignment name",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-096",
+      "category": "negative",
+      "test_case": "Attempting to open another student's profile from Participants is not permitted for students where privacy restricted",
+      "preconditions": ["Student clicks participant profile that has privacy restrictions"],
+      "steps": ["1. Click restricted participant's name", "2. Attempt to view sensitive info"],
+      "expected_result": "Limited profile information shown per privacy settings; edit/enrol actions not available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-097",
+      "category": "positive",
+      "test_case": "Profile Miscellaneous card links (Blog entries, Forum posts) open respective pages",
+      "preconditions": ["User has blog/forum content"],
+      "steps": ["1. Click links under Miscellaneous card on Profile page"],
+      "expected_result": "Clicking each link navigates to the respective list of Blog entries, Forum posts, etc.",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-098",
+      "category": "edge",
+      "test_case": "Editing optional profile fields and saving persists changes",
+      "preconditions": ["User on Edit profile form"],
+      "steps": ["1. Fill in Optional fields (city, country, interests)", "2. Click 'Update profile'"],
+      "expected_result": "Changes are saved and reflected on the Profile page",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MS-099",
+      "category": "positive",
+      "test_case": "Activities navigation permission: clicking activity navigates while preserving course context",
+      "preconditions": ["Activities page open"],
+      "steps": ["1. Click any activity name in Activities page"],
+      "expected_result": "Activity page loads with breadcrumbs and course context intact",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MS-100",
+      "category": "edge",
+      "test_case": "Session persistence: user remains logged in across page reloads until logout or session expiry",
+      "preconditions": ["User logged in"],
+      "steps": ["1. Reload the browser while on a protected page", "2. Confirm user still authenticated", "3. Then logout and verify session ends"],
+      "expected_result": "User remains authenticated on reloads; after logout session is terminated and reloading protected pages require login",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "high_priority": 50,
+    "medium_priority": 30,
+    "low_priority": 20
+  }
+}

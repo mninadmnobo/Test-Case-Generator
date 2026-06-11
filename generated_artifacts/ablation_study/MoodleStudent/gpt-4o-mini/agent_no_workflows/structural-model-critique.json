@@ -1,0 +1,165 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:41:26.452168Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the course card visual representation and has phantoms related to the course card structure.",
+        "missing": [
+          "Course_Grid.fields.Course_Banner_Image",
+          "Course_Grid.fields.Category_Name"
+        ],
+        "phantoms": [
+          "Course_Grid.row_actions[0] (Star this course action not explicitly mentioned in description)",
+          "Course_Grid.row_actions[1] (Remove from view action not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Add Course_Banner_Image field to Course_Grid.fields",
+          "Add Category_Name field to Course_Grid.fields"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing expected elements and contains phantoms.",
+        "missing": [
+          "Course_Sections.sections[0].section_name"
+        ],
+        "phantoms": [
+          "Course_Sections.sections[0].actions[0] (Collapse all action is not explicitly mentioned in the description)"
+        ],
+        "fixes": [
+          "Add a section_name field to Course_Sections.sections[0] with the appropriate value.",
+          "Remove the Collapse all action from Course_Sections.sections[0].actions[0] as it is not explicitly mentioned."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the Select attribute dropdown and has a phantom for the View Profile action.",
+        "missing": [
+          "Filter_System.fields.Select_Attribute_Dropdown"
+        ],
+        "phantoms": [
+          "Participants_Table.row_actions[0] (View Profile action not explicitly mentioned in description)"
+        ],
+        "fixes": [
+          "Add a Select attribute dropdown to Filter_System.fields",
+          "Remove the View Profile action from Participants_Table.row_actions"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Submission_Status_Section.fields.Submission_Status (specific submission status messages are not defined)",
+          "Submission_Status_Section.fields.Grading_Status (specific grading status messages are not defined)",
+          "Submission_Status_Section.fields.Time_Remaining (specific time remaining field is not defined)",
+          "Submission_Status_Section.fields.Last_Modified (specific last modified field is not defined)",
+          "Submission_Status_Section.fields.Submission_Comments (specific submission comments field is not defined)"
+        ],
+        "phantoms": [
+          "Submission_Form.fields.Online_Text_Editor (not explicitly mentioned in the description)",
+          "Submission_Form.fields.File_Upload_Area (not explicitly mentioned in the description)"
+        ],
+        "fixes": [
+          "Define specific submission status messages in Submission_Status_Section.fields.Submission_Status.",
+          "Define specific grading status messages in Submission_Status_Section.fields.Grading_Status.",
+          "Define specific time remaining field in Submission_Status_Section.fields.Time_Remaining.",
+          "Define specific last modified field in Submission_Status_Section.fields.Last_Modified.",
+          "Define specific submission comments field in Submission_Status_Section.fields.Submission_Comments.",
+          "Remove Online_Text_Editor and File_Upload_Area from Submission_Form.fields as they are phantoms."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

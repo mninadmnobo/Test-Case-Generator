@@ -1,0 +1,336 @@
+{
+  "module": "MoodleStudent",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": ["User has a valid username and password"],
+      "steps": ["1. Navigate to the login page", "2. Enter valid username", "3. Enter valid password", "4. Click on 'Log in' button"],
+      "expected_result": "User is redirected to the Dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Login attempt with empty username",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page", "2. Leave username field empty", "3. Enter valid password", "4. Click on 'Log in' button"],
+      "expected_result": "Inline error message is displayed, password field is cleared, username field retains input",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "negative",
+      "test_case": "Login attempt with empty password",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page", "2. Enter valid username", "3. Leave password field empty", "4. Click on 'Log in' button"],
+      "expected_result": "Inline error message is displayed, password field is cleared, username field retains input",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "negative",
+      "test_case": "Login attempt with invalid credentials",
+      "preconditions": ["User has an invalid username and/or password"],
+      "steps": ["1. Navigate to the login page", "2. Enter invalid username", "3. Enter invalid password", "4. Click on 'Log in' button"],
+      "expected_result": "Inline error message is displayed, password field is cleared, username field retains input",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "edge",
+      "test_case": "Login attempt with maximum length username and password",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page", "2. Enter a username with maximum allowed length", "3. Enter a password with maximum allowed length", "4. Click on 'Log in' button"],
+      "expected_result": "User is redirected to the Dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "edge",
+      "test_case": "Login attempt with special characters in username and password",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page", "2. Enter a username with special characters", "3. Enter a password with special characters", "4. Click on 'Log in' button"],
+      "expected_result": "User is redirected to the Dashboard if credentials are valid, otherwise error message is shown",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "positive",
+      "test_case": "Access Dashboard after successful login",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Navigate to the Dashboard"],
+      "expected_result": "Dashboard displays personalized greeting and blocks for Timeline and Calendar",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "positive",
+      "test_case": "View upcoming activities in Timeline block",
+      "preconditions": ["User is logged in and has upcoming activities"],
+      "steps": ["1. Navigate to the Dashboard", "2. Check the Timeline block"],
+      "expected_result": "Upcoming activities are displayed correctly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "negative",
+      "test_case": "Check Timeline block with no upcoming activities",
+      "preconditions": ["User is logged in and has no upcoming activities"],
+      "steps": ["1. Navigate to the Dashboard", "2. Check the Timeline block"],
+      "expected_result": "Empty state message is displayed in the Timeline block",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "positive",
+      "test_case": "Filter events in Calendar block by course",
+      "preconditions": ["User is logged in and has events in the calendar"],
+      "steps": ["1. Navigate to the Dashboard", "2. Select a course from 'All courses' dropdown", "3. Check the Calendar block"],
+      "expected_result": "Calendar displays events filtered by the selected course",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "negative",
+      "test_case": "Attempt to access My Courses without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to My Courses page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "positive",
+      "test_case": "View courses in My Courses page",
+      "preconditions": ["User is logged in and enrolled in courses"],
+      "steps": ["1. Navigate to My Courses page"],
+      "expected_result": "All enrolled courses are displayed as visual cards",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "negative",
+      "test_case": "Filter courses with empty search field",
+      "preconditions": ["User is logged in and has courses"],
+      "steps": ["1. Navigate to My Courses page", "2. Leave search field empty", "3. Click on filter button"],
+      "expected_result": "All courses are displayed without filtering",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "edge",
+      "test_case": "Filter courses with maximum length search term",
+      "preconditions": ["User is logged in and has courses"],
+      "steps": ["1. Navigate to My Courses page", "2. Enter a search term with maximum allowed length", "3. Click on filter button"],
+      "expected_result": "Courses matching the search term are displayed or no results if none match",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "positive",
+      "test_case": "Navigate to a course from My Courses page",
+      "preconditions": ["User is logged in and has courses"],
+      "steps": ["1. Navigate to My Courses page", "2. Click on a course name"],
+      "expected_result": "User is redirected to the selected course's main page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "positive",
+      "test_case": "View course content on Course page",
+      "preconditions": ["User is logged in and has accessed a course"],
+      "steps": ["1. Navigate to the Course page"],
+      "expected_result": "Course content is displayed organized into collapsible sections",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "negative",
+      "test_case": "Attempt to access Participants page without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to Participants page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "positive",
+      "test_case": "View participants in a course",
+      "preconditions": ["User is logged in and has access to a course"],
+      "steps": ["1. Navigate to the Participants page"],
+      "expected_result": "List of participants is displayed with their details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "negative",
+      "test_case": "Apply filters with no conditions set",
+      "preconditions": ["User is logged in and has participants"],
+      "steps": ["1. Navigate to Participants page", "2. Click on 'Apply filters' without setting any conditions"],
+      "expected_result": "All participants are displayed without filtering",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "edge",
+      "test_case": "Apply filters with maximum length condition",
+      "preconditions": ["User is logged in and has participants"],
+      "steps": ["1. Navigate to Participants page", "2. Set a condition with maximum allowed length", "3. Click on 'Apply filters'"],
+      "expected_result": "Filtered participants are displayed based on the condition",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "positive",
+      "test_case": "View grades on Grades page",
+      "preconditions": ["User is logged in and has grades"],
+      "steps": ["1. Navigate to the Grades page"],
+      "expected_result": "User's grades are displayed in a table format",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC022",
+      "category": "negative",
+      "test_case": "Attempt to access Grades page without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to Grades page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC023",
+      "category": "positive",
+      "test_case": "View assignment details on Assignment page",
+      "preconditions": ["User is logged in and has an assignment"],
+      "steps": ["1. Navigate to the Assignment page"],
+      "expected_result": "Assignment details including dates and description are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC024",
+      "category": "negative",
+      "test_case": "Attempt to access Assignment page without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to Assignment page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC025",
+      "category": "positive",
+      "test_case": "Submit an assignment successfully",
+      "preconditions": ["User is logged in and on the Assignment page", "User has valid submission content"],
+      "steps": ["1. Click on 'Add submission' button", "2. Enter submission content", "3. Click on 'Submit' button"],
+      "expected_result": "Submission status updates to 'Submitted for grading'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC026",
+      "category": "negative",
+      "test_case": "Submit an assignment with empty submission",
+      "preconditions": ["User is logged in and on the Assignment page"],
+      "steps": ["1. Click on 'Add submission' button", "2. Leave submission content empty", "3. Click on 'Submit' button"],
+      "expected_result": "Error message is displayed indicating submission cannot be empty",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC027",
+      "category": "edge",
+      "test_case": "Submit an assignment with maximum length content",
+      "preconditions": ["User is logged in and on the Assignment page"],
+      "steps": ["1. Click on 'Add submission' button", "2. Enter maximum length submission content", "3. Click on 'Submit' button"],
+      "expected_result": "Submission status updates to 'Submitted for grading'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC028",
+      "category": "positive",
+      "test_case": "View activities on Activities page",
+      "preconditions": ["User is logged in and has activities in the course"],
+      "steps": ["1. Navigate to the Activities page"],
+      "expected_result": "Activities are displayed grouped by type",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC029",
+      "category": "negative",
+      "test_case": "Attempt to access Activities page without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to Activities page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC030",
+      "category": "positive",
+      "test_case": "View profile details on Profile page",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Navigate to Profile page"],
+      "expected_result": "User's profile details are displayed correctly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC031",
+      "category": "negative",
+      "test_case": "Attempt to access Profile page without being logged in",
+      "preconditions": [],
+      "steps": ["1. Navigate to Profile page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC032",
+      "category": "positive",
+      "test_case": "Edit profile successfully",
+      "preconditions": ["User is logged in", "User is on Profile page"],
+      "steps": ["1. Click on 'Edit profile' link", "2. Modify profile fields", "3. Click on 'Update profile' button"],
+      "expected_result": "Profile is updated successfully and confirmation message is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC033",
+      "category": "negative",
+      "test_case": "Edit profile with missing required fields",
+      "preconditions": ["User is logged in", "User is on Profile page"],
+      "steps": ["1. Click on 'Edit profile' link", "2. Leave required fields empty", "3. Click on 'Update profile' button"],
+      "expected_result": "Error message is displayed indicating required fields must be filled",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC034",
+      "category": "edge",
+      "test_case": "Edit profile with maximum length fields",
+      "preconditions": ["User is logged in", "User is on Profile page"],
+      "steps": ["1. Click on 'Edit profile' link", "2. Fill all fields with maximum allowed length", "3. Click on 'Update profile' button"],
+      "expected_result": "Profile is updated successfully and confirmation message is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC035",
+      "category": "positive",
+      "test_case": "Logout successfully",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Click on user initials icon", "2. Select 'Log out' option"],
+      "expected_result": "User is logged out and redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC036",
+      "category": "negative",
+      "test_case": "Attempt to access protected page after logout",
+      "preconditions": ["User is logged out"],
+      "steps": ["1. Navigate to Dashboard"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 36,
+    "high_priority": 24,
+    "medium_priority": 10,
+    "low_priority": 0
+  }
+}

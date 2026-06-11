@@ -1,0 +1,341 @@
+{
+  "module": "MoodleStudent",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Log in with valid credentials",
+      "preconditions": ["A registered student account exists"],
+      "steps": [
+        "1. Navigate to the Moodle login page",
+        "2. Enter <valid username> in the Username field",
+        "3. Enter <valid password> in the Password field",
+        "4. Click 'Log in'"
+      ],
+      "expected_result": "User is redirected to the Dashboard with a personalized greeting",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Log in with an incorrect password",
+      "preconditions": ["A registered student account exists"],
+      "steps": [
+        "1. Navigate to the Moodle login page",
+        "2. Enter <valid username> in the Username field",
+        "3. Enter <wrong password> in the Password field",
+        "4. Click 'Log in'"
+      ],
+      "expected_result": "An inline error message is displayed; the Password field is cleared; the Username field retains the entered value",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Log in with an empty password field",
+      "preconditions": ["A registered student account exists"],
+      "steps": [
+        "1. Navigate to the Moodle login page",
+        "2. Enter <valid username> in the Username field",
+        "3. Leave the Password field empty",
+        "4. Click 'Log in'"
+      ],
+      "expected_result": "An inline error message is displayed indicating that the password is required; the Username field retains the entered value",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Access the Dashboard after logging in",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click on the Dashboard link in the top navigation bar"
+      ],
+      "expected_result": "The Dashboard displays the Timeline and Calendar blocks",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Attempt to access the Dashboard without logging in",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the Dashboard URL directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Filter the Timeline block with a date range that contains no upcoming activities",
+      "preconditions": ["User logged in as Student", "No activities are due within the next 7 days"],
+      "steps": [
+        "1. Navigate to the Dashboard",
+        "2. In the Timeline block, select 'Next 7 days' from the time range dropdown"
+      ],
+      "expected_result": "The Timeline block displays an empty state message indicating no upcoming activities within the selected range",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "View My Courses page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click on the My Courses link in the top navigation bar"
+      ],
+      "expected_result": "The My Courses page displays all enrolled courses as visual cards",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Attempt to access My Courses page without logging in",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the My Courses URL directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "Filter My Courses with no courses available",
+      "preconditions": ["User logged in as Student", "User is not enrolled in any courses"],
+      "steps": [
+        "1. Navigate to the My Courses page",
+        "2. Apply a filter to show 'In progress' courses"
+      ],
+      "expected_result": "The My Courses page displays a message indicating no courses are available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Access a course from My Courses page",
+      "preconditions": ["User logged in as Student", "User is enrolled in at least one course"],
+      "steps": [
+        "1. Navigate to the My Courses page",
+        "2. Click on a course name link"
+      ],
+      "expected_result": "User is redirected to the Course page displaying course content",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "View the Participants page of a course",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click on the Participants tab"
+      ],
+      "expected_result": "The Participants page displays a list of enrolled users",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Attempt to access Participants page without being enrolled in a course",
+      "preconditions": ["User logged in as Student", "User is not enrolled in any courses"],
+      "steps": [
+        "1. Navigate to the Participants page of a course"
+      ],
+      "expected_result": "User sees a message indicating they are not enrolled in the course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Filter Participants with no conditions applied",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course"],
+      "steps": [
+        "1. Navigate to the Participants page",
+        "2. Click 'Apply filters' without selecting any conditions"
+      ],
+      "expected_result": "The Participants page displays all enrolled users without any filtering",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "View Grades page",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click on the Grades tab"
+      ],
+      "expected_result": "The Grades page displays the user's grades for the course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Attempt to access Grades page without being enrolled in a course",
+      "preconditions": ["User logged in as Student", "User is not enrolled in any courses"],
+      "steps": [
+        "1. Navigate to the Grades page of a course"
+      ],
+      "expected_result": "User sees a message indicating they are not enrolled in the course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "View Grades page with no graded activities",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course with no graded activities"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click on the Grades tab"
+      ],
+      "expected_result": "The Grades page displays a message indicating no grades are available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Submit an assignment using the online text editor",
+      "preconditions": ["User logged in as Student", "An assignment with online text submission is open and within the due date"],
+      "steps": [
+        "1. Navigate to the Assignment page from the Course page",
+        "2. Click 'Add submission'",
+        "3. Enter <submission text> in the online text editor",
+        "4. Click 'Save changes'"
+      ],
+      "expected_result": "Submission status row updates to 'Submitted for grading'; Last modified timestamp reflects the submission time",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Attempt to submit an assignment after the due date",
+      "preconditions": ["User logged in as Student", "An assignment is past the due date"],
+      "steps": [
+        "1. Navigate to the Assignment page from the Course page",
+        "2. Click 'Add submission'",
+        "3. Enter <submission text> in the online text editor",
+        "4. Click 'Save changes'"
+      ],
+      "expected_result": "An error message is displayed indicating the assignment is past the due date; submission is not accepted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Submit an assignment with maximum character limit in the online text editor",
+      "preconditions": ["User logged in as Student", "An assignment with online text submission is open and within the due date"],
+      "steps": [
+        "1. Navigate to the Assignment page from the Course page",
+        "2. Click 'Add submission'",
+        "3. Enter <maximum character limit text> in the online text editor",
+        "4. Click 'Save changes'"
+      ],
+      "expected_result": "Submission status row updates to 'Submitted for grading'; Last modified timestamp reflects the submission time",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "View the Activities page of a course",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click on the Activities tab"
+      ],
+      "expected_result": "The Activities page displays all activities grouped by type",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Attempt to access Activities page without being enrolled in a course",
+      "preconditions": ["User logged in as Student", "User is not enrolled in any courses"],
+      "steps": [
+        "1. Navigate to the Activities page of a course"
+      ],
+      "expected_result": "User sees a message indicating they are not enrolled in the course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "View Activities page with no activities available",
+      "preconditions": ["User logged in as Student", "User is enrolled in a course with no activities"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click on the Activities tab"
+      ],
+      "expected_result": "The Activities page displays a message indicating no activities are available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "View Profile page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click on the user's initials in the top navigation bar",
+        "2. Select 'Profile' from the dropdown menu"
+      ],
+      "expected_result": "The Profile page displays the user's information and links",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Attempt to access Profile page without logging in",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the Profile URL directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Edit profile with all optional fields left empty",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Navigate to the Profile page",
+        "2. Click 'Edit profile'",
+        "3. Leave all optional fields empty",
+        "4. Click 'Update profile'"
+      ],
+      "expected_result": "Profile updates successfully; no errors are shown",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "Log out from the application",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click on the user's initials in the top navigation bar",
+        "2. Select 'Log out' from the dropdown menu"
+      ],
+      "expected_result": "User is logged out and redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Attempt to log out when already logged out",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the logout URL directly"
+      ],
+      "expected_result": "User is redirected to the login page without any error",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "high_priority": 30,
+    "medium_priority": 15,
+    "low_priority": 5
+  }
+}

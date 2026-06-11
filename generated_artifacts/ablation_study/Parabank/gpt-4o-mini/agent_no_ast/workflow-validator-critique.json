@@ -1,0 +1,200 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-10T20:09:51.907383Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows for form submit_action: action=Sign In"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the login form submit action."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for form submit_action: action=Register"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the missing form submit_action: action=Register"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the dashboard actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing the required components as the AST is empty.",
+        "missing": [
+          "No workflows found for any interactive components in the AST."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for the missing interactive components in the AST."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components are defined, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove all workflows since the AST has no components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing the required interactive components as the AST contains no components.",
+        "missing": [
+          "No workflows for interactive loan type cards: Personal, Auto, Home"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for loan type cards: Personal, Auto, Home"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty as there are no components in the AST.",
+        "missing": [
+          "No workflows when module clearly has actions."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add form component with submit_actions for 'Update Profile'."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST does not contain any components, indicating a critical failure as workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add components to the AST to reflect the forms and actions described in the functional description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the trade funds form and recurring investment plan form actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating a critical failure as there are interactive components described.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add components to the AST to reflect the forms and actions described in the functional description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing as the AST contains no components, indicating a critical failure.",
+        "missing": [
+          "No workflows found for the form actions in the Security Settings page."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add the necessary form components to the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components are defined, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove workflows WF-001 and WF-002 due to absence of corresponding AST components."
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+run_id: swaglab-20260611-004709-b7d08c
+  Sidecar: generated_artifacts\.checkpoints\swaglab-20260611-004709-b7d08c.json
+  Output directory: generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic
+  (use `--resume swaglab-20260611-004709-b7d08c` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: swaglab-20260611-004709-b7d08c
+
+[1/4] Generating Structural Model with critic-guided retry (9 module(s))...
+    [00:47:09] >> Structural Model Agent | sending request (~835 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~546 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~431 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~355 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~505 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~388 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~314 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~291 chars)
+    [00:47:09] >> Structural Model Agent | sending request (~266 chars)
+    [00:47:19] << Structural Model Agent | response in 9.5s | tokens: 2233+660=2893
+  OK Reset App State | attempt 1 (no critic) | 1 component(s)
+    [00:47:20] << Structural Model Agent | response in 10.7s | tokens: 2240+727=2967
+  OK Checkout - Confirmation | attempt 1 (no critic) | 1 component(s)
+    [00:47:22] << Structural Model Agent | response in 13.2s | tokens: 2237+937=3174
+  OK Logout | attempt 1 (no critic) | 1 component(s)
+    [00:47:23] << Structural Model Agent | response in 14.2s | tokens: 2255+1031=3286
+  OK Checkout - Overview | attempt 1 (no critic) | 1 component(s)
+    [00:47:28] << Structural Model Agent | response in 18.5s | tokens: 2267+1412=3679
+  OK Product Detail | attempt 1 (no critic) | 3 component(s)
+    [00:47:31] << Structural Model Agent | response in 22.0s | tokens: 2282+1642=3924
+  OK Checkout - Information | attempt 1 (no critic) | 1 component(s)
+    [00:47:33] << Structural Model Agent | response in 23.7s | tokens: 2253+1773=4026
+  OK Shopping Cart | attempt 1 (no critic) | 2 component(s)
+    [00:47:34] << Structural Model Agent | response in 25.1s | tokens: 2352+1940=4292
+  OK Login | attempt 1 (no critic) | 1 component(s)
+    [00:47:41] << Structural Model Agent | response in 31.5s | tokens: 2301+2427=4728
+  OK Product Inventory | attempt 1 (no critic) | 2 component(s)
+  Done in 31.5s
+
+[2/4] Extracting & critiquing workflows (9 module(s))...
+    [00:47:41] >> Workflow-Extractor | sending request (~2091 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~2273 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~1643 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~1083 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~1891 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~1007 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~692 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~780 chars)
+    [00:47:41] >> Workflow-Extractor | sending request (~622 chars)
+    [00:47:44] << Workflow-Extractor | response in 3.4s | tokens: 1413+230=1643
+  OK Checkout - Confirmation | attempt 1 (no critic) | 1 workflow(s)
+    [00:47:45] << Workflow-Extractor | response in 4.5s | tokens: 1432+307=1739
+  OK Logout | attempt 1 (no critic) | 1 workflow(s)
+    [00:47:45] << Workflow-Extractor | response in 4.5s | tokens: 1403+305=1708
+  OK Reset App State | attempt 1 (no critic) | 1 workflow(s)
+    [00:47:45] << Workflow-Extractor | response in 4.9s | tokens: 1476+350=1826
+  OK Checkout - Overview | attempt 1 (no critic) | 2 workflow(s)
+    [00:47:46] << Workflow-Extractor | response in 5.7s | tokens: 1666+406=2072
+  OK Checkout - Information | attempt 1 (no critic) | 2 workflow(s)
+    [00:47:48] << Workflow-Extractor | response in 7.5s | tokens: 1512+599=2111
+  OK Shopping Cart | attempt 1 (no critic) | 3 workflow(s)
+    [00:47:50] << Workflow-Extractor | response in 9.8s | tokens: 1621+865=2486
+  OK Product Detail | attempt 1 (no critic) | 4 workflow(s)
+    [00:48:07] << Workflow-Extractor | response in 26.8s | tokens: 1774+951=2725
+  OK Product Inventory | attempt 1 (no critic) | 3 workflow(s)
+    [00:48:13] << Workflow-Extractor | response in 32.1s | tokens: 1713+2779=4492
+  OK Login | attempt 1 (no critic) | 6 workflow(s)
+  Done in 32.1s
+
+[3/4] Generating test cases (27 calls across 9 module(s), types: edge/negative/positive)...
+    [00:48:13] >> Test-Positive | sending request (~3568 chars)
+    [00:48:13] >> Test-Negative | sending request (~3568 chars)
+    [00:48:13] >> Test-Edge | sending request (~3568 chars)
+    [00:48:13] >> Test-Positive | sending request (~2826 chars)
+    [00:48:13] >> Test-Negative | sending request (~2826 chars)
+    [00:48:13] >> Test-Edge | sending request (~2826 chars)
+    [00:48:13] >> Test-Positive | sending request (~2253 chars)
+    [00:48:13] >> Test-Negative | sending request (~2253 chars)
+    [00:48:13] >> Test-Edge | sending request (~2253 chars)
+    [00:48:13] >> Test-Positive | sending request (~1517 chars)
+    [00:48:13] >> Test-Negative | sending request (~1517 chars)
+    [00:48:13] >> Test-Edge | sending request (~1517 chars)
+    [00:48:13] >> Test-Positive | sending request (~2169 chars)
+    [00:48:13] >> Test-Negative | sending request (~2169 chars)
+    [00:48:13] >> Test-Edge | sending request (~2169 chars)
+    [00:48:13] >> Test-Positive | sending request (~1315 chars)
+    [00:48:13] >> Test-Negative | sending request (~1315 chars)
+    [00:48:13] >> Test-Edge | sending request (~1315 chars)
+    [00:48:13] >> Test-Positive | sending request (~887 chars)
+    [00:48:13] >> Test-Negative | sending request (~887 chars)
+    [00:48:13] >> Test-Edge | sending request (~887 chars)
+    [00:48:13] >> Test-Positive | sending request (~1058 chars)
+    [00:48:13] >> Test-Negative | sending request (~1058 chars)
+    [00:48:13] >> Test-Edge | sending request (~1058 chars)
+    [00:48:13] >> Test-Positive | sending request (~866 chars)
+    [00:48:13] >> Test-Negative | sending request (~866 chars)
+    [00:48:13] >> Test-Edge | sending request (~866 chars)
+    [00:48:39] << Test-Positive | response in 26.3s | tokens: 4437+2114=6551
+    [00:48:40] << Test-Positive | response in 27.6s | tokens: 4285+2115=6400
+    [00:48:45] << Test-Positive | response in 32.3s | tokens: 4723+2601=7324
+    [00:48:50] << Test-Negative | response in 37.3s | tokens: 3611+2720=6331
+    [00:48:50] << Test-Negative | response in 37.6s | tokens: 3466+2717=6183
+    [00:48:52] << Test-Negative | response in 39.1s | tokens: 3325+2818=6143
+    [00:48:52] << Test-Positive | response in 39.8s | tokens: 4578+3213=7791
+    [00:48:55] << Test-Edge | response in 42.0s | tokens: 3246+3084=6330
+  OK Product Detail | 11 test(s) (pos=4 neg=2 edge=5)
+    [00:49:07] << Test-Edge | response in 54.5s | tokens: 3387+3999=7386
+  OK Product Inventory | 13 test(s) (pos=4 neg=3 edge=6)
+    [00:49:07] << Test-Positive | response in 22.3s | tokens: 4398+1693=6091
+    [00:49:08] << Test-Edge | response in 55.0s | tokens: 3532+4056=7588
+  OK Login | 15 test(s) (pos=6 neg=5 edge=4)
+    [00:49:14] << Test-Negative | response in 34.7s | tokens: 3173+2353=5526
+    [00:49:18] << Test-Edge | response in 37.4s | tokens: 3094+2728=5822
+  OK Shopping Cart | 9 test(s) (pos=3 neg=3 edge=3)
+    [00:49:20] << Test-Edge | response in 29.9s | tokens: 3207+2096=5303
+    [00:49:20] << Test-Positive | response in 28.4s | tokens: 4214+2232=6446
+    [00:49:25] << Test-Negative | response in 35.2s | tokens: 3286+2304=5590
+  OK Checkout - Information | 8 test(s) (pos=2 neg=2 edge=4)
+    [00:49:26] << Test-Positive | response in 18.8s | tokens: 4123+1506=5629
+    [00:49:31] << Test-Positive | response in 17.8s | tokens: 4158+1412=5570
+    [00:49:34] << Test-Negative | response in 27.0s | tokens: 3011+2089=5100
+    [00:49:36] << Test-Positive | response in 15.8s | tokens: 4124+1258=5382
+    [00:49:46] << Test-Negative | response in 27.9s | tokens: 3046+2171=5217
+    [00:49:52] << Test-Negative | response in 59.5s | tokens: 3102+3696=6798
+    [00:49:53] << Test-Edge | response in 57.9s | tokens: 3023+3622=6645
+  OK Checkout - Overview | 8 test(s) (pos=2 neg=2 edge=4)
+    [00:49:57] << Test-Edge | response in 30.8s | tokens: 2933+2333=5266
+    [00:49:58] << Test-Negative | response in 32.5s | tokens: 3012+2512=5524
+  OK Reset App State | 7 test(s) (pos=1 neg=2 edge=6)
+    [00:50:01] << Test-Edge | response in 53.3s | tokens: 2932+3209=6141
+  OK Checkout - Confirmation | 8 test(s) (pos=2 neg=2 edge=4)
+    [00:50:02] << Test-Edge | response in 41.4s | tokens: 2967+2369=5336
+  OK Logout | 8 test(s) (pos=1 neg=3 edge=4)
+  Done in 108.9s
+
+[4/4] Saving output...
+  Saved Structural Model to:       generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\structural-model.json
+  Saved critique to:     generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\structural-model-critique.json
+  Saved critique (md):   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\Swaglab-openai-gpt-5-mini-critique.md
+  Saved test cases to:   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\test-cases.json  (87 total)
+  Saved test cases (md): generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\Swaglab-openai-gpt-5-mini-tests.md
+  Saved workflows to:    generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\workflows.json  (23 total)
+  Saved wf-critique to:  generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\workflow-validator-critique.json
+  Saved wf-critique(md): generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic\Swaglab-openai-gpt-5-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 9 module(s).
+  Structural Model:     generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic/structural-model.json
+  Critique:   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic/structural-model-critique.json
+  Tests:      generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_critic/test-cases.json
+

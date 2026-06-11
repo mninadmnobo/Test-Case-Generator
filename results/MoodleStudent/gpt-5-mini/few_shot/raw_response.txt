@@ -1,0 +1,1585 @@
+{
+  "module": "MoodleStudent",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Top-left site name navigates to Home page",
+      "preconditions": ["User logged in as Student", "On any page within the site"],
+      "steps": [
+        "1. Locate the site name 'MoodleTest' on the top navigation bar",
+        "2. Click the 'MoodleTest' site name"
+      ],
+      "expected_result": "User is redirected to the site Home page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Top navigation 'Home' link opens Home",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'Home' in the top navigation bar"
+      ],
+      "expected_result": "Home page is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "Top navigation 'Dashboard' link opens Dashboard",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'Dashboard' in the top navigation bar"
+      ],
+      "expected_result": "Dashboard page is displayed with greeting and default blocks",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Top navigation 'My Courses' opens My Courses page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'My Courses' in the top navigation bar"
+      ],
+      "expected_result": "My Courses page displays course cards",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "Notifications bell shows alerts drawer when clicked",
+      "preconditions": ["User logged in as Student", "There are unread notifications"],
+      "steps": [
+        "1. Click the notifications bell icon on the top right"
+      ],
+      "expected_result": "Notifications drawer opens showing alerts; unread count clears or marks seen according to site behavior",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Messaging icon opens messaging drawer",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click the messaging (chat) icon on the top right"
+      ],
+      "expected_result": "Messaging drawer opens showing recent conversations and a compose option",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "User initials icon opens user menu dropdown",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click the circular user initials icon on the top right"
+      ],
+      "expected_result": "User menu dropdown opens showing Profile, Grades, Calendar, Private Files, Reports, Preferences and Log out",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "User menu 'Profile' navigates to Profile page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Profile'"
+      ],
+      "expected_result": "Student's Profile page opens",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "User menu 'Grades' navigates to Grades page",
+      "preconditions": ["User logged in as Student", "Enrolled in at least one course"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Grades'"
+      ],
+      "expected_result": "Grades page opens showing the User report for the selected course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "User menu 'Calendar' opens Calendar view",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Calendar'"
+      ],
+      "expected_result": "Calendar view opens with monthly calendar and controls",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-011",
+      "category": "positive",
+      "test_case": "User menu 'Private Files' opens Private Files",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Private Files'"
+      ],
+      "expected_result": "Private Files page opens showing student's private file area",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-012",
+      "category": "positive",
+      "test_case": "User menu 'Reports' opens Reports menu",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Reports'"
+      ],
+      "expected_result": "Reports page or menu opens with available report links",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-013",
+      "category": "positive",
+      "test_case": "User menu 'Preferences' opens Preferences",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Preferences'"
+      ],
+      "expected_result": "Preferences page opens where student can change personal settings",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-014",
+      "category": "positive",
+      "test_case": "Log out option ends session and returns to login page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open the user menu",
+        "2. Click 'Log out'"
+      ],
+      "expected_result": "Session terminates and user is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-015",
+      "category": "positive",
+      "test_case": "Course tab bar shows Course, Participants, Grades, Activities, Competencies when viewing a course",
+      "preconditions": ["User logged in as Student", "Viewing any course main page"],
+      "steps": [
+        "1. Observe the horizontal tab bar below the course title"
+      ],
+      "expected_result": "Tabs for Course, Participants, Grades, Activities, and Competencies are visible; Settings tab is not visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-016",
+      "category": "positive",
+      "test_case": "Breadcrumbs show full navigation path when viewing an activity",
+      "preconditions": ["User logged in as Student", "Viewing an activity page"],
+      "steps": [
+        "1. Observe the breadcrumbs at the top of the activity page"
+      ],
+      "expected_result": "Breadcrumb shows course > section > activity (full clickable path) and each segment is clickable",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-017",
+      "category": "positive",
+      "test_case": "Course Index sidebar displays hierarchical tree with expand/collapse arrows",
+      "preconditions": ["User logged in as Student", "Viewing a course page"],
+      "steps": [
+        "1. Observe the Course Index sidebar on the left",
+        "2. Click a section's expand arrow"
+      ],
+      "expected_result": "Section expands to reveal contained activities; active item is highlighted",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-018",
+      "category": "positive",
+      "test_case": "Course Index sidebar close button hides the sidebar",
+      "preconditions": ["User logged in as Student", "Course Index sidebar visible"],
+      "steps": [
+        "1. Click the 'X' close button on the Course Index sidebar"
+      ],
+      "expected_result": "Sidebar hides and main content area expands accordingly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-019",
+      "category": "positive",
+      "test_case": "Active item in Course Index sidebar is highlighted and navigating changes highlight",
+      "preconditions": ["User logged in as Student", "Multiple activities in course"],
+      "steps": [
+        "1. Click an activity link in the Course Index sidebar",
+        "2. Observe highlight state in the sidebar"
+      ],
+      "expected_result": "Clicked activity is highlighted as active; highlighting updates when navigating to other activities",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Attempt to log in with empty username and password",
+      "preconditions": ["On the Moodle login page"],
+      "steps": [
+        "1. Leave Username field empty",
+        "2. Leave Password field empty",
+        "3. Click 'Log in'"
+      ],
+      "expected_result": "Inline error message indicating required fields; password remains empty and no navigation occurs",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Attempt to log in with valid username and incorrect password",
+      "preconditions": ["A registered student account exists"],
+      "steps": [
+        "1. Enter valid username",
+        "2. Enter incorrect password",
+        "3. Click 'Log in'"
+      ],
+      "expected_result": "Inline error message shown; Password field cleared; Username field retains value",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Click disabled 'Lost password?' link on test site",
+      "preconditions": ["On the login page"],
+      "steps": [
+        "1. Click 'Lost password?' link which is disabled on test site"
+      ],
+      "expected_result": "No navigation occurs; optional tooltip or disabled state visible indicating the feature is not available",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-020",
+      "category": "positive",
+      "test_case": "Access as guest allows unauthenticated browsing",
+      "preconditions": ["On the login page"],
+      "steps": [
+        "1. Click 'Access as a guest' button"
+      ],
+      "expected_result": "Guest access view is opened with limited navigation and no personal data",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-021",
+      "category": "positive",
+      "test_case": "Cookies notice opens cookie usage information",
+      "preconditions": ["On the login page"],
+      "steps": [
+        "1. Click 'Cookies notice' button"
+      ],
+      "expected_result": "A modal or page displays information about cookie usage",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-022",
+      "category": "positive",
+      "test_case": "Successful login redirects to Dashboard",
+      "preconditions": ["Registered student account exists"],
+      "steps": [
+        "1. Enter valid username",
+        "2. Enter valid password",
+        "3. Click 'Log in'"
+      ],
+      "expected_result": "Student is redirected to the Dashboard and sees personalized greeting",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-023",
+      "category": "positive",
+      "test_case": "Dashboard shows personalized greeting at top",
+      "preconditions": ["User logged in as Student", "On Dashboard"],
+      "steps": [
+        "1. Observe the top of the Dashboard page"
+      ],
+      "expected_result": "A personalized greeting is displayed with student's name or initials",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-024",
+      "category": "positive",
+      "test_case": "Dashboard Timeline block displays upcoming activities",
+      "preconditions": ["User logged in as Student", "Upcoming activities exist across enrolled courses"],
+      "steps": [
+        "1. Open Dashboard",
+        "2. Locate Timeline block"
+      ],
+      "expected_result": "Timeline block lists upcoming activities and deadlines within default time range",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-025",
+      "category": "positive",
+      "test_case": "Timeline block time range dropdown filters results",
+      "preconditions": ["User logged in as Student", "Activities spread across dates"],
+      "steps": [
+        "1. In Timeline block select 'Next 7 days' from time range dropdown"
+      ],
+      "expected_result": "Timeline updates to show only activities within the next 7 days",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Timeline returns empty state when no activities in selected range",
+      "preconditions": ["User logged in as Student", "No activities due in next 7 days"],
+      "steps": [
+        "1. Select 'Next 7 days' from Timeline time range dropdown"
+      ],
+      "expected_result": "Timeline block displays empty state message indicating no upcoming activities",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-026",
+      "category": "positive",
+      "test_case": "Timeline search field filters activities by name",
+      "preconditions": ["User logged in as Student", "Timeline contains multiple activities"],
+      "steps": [
+        "1. Type an activity name into the Timeline search field",
+        "2. Press Enter or click search"
+      ],
+      "expected_result": "Timeline displays only activities matching the search term",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-027",
+      "category": "positive",
+      "test_case": "Calendar block shows current month and highlights current date",
+      "preconditions": ["User logged in as Student", "On Dashboard"],
+      "steps": [
+        "1. Observe the Calendar block's heading and month grid"
+      ],
+      "expected_result": "Current month and year are shown; today's date is highlighted",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-028",
+      "category": "positive",
+      "test_case": "Calendar 'All courses' dropdown filters events by course",
+      "preconditions": ["User logged in as Student", "Multiple course events exist"],
+      "steps": [
+        "1. Open 'All courses' dropdown in Calendar",
+        "2. Select a single course"
+      ],
+      "expected_result": "Calendar displays events only for the selected course",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-029",
+      "category": "positive",
+      "test_case": "Calendar 'New event' opens event creation form",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'New event' in Calendar block"
+      ],
+      "expected_result": "New personal calendar event form opens for the student to create an event",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-030",
+      "category": "positive",
+      "test_case": "Calendar navigation arrows move between months",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click right arrow in Calendar block",
+        "2. Click left arrow to return"
+      ],
+      "expected_result": "Calendar updates to next and previous months respectively; dates with events are displayed",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-031",
+      "category": "positive",
+      "test_case": "Dashboard 'Full calendar' link opens dedicated calendar view",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'Full calendar' link at bottom of Calendar block"
+      ],
+      "expected_result": "Full calendar page opens",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-032",
+      "category": "positive",
+      "test_case": "Dashboard 'Import or export calendars' opens data management",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'Import or export calendars' link"
+      ],
+      "expected_result": "Calendar data management page opens for import/export actions",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-033",
+      "category": "positive",
+      "test_case": "Toggle Edit mode shows 'Reset page to default' and '+ Add a block' buttons",
+      "preconditions": ["User logged in as Student", "User has permission to toggle Edit mode on Dashboard"],
+      "steps": [
+        "1. Toggle Edit mode to ON on Dashboard"
+      ],
+      "expected_result": "'Reset page to default' appears at top right and '+ Add a block' appears below Dashboard heading",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-034",
+      "category": "positive",
+      "test_case": "In Edit mode, blocks show move icon and three-dot menu with configure/move/delete",
+      "preconditions": ["User logged in as Student", "Edit mode ON", "Dashboard contains blocks"],
+      "steps": [
+        "1. Toggle Edit mode ON",
+        "2. Inspect each block's header"
+      ],
+      "expected_result": "Each block displays a move icon and a three-dot menu with options configure, move, and delete",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-035",
+      "category": "positive",
+      "test_case": "My Courses page displays enrolled courses as cards",
+      "preconditions": ["User logged in as Student", "Enrolled in at least one course"],
+      "steps": [
+        "1. Navigate to 'My Courses' page"
+      ],
+      "expected_result": "Course cards show banner image, clickable course name, and category name",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-036",
+      "category": "positive",
+      "test_case": "My Courses status dropdown filters courses by status",
+      "preconditions": ["User logged in as Student", "Courses with different statuses exist"],
+      "steps": [
+        "1. On My Courses page, open status dropdown",
+        "2. Select 'In progress'"
+      ],
+      "expected_result": "Only courses with 'In progress' status are displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-037",
+      "category": "positive",
+      "test_case": "My Courses search field finds courses by name",
+      "preconditions": ["User logged in as Student", "Multiple courses available"],
+      "steps": [
+        "1. Type a course name into search field",
+        "2. Press Enter"
+      ],
+      "expected_result": "Course grid filters to matching courses",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-038",
+      "category": "positive",
+      "test_case": "My Courses sort dropdown changes ordering",
+      "preconditions": ["User logged in as Student", "Multiple courses available"],
+      "steps": [
+        "1. Open sort dropdown and select a sort option (e.g., Name ascending)"
+      ],
+      "expected_result": "Course cards reorder according to selected sort",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-039",
+      "category": "positive",
+      "test_case": "My Courses layout dropdown toggles between Card/List/Summary",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open layout dropdown and select 'List'",
+        "2. Open layout dropdown and select 'Summary'"
+      ],
+      "expected_result": "Courses display in chosen layout styles",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-040",
+      "category": "positive",
+      "test_case": "Course card three-dot menu 'Star this course' pins course to top",
+      "preconditions": ["User logged in as Student", "Course visible on My Courses page"],
+      "steps": [
+        "1. Click three-dot menu on a course card",
+        "2. Click 'Star this course'"
+      ],
+      "expected_result": "Course is pinned to the top of the list and marked as starred",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-041",
+      "category": "positive",
+      "test_case": "Course card three-dot menu 'Remove from view' hides the course card",
+      "preconditions": ["User logged in as Student", "Course visible on My Courses page"],
+      "steps": [
+        "1. Click three-dot menu on a course card",
+        "2. Click 'Remove from view'",
+        "3. Confirm if a confirmation appears"
+      ],
+      "expected_result": "Course card is hidden from view without unenrolling the student",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-042",
+      "category": "positive",
+      "test_case": "Clicking course name navigates to course main page",
+      "preconditions": ["User logged in as Student", "Course card present"],
+      "steps": [
+        "1. Click the course name link on a course card"
+      ],
+      "expected_result": "User is taken to the selected course main page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "My Courses search returns no results shows empty state",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Enter a random string that matches no course into My Courses search",
+        "2. Press Enter"
+      ],
+      "expected_result": "An empty state message is shown indicating no courses match the search",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-043",
+      "category": "positive",
+      "test_case": "Course page shows course heading and collapsible sections",
+      "preconditions": ["User logged in as Student", "Viewing a course page with sections"],
+      "steps": [
+        "1. Navigate to Course page",
+        "2. Observe course name and the list of sections"
+      ],
+      "expected_result": "Course name appears as page heading; sections show collapse chevrons and section names",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-044",
+      "category": "positive",
+      "test_case": "Collapse all link collapses every section",
+      "preconditions": ["User logged in as Student", "Course page with expanded sections"],
+      "steps": [
+        "1. Click 'Collapse all' at top right of sections list"
+      ],
+      "expected_result": "All course sections collapse and only headings remain visible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-045",
+      "category": "positive",
+      "test_case": "Section expand arrow reveals activities and resources",
+      "preconditions": ["User logged in as Student", "Collapsed sections present"],
+      "steps": [
+        "1. Click expand chevron on a collapsed section"
+      ],
+      "expected_result": "Section expands revealing its activities and resources each with type icon and clickable name",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Student tries to enable Edit mode on course page but cannot",
+      "preconditions": ["User logged in as Student", "Viewing a course page"],
+      "steps": [
+        "1. Look for an 'Edit mode' toggle on the course page",
+        "2. Attempt to enable it if visible"
+      ],
+      "expected_result": "Students cannot enable Edit mode; toggle is absent or disabled and an appropriate permission limitation is implied",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Click activity name navigates to activity page and breadcrumbs update",
+      "preconditions": ["User logged in as Student", "Activity present in a section"],
+      "steps": [
+        "1. Click the activity name in a section",
+        "2. Observe the resulting activity page and breadcrumbs"
+      ],
+      "expected_result": "Activity page opens and breadcrumbs show course > section > activity with clickable links",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-046",
+      "category": "positive",
+      "test_case": "Participants page lists enrolled users",
+      "preconditions": ["User logged in as Student", "Enrolled users exist in the course"],
+      "steps": [
+        "1. From course tab bar, click 'Participants'",
+        "2. Observe participants list"
+      ],
+      "expected_result": "Participants table lists users with columns: checkbox, First/Last name, Roles, Groups, Last access to course",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-047",
+      "category": "positive",
+      "test_case": "Participants alphabetical filters narrow results by initial",
+      "preconditions": ["User logged in as Student", "Participants with varying initials exist"],
+      "steps": [
+        "1. On Participants page, click 'A' under First name filter"
+      ],
+      "expected_result": "Participants list shows only users whose first name begins with 'A'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-048",
+      "category": "positive",
+      "test_case": "Participants filter builder allows adding conditions and applying them",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. On Participants page, open filter builder",
+        "2. Toggle 'Any' option as needed",
+        "3. Choose attribute from Select dropdown",
+        "4. Click '+ Add condition'",
+        "5. Click 'Apply filters'"
+      ],
+      "expected_result": "Participants list updates according to the built filter conditions",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Student attempts to enrol another user from Participants page",
+      "preconditions": ["User logged in as Student", "Viewing Participants page"],
+      "steps": [
+        "1. Look for enrol/unenrol or role edit controls on Participants page",
+        "2. Attempt to access enrollment management features"
+      ],
+      "expected_result": "Enrollment management options are not accessible to students; controls are absent or disabled",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-049",
+      "category": "positive",
+      "test_case": "Click participant name opens their profile",
+      "preconditions": ["User logged in as Student", "Participants list displayed"],
+      "steps": [
+        "1. Click any participant's First/Last name link"
+      ],
+      "expected_result": "Clicked participant's profile page opens",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "Apply filters that match no participants shows empty table",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Build participant filter with unlikely condition",
+        "2. Click 'Apply filters'"
+      ],
+      "expected_result": "Participants table shows an empty state message indicating no users match the filter",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-050",
+      "category": "positive",
+      "test_case": "Grades page displays student's User report",
+      "preconditions": ["User logged in as Student", "Grades exist for the course"],
+      "steps": [
+        "1. In course tab bar, click 'Grades'"
+      ],
+      "expected_result": "Grades page displays the student's grades report with grade items and course total row",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-051",
+      "category": "positive",
+      "test_case": "Grade table shows grade items indented under course header",
+      "preconditions": ["User logged in as Student", "Course contains graded activities"],
+      "steps": [
+        "1. Open Grades page and inspect grade table"
+      ],
+      "expected_result": "Course name appears as collapsible header with graded activities indented beneath",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-052",
+      "category": "positive",
+      "test_case": "Grades show '–' for ungraded items",
+      "preconditions": ["User logged in as Student", "Some grade items not yet graded"],
+      "steps": [
+        "1. Open Grades page and inspect grade column for ungraded items"
+      ],
+      "expected_result": "Unrated grade cells display '–' as the value",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-053",
+      "category": "positive",
+      "test_case": "AGGREGATION Course total row shows cumulative grade",
+      "preconditions": ["User logged in as Student", "Weighted grade items exist"],
+      "steps": [
+        "1. Open Grades page and scroll to bottom of the grade table"
+      ],
+      "expected_result": "'AGGREGATION Course total' row displays calculated cumulative grade value",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Student attempts to view other students' grades",
+      "preconditions": ["User logged in as Student", "Course contains multiple students"],
+      "steps": [
+        "1. On Grades page, attempt to change selected user or access gradebook overview for others"
+      ],
+      "expected_result": "Access is denied or control to view other students' grades is not available; student can only view their own grades",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Grades page with very long grade item names wraps and remains readable",
+      "preconditions": ["User logged in as Student", "Grade items with long names exist"],
+      "steps": [
+        "1. Open Grades page and observe layout for long grade item names"
+      ],
+      "expected_result": "Long grade item names wrap or truncate with tooltip and table remains usable without layout break",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-054",
+      "category": "positive",
+      "test_case": "Assignment page displays Opened date, Due date and Description",
+      "preconditions": ["User logged in as Student", "Assignment exists with metadata"],
+      "steps": [
+        "1. Navigate to a specific Assignment page"
+      ],
+      "expected_result": "Page shows Opened date, Due date, and the full Description of the assignment",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-055",
+      "category": "positive",
+      "test_case": "Add submission opens submission form with configured editors or upload area",
+      "preconditions": ["User logged in as Student", "Assignment is open for submission"],
+      "steps": [
+        "1. On Assignment page, click 'Add submission'"
+      ],
+      "expected_result": "Submission form opens showing online text editor, file upload area, or both as per assignment configuration",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-056",
+      "category": "positive",
+      "test_case": "Submit assignment using online text editor",
+      "preconditions": ["User logged in as Student", "Assignment configured for online text submission", "Within due date"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Enter text in the online text editor",
+        "3. Click 'Save changes' or 'Submit' as applicable"
+      ],
+      "expected_result": "Submission status updates to 'Submitted for grading' and Last modified timestamp reflects submission time",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-057",
+      "category": "positive",
+      "test_case": "Submit assignment via file upload",
+      "preconditions": ["User logged in as Student", "Assignment configured for file submissions", "Within due date"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Upload one or more allowed files via the file upload area",
+        "3. Click 'Save changes' or 'Submit'"
+      ],
+      "expected_result": "Files are uploaded and Submission status updates accordingly; files listed in submission summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Attempt to submit assignment after due date when resubmission not permitted",
+      "preconditions": ["User logged in as Student", "Assignment due date has passed", "Resubmission not allowed"],
+      "steps": [
+        "1. Navigate to Assignment page after due date",
+        "2. Click 'Add submission' or attempt to edit submission"
+      ],
+      "expected_result": "Submission form is disabled or student is prevented from submitting; an explanatory message is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Resubmit assignment before due date when teacher permits resubmissions",
+      "preconditions": ["User logged in as Student", "Assignment due date not passed", "Resubmission allowed"],
+      "steps": [
+        "1. Open Assignment page with an existing submission",
+        "2. Click 'Edit submission' or 'Add submission'",
+        "3. Make changes and re-submit"
+      ],
+      "expected_result": "Submission is updated and Last modified timestamp updated; previous submission version may be retained per configuration",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-058",
+      "category": "positive",
+      "test_case": "Submission status and grading status appear in Submission status section",
+      "preconditions": ["User logged in as Student", "Assignment page viewed"],
+      "steps": [
+        "1. Open Assignment page and locate Submission status section"
+      ],
+      "expected_result": "Section shows rows for Submission status, Grading status, Time remaining, Last modified, and Submission comments",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-059",
+      "category": "positive",
+      "test_case": "After grading, earned grade and written feedback appear on assignment page",
+      "preconditions": ["User logged in as Student", "Assignment has been graded"],
+      "steps": [
+        "1. Open Assignment page after teacher has graded the submission"
+      ],
+      "expected_result": "Earned grade and any written feedback are displayed on the assignment page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Assignment with very large file upload displays progress and accepts large files within limit",
+      "preconditions": ["User logged in as Student", "Assignment accepts large file types and size within site limit"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Upload a file close to the size limit",
+        "3. Click 'Save changes' or 'Submit'"
+      ],
+      "expected_result": "Upload progress displays; file accepted if within limit; submission saved without UI layout issues",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-060",
+      "category": "positive",
+      "test_case": "Activities page shows Assignments expanded by default",
+      "preconditions": ["User logged in as Student", "Course has multiple activity types"],
+      "steps": [
+        "1. From course tab bar, click 'Activities'",
+        "2. Observe sections on the Activities page"
+      ],
+      "expected_result": "Assignments section is expanded and displays a table with Name, Due date, and Submission status; Forums and Resources are collapsed by default",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-061",
+      "category": "positive",
+      "test_case": "Expand Forums or Resources section shows contained items",
+      "preconditions": ["User logged in as Student", "Forums and Resources exist in course"],
+      "steps": [
+        "1. On Activities page, click expand arrow on Forums section"
+      ],
+      "expected_result": "Forums section expands revealing list of forum activities; similar behavior for Resources",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-062",
+      "category": "positive",
+      "test_case": "Clicking activity name from Activities page navigates to activity page",
+      "preconditions": ["User logged in as Student", "Activity listed on Activities page"],
+      "steps": [
+        "1. Click the activity name link in the Activities table"
+      ],
+      "expected_result": "User navigates to the selected activity's page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-063",
+      "category": "positive",
+      "test_case": "Profile page displays initials icon, full name, and Message button",
+      "preconditions": ["User logged in as Student", "On student's Profile page"],
+      "steps": [
+        "1. Open Profile page",
+        "2. Observe the header area"
+      ],
+      "expected_result": "Circular initials icon, student's full name, and a 'Message' button are visible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-064",
+      "category": "positive",
+      "test_case": "Profile shows information cards including User details and Course details",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Open Profile page and scroll through information cards"
+      ],
+      "expected_result": "User details, Privacy and policies, Course details, Miscellaneous, Reports, and Login activity cards are present with expected content",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-065",
+      "category": "positive",
+      "test_case": "Click 'Edit profile' opens editable profile form",
+      "preconditions": ["User logged in as Student", "On own Profile page"],
+      "steps": [
+        "1. Click 'Edit profile' link from Profile page"
+      ],
+      "expected_result": "Profile edit form opens with collapsible panels for General, User picture, Additional names, Interests, Optional fields",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-066",
+      "category": "positive",
+      "test_case": "Update profile with valid data saves changes",
+      "preconditions": ["User logged in as Student", "On Edit profile form"],
+      "steps": [
+        "1. Modify allowed fields (e.g., City/town, Timezone)",
+        "2. Click 'Update profile'"
+      ],
+      "expected_result": "Profile changes are saved and reflected on the Profile page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Attempt to save profile with missing required fields shows validation errors",
+      "preconditions": ["User logged in as Student", "On Edit profile form with required fields present"],
+      "steps": [
+        "1. Clear a required field (e.g., First name)",
+        "2. Click 'Update profile'"
+      ],
+      "expected_result": "Validation error is shown for the required field and profile is not saved",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-009",
+      "category": "edge",
+      "test_case": "Upload new profile picture with large dimensions displays preview and accepts file within limit",
+      "preconditions": ["User logged in as Student", "On Edit profile form", "Image within allowed file size and type"],
+      "steps": [
+        "1. Open User picture panel",
+        "2. Upload a high-resolution image within allowed size",
+        "3. Click 'Update profile'"
+      ],
+      "expected_result": "Preview displays; profile picture updated and saved without distortion or layout break",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-067",
+      "category": "positive",
+      "test_case": "Profile 'Cancel' discards changes and returns to Profile page",
+      "preconditions": ["User logged in as Student", "On Edit profile form with unsaved changes"],
+      "steps": [
+        "1. Make a change to a field",
+        "2. Click 'Cancel'"
+      ],
+      "expected_result": "User is returned to Profile page and changes are not saved",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-068",
+      "category": "positive",
+      "test_case": "Login activity shows First and Last access with exact dates and relative times",
+      "preconditions": ["User logged in as Student", "Profile page has login activity data"],
+      "steps": [
+        "1. Open Profile page and locate Login activity card"
+      ],
+      "expected_result": "Card shows First and Last access with exact date/time and relative time indicators (e.g., '2 days ago')",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-069",
+      "category": "positive",
+      "test_case": "Log out and attempt to access protected page redirects to login",
+      "preconditions": ["User logged in as Student", "On any protected page"],
+      "steps": [
+        "1. Click 'Log out' in user menu",
+        "2. After logout, attempt to load a protected page URL directly"
+      ],
+      "expected_result": "User is redirected to the login page and must re-authenticate",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Attempt to access course page after logout",
+      "preconditions": ["User previously logged in and then logged out"],
+      "steps": [
+        "1. After logging out, use browser back button or direct URL to access a course page"
+      ],
+      "expected_result": "Access is denied or redirected to login page requiring re-authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-070",
+      "category": "positive",
+      "test_case": "Breadcrumb links navigate back to intermediate pages",
+      "preconditions": ["User logged in as Student", "Viewing nested activity with breadcrumbs"],
+      "steps": [
+        "1. Click a breadcrumb segment (e.g., course or section) in the activity page breadcrumbs"
+      ],
+      "expected_result": "User navigates to the clicked breadcrumb target (course or section) page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-010",
+      "category": "edge",
+      "test_case": "Course Index sidebar with deep hierarchy collapses and expands without state loss",
+      "preconditions": ["User logged in as Student", "Course with many sections and subitems"],
+      "steps": [
+        "1. Expand several nested sections in Course Index sidebar",
+        "2. Navigate to an activity and return to course page"
+      ],
+      "expected_result": "Previously expanded/collapsed states are preserved or behave consistently per UI design; active item remains highlighted",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-071",
+      "category": "positive",
+      "test_case": "Notifications drawer marks notifications as read when appropriate",
+      "preconditions": ["User logged in as Student", "Unread notifications exist"],
+      "steps": [
+        "1. Open notifications drawer",
+        "2. Click an individual notification"
+      ],
+      "expected_result": "Notification opens to relevant page and is marked as read in the notifications drawer",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Messaging drawer prevents sending empty messages",
+      "preconditions": ["User logged in as Student", "Messaging drawer open"],
+      "steps": [
+        "1. Open messaging drawer",
+        "2. Select a recipient",
+        "3. Leave message body empty and click Send"
+      ],
+      "expected_result": "UI shows error or disables send; empty message is not sent",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-072",
+      "category": "positive",
+      "test_case": "Message button on profile opens messaging compose to that user",
+      "preconditions": ["User logged in as Student", "Viewing another participant's profile"],
+      "steps": [
+        "1. Click 'Message' button on participant's profile"
+      ],
+      "expected_result": "Messaging compose panel opens with recipient pre-filled with the participant",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-073",
+      "category": "positive",
+      "test_case": "Course tab 'Competencies' opens competencies page for course",
+      "preconditions": ["User logged in as Student", "Course has competencies configured"],
+      "steps": [
+        "1. Click 'Competencies' tab in course tab bar"
+      ],
+      "expected_result": "Competencies page for the course opens showing relevant competency information",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-010",
+      "category": "negative",
+      "test_case": "Student cannot access Settings tab within course",
+      "preconditions": ["User logged in as Student", "Viewing a course where Settings tab exists for teachers"],
+      "steps": [
+        "1. Inspect course tab bar for 'Settings' tab"
+      ],
+      "expected_result": "'Settings' tab is not visible to student role",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-074",
+      "category": "positive",
+      "test_case": "Participants table sorting by First/Last name sorts rows",
+      "preconditions": ["User logged in as Student", "Many participants with different names"],
+      "steps": [
+        "1. On Participants page, click the First/Last name column header to sort",
+        "2. Click again to toggle sort order"
+      ],
+      "expected_result": "Participants table sorts alphabetically ascending and descending accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-075",
+      "category": "positive",
+      "test_case": "Participants table checkboxes select rows for bulk actions (if available)",
+      "preconditions": ["User logged in as Student", "Participants page with checkboxes displayed"],
+      "steps": [
+        "1. Click a participant's checkbox"
+      ],
+      "expected_result": "Row is selected; bulk action controls remain unavailable to students but selection UI behaves correctly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-076",
+      "category": "positive",
+      "test_case": "Grades percentage and range columns display for each item",
+      "preconditions": ["User logged in as Student", "Graded items exist"],
+      "steps": [
+        "1. Open Grades page and inspect Percentage and Range columns"
+      ],
+      "expected_result": "Each graded item displays its numeric score, grade range, and percentage if available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-011",
+      "category": "negative",
+      "test_case": "Attempt to access full gradebook from student Grades page",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Look for a link or control that opens full gradebook",
+        "2. Attempt to access the full gradebook"
+      ],
+      "expected_result": "Full gradebook or other students' grades are not accessible; link absent or access denied",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-077",
+      "category": "positive",
+      "test_case": "Assignment page shows Time remaining until due date when applicable",
+      "preconditions": ["User logged in as Student", "Assignment has a due date in the future"],
+      "steps": [
+        "1. Open Assignment page"
+      ],
+      "expected_result": "Submission status section shows a 'Time remaining' row with correct relative time",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-011",
+      "category": "edge",
+      "test_case": "Assignment with no due date shows appropriate absence of Time remaining",
+      "preconditions": ["User logged in as Student", "Assignment configured without a due date"],
+      "steps": [
+        "1. Open Assignment page"
+      ],
+      "expected_result": "Time remaining row is absent or indicates 'No due date' per UI design",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-078",
+      "category": "positive",
+      "test_case": "Activities page parent section displayed below activity name in Assignments table",
+      "preconditions": ["User logged in as Student", "Activities listed under Assignments include parent section"],
+      "steps": [
+        "1. Open Activities page and inspect Assignments table"
+      ],
+      "expected_result": "Each activity row shows Name as clickable and parent section info displayed beneath the name",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-079",
+      "category": "positive",
+      "test_case": "Profile 'User details' shows email and visibility note",
+      "preconditions": ["User logged in as Student", "On Profile page"],
+      "steps": [
+        "1. Open Profile page and view User details card"
+      ],
+      "expected_result": "Email address, an email visibility note, timezone, and 'Edit profile' link are displayed",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-012",
+      "category": "negative",
+      "test_case": "Attempt to edit another user's profile via profile URL",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Navigate directly to the edit profile URL of another user"
+      ],
+      "expected_result": "Access denied or redirected; student can only edit their own profile",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-080",
+      "category": "positive",
+      "test_case": "Profile 'Miscellaneous' links navigate to user's blog/forum/learning plan entries",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. On Profile page, click links under Miscellaneous (e.g., Forum posts)"
+      ],
+      "expected_result": "Corresponding page showing user's blog entries, forum posts, or learning plans opens",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-081",
+      "category": "positive",
+      "test_case": "Reports links (Browser sessions/Grades overview) open corresponding report pages",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. On Profile page, click 'Browser sessions' or 'Grades overview' link under Reports"
+      ],
+      "expected_result": "Selected report page opens showing relevant data for the student",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-082",
+      "category": "positive",
+      "test_case": "Participants filter 'Clear filters' removes all filter conditions",
+      "preconditions": ["User logged in as Student", "Some filters applied on Participants page"],
+      "steps": [
+        "1. Apply one or more filters on Participants page",
+        "2. Click 'Clear filters'"
+      ],
+      "expected_result": "All filters are cleared and full participants list is restored",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-083",
+      "category": "positive",
+      "test_case": "Participants filter 'Apply filters' applies built conditions",
+      "preconditions": ["User logged in as Student", "Filter builder used to create conditions"],
+      "steps": [
+        "1. Build filter conditions",
+        "2. Click 'Apply filters'"
+      ],
+      "expected_result": "Participants table updates according to the specified conditions",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-013",
+      "category": "negative",
+      "test_case": "Attempt to use course 'Remove from view' to unenrol self",
+      "preconditions": ["User logged in as Student", "Course card three-dot menu visible"],
+      "steps": [
+        "1. Click three-dot menu and select 'Remove from view'",
+        "2. Observe if unenrol option is presented"
+      ],
+      "expected_result": "'Remove from view' hides the course but does not unenrol the student; unenrol controls are not available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-012",
+      "category": "edge",
+      "test_case": "My Courses shows combined filter/sort/search with correct intersection results",
+      "preconditions": ["User logged in as Student", "Multiple courses exist with varied statuses and names"],
+      "steps": [
+        "1. Select a status filter",
+        "2. Enter a search term",
+        "3. Choose a sort order"
+      ],
+      "expected_result": "Course grid displays courses that satisfy all selected controls (filters, search, sort) and behaves consistently",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-084",
+      "category": "positive",
+      "test_case": "Assignment submission comments can be added and displayed",
+      "preconditions": ["User logged in as Student", "Assignment allows submission comments"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Enter a submission comment in the Submission comments field",
+        "3. Submit the assignment"
+      ],
+      "expected_result": "Submission comments are saved and appear in the Submission status summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-085",
+      "category": "positive",
+      "test_case": "Students can view written feedback and grade after grading without edit options",
+      "preconditions": ["User logged in as Student", "Assignment graded by teacher"],
+      "steps": [
+        "1. Open the graded Assignment page"
+      ],
+      "expected_result": "Earned grade and written feedback are viewable; no controls to change the grade are presented to the student",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-014",
+      "category": "negative",
+      "test_case": "Attempt to submit an unsupported file type is rejected",
+      "preconditions": ["User logged in as Student", "Assignment restricts file types"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Attempt to upload a disallowed file type",
+        "3. Click 'Save changes'"
+      ],
+      "expected_result": "Upload is rejected with an error indicating disallowed file type; submission not saved",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-013",
+      "category": "edge",
+      "test_case": "Submit empty online text editor content when allowed results in saved empty submission",
+      "preconditions": ["User logged in as Student", "Assignment uses online text editor and allows empty submissions per configuration"],
+      "steps": [
+        "1. Click 'Add submission'",
+        "2. Leave online text editor empty",
+        "3. Click 'Save changes'"
+      ],
+      "expected_result": "Empty submission is saved if permitted; Submission status updates accordingly or shows validation message if not allowed",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-086",
+      "category": "positive",
+      "test_case": "Activities page collapsed sections preserve collapsed state across navigation per design",
+      "preconditions": ["User logged in as Student", "On Activities page with collapsed sections"],
+      "steps": [
+        "1. Collapse a section",
+        "2. Navigate to an activity and return to Activities page"
+      ],
+      "expected_result": "Collapsed state is preserved or behaves per UI spec; UI remains consistent and user-friendly",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-087",
+      "category": "positive",
+      "test_case": "Profile optional fields panel allows entering optional data and saves correctly",
+      "preconditions": ["User logged in as Student", "On Edit profile form"],
+      "steps": [
+        "1. Expand Optional fields panel",
+        "2. Enter values for optional fields",
+        "3. Click 'Update profile'"
+      ],
+      "expected_result": "Optional field data is saved and displayed on Profile page",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-088",
+      "category": "positive",
+      "test_case": "Dashboard block '+ Add a block' shows list of available block types when in Edit mode",
+      "preconditions": ["User logged in as Student", "Edit mode ON on Dashboard"],
+      "steps": [
+        "1. Click '+ Add a block' below Dashboard heading"
+      ],
+      "expected_result": "A page or modal lists available block types for adding to the Dashboard",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-015",
+      "category": "negative",
+      "test_case": "Attempt to delete a block via Edit mode without deletion permission",
+      "preconditions": ["User logged in as Student", "Edit mode ON", "Student lacks permissions to delete blocks"],
+      "steps": [
+        "1. Click three-dot menu for a block",
+        "2. Attempt to select 'Delete' if present"
+      ],
+      "expected_result": "Delete option is absent or disabled for students; block cannot be deleted",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-089",
+      "category": "positive",
+      "test_case": "Course Index active highlight updates when navigating using main content links",
+      "preconditions": ["User logged in as Student", "Course Index visible", "Navigate using main content links"],
+      "steps": [
+        "1. Click an activity link in the main content area",
+        "2. Observe Course Index sidebar active highlight"
+      ],
+      "expected_result": "Course Index updates to highlight the corresponding active item",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-090",
+      "category": "positive",
+      "test_case": "Timeline sort order dropdown changes ordering of entries",
+      "preconditions": ["User logged in as Student", "Timeline has multiple entries"],
+      "steps": [
+        "1. In Timeline block, open sort order dropdown",
+        "2. Select a different sort option (e.g., Date descending)"
+      ],
+      "expected_result": "Timeline entries reorder according to the selected sort order",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-016",
+      "category": "negative",
+      "test_case": "Attempt to view another user's profile details via Participants when not permitted",
+      "preconditions": ["User logged in as Student", "Another user has restricted profile fields"],
+      "steps": [
+        "1. Click a participant's name with privacy-restricted fields",
+        "2. Inspect profile for restricted information"
+      ],
+      "expected_result": "Only allowed profile fields are visible; restricted fields are hidden per privacy settings",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-091",
+      "category": "positive",
+      "test_case": "Full calendar 'Import or export calendars' opens calendar import/export",
+      "preconditions": ["User logged in as Student", "On Full calendar view"],
+      "steps": [
+        "1. Click 'Import or export calendars' link"
+      ],
+      "expected_result": "Calendar data import/export page opens allowing URL subscriptions or file import/export",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-092",
+      "category": "positive",
+      "test_case": "Dashboard Timeline clicking an activity navigates to that activity's page",
+      "preconditions": ["User logged in as Student", "Timeline contains clickable activity entries"],
+      "steps": [
+        "1. In Timeline, click an activity entry"
+      ],
+      "expected_result": "User navigates to the corresponding activity page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-093",
+      "category": "positive",
+      "test_case": "Course tabs 'Activities' and 'Grades' maintain context within course",
+      "preconditions": ["User logged in as Student", "On a course page"],
+      "steps": [
+        "1. Click 'Activities' tab then click 'Grades' tab"
+      ],
+      "expected_result": "Each tab opens the corresponding course-specific view without leaving course context",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-014",
+      "category": "edge",
+      "test_case": "Use browser zoom or small viewport to ensure navigation bar adapts (responsive)",
+      "preconditions": ["User logged in as Student", "Using small screen or zoomed view"],
+      "steps": [
+        "1. Resize browser to narrow width or increase zoom",
+        "2. Observe top navigation bar behavior"
+      ],
+      "expected_result": "Navigation items collapse into a responsive menu or remain usable without overlap; user menu and icons reachable",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-094",
+      "category": "positive",
+      "test_case": "Profile 'Privacy and policies' Data retention summary link opens details",
+      "preconditions": ["User logged in as Student", "On Profile page"],
+      "steps": [
+        "1. Click 'Data retention summary' link under Privacy and policies card"
+      ],
+      "expected_result": "A page or modal opens showing data retention policies applicable to the user",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-095",
+      "category": "positive",
+      "test_case": "Course page 'Collapse all' toggles back to expand all when clicked again (toggle behavior)",
+      "preconditions": ["User logged in as Student", "Course page with sections"],
+      "steps": [
+        "1. Click 'Collapse all' to collapse sections",
+        "2. Click 'Collapse all' or 'Expand all' if it toggles"
+      ],
+      "expected_result": "Sections collapse and subsequent action restores sections to expanded state per UI design",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-017",
+      "category": "negative",
+      "test_case": "Attempt to add personal calendar event with missing required fields",
+      "preconditions": ["User logged in as Student", "On New event form in Calendar"],
+      "steps": [
+        "1. Click 'New event'",
+        "2. Leave required fields empty (e.g., Title)",
+        "3. Click 'Save'"
+      ],
+      "expected_result": "Validation error is shown for missing required fields; event is not saved",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-015",
+      "category": "edge",
+      "test_case": "Create calendar event spanning month boundary and verify display across months",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Click 'New event'",
+        "2. Create an event that starts at end of month and ends in next month",
+        "3. Navigate to previous and next months in Calendar"
+      ],
+      "expected_result": "Event displays on both months correctly on their respective dates",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-096",
+      "category": "positive",
+      "test_case": "Dashboard Reset page to default restores original block layout when in Edit mode",
+      "preconditions": ["User logged in as Student", "Edit mode ON", "Dashboard modified from default"],
+      "steps": [
+        "1. Modify Dashboard (add/remove/move blocks)",
+        "2. Click 'Reset page to default'"
+      ],
+      "expected_result": "Dashboard layout resets to default configuration",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-097",
+      "category": "positive",
+      "test_case": "Participants page shows Roles and Groups columns correctly",
+      "preconditions": ["User logged in as Student", "Participants page has users with roles and groups"],
+      "steps": [
+        "1. Open Participants page and inspect Roles and Groups columns"
+      ],
+      "expected_result": "Roles column displays assigned roles; Groups column displays group membership or 'None' when not in a group",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-018",
+      "category": "negative",
+      "test_case": "Attempt to access Private Files of another user",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Attempt to navigate to another user's Private Files URL"
+      ],
+      "expected_result": "Access denied; only own Private Files accessible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-098",
+      "category": "positive",
+      "test_case": "Dashboard Timeline clicking a notification links to related activity or course",
+      "preconditions": ["User logged in as Student", "Timeline entries link to relevant content"],
+      "steps": [
+        "1. Click a Timeline entry representing an activity"
+      ],
+      "expected_result": "User is navigated to the related activity or course page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-016",
+      "category": "edge",
+      "test_case": "Participant name links open profile in new tab when user preference set",
+      "preconditions": ["User logged in as Student", "Profile links configured to open in new tab via setting"],
+      "steps": [
+        "1. Click a participant's name link while holding control/cmd or with setting enabled"
+      ],
+      "expected_result": "Profile opens in a new browser tab/window as per user preference or browser behavior",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-019",
+      "category": "negative",
+      "test_case": "Attempt to perform grade calculation changes from Student Grades view",
+      "preconditions": ["User logged in as Student", "On Grades page"],
+      "steps": [
+        "1. Attempt to access aggregation settings or change weights from the Grades page"
+      ],
+      "expected_result": "Controls for changing aggregation or weights are not available to students",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-099",
+      "category": "positive",
+      "test_case": "Course page activity icons correctly indicate activity type",
+      "preconditions": ["User logged in as Student", "Course contains various activity types"],
+      "steps": [
+        "1. Open Course page and inspect activity type icons next to each activity name"
+      ],
+      "expected_result": "Each activity displays correct type icon consistent with its resource or activity type",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-100",
+      "category": "positive",
+      "test_case": "Logout redirects and clears session cookies requiring re-login",
+      "preconditions": ["User logged in as Student"],
+      "steps": [
+        "1. Use 'Log out' option",
+        "2. Attempt to use back button to access previous protected page",
+        "3. Try accessing dashboard again"
+      ],
+      "expected_result": "After logout, session cookies cleared and protected pages require login; back button does not reveal protected content",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "high_priority": 60,
+    "medium_priority": 30,
+    "low_priority": 10
+  }
+}

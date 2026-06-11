@@ -1,0 +1,4013 @@
+{
+  "project_name": "Phptravels",
+  "generated_at": "2026-06-10T20:34:50.837723Z",
+  "model": "openai/gpt-4o-mini",
+  "modules": [
+    {
+      "module": "Home Page & Search",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Search for Hotels with valid inputs",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Click on the Hotels tab",
+            "2. Enter <destination> in the Destination field",
+            "3. Enter <check-in date> in the Check-in field",
+            "4. Enter <check-out date> in the Check-out field",
+            "5. Select <number of rooms> from the Number of Rooms dropdown",
+            "6. Enter <number of adults> in the Adults field",
+            "7. Enter <number of children> in the Children field",
+            "8. Click the Search button"
+          ],
+          "expected_result": "Redirected to Hotels results listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Search for Flights with valid inputs",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Click on the Flights tab",
+            "2. Select <trip type> from the Trip Type dropdown",
+            "3. Enter <departure city> in the Departure City field",
+            "4. Enter <arrival city> in the Arrival City field",
+            "5. Enter <departure date> in the Departure Date field",
+            "6. Enter <return date> in the Return Date field",
+            "7. Select <number of adults> in the Adults field",
+            "8. Select <number of children> in the Children field",
+            "9. Select <number of infants> in the Infants field",
+            "10. Select <cabin class> from the Cabin Class dropdown",
+            "11. Click the Search button"
+          ],
+          "expected_result": "Redirected to Flights results listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Search for Tours with valid inputs",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Click on the Tours tab",
+            "2. Enter <destination> in the Destination field",
+            "3. Enter <start date> in the Start Date field",
+            "4. Enter <end date> in the End Date field",
+            "5. Click the Search button"
+          ],
+          "expected_result": "Redirected to Tours results listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Search for Cars with valid inputs",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Click on the Cars tab",
+            "2. Enter <pick-up location> in the Pick-up Location field",
+            "3. Enter <drop-off location> in the Drop-off Location field",
+            "4. Enter <pick-up date and time> in the Pick-up Date and Time field",
+            "5. Enter <drop-off date and time> in the Drop-off Date and Time field",
+            "6. Click the Search button"
+          ],
+          "expected_result": "Redirected to Cars results listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to search hotels with required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Hotels tab",
+            "2. Leave the destination field blank",
+            "3. Leave the check-in date field blank",
+            "4. Leave the check-out date field blank",
+            "5. Leave the number of rooms field blank",
+            "6. Leave the guest count fields (adults and children) blank",
+            "7. Click the Search button"
+          ],
+          "expected_result": "Inline validation errors appear on the destination, check-in date, check-out date, number of rooms, and guest count fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to search flights with required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Flights tab",
+            "2. Leave the trip type field blank",
+            "3. Leave the departure city field blank",
+            "4. Leave the arrival city field blank",
+            "5. Leave the travel dates field blank",
+            "6. Leave the passenger count fields (adults, children, infants) blank",
+            "7. Leave the cabin class field blank",
+            "8. Click the Search button"
+          ],
+          "expected_result": "Inline validation errors appear on the trip type, departure city, arrival city, travel dates, passenger count, and cabin class fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt to search tours with required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Tours tab",
+            "2. Leave the destination field blank",
+            "3. Leave the travel date range field blank",
+            "4. Click the Search button"
+          ],
+          "expected_result": "Inline validation errors appear on the destination and travel date range fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to search cars with required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Cars tab",
+            "2. Leave the pick-up location field blank",
+            "3. Leave the drop-off location field blank",
+            "4. Leave the pick-up date and time field blank",
+            "5. Leave the drop-off date and time field blank",
+            "6. Click the Search button"
+          ],
+          "expected_result": "Inline validation errors appear on the pick-up location, drop-off location, pick-up date and time, and drop-off date and time fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Search Hotels with maximum guest count",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Hotels tab",
+            "2. Enter a destination",
+            "3. Enter check-in date",
+            "4. Enter check-out date",
+            "5. Enter maximum number of rooms",
+            "6. Enter maximum guest count (adults and children)"
+          ],
+          "expected_result": "Form submits successfully; redirected to Hotels results listing page",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Search Hotels with one unit over maximum guest count",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Hotels tab",
+            "2. Enter a destination",
+            "3. Enter check-in date",
+            "4. Enter check-out date",
+            "5. Enter maximum number of rooms",
+            "6. Enter guest count (adults and children) exceeding the limit by one"
+          ],
+          "expected_result": "Search button is blocked; inline error shown for guest count",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Search Flights with maximum passenger count",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Flights tab",
+            "2. Select trip type",
+            "3. Enter departure city",
+            "4. Enter arrival city",
+            "5. Enter travel dates",
+            "6. Enter maximum passenger count (adults, children, infants)"
+          ],
+          "expected_result": "Form submits successfully; redirected to Flights results listing page",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Search Flights with one unit over maximum passenger count",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Flights tab",
+            "2. Select trip type",
+            "3. Enter departure city",
+            "4. Enter arrival city",
+            "5. Enter travel dates",
+            "6. Enter passenger count exceeding the limit by one"
+          ],
+          "expected_result": "Search button is blocked; inline error shown for passenger count",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Search Tours with valid travel date range",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Tours tab",
+            "2. Enter destination",
+            "3. Enter valid travel date range"
+          ],
+          "expected_result": "Form submits successfully; redirected to Tours results listing page",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Search Tours with invalid travel date range",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Tours tab",
+            "2. Enter destination",
+            "3. Enter travel date range where end date is before start date"
+          ],
+          "expected_result": "Search button is blocked; inline error shown for travel date range",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-004",
+          "subcategory": "boundary",
+          "test_case": "Search Cars with valid pick-up and drop-off dates",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Cars tab",
+            "2. Enter pick-up location",
+            "3. Enter drop-off location",
+            "4. Enter valid pick-up date and time",
+            "5. Enter valid drop-off date and time"
+          ],
+          "expected_result": "Form submits successfully; redirected to Cars results listing page",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-004",
+          "subcategory": "boundary",
+          "test_case": "Search Cars with invalid pick-up and drop-off dates",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Cars tab",
+            "2. Enter pick-up location",
+            "3. Enter drop-off location",
+            "4. Enter pick-up date and time in the past",
+            "5. Enter drop-off date and time before pick-up date and time"
+          ],
+          "expected_result": "Search button is blocked; inline error shown for pick-up and drop-off dates",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 16,
+        "positive": 4,
+        "negative": 4,
+        "edge": 8,
+        "boundary": 8,
+        "input_edge": 0,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 8,
+        "medium_priority": 8,
+        "low_priority": 0
+      }
+    },
+    {
+      "module": "User Registration",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Successful registration with automatic login",
+          "preconditions": [
+            "User logged in as <New User>"
+          ],
+          "steps": [
+            "1. Enter <First Name> in the First Name field",
+            "2. Enter <Last Name> in the Last Name field",
+            "3. Enter <valid email> in the Email field",
+            "4. Enter <valid password> in the Password field",
+            "5. Enter <valid password> in the Confirm Password field",
+            "6. Enter <valid mobile number> in the Mobile Number field",
+            "7. Select <country code> from the Country Code dropdown",
+            "8. Enter <Address> in the Address field",
+            "9. Select <Country> from the Country dropdown",
+            "10. Check the Terms and Conditions checkbox",
+            "11. Click Submit"
+          ],
+          "expected_result": "Account created; user logged in and redirected to dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Successful registration with email verification",
+          "preconditions": [
+            "User logged in as <New User>"
+          ],
+          "steps": [
+            "1. Enter <First Name> in the First Name field",
+            "2. Enter <Last Name> in the Last Name field",
+            "3. Enter <unique valid email> in the Email field",
+            "4. Enter <valid password> in the Password field",
+            "5. Enter <valid password> in the Confirm Password field",
+            "6. Enter <valid mobile number> in the Mobile Number field",
+            "7. Select <country code> from the Country Code dropdown",
+            "8. Enter <Address> in the Address field",
+            "9. Select <Country> from the Country dropdown",
+            "10. Check the Terms and Conditions checkbox",
+            "11. Click Submit"
+          ],
+          "expected_result": "Account created; verification email sent",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the First Name field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the First Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the First Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Last Name field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Last Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Last Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the Email field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the Password field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Password field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the Confirm Password field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Confirm Password field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the Mobile Number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Mobile Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Mobile Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Leave the Address field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Address field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Address field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Leave the Country field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Country field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Country field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Leave the Terms and Conditions checkbox unchecked",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Terms and Conditions checkbox unchecked",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Terms and Conditions field indicating it must be accepted",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Enter an invalid email format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Email field displays an error: 'Must be a valid email address'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "test_case": "Enter mismatched passwords",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid password> in the Password field",
+            "2. Enter <different password> in the Confirm Password field",
+            "3. Fill all other required fields",
+            "4. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Confirm Password field indicating passwords do not match",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "test_case": "Submit with an already registered email",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <already registered email> in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Email field displays an error: 'Email already in use'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long first name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the First Name field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error indicates the first name is too long",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the Last Name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters in the Last Name field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error indicates invalid characters in the last name",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the Email field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   user@example.com   ' in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved email shown on detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a zero in the Mobile Number field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '0' in the Mobile Number field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error indicates mobile number cannot be zero",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 18,
+        "positive": 2,
+        "negative": 12,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 4,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 11,
+        "medium_priority": 3,
+        "low_priority": 4
+      }
+    },
+    {
+      "module": "User Login",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Login with valid credentials",
+          "preconditions": [
+            "User logged in as <User>"
+          ],
+          "steps": [
+            "1. Enter <valid email> in the Email field",
+            "2. Enter <valid password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Redirect to dashboard or previously accessed page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Login with invalid credentials",
+          "preconditions": [
+            "User logged in as <User>"
+          ],
+          "steps": [
+            "1. Enter <invalid email> in the Email field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Show error message and clear password field",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Login after multiple failed attempts requiring CAPTCHA",
+          "preconditions": [
+            "User logged in as <User>",
+            "User has made multiple failed login attempts"
+          ],
+          "steps": [
+            "1. Enter <invalid email> in the Email field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Show CAPTCHA verification",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the Email field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Enter <valid password> in the Password field",
+            "3. Click Login"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the Password field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid email> in the Email field",
+            "2. Leave the Password field blank",
+            "3. Click Login"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Submit with invalid email format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email field",
+            "2. Enter <valid password> in the Password field",
+            "3. Click Login"
+          ],
+          "expected_result": "Error is displayed indicating invalid credentials and the Password field is cleared",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Submit with incorrect credentials",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid email> in the Email field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click Login"
+          ],
+          "expected_result": "Error is displayed indicating invalid credentials and the Password field is cleared",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt login after multiple failed attempts without CAPTCHA verification",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid email> in the Email field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click Login",
+            "4. Repeat steps 1-3 multiple times"
+          ],
+          "expected_result": "After multiple failed attempts, CAPTCHA verification is shown",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Enter valid email format but with an invalid domain",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'user@invalid_domain' in the Email field",
+            "2. Enter a valid password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Error message displays indicating invalid email domain; password field is cleared",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Enter email with maximum allowed length",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a valid email with maximum length in the Email field",
+            "2. Enter a valid password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Error message displays indicating invalid credentials; password field is cleared",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Attempt login after multiple failed attempts",
+          "preconditions": [
+            "User has failed to login 5 times consecutively"
+          ],
+          "steps": [
+            "1. Enter valid email in the Email field",
+            "2. Enter invalid password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "CAPTCHA verification is shown to the user",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter email with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'user!#$%&'*+/=?^_`{|}~@example.com' in the Email field",
+            "2. Enter a valid password in the Password field",
+            "3. Click the Login button"
+          ],
+          "expected_result": "Error message displays indicating invalid email format; password field is cleared",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 12,
+        "positive": 3,
+        "negative": 5,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 1,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 5,
+        "medium_priority": 6,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Forgot Password",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit existing email for password reset",
+          "preconditions": [
+            "User logged in as <User>",
+            "Email <valid email> exists in the system"
+          ],
+          "steps": [
+            "1. Enter <valid email> in the Email field",
+            "2. Click the Reset Password button"
+          ],
+          "expected_result": "Reset link sent; confirmation message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the Email field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Click Reset Password"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-002",
+          "test_case": "Submit an email that does not exist in the system",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <nonexistent email> in the Email field",
+            "2. Click Reset Password"
+          ],
+          "expected_result": "Error shown; form remains editable",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Submit email that exists in the system",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a valid email address that exists in the system in the Email field",
+            "2. Click the Reset Password button"
+          ],
+          "expected_result": "Reset link sent; confirmation message shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-002",
+          "subcategory": "boundary",
+          "test_case": "Submit email that does not exist in the system",
+          "preconditions": [],
+          "steps": [
+            "1. Enter an invalid email address that does not exist in the system in the Email field",
+            "2. Click the Reset Password button"
+          ],
+          "expected_result": "Error shown; form remains editable",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long email address",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string longer than typical email length (200+ characters) in the Email field",
+            "2. Click the Reset Password button"
+          ],
+          "expected_result": "Form submits successfully or shows an error indicating the email is too long",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter email with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter an email address with special characters (e.g., !#$%&'*+/=?^_`{|}~) in the Email field",
+            "2. Click the Reset Password button"
+          ],
+          "expected_result": "Form submits successfully or shows an error indicating invalid email format",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 7,
+        "positive": 1,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Hotels Search & Listing",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Search hotels with specified criteria",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <destination> in the Destination field",
+            "2. Select <check-in date> in the Check-in field",
+            "3. Select <check-out date> in the Check-out field",
+            "4. Enter <number of rooms> in the Rooms field",
+            "5. Enter <number of adults> in the Adults field",
+            "6. Enter <number of children> in the Children field",
+            "7. Click the Search button"
+          ],
+          "expected_result": "Redirected to the listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Filter results by price range",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria"
+          ],
+          "steps": [
+            "1. Adjust the price range slider to <desired range>",
+            "2. Click the Apply Filter button"
+          ],
+          "expected_result": "Results updated dynamically",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Sort results by price low to high",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria"
+          ],
+          "steps": [
+            "1. Select 'Price: Low to High' from the Sort dropdown"
+          ],
+          "expected_result": "Results sorted by price low to high",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Sort results by price high to low",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria"
+          ],
+          "steps": [
+            "1. Select 'Price: High to Low' from the Sort dropdown"
+          ],
+          "expected_result": "Results sorted by price high to low",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Sort results by star rating",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria"
+          ],
+          "steps": [
+            "1. Select 'Star Rating' from the Sort dropdown"
+          ],
+          "expected_result": "Results sorted by star rating",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Sort results by guest rating",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria"
+          ],
+          "steps": [
+            "1. Select 'Guest Rating' from the Sort dropdown"
+          ],
+          "expected_result": "Results sorted by guest rating",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Remove individual filter",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria",
+            "Apply a price range filter"
+          ],
+          "steps": [
+            "1. Click the Remove button on the active price range filter"
+          ],
+          "expected_result": "Filter removed and results updated",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Reset all filters",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Search hotels with specified criteria",
+            "Apply multiple filters"
+          ],
+          "steps": [
+            "1. Click the Reset All Filters button"
+          ],
+          "expected_result": "All filters reset and results updated",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "test_case": "Leave all search fields blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the <Destination> field blank",
+            "2. Leave the <Check-in Date> field blank",
+            "3. Leave the <Check-out Date> field blank",
+            "4. Leave the <Number of Rooms> field blank",
+            "5. Leave the <Guest Count> field blank",
+            "6. Click Search"
+          ],
+          "expected_result": "Inline validation error appears on the <Destination> field indicating it is required; form does not submit",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to apply a filter without selecting a price range",
+          "preconditions": [],
+          "steps": [
+            "1. Open the filter sidebar",
+            "2. Leave the <Price Range> filter blank",
+            "3. Click Apply Filter"
+          ],
+          "expected_result": "Inline validation error appears on the <Price Range> filter indicating it is required; results are not updated",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-008",
+          "test_case": "Attempt to reset filters when no filters are applied",
+          "preconditions": [],
+          "steps": [
+            "1. Click Reset Filters"
+          ],
+          "expected_result": "No filters to reset; results remain unchanged",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-007",
+          "test_case": "Attempt to remove a filter when no filters are applied",
+          "preconditions": [],
+          "steps": [
+            "1. Click Remove Filter"
+          ],
+          "expected_result": "No filters to remove; results remain unchanged",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission after redirect",
+          "preconditions": [
+            "Search hotels with valid criteria"
+          ],
+          "steps": [
+            "1. Submit the hotel search form",
+            "2. After being redirected to the listing page, quickly press the browser back button"
+          ],
+          "expected_result": "The hotel search form is shown blank, without pre-filled values",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Leading/trailing whitespace in destination field",
+          "preconditions": [
+            "Ensure the destination field is present"
+          ],
+          "steps": [
+            "1. Enter '  New York  ' in the destination field",
+            "2. Fill in other required fields",
+            "3. Submit the form"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; 'New York' is displayed in the search results",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Special characters in destination field",
+          "preconditions": [
+            "Ensure the destination field is present"
+          ],
+          "steps": [
+            "1. Enter '@#$%^&*()' in the destination field",
+            "2. Fill in other required fields",
+            "3. Submit the form"
+          ],
+          "expected_result": "An error is shown indicating that the destination is invalid",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 15,
+        "positive": 8,
+        "negative": 4,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 1,
+        "medium_priority": 8,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Hotel Details & Booking",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Book a room successfully with valid details",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Room type is selected with valid stay dates and guest count"
+          ],
+          "steps": [
+            "1. Enter <First Name> in the First Name field",
+            "2. Enter <Last Name> in the Last Name field",
+            "3. Enter <valid email> in the Email field",
+            "4. Enter <valid phone number> in the Phone Number field",
+            "5. Enter <optional special requests> in the Special Requests field",
+            "6. Click Book Now"
+          ],
+          "expected_result": "Proceeds to the payment page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to book a room while logged out",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Navigate to the hotel details page",
+            "2. Select a room",
+            "3. Click Book Now"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission after redirect",
+          "preconditions": [
+            "User is logged in",
+            "User has selected a room and filled out the booking form"
+          ],
+          "steps": [
+            "1. Click Book Now",
+            "2. After successful submission, press the browser back button"
+          ],
+          "expected_result": "The booking form is shown blank, not pre-filled with previous data.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long text in Special Requests",
+          "preconditions": [
+            "User is logged in",
+            "User has selected a room and filled out the booking form"
+          ],
+          "steps": [
+            "1. Enter a very long string (200+ characters) in the Special Requests field"
+          ],
+          "expected_result": "The form either accepts the input or truncates it with a visible indicator.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Leading/trailing whitespace in First Name",
+          "preconditions": [
+            "User is logged in",
+            "User has selected a room and filled out the booking form"
+          ],
+          "steps": [
+            "1. Enter '   John   ' in the First Name field"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in detail page has no extra spaces.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 5,
+        "positive": 1,
+        "negative": 1,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 1,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Flights Search & Listing",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit a valid flight search form",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select 'Round-trip' as the trip type",
+            "2. Enter <departure city> in the Departure City field",
+            "3. Enter <arrival city> in the Arrival City field",
+            "4. Select <valid departure date> from the Departure Date calendar",
+            "5. Select <valid return date> from the Return Date calendar",
+            "6. Enter <number of adults> in the Adults field",
+            "7. Enter <number of children> in the Children field",
+            "8. Enter <number of infants> in the Infants field",
+            "9. Select 'Economy' from the Cabin Class dropdown",
+            "10. Click the Submit button"
+          ],
+          "expected_result": "Redirected to the listing page with search results",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the trip type blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Trip Type field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Trip Type field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the departure city blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Departure City field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Departure City field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the arrival city blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Arrival City field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Arrival City field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the travel dates blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Travel Dates field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Travel Dates field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the passenger count blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Passenger Count field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Passenger Count field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the cabin class blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Cabin Class field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Cabin Class field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Submit flight search form with maximum passenger count",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Round-trip' as trip type",
+            "2. Enter 'New York' as departure city",
+            "3. Enter 'Los Angeles' as arrival city",
+            "4. Select today's date as departure date",
+            "5. Select a return date one week from today",
+            "6. Enter maximum allowed number of adults in the passenger count",
+            "7. Click Submit"
+          ],
+          "expected_result": "Redirected to the listing page with search results for maximum adults",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "boundary",
+          "test_case": "Submit flight search form with one unit over maximum passenger count",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Round-trip' as trip type",
+            "2. Enter 'New York' as departure city",
+            "3. Enter 'Los Angeles' as arrival city",
+            "4. Select today's date as departure date",
+            "5. Select a return date one week from today",
+            "6. Enter maximum allowed number of adults plus one in the passenger count",
+            "7. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; error message displayed indicating passenger count exceeds limit",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter long text in departure city",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Round-trip' as trip type",
+            "2. Enter a very long string (200+ characters) in the departure city field",
+            "3. Enter 'Los Angeles' as arrival city",
+            "4. Select today's date as departure date",
+            "5. Select a return date one week from today",
+            "6. Enter 1 in the adult passenger count",
+            "7. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; error message displayed indicating the departure city is too long",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in arrival city",
+          "preconditions": [],
+          "steps": [
+            "1. Select 'Round-trip' as trip type",
+            "2. Enter '@Los Angeles!' as arrival city",
+            "3. Enter 'New York' as departure city",
+            "4. Select today's date as departure date",
+            "5. Select a return date one week from today",
+            "6. Enter 1 in the adult passenger count",
+            "7. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; error message displayed indicating invalid characters in the arrival city",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 11,
+        "positive": 1,
+        "negative": 6,
+        "edge": 4,
+        "boundary": 2,
+        "input_edge": 2,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 7,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Flight Booking",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit booking form with valid data",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter 'Mr' in the Title field",
+            "2. Enter <valid first name> in the First Name field",
+            "3. Enter <valid last name> in the Last Name field",
+            "4. Enter <valid date of birth> in the Date of Birth field",
+            "5. Enter <valid passport number> in the Passport Number field",
+            "6. Enter <valid passport expiry> in the Passport Expiry field",
+            "7. Enter <valid email> in the Email field",
+            "8. Enter <valid phone number> in the Phone field",
+            "9. Click Continue"
+          ],
+          "expected_result": "Redirects to the payment page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Leave the first name field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the First Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Inline validation error appears on the First Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Leave the last name field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Last Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Inline validation error appears on the Last Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the email field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the phone field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone field blank",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Inline validation error appears on the Phone field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Enter an invalid email format and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Email field displays an error: 'Must be a valid email address'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Enter a past date in the date of birth field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <past date> in the Date of Birth field",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Inline validation error appears on the Date of Birth field indicating it is invalid",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Submit the form with all required fields empty",
+          "preconditions": [],
+          "steps": [
+            "1. Leave all required fields blank",
+            "2. Click Continue"
+          ],
+          "expected_result": "Inline validation errors appear on all required fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long first name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the First Name field",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Form submission is blocked; inline error shown indicating the first name exceeds the maximum length",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the last name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters (e.g., @#$%^&*) in the Last Name field",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Form submission is blocked; inline error shown indicating invalid characters in the last name",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the email field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   example@example.com   ' in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Continue"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 11,
+        "positive": 1,
+        "negative": 7,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 2,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Tours Search & Listing",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit valid tours search form",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <destination> in the Destination field",
+            "2. Select <start date> in the Start Date field",
+            "3. Select <end date> in the End Date field",
+            "4. Select <tour type> from the Tour Type dropdown",
+            "5. Enter <duration> in the Duration field",
+            "6. Enter <budget range> in the Budget Range field",
+            "7. Click Submit"
+          ],
+          "expected_result": "Redirected to the listing page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Leave all fields in the tours search form blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the <Destination> field blank",
+            "2. Leave the <Travel Dates> field blank",
+            "3. Leave the <Tour Type> field blank",
+            "4. Leave the <Duration> field blank",
+            "5. Leave the <Budget Range> field blank",
+            "6. Click Submit"
+          ],
+          "expected_result": "Form does not submit; error shown on all required fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Enter invalid data in the Budget Range field and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid budget format> in the <Budget Range> field",
+            "2. Fill all other required fields with valid data",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form does not submit; <Budget Range> field displays an error: 'Must be a valid budget range'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long destination name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the Destination field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submits successfully; destination field displays the full input without truncation",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the budget field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '$$$' in the Budget field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; an error message indicates invalid characters in the Budget field",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a budget value with leading/trailing whitespace",
+          "preconditions": [],
+          "steps": [
+            "1. Enter ' 1000 ' in the Budget field",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the listing page displays '1000'",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 6,
+        "positive": 1,
+        "negative": 2,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 1,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Tour Details & Booking",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Book Now as an authenticated user",
+          "preconditions": [
+            "User logged in as <Authenticated User>"
+          ],
+          "steps": [
+            "1. Select a departure date from the available options",
+            "2. Enter <number of adults> in the adults field",
+            "3. Enter <number of children> in the children field",
+            "4. Click 'Book Now'"
+          ],
+          "expected_result": "Booking form displayed with total cost breakdown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Book Now as an unauthenticated user",
+          "preconditions": [],
+          "steps": [
+            "1. Select a departure date from the available options",
+            "2. Enter <number of adults> in the adults field",
+            "3. Enter <number of children> in the children field",
+            "4. Click 'Book Now'"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-002",
+          "test_case": "Unauthenticated user attempts to book a tour",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the tour details page",
+            "2. Select a departure date",
+            "3. Specify the number of travelers",
+            "4. Click Book Now"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Book Now as an unauthenticated user",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Navigate to the tour details page",
+            "2. Select a departure date",
+            "3. Specify the number of travelers",
+            "4. Click Book Now"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Book Now as an authenticated user",
+          "preconditions": [
+            "User is logged in"
+          ],
+          "steps": [
+            "1. Navigate to the tour details page",
+            "2. Select a departure date",
+            "3. Specify the number of travelers",
+            "4. Click Book Now"
+          ],
+          "expected_result": "Booking form is displayed with total cost breakdown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long name in traveler names field",
+          "preconditions": [
+            "Booking form is displayed"
+          ],
+          "steps": [
+            "1. Enter a string of 200+ characters in the traveler names field"
+          ],
+          "expected_result": "The system either accepts the input or truncates it with a visible indicator",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 6,
+        "positive": 2,
+        "negative": 1,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 2,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Cars Search & Listing",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit car rental search form with valid inputs",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <pick-up location> in the Pick-up Location field",
+            "2. Enter <drop-off location> in the Drop-off Location field",
+            "3. Select <pick-up date and time> in the Pick-up Date and Time field",
+            "4. Select <drop-off date and time> in the Drop-off Date and Time field",
+            "5. Enter <driver age> in the Driver Age field",
+            "6. Click Submit on the search form"
+          ],
+          "expected_result": "Redirected to the listing page with vehicle categories",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Leave all fields in the car rental search form blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the pick-up location field blank",
+            "2. Leave the drop-off location field blank",
+            "3. Leave the pick-up date field blank",
+            "4. Leave the drop-off date field blank",
+            "5. Leave the driver age field blank",
+            "6. Click Submit"
+          ],
+          "expected_result": "Form does not submit; inline validation errors appear on all required fields indicating they are required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Submit the car rental search form with invalid date formats",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid date format> in the pick-up date field",
+            "2. Enter <invalid date format> in the drop-off date field",
+            "3. Enter <valid location> in the pick-up location field",
+            "4. Enter <valid location> in the drop-off location field",
+            "5. Enter <valid age> in the driver age field",
+            "6. Click Submit"
+          ],
+          "expected_result": "Form does not submit; inline validation errors appear on the pick-up and drop-off date fields indicating invalid date format",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "Submit the car rental search form with an invalid driver age",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid location> in the pick-up location field",
+            "2. Enter <valid location> in the drop-off location field",
+            "3. Enter <valid date> in the pick-up date field",
+            "4. Enter <valid date> in the drop-off date field",
+            "5. Enter <invalid driver age> in the driver age field",
+            "6. Click Submit"
+          ],
+          "expected_result": "Form does not submit; inline validation error appears on the driver age field indicating it must be a valid age",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long pick-up location",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the pick-up location field",
+            "2. Fill in the drop-off location, pick-up date, drop-off date, and driver age",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submits successfully; the pick-up location is displayed correctly on the listing page",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the drop-off location",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '!@#$%^&*()' in the drop-off location field",
+            "2. Fill in the pick-up location, pick-up date, drop-off date, and driver age",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submits successfully; the drop-off location is displayed correctly on the listing page",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the pick-up location",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   New York   ' in the pick-up location field",
+            "2. Fill in the drop-off location, pick-up date, drop-off date, and driver age",
+            "3. Click Submit"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 7,
+        "positive": 1,
+        "negative": 3,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 2,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Car Booking",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Confirm Booking with valid input",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <full name> in the Driver Full Name field",
+            "2. Enter <age> in the Age field",
+            "3. Enter <license number> in the License Number field",
+            "4. Select <license issue country> from the License Issue Country dropdown",
+            "5. Enter <valid email> in the Email field",
+            "6. Enter <valid phone number> in the Phone Number field",
+            "7. Select <insurance plan> from the Insurance Plan options",
+            "8. Check the GPS add-on option",
+            "9. Check the Child Seat add-on option",
+            "10. Check the Additional Driver add-on option",
+            "11. Accept the terms and conditions",
+            "12. Click Confirm Booking"
+          ],
+          "expected_result": "User is redirected to the payment page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the driver full name blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Driver Full Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the Driver Full Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the age field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Age field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the Age field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the license number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the License Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the License Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the license issue country field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the License Issue Country field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the License Issue Country field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the email field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Leave the phone number field blank",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the Phone Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "test_case": "Enter an invalid email format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid email format> in the Email field",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Email field displays an error: 'Must be a valid email address'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "test_case": "Enter an age below the minimum requirement",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <age below minimum> in the Age field",
+            "2. Fill all other required fields",
+            "3. Click Confirm Booking"
+          ],
+          "expected_result": "Inline validation error appears on the Age field indicating it does not meet the minimum age requirement",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long name in the driver full name field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the Driver Full Name field"
+          ],
+          "expected_result": "The form displays an error indicating the name is too long",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the email field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter 'user@domain!#.com' in the Email field"
+          ],
+          "expected_result": "The form displays an error indicating invalid email format",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the phone number field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   1234567890   ' in the Phone Number field"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 12,
+        "positive": 1,
+        "negative": 8,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 7,
+        "medium_priority": 2,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Visa Services",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "View visa requirements for selected nationality and destination",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Select <Nationality> from the Nationality dropdown",
+            "2. Select <Destination Country> from the Destination Country dropdown",
+            "3. Click 'View Requirements'"
+          ],
+          "expected_result": "Visa requirements displayed for selected nationality and destination",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Submit visa application with valid details",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Visa requirements are displayed"
+          ],
+          "steps": [
+            "1. Enter <Full Name> in the Full Name field",
+            "2. Enter <Passport Number> in the Passport Number field",
+            "3. Enter <Passport Expiry Date> in the Passport Expiry Date field",
+            "4. Enter <Date of Birth> in the Date of Birth field",
+            "5. Select <Nationality> from the Nationality dropdown",
+            "6. Enter <Email> in the Email field",
+            "7. Enter <Phone> in the Phone field",
+            "8. Select <Purpose of Visit> from the Purpose of Visit dropdown",
+            "9. Enter <Intended Travel Dates> in the Intended Travel Dates field",
+            "10. Enter <Duration of Stay> in the Duration of Stay field",
+            "11. Upload <valid passport copy> in the Document Upload section",
+            "12. Upload <valid photographs> in the Document Upload section",
+            "13. Click 'Submit Application'"
+          ],
+          "expected_result": "Application submitted; confirmation message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Track application status after submission",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Application has been submitted"
+          ],
+          "steps": [
+            "1. Navigate to the Bookings section of the dashboard",
+            "2. Click on 'Track Application Status'"
+          ],
+          "expected_result": "Application status displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Leave the full name field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Full Name field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Full Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Leave the passport number field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Passport Number field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Passport Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Leave the passport expiry date field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Passport Expiry Date field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Passport Expiry Date field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Leave the date of birth field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Date of Birth field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Date of Birth field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Leave the email field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Email field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Email field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Leave the phone field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Phone field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Phone field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Leave the purpose of visit field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Purpose of Visit field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Purpose of Visit field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "test_case": "Leave the intended travel dates field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Intended Travel Dates field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Intended Travel Dates field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "test_case": "Leave the duration of stay field blank and submit",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Duration of Stay field blank",
+            "2. Fill all other required fields",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Duration of Stay field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "test_case": "Upload an invalid file type in the document upload section",
+          "preconditions": [],
+          "steps": [
+            "1. Select an invalid file type for upload",
+            "2. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears indicating the file type is not allowed",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long name in the full name field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string of 200+ characters in the Full Name field"
+          ],
+          "expected_result": "Form submits successfully; saved value displayed in detail page shows the full name as entered or truncated with an indicator",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the email field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string with special characters in the Email field"
+          ],
+          "expected_result": "Email field displays an error indicating invalid format",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the phone field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a phone number with leading and trailing spaces in the Phone field"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 16,
+        "positive": 3,
+        "negative": 10,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 11,
+        "medium_priority": 2,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "User Dashboard",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "View Booking Details",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User has at least one booking"
+          ],
+          "steps": [
+            "1. Click 'View Details' on a booking"
+          ],
+          "expected_result": "Booking details displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Cancel Booking",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User has a booking that can be cancelled"
+          ],
+          "steps": [
+            "1. Click 'Cancel' on a booking",
+            "2. Confirm cancellation"
+          ],
+          "expected_result": "Booking cancelled; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Modify Booking",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User has a booking that can be modified"
+          ],
+          "steps": [
+            "1. Click 'Modify' on a booking"
+          ],
+          "expected_result": "Booking modification form displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Download Confirmation",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User has a booking with a confirmation available"
+          ],
+          "steps": [
+            "1. Click 'Download' on a booking confirmation"
+          ],
+          "expected_result": "Confirmation document downloaded",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Edit Profile",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Edit' in My Profile section"
+          ],
+          "expected_result": "Profile edit form displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "View Wallet/Credits",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'View' in Wallet/Credits section"
+          ],
+          "expected_result": "Wallet/Credits information displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "View Wishlist",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'View' in Wishlist section"
+          ],
+          "expected_result": "Wishlist displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Rate and Review Booking",
+          "preconditions": [
+            "User logged in as <Role>",
+            "User has a completed booking"
+          ],
+          "steps": [
+            "1. Click 'Rate and Review' on a completed booking",
+            "2. Submit a review"
+          ],
+          "expected_result": "Review submitted; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Change Password",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Change Password' in Settings",
+            "2. Enter new password",
+            "3. Confirm new password",
+            "4. Submit"
+          ],
+          "expected_result": "Password changed; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Update Notification Preferences",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Update Preferences' in Settings",
+            "2. Change notification settings",
+            "3. Submit"
+          ],
+          "expected_result": "Notification preferences updated; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Change Default Currency",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Change Currency' in Settings",
+            "2. Select a new default currency",
+            "3. Submit"
+          ],
+          "expected_result": "Default currency changed; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Change Default Language",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Change Language' in Settings",
+            "2. Select a new default language",
+            "3. Submit"
+          ],
+          "expected_result": "Default language changed; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-013",
+          "test_case": "Logout",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click 'Logout'"
+          ],
+          "expected_result": "Session ended; user logged out",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to view booking details without a valid booking reference",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to My Bookings",
+            "2. Click on View Details for a booking with an invalid reference"
+          ],
+          "expected_result": "Error displayed indicating 'Invalid booking reference'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to cancel a booking that is already cancelled",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to My Bookings",
+            "2. Click on Cancel for a booking with status 'Cancelled'"
+          ],
+          "expected_result": "Error displayed indicating 'Cannot cancel a booking that is already cancelled'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt to modify a booking that is already cancelled",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to My Bookings",
+            "2. Click on Modify for a booking with status 'Cancelled'"
+          ],
+          "expected_result": "Error displayed indicating 'Cannot modify a booking that is already cancelled'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to download confirmation for a booking that does not exist",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to My Bookings",
+            "2. Click on Download for a booking with an invalid reference"
+          ],
+          "expected_result": "Error displayed indicating 'Booking not found'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-005",
+          "test_case": "Attempt to edit profile without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to My Profile",
+            "2. Click on Edit"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-006",
+          "test_case": "Attempt to view wallet/credits without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Wallet/Credits"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-007",
+          "test_case": "Attempt to view wishlist without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Wishlist"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-008",
+          "test_case": "Attempt to submit a review for a booking that does not exist",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Reviews",
+            "2. Attempt to submit a review for a non-existent booking"
+          ],
+          "expected_result": "Error displayed indicating 'Booking not found'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": "WF-009",
+          "test_case": "Attempt to change password without providing the current password",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Settings",
+            "2. Click on Change Password",
+            "3. Leave the current password field blank",
+            "4. Enter a new password",
+            "5. Click Submit"
+          ],
+          "expected_result": "Error displayed indicating 'Current password is required'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-023",
+          "wf_ref": "WF-010",
+          "test_case": "Attempt to update notification preferences without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Settings",
+            "2. Click on Update Preferences"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-024",
+          "wf_ref": "WF-011",
+          "test_case": "Attempt to change default currency without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Settings",
+            "2. Click on Change Currency"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-025",
+          "wf_ref": "WF-012",
+          "test_case": "Attempt to change default language without being logged in",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to Settings",
+            "2. Click on Change Language"
+          ],
+          "expected_result": "Redirected to login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-026",
+          "wf_ref": "WF-013",
+          "test_case": "Attempt to logout while already logged out",
+          "preconditions": [],
+          "steps": [
+            "1. Click on Logout"
+          ],
+          "expected_result": "Error displayed indicating 'You are not logged in'",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-027",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long string in the profile name field",
+          "preconditions": [
+            "User is logged into the dashboard"
+          ],
+          "steps": [
+            "1. Navigate to My Profile",
+            "2. Click Edit",
+            "3. Enter a string longer than 200 characters in the name field"
+          ],
+          "expected_result": "Profile edit form displays an error indicating the name exceeds the maximum allowed length",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-028",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the profile name field",
+          "preconditions": [
+            "User is logged into the dashboard"
+          ],
+          "steps": [
+            "1. Navigate to My Profile",
+            "2. Click Edit",
+            "3. Enter special characters in the name field"
+          ],
+          "expected_result": "Profile edit form displays an error indicating invalid characters in the name field",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-029",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter leading and trailing whitespace in the profile name field",
+          "preconditions": [
+            "User is logged into the dashboard"
+          ],
+          "steps": [
+            "1. Navigate to My Profile",
+            "2. Click Edit",
+            "3. Enter '   John Doe   ' in the name field",
+            "4. Save changes"
+          ],
+          "expected_result": "Saved value shown in profile detail page has no leading or trailing spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 29,
+        "positive": 13,
+        "negative": 13,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 26,
+        "medium_priority": 0,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Booking Management",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Modify booking details",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking is in a modifiable state"
+          ],
+          "steps": [
+            "1. Click the Modify button",
+            "2. Change the travel dates to <new dates>",
+            "3. Add special requests: <special requests>",
+            "4. Update traveler information with <new traveler details>",
+            "5. Click Save"
+          ],
+          "expected_result": "Booking details updated; success message shown",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Cancel booking",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking is in a cancellable state"
+          ],
+          "steps": [
+            "1. Click the Cancel button",
+            "2. Click Confirm on the cancellation confirmation dialog"
+          ],
+          "expected_result": "Cancellation processed; refund initiated",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt to modify booking details without required fields",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Modify button",
+            "2. Leave all fields blank",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form does not submit; error shown indicating required fields must be filled",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to cancel booking without confirming cancellation",
+          "preconditions": [],
+          "steps": [
+            "1. Click on the Cancel button",
+            "2. Leave the confirmation unchecked",
+            "3. Click Confirm"
+          ],
+          "expected_result": "Cancellation is not processed; error shown indicating confirmation is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission of modified booking details",
+          "preconditions": [
+            "User is on the booking detail page with a Modify button available"
+          ],
+          "steps": [
+            "1. Click the Modify button",
+            "2. Change travel dates and submit the modification",
+            "3. Immediately click the Modify button again"
+          ],
+          "expected_result": "Second modification attempt is blocked; the user remains on the modification page with a message indicating the modification is in progress.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Cancel booking after modification",
+          "preconditions": [
+            "User has modified booking details successfully"
+          ],
+          "steps": [
+            "1. Click the Cancel button after modifying the booking",
+            "2. Confirm the cancellation"
+          ],
+          "expected_result": "Cancellation processed; refund initiated and confirmation message shown.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Long confirmation number input",
+          "preconditions": [
+            "User is on the booking detail page"
+          ],
+          "steps": [
+            "1. Enter a confirmation number with 200 characters in the confirmation field"
+          ],
+          "expected_result": "Confirmation number input is accepted or truncated with a visible indicator.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Special characters in traveler details",
+          "preconditions": [
+            "User is on the booking detail page"
+          ],
+          "steps": [
+            "1. Enter special characters in the traveler details field"
+          ],
+          "expected_result": "Traveler details input is accepted or a specific error is shown.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 8,
+        "positive": 2,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 2,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Payment Processing",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with Credit/Debit Card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking summary is displayed with price breakdown"
+          ],
+          "steps": [
+            "1. Enter <cardholder name> in the Cardholder Name field",
+            "2. Enter <valid card number> in the Card Number field",
+            "3. Enter <valid expiration date> in the Expiration Date field",
+            "4. Enter <valid CVV> in the CVV field",
+            "5. Check the option to save the card for future use",
+            "6. Click Submit"
+          ],
+          "expected_result": "User taken to booking confirmation page with reference number",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Submit payment with PayPal",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking summary is displayed with price breakdown"
+          ],
+          "steps": [
+            "1. Click on PayPal payment option",
+            "2. Enter <valid PayPal credentials>",
+            "3. Click Submit"
+          ],
+          "expected_result": "User taken to booking confirmation page with reference number",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Submit payment with Bank Transfer",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking summary is displayed with price breakdown"
+          ],
+          "steps": [
+            "1. Click on Bank Transfer payment option",
+            "2. Follow the instructions to complete the bank transfer",
+            "3. Click Submit"
+          ],
+          "expected_result": "User taken to booking confirmation page with reference number",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Submit payment with Wallet/Credits",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Booking summary is displayed with price breakdown"
+          ],
+          "steps": [
+            "1. Click on Wallet/Credits payment option",
+            "2. Confirm the payment amount",
+            "3. Click Submit"
+          ],
+          "expected_result": "User taken to booking confirmation page with reference number",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with blank cardholder name",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Cardholder Name field blank",
+            "2. Fill in the Card Number, Expiration Date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Cardholder Name field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with blank card number",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Card Number field blank",
+            "2. Fill in the Cardholder Name, Expiration Date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Card Number field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with blank expiration date",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the Expiration Date field blank",
+            "2. Fill in the Cardholder Name, Card Number, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the Expiration Date field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with blank CVV",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the CVV field blank",
+            "2. Fill in the Cardholder Name, Card Number, and Expiration Date",
+            "3. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the CVV field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with invalid card number format",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <invalid card number format> in the Card Number field",
+            "2. Fill in the Cardholder Name, Expiration Date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Error message displayed: 'Invalid card number'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "test_case": "Submit payment with expired card",
+          "preconditions": [],
+          "steps": [
+            "1. Enter <valid cardholder name> in the Cardholder Name field",
+            "2. Enter <valid card number> in the Card Number field",
+            "3. Enter <expired date> in the Expiration Date field",
+            "4. Enter <valid CVV> in the CVV field",
+            "5. Click Submit"
+          ],
+          "expected_result": "Error message displayed: 'Card declined'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-002",
+          "test_case": "Submit payment with PayPal without logging in",
+          "preconditions": [],
+          "steps": [
+            "1. Click on PayPal payment option",
+            "2. Click Submit"
+          ],
+          "expected_result": "User is redirected to PayPal login page",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-003",
+          "test_case": "Submit payment with Bank Transfer without sufficient funds",
+          "preconditions": [],
+          "steps": [
+            "1. Select Bank Transfer payment option",
+            "2. Click Submit"
+          ],
+          "expected_result": "Error message displayed: 'Insufficient funds'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-004",
+          "test_case": "Submit payment with Wallet/Credits exceeding balance",
+          "preconditions": [],
+          "steps": [
+            "1. Select Wallet/Credits payment option",
+            "2. Enter <amount exceeding wallet balance> in the payment amount field",
+            "3. Click Submit"
+          ],
+          "expected_result": "Error message displayed: 'Insufficient balance in wallet'",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long cardholder name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a very long string (200+ characters) in the Cardholder Name field",
+            "2. Fill in valid card number, expiration date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error message indicates the name exceeds the maximum length",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in cardholder name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters (e.g., @#$%^&) in the Cardholder Name field",
+            "2. Fill in valid card number, expiration date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error message indicates invalid characters in the Cardholder Name",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter whitespace in cardholder name",
+          "preconditions": [],
+          "steps": [
+            "1. Enter leading and trailing whitespace in the Cardholder Name field",
+            "2. Fill in valid card number, expiration date, and CVV",
+            "3. Click Submit"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown on the confirmation page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Enter zero in the CVV field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '0' in the CVV field",
+            "2. Fill in valid cardholder name, card number, and expiration date",
+            "3. Click Submit"
+          ],
+          "expected_result": "Form submission is blocked; inline error message indicates CVV must be a valid number",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 17,
+        "positive": 4,
+        "negative": 9,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 4,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 8,
+        "medium_priority": 5,
+        "low_priority": 4
+      }
+    },
+    {
+      "module": "Currency & Language Selection",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Select a currency and verify price updates",
+          "preconditions": [
+            "User logged in as <Authenticated User>"
+          ],
+          "steps": [
+            "1. Select <currency> from the currency dropdown"
+          ],
+          "expected_result": "All prices displayed across the site update to reflect the selected <currency>",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Select a language and verify interface change",
+          "preconditions": [
+            "User logged in as <Authenticated User>"
+          ],
+          "steps": [
+            "1. Select <language> from the language dropdown"
+          ],
+          "expected_result": "The entire site interface switches to <language>, including navigation labels, form labels, and content",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Select a currency as an unauthenticated user",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Select <currency> from the currency dropdown"
+          ],
+          "expected_result": "All prices displayed across the site update to reflect the selected <currency>",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Select a language as an unauthenticated user",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Select <language> from the language dropdown"
+          ],
+          "expected_result": "The entire site interface switches to <language>, including navigation labels, form labels, and content",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user attempts to change currency or language",
+          "preconditions": [
+            "User is not logged in"
+          ],
+          "steps": [
+            "1. Attempt to change currency",
+            "2. Attempt to change language"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long string in the language selector",
+          "preconditions": [],
+          "steps": [
+            "1. Open the language selector",
+            "2. Enter a string of 200+ characters"
+          ],
+          "expected_result": "The input is either accepted or truncated with a visible indicator",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the currency selector",
+          "preconditions": [],
+          "steps": [
+            "1. Open the currency selector",
+            "2. Enter special characters like @#$%^&*()"
+          ],
+          "expected_result": "The input is either accepted or a specific error is shown",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a value with leading and trailing whitespace in the language selector",
+          "preconditions": [],
+          "steps": [
+            "1. Open the language selector",
+            "2. Enter a value with leading and trailing spaces"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 8,
+        "positive": 4,
+        "negative": 1,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 3,
+        "medium_priority": 2,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Search & Filters",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Apply price range filter",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Adjust the price range slider to select a range",
+            "2. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to reflect listings within the selected price range; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "Apply star rating filter",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Select a star rating from the ratings filter",
+            "2. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to show only listings with the selected star rating; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Apply hotel-specific filters",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Select a hotel type from the hotel type filter",
+            "2. Select amenities from the facilities/amenities filter",
+            "3. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to reflect only hotels matching the selected type and amenities; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Apply flight-specific filters",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Select an airline from the airlines filter",
+            "2. Adjust the number of stops filter",
+            "3. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to show only flights matching the selected airline and number of stops; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Apply tour-specific filters",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Select a tour type from the tour type filter",
+            "2. Adjust the duration filter",
+            "3. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to reflect only tours matching the selected type and duration; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Apply car-specific filters",
+          "preconditions": [
+            "User logged in as <User Role>"
+          ],
+          "steps": [
+            "1. Select a car type from the car type filter",
+            "2. Select a transmission type from the transmission filter",
+            "3. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to show only cars matching the selected type and transmission; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Remove individual active filter",
+          "preconditions": [
+            "User logged in as <User Role>",
+            "At least one filter is active"
+          ],
+          "steps": [
+            "1. Click the remove button next to an active filter",
+            "2. Observe the results grid"
+          ],
+          "expected_result": "Results update dynamically to reflect the removal of the filter; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Reset all filters",
+          "preconditions": [
+            "User logged in as <User Role>",
+            "At least one filter is active"
+          ],
+          "steps": [
+            "1. Click the 'Reset all filters' control",
+            "2. Observe the results grid"
+          ],
+          "expected_result": "All filters are cleared; results update to show all available listings; result count updates accordingly",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Attempt to apply filters without any selections",
+          "preconditions": [],
+          "steps": [
+            "1. Leave all filter options unselected",
+            "2. Click Apply Filters"
+          ],
+          "expected_result": "No filters are applied; the results grid remains unchanged",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "test_case": "Attempt to reset filters when none are applied",
+          "preconditions": [],
+          "steps": [
+            "1. Ensure no filters are currently applied",
+            "2. Click Reset all filters"
+          ],
+          "expected_result": "No changes occur; the results grid remains unchanged",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a very long string in the search field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a string longer than 200 characters in the search field"
+          ],
+          "expected_result": "The input is either accepted or truncated with a visible indicator",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter special characters in the search field",
+          "preconditions": [],
+          "steps": [
+            "1. Enter special characters (e.g., @#$%^&*) in the search field"
+          ],
+          "expected_result": "The input is accepted or a specific error message is shown",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Enter a value with leading and trailing whitespace",
+          "preconditions": [],
+          "steps": [
+            "1. Enter '   sample text   ' in the search field"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in the results has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 8,
+        "negative": 2,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 8,
+        "medium_priority": 0,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Reviews & Ratings",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user attempts to submit a review",
+          "preconditions": [],
+          "steps": [
+            "1. Navigate to the review submission page",
+            "2. Attempt to submit a review without logging in"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "User attempts to submit a review without completing a booking",
+          "preconditions": [
+            "User is authenticated but has not completed a booking"
+          ],
+          "steps": [
+            "1. Navigate to the review submission page",
+            "2. Attempt to submit a review"
+          ],
+          "expected_result": "User receives an error message indicating that a booking is required to submit a review",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Submit a very long review comment",
+          "preconditions": [
+            "User is authenticated and has completed a booking"
+          ],
+          "steps": [
+            "1. Navigate to the review submission page",
+            "2. Enter a review comment with 200+ characters"
+          ],
+          "expected_result": "Review submission is accepted or truncated with a visible indicator",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Submit a review with special characters",
+          "preconditions": [
+            "User is authenticated and has completed a booking"
+          ],
+          "steps": [
+            "1. Navigate to the review submission page",
+            "2. Enter a review comment with special characters (e.g., !@#$%^&*())"
+          ],
+          "expected_result": "Review submission is accepted or a specific error is shown",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Submit a review with leading/trailing whitespace",
+          "preconditions": [
+            "User is authenticated and has completed a booking"
+          ],
+          "steps": [
+            "1. Navigate to the review submission page",
+            "2. Enter a review comment with leading and trailing spaces"
+          ],
+          "expected_result": "Leading/trailing whitespace is trimmed; saved value shown in detail page has no extra spaces",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 5,
+        "positive": 0,
+        "negative": 2,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 3,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 0,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Offers & Deals",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Book Now with standard promotion",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click on a standard promotion deal",
+            "2. Click 'Book Now' button"
+          ],
+          "expected_result": "Redirected to booking flow with promotional code applied",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Book Now with last-minute offer",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click on a last-minute offer deal",
+            "2. Click 'Book Now' button"
+          ],
+          "expected_result": "Redirected to booking flow with promotional code applied",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Book Now with seasonal package",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Click on a seasonal package deal",
+            "2. Click 'Book Now' button"
+          ],
+          "expected_result": "Redirected to booking flow with promotional code applied",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Subscribe to newsletter",
+          "preconditions": [
+            "User logged in as <Role>"
+          ],
+          "steps": [
+            "1. Enter <valid email> in the newsletter subscription field",
+            "2. Click 'Submit' button"
+          ],
+          "expected_result": "Email submitted for future exclusive deals",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Attempt to subscribe to newsletter without providing an email",
+          "preconditions": [],
+          "steps": [
+            "1. Leave the email subscription field blank",
+            "2. Click Submit"
+          ],
+          "expected_result": "Inline validation error appears on the email subscription field indicating it is required",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Attempt to book now without selecting any offer",
+          "preconditions": [],
+          "steps": [
+            "1. Click Book Now without selecting any promotional offer"
+          ],
+          "expected_result": "No action occurs; user remains on the Offers page without redirection",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-004",
+          "subcategory": "input_edge",
+          "test_case": "Submit newsletter subscription with long email address",
+          "preconditions": [],
+          "steps": [
+            "1. Enter a long email address (200+ characters) in the newsletter subscription field",
+            "2. Click Submit"
+          ],
+          "expected_result": "Email submission is blocked; an error message indicates the email address is too long",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-004",
+          "subcategory": "input_edge",
+          "test_case": "Submit newsletter subscription with special characters",
+          "preconditions": [],
+          "steps": [
+            "1. Enter an email address with special characters (e.g., 'test!@example.com') in the newsletter subscription field",
+            "2. Click Submit"
+          ],
+          "expected_result": "Email submission is blocked; an error message indicates invalid email format",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid re-submission after redirect",
+          "preconditions": [
+            "User is on the Offers page"
+          ],
+          "steps": [
+            "1. Click Book Now on a standard promotion",
+            "2. After being redirected to the booking flow, press the browser back button"
+          ],
+          "expected_result": "User is redirected to the Offers page without pre-filled values; the form is blank",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 9,
+        "positive": 4,
+        "negative": 2,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 3,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Logout",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "User logs out successfully",
+          "preconditions": [
+            "User logged in as <role>"
+          ],
+          "steps": [
+            "1. Click Logout"
+          ],
+          "expected_result": "Session terminated; redirected to home page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Unauthenticated user attempts to access a protected page after logout",
+          "preconditions": [],
+          "steps": [
+            "1. Logout the user",
+            "2. Attempt to access a protected page"
+          ],
+          "expected_result": "User is redirected to the login page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid logout attempts",
+          "preconditions": [
+            "User is logged in"
+          ],
+          "steps": [
+            "1. Click Logout",
+            "2. Immediately click Logout again before the redirect completes"
+          ],
+          "expected_result": "Second logout attempt is ignored; user remains on the home page without error",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Access protected page after logout",
+          "preconditions": [
+            "User is logged in",
+            "User clicks Logout"
+          ],
+          "steps": [
+            "1. Click Logout",
+            "2. Attempt to access a protected page"
+          ],
+          "expected_result": "User is redirected to the login page with no access to the protected content",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 4,
+        "positive": 1,
+        "negative": 1,
+        "edge": 2,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 2,
+        "medium_priority": 2,
+        "low_priority": 0
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 21,
+    "total_tests": 235,
+    "positive": 65,
+    "negative": 97,
+    "boundary": 14,
+    "edge": 73,
+    "high_priority": 125,
+    "medium_priority": 55,
+    "low_priority": 49
+  }
+}

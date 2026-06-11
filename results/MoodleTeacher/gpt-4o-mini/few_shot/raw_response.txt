@@ -1,0 +1,279 @@
+{
+  "module": "MoodleTeacher",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Log in with valid credentials",
+      "preconditions": ["User is on the login page"],
+      "steps": [
+        "1. Enter a valid username in the Username field",
+        "2. Enter a valid password in the Password field",
+        "3. Click the 'Log in' button"
+      ],
+      "expected_result": "User is redirected to the Dashboard with a personalized greeting",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Attempt to log in with invalid credentials",
+      "preconditions": ["User is on the login page"],
+      "steps": [
+        "1. Enter an invalid username in the Username field",
+        "2. Enter an invalid password in the Password field",
+        "3. Click the 'Log in' button"
+      ],
+      "expected_result": "An inline error message is displayed; the password field is cleared and the username remains",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Log in with maximum length username and password",
+      "preconditions": ["User is on the login page"],
+      "steps": [
+        "1. Enter a username with maximum allowed length in the Username field",
+        "2. Enter a password with maximum allowed length in the Password field",
+        "3. Click the 'Log in' button"
+      ],
+      "expected_result": "User is redirected to the Dashboard with a personalized greeting",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Access My Courses page",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click on 'My Courses' in the top navigation bar"
+      ],
+      "expected_result": "The My Courses page displays all courses the teacher has access to as visual cards",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Attempt to access My Courses page without logging in",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to the My Courses page directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Access My Courses page with no enrolled courses",
+      "preconditions": ["User logged in as Teacher with no courses"],
+      "steps": [
+        "1. Click on 'My Courses' in the top navigation bar"
+      ],
+      "expected_result": "An empty state message is displayed indicating no courses are available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "Create a new assignment",
+      "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click '+ Add an activity or resource'",
+        "3. Select Assignment from the Activity Chooser and click Add",
+        "4. Enter 'Test Assignment' in the Assignment name field",
+        "5. Enable the Due date toggle and select a due date",
+        "6. Click 'Save and return to course'"
+      ],
+      "expected_result": "The assignment appears in the course section with a link",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Attempt to create an assignment without a name",
+      "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click '+ Add an activity or resource'",
+        "3. Select Assignment and click Add",
+        "4. Leave the Assignment name field empty",
+        "5. Click 'Save and return to course'"
+      ],
+      "expected_result": "An inline validation error highlights the Assignment name field; the form is not submitted and remains open",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "Create an assignment with maximum length name",
+      "preconditions": ["User logged in as Teacher", "A course exists and Edit mode is enabled"],
+      "steps": [
+        "1. Navigate to the Course page",
+        "2. Click '+ Add an activity or resource'",
+        "3. Select Assignment and click Add",
+        "4. Enter a name with maximum allowed length in the Assignment name field",
+        "5. Click 'Save and return to course'"
+      ],
+      "expected_result": "The assignment is created successfully and appears in the course section",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Toggle Edit mode on the Dashboard",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click the 'Edit mode' toggle button on the Dashboard"
+      ],
+      "expected_result": "Edit mode is enabled, and the '+ Add a block' button appears",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Attempt to toggle Edit mode when already enabled",
+      "preconditions": ["User logged in as Teacher", "Edit mode is already enabled"],
+      "steps": [
+        "1. Click the 'Edit mode' toggle button on the Dashboard"
+      ],
+      "expected_result": "Edit mode remains enabled; no changes occur",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Toggle Edit mode multiple times rapidly",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click the 'Edit mode' toggle button rapidly multiple times"
+      ],
+      "expected_result": "Edit mode toggles correctly without errors; the state reflects the last toggle",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "View the Gradebook Grader report",
+      "preconditions": ["User logged in as Teacher", "At least one course with grades exists"],
+      "steps": [
+        "1. Navigate to the Gradebook from the course page",
+        "2. Select 'Grader report' from the report-type selector"
+      ],
+      "expected_result": "The Grader report displays a spreadsheet-style view of grades",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Attempt to view the Gradebook without any grades",
+      "preconditions": ["User logged in as Teacher", "No grades exist in the course"],
+      "steps": [
+        "1. Navigate to the Gradebook from the course page",
+        "2. Select 'Grader report' from the report-type selector"
+      ],
+      "expected_result": "An empty state message is displayed indicating no grades are available",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "View Gradebook with maximum number of students",
+      "preconditions": ["User logged in as Teacher", "Course has maximum allowed students enrolled"],
+      "steps": [
+        "1. Navigate to the Gradebook from the course page",
+        "2. Select 'Grader report' from the report-type selector"
+      ],
+      "expected_result": "The Grader report displays all students without performance issues",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Edit profile successfully",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Profile' from the dropdown",
+        "3. Click 'Edit profile'",
+        "4. Update the required fields",
+        "5. Click 'Update profile'"
+      ],
+      "expected_result": "Profile is updated successfully and reflects the changes",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Attempt to edit profile without required fields",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Profile' from the dropdown",
+        "3. Click 'Edit profile'",
+        "4. Leave required fields empty",
+        "5. Click 'Update profile'"
+      ],
+      "expected_result": "An inline validation error highlights the required fields; the form is not submitted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Edit profile with maximum length fields",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Profile' from the dropdown",
+        "3. Click 'Edit profile'",
+        "4. Fill all fields with maximum allowed length",
+        "5. Click 'Update profile'"
+      ],
+      "expected_result": "Profile is updated successfully and reflects the changes",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Log out successfully",
+      "preconditions": ["User logged in as Teacher"],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Log out' from the dropdown"
+      ],
+      "expected_result": "User is logged out and redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Attempt to log out when already logged out",
+      "preconditions": [],
+      "steps": [
+        "1. Navigate to any protected page"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Log out during an ongoing action",
+      "preconditions": ["User logged in as Teacher", "Performing an action"],
+      "steps": [
+        "1. Click on the user's initials icon",
+        "2. Select 'Log out' from the dropdown while an action is in progress"
+      ],
+      "expected_result": "User is logged out and redirected to the login page; any unsaved changes are discarded",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 40,
+    "high_priority": 20,
+    "medium_priority": 15,
+    "low_priority": 5
+  }
+}

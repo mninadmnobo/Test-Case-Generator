@@ -1,0 +1,616 @@
+{
+  "module": "Parabank",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": ["User has a registered account with valid credentials"],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter valid Email/Username",
+        "3. Enter valid Password",
+        "4. Click Sign In"
+      ],
+      "expected_result": "Page shows 'Signed in successfully.' and redirects to Accounts Overview",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Login attempt with incorrect password",
+      "preconditions": ["User has a registered account"],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter valid Email/Username",
+        "3. Enter incorrect Password",
+        "4. Click Sign In"
+      ],
+      "expected_result": "An error message 'Incorrect email or password. Please try again.' is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Login attempt with maximum length username",
+      "preconditions": ["User has a registered account with maximum length username"],
+      "steps": [
+        "1. Navigate to the login page",
+        "2. Enter a username with maximum allowed characters",
+        "3. Enter valid Password",
+        "4. Click Sign In"
+      ],
+      "expected_result": "Page shows 'Signed in successfully.' and redirects to Accounts Overview",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Successful registration with valid details",
+      "preconditions": ["User is on the registration page"],
+      "steps": [
+        "1. Fill in First Name, Last Name, Street Address, City, State, ZIP Code, Phone Number, Social Security Number, Username, Password, and Confirm Password",
+        "2. Click Register"
+      ],
+      "expected_result": "Page shows 'Account created successfully — please sign in.' and redirects to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Registration attempt with invalid email format",
+      "preconditions": ["User is on the registration page"],
+      "steps": [
+        "1. Fill in First Name, Last Name, Street Address, City, State, ZIP Code, Phone Number, Social Security Number, invalid Username, Password, and Confirm Password",
+        "2. Click Register"
+      ],
+      "expected_result": "An error message indicating invalid email format is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Registration attempt with maximum length for First Name",
+      "preconditions": ["User is on the registration page"],
+      "steps": [
+        "1. Fill in a First Name with maximum allowed characters",
+        "2. Fill in Last Name, Street Address, City, State, ZIP Code, Phone Number, Social Security Number, Username, Password, and Confirm Password",
+        "3. Click Register"
+      ],
+      "expected_result": "Page shows 'Account created successfully — please sign in.' and redirects to the login page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "View Accounts Overview after login",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Accounts Overview"
+      ],
+      "expected_result": "User sees a table of all accounts with balances and account details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Open a Checking account with valid initial deposit",
+      "preconditions": ["User logged in", "User has a funding account with sufficient balance"],
+      "steps": [
+        "1. Navigate to Open New Account",
+        "2. Select Checking account type",
+        "3. Enter valid Initial Deposit Amount ($25 or more)",
+        "4. Select Funding Source Account",
+        "5. Click Open Account"
+      ],
+      "expected_result": "Page shows 'Account opened successfully!' and redirects to Accounts Overview",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Open a Checking account with insufficient initial deposit",
+      "preconditions": ["User logged in", "User has a funding account with sufficient balance"],
+      "steps": [
+        "1. Navigate to Open New Account",
+        "2. Select Checking account type",
+        "3. Enter Initial Deposit Amount less than $25",
+        "4. Select Funding Source Account",
+        "5. Click Open Account"
+      ],
+      "expected_result": "An error message indicating minimum deposit requirement is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "Open a Savings account with the exact minimum deposit amount",
+      "preconditions": ["User logged in", "User has a funding account with at least $100"],
+      "steps": [
+        "1. Navigate to Open New Account",
+        "2. Select Savings account type",
+        "3. Enter exactly 100 in the Initial Deposit Amount field",
+        "4. Select Funding Source Account",
+        "5. Click Open Account"
+      ],
+      "expected_result": "Page shows 'Account opened successfully!' and redirects to Accounts Overview",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "Transfer funds between two internal ParaBank accounts",
+      "preconditions": ["User logged in", "At least two Checking or Savings accounts exist with sufficient balance"],
+      "steps": [
+        "1. Navigate to Transfer Funds",
+        "2. Select 'My ParaBank Account' as the transfer type",
+        "3. Enter valid transfer amount",
+        "4. Select source account from the Source Account dropdown",
+        "5. Select destination account from the destination dropdown",
+        "6. Click Transfer"
+      ],
+      "expected_result": "Page shows 'Transfer completed successfully.' with a transaction ID; account balances are updated accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Attempt a fund transfer with an amount exceeding the source account balance",
+      "preconditions": ["User logged in", "A Checking or Savings account exists with a known balance"],
+      "steps": [
+        "1. Navigate to Transfer Funds",
+        "2. Select 'My ParaBank Account' as the transfer type",
+        "3. Enter an amount greater than the source account balance",
+        "4. Select the source and a destination account",
+        "5. Click Transfer"
+      ],
+      "expected_result": "An error message 'Insufficient funds' is displayed; no transfer is processed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Transfer funds with the exact balance of the source account",
+      "preconditions": ["User logged in", "A Checking or Savings account exists with a known balance"],
+      "steps": [
+        "1. Navigate to Transfer Funds",
+        "2. Select 'My ParaBank Account' as the transfer type",
+        "3. Enter the exact balance amount of the source account",
+        "4. Select the source and a destination account",
+        "5. Click Transfer"
+      ],
+      "expected_result": "Page shows 'Transfer completed successfully.' with a transaction ID; source account balance is zero and destination account balance is updated",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Pay a bill successfully",
+      "preconditions": ["User logged in", "User has a funding account with sufficient balance"],
+      "steps": [
+        "1. Navigate to Bill Pay",
+        "2. Fill in Payee Name, Street Address, City, State, ZIP Code, Phone Number, Payee Account Number, Payment Amount",
+        "3. Select Source Account",
+        "4. Click Pay"
+      ],
+      "expected_result": "Page shows 'Payment submitted successfully.' with a reference code; account balances are updated accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Attempt to pay a bill with insufficient funds",
+      "preconditions": ["User logged in", "User has a funding account with insufficient balance"],
+      "steps": [
+        "1. Navigate to Bill Pay",
+        "2. Fill in Payee Name, Street Address, City, State, ZIP Code, Phone Number, Payee Account Number, Payment Amount",
+        "3. Select Source Account",
+        "4. Click Pay"
+      ],
+      "expected_result": "An error message 'Insufficient funds' is displayed; no payment is processed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "Pay a bill with the exact balance of the source account",
+      "preconditions": ["User logged in", "User has a funding account with a known balance"],
+      "steps": [
+        "1. Navigate to Bill Pay",
+        "2. Fill in Payee Name, Street Address, City, State, ZIP Code, Phone Number, Payee Account Number, Payment Amount equal to the source account balance",
+        "3. Select Source Account",
+        "4. Click Pay"
+      ],
+      "expected_result": "Page shows 'Payment submitted successfully.' with a reference code; source account balance is zero",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Request a loan successfully",
+      "preconditions": ["User logged in", "User has sufficient collateral"],
+      "steps": [
+        "1. Navigate to Request Loan",
+        "2. Select Personal loan type",
+        "3. Enter Loan Amount within range",
+        "4. Enter Down Payment Amount",
+        "5. Select Collateral Account",
+        "6. Click Request Loan"
+      ],
+      "expected_result": "Page shows 'Loan approved and created successfully!' with account details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Request a loan with insufficient collateral",
+      "preconditions": ["User logged in", "User has insufficient collateral"],
+      "steps": [
+        "1. Navigate to Request Loan",
+        "2. Select Personal loan type",
+        "3. Enter Loan Amount within range",
+        "4. Enter Down Payment Amount less than 10%",
+        "5. Select Collateral Account",
+        "6. Click Request Loan"
+      ],
+      "expected_result": "An error message indicating 'Inadequate collateral value' is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Request a loan with the maximum allowable loan amount",
+      "preconditions": ["User logged in", "User has sufficient collateral"],
+      "steps": [
+        "1. Navigate to Request Loan",
+        "2. Select Home loan type",
+        "3. Enter Loan Amount of $500,000",
+        "4. Enter Down Payment Amount of $100,000",
+        "5. Select Collateral Account",
+        "6. Click Request Loan"
+      ],
+      "expected_result": "Page shows 'Loan approved and created successfully!' with account details",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "Update contact information successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Update Contact Info",
+        "2. Edit First Name, Last Name, Street Address, City, State, ZIP Code, Phone Number",
+        "3. Click Update Profile"
+      ],
+      "expected_result": "Page shows 'Profile updated successfully.' and refreshes the data",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Attempt to update contact information with invalid ZIP Code",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Update Contact Info",
+        "2. Edit ZIP Code to an invalid format",
+        "3. Click Update Profile"
+      ],
+      "expected_result": "An error message indicating invalid ZIP Code format is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Update contact information with maximum length fields",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Update Contact Info",
+        "2. Edit First Name, Last Name, Street Address, City, State, and Phone Number to maximum allowed lengths",
+        "3. Click Update Profile"
+      ],
+      "expected_result": "Page shows 'Profile updated successfully.' and refreshes the data",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "Manage cards successfully by requesting a new card",
+      "preconditions": ["User logged in", "User has a valid account"],
+      "steps": [
+        "1. Navigate to Manage Cards",
+        "2. Fill in Card Type, Account to Link, Shipping Address",
+        "3. Click Request Card"
+      ],
+      "expected_result": "Page shows 'Card request submitted successfully.' with a tracking ID",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Attempt to request a card with incomplete address",
+      "preconditions": ["User logged in", "User has a valid account"],
+      "steps": [
+        "1. Navigate to Manage Cards",
+        "2. Fill in Card Type, Account to Link, but leave Shipping Address incomplete",
+        "3. Click Request Card"
+      ],
+      "expected_result": "An error message indicating incomplete address is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Request a card with maximum length shipping address",
+      "preconditions": ["User logged in", "User has a valid account"],
+      "steps": [
+        "1. Navigate to Manage Cards",
+        "2. Fill in Card Type, Account to Link, and Shipping Address with maximum allowed length",
+        "3. Click Request Card"
+      ],
+      "expected_result": "Page shows 'Card request submitted successfully.' with a tracking ID",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "Execute a trade successfully",
+      "preconditions": ["User logged in", "User has sufficient buying power"],
+      "steps": [
+        "1. Navigate to Investments",
+        "2. Select Buy action",
+        "3. Enter valid Fund Symbol",
+        "4. Enter Quantity",
+        "5. Select Funding Account",
+        "6. Click Execute Trade"
+      ],
+      "expected_result": "Page shows 'Trade executed successfully.' with an order ID; holdings are updated",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Attempt to execute a trade with insufficient buying power",
+      "preconditions": ["User logged in", "User has insufficient buying power"],
+      "steps": [
+        "1. Navigate to Investments",
+        "2. Select Buy action",
+        "3. Enter valid Fund Symbol",
+        "4. Enter Quantity that exceeds buying power",
+        "5. Select Funding Account",
+        "6. Click Execute Trade"
+      ],
+      "expected_result": "An error message indicating insufficient buying power is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-009",
+      "category": "edge",
+      "test_case": "Execute a trade with maximum allowable quantity",
+      "preconditions": ["User logged in", "User has sufficient buying power"],
+      "steps": [
+        "1. Navigate to Investments",
+        "2. Select Buy action",
+        "3. Enter valid Fund Symbol",
+        "4. Enter maximum allowable Quantity",
+        "5. Select Funding Account",
+        "6. Click Execute Trade"
+      ],
+      "expected_result": "Page shows 'Trade executed successfully.' with an order ID; holdings are updated",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-011",
+      "category": "positive",
+      "test_case": "Generate account statement successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Select Statement Period",
+        "3. Select Account",
+        "4. Click Generate Statement"
+      ],
+      "expected_result": "Page shows 'Statement generated successfully.' with the relevant transactions displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-010",
+      "category": "negative",
+      "test_case": "Attempt to generate statement with invalid date range",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Select invalid Statement Period",
+        "3. Select Account",
+        "4. Click Generate Statement"
+      ],
+      "expected_result": "An error message indicating invalid date range is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-010",
+      "category": "edge",
+      "test_case": "Generate statement for the maximum date range",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Select maximum allowable Statement Period",
+        "3. Select Account",
+        "4. Click Generate Statement"
+      ],
+      "expected_result": "Page shows 'Statement generated successfully.' with the relevant transactions displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-012",
+      "category": "positive",
+      "test_case": "Update e-statement preferences successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Check the e-statement preference checkbox",
+        "3. Enter valid Email Address",
+        "4. Click Save Preference"
+      ],
+      "expected_result": "Page shows 'e-Statement preference updated.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-011",
+      "category": "negative",
+      "test_case": "Attempt to update e-statement preferences with invalid email",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Check the e-statement preference checkbox",
+        "3. Enter invalid Email Address",
+        "4. Click Save Preference"
+      ],
+      "expected_result": "An error message indicating invalid email format is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-011",
+      "category": "edge",
+      "test_case": "Update e-statement preferences with maximum length email",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Account Statements",
+        "2. Check the e-statement preference checkbox",
+        "3. Enter maximum length valid Email Address",
+        "4. Click Save Preference"
+      ],
+      "expected_result": "Page shows 'e-Statement preference updated.'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-013",
+      "category": "positive",
+      "test_case": "Change password successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Security Settings",
+        "2. Enter Current Password",
+        "3. Enter New Password",
+        "4. Confirm New Password",
+        "5. Click Change Password"
+      ],
+      "expected_result": "Page shows 'Password changed successfully.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-012",
+      "category": "negative",
+      "test_case": "Attempt to change password with incorrect current password",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Security Settings",
+        "2. Enter incorrect Current Password",
+        "3. Enter New Password",
+        "4. Confirm New Password",
+        "5. Click Change Password"
+      ],
+      "expected_result": "An error message indicating incorrect current password is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-012",
+      "category": "edge",
+      "test_case": "Change password to maximum length password",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Security Settings",
+        "2. Enter Current Password",
+        "3. Enter maximum length New Password",
+        "4. Confirm New Password",
+        "5. Click Change Password"
+      ],
+      "expected_result": "Page shows 'Password changed successfully.'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-014",
+      "category": "positive",
+      "test_case": "Send a secure message successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Fill in Subject, select Category, and enter Message Body",
+        "3. Click Send Message"
+      ],
+      "expected_result": "Page shows 'Message sent successfully.' with a ticket ID",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-013",
+      "category": "negative",
+      "test_case": "Attempt to send a secure message with missing subject",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Leave Subject empty, select Category, and enter Message Body",
+        "3. Click Send Message"
+      ],
+      "expected_result": "An error message indicating subject is required is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-013",
+      "category": "edge",
+      "test_case": "Send a secure message with maximum length subject",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Fill in maximum length Subject, select Category, and enter Message Body",
+        "3. Click Send Message"
+      ],
+      "expected_result": "Page shows 'Message sent successfully.' with a ticket ID",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-014",
+      "category": "positive",
+      "test_case": "Request a callback successfully",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Select Reason for Call, enter Preferred Date and Time Window",
+        "3. Click Request Callback"
+      ],
+      "expected_result": "Page shows 'Callback request submitted.' and sends an email confirmation",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-014",
+      "category": "negative",
+      "test_case": "Attempt to request a callback with invalid date",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Select Reason for Call, enter a date that is not the next business day",
+        "3. Click Request Callback"
+      ],
+      "expected_result": "An error message indicating the date must be at least the next business day is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-014",
+      "category": "edge",
+      "test_case": "Request a callback with maximum length phone number",
+      "preconditions": ["User logged in"],
+      "steps": [
+        "1. Navigate to Support Center",
+        "2. Select Reason for Call, enter Preferred Date and Time Window, and maximum length Phone Number",
+        "3. Click Request Callback"
+      ],
+      "expected_result": "Page shows 'Callback request submitted.' and sends an email confirmation",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 114,
+    "high_priority": 66,
+    "medium_priority": 36,
+    "low_priority": 0
+  }
+}

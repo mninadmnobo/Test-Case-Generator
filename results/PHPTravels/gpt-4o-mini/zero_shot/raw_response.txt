@@ -1,0 +1,471 @@
+{
+  "module": "PHPTravels",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful hotel search",
+      "preconditions": ["User is on the home page", "User selects the Hotels tab"],
+      "steps": ["1. Enter a valid destination", "2. Select check-in and check-out dates", "3. Enter number of rooms and guests", "4. Click on the Search button"],
+      "expected_result": "User is redirected to the hotel listing page with relevant results displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Hotel search with missing destination",
+      "preconditions": ["User is on the home page", "User selects the Hotels tab"],
+      "steps": ["1. Leave the destination field empty", "2. Select check-in and check-out dates", "3. Enter number of rooms and guests", "4. Click on the Search button"],
+      "expected_result": "Inline error message appears indicating that the destination is required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "edge",
+      "test_case": "Hotel search with maximum guest count",
+      "preconditions": ["User is on the home page", "User selects the Hotels tab"],
+      "steps": ["1. Enter a valid destination", "2. Select check-in and check-out dates", "3. Enter maximum number of rooms (e.g., 10)", "4. Enter maximum guest count (e.g., 20 adults)", "5. Click on the Search button"],
+      "expected_result": "User is redirected to the hotel listing page with relevant results displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "positive",
+      "test_case": "Successful flight search",
+      "preconditions": ["User is on the home page", "User selects the Flights tab"],
+      "steps": ["1. Select trip type (Round-trip)", "2. Enter departure and arrival cities", "3. Select travel dates", "4. Enter passenger count", "5. Select cabin class", "6. Click on the Search button"],
+      "expected_result": "User is redirected to the flight listing page with relevant results displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "negative",
+      "test_case": "Flight search with invalid email format",
+      "preconditions": ["User is on the home page", "User selects the Flights tab"],
+      "steps": ["1. Enter an invalid email format in the email field", "2. Click on the Search button"],
+      "expected_result": "Inline error message appears indicating that the email format is invalid",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "edge",
+      "test_case": "Flight search with maximum passenger count",
+      "preconditions": ["User is on the home page", "User selects the Flights tab"],
+      "steps": ["1. Select trip type (Round-trip)", "2. Enter departure and arrival cities", "3. Select travel dates", "4. Enter maximum passenger count (e.g., 9 adults)", "5. Click on the Search button"],
+      "expected_result": "User is redirected to the flight listing page with relevant results displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "positive",
+      "test_case": "Successful tour search",
+      "preconditions": ["User is on the home page", "User selects the Tours tab"],
+      "steps": ["1. Enter a valid destination", "2. Select travel dates", "3. Select tour type", "4. Click on the Search button"],
+      "expected_result": "User is redirected to the tour listing page with relevant results displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "negative",
+      "test_case": "Tour search with missing travel dates",
+      "preconditions": ["User is on the home page", "User selects the Tours tab"],
+      "steps": ["1. Enter a valid destination", "2. Leave travel dates empty", "3. Select tour type", "4. Click on the Search button"],
+      "expected_result": "Inline error message appears indicating that travel dates are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "edge",
+      "test_case": "Tour search with maximum duration",
+      "preconditions": ["User is on the home page", "User selects the Tours tab"],
+      "steps": ["1. Enter a valid destination", "2. Select travel dates", "3. Enter maximum duration (e.g., 30 days)", "4. Click on the Search button"],
+      "expected_result": "User is redirected to the tour listing page with relevant results displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "positive",
+      "test_case": "Successful car rental search",
+      "preconditions": ["User is on the home page", "User selects the Cars tab"],
+      "steps": ["1. Enter pick-up and drop-off locations", "2. Select pick-up and drop-off dates and times", "3. Enter driver age", "4. Click on the Search button"],
+      "expected_result": "User is redirected to the car listing page with relevant results displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "negative",
+      "test_case": "Car rental search with missing pick-up location",
+      "preconditions": ["User is on the home page", "User selects the Cars tab"],
+      "steps": ["1. Leave the pick-up location empty", "2. Select drop-off location", "3. Select pick-up and drop-off dates and times", "4. Enter driver age", "5. Click on the Search button"],
+      "expected_result": "Inline error message appears indicating that the pick-up location is required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "edge",
+      "test_case": "Car rental search with maximum driver age",
+      "preconditions": ["User is on the home page", "User selects the Cars tab"],
+      "steps": ["1. Enter pick-up and drop-off locations", "2. Select pick-up and drop-off dates and times", "3. Enter maximum driver age (e.g., 100)", "4. Click on the Search button"],
+      "expected_result": "User is redirected to the car listing page with relevant results displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "positive",
+      "test_case": "Successful user registration",
+      "preconditions": ["User is on the registration page"],
+      "steps": ["1. Fill in all required fields with valid data", "2. Accept Terms and Conditions", "3. Click on the Register button"],
+      "expected_result": "User account is created, and user is redirected to the dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "negative",
+      "test_case": "User registration with mismatched passwords",
+      "preconditions": ["User is on the registration page"],
+      "steps": ["1. Fill in all required fields with valid data", "2. Enter different values in Password and Confirm Password fields", "3. Click on the Register button"],
+      "expected_result": "Inline error message appears indicating that passwords do not match",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "edge",
+      "test_case": "User registration with maximum length fields",
+      "preconditions": ["User is on the registration page"],
+      "steps": ["1. Fill in all fields with maximum allowed characters", "2. Accept Terms and Conditions", "3. Click on the Register button"],
+      "expected_result": "User account is created, and user is redirected to the dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "positive",
+      "test_case": "Successful user login",
+      "preconditions": ["User has a registered account", "User is on the login page"],
+      "steps": ["1. Enter valid email and password", "2. Click on the Login button"],
+      "expected_result": "User is redirected to their dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "negative",
+      "test_case": "User login with invalid credentials",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter invalid email and/or password", "2. Click on the Login button"],
+      "expected_result": "Inline error message appears indicating invalid credentials, and password field is cleared",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "edge",
+      "test_case": "User login after multiple failed attempts",
+      "preconditions": ["User is on the login page", "User has attempted to log in with invalid credentials multiple times"],
+      "steps": ["1. Enter invalid email and password", "2. Click on the Login button multiple times"],
+      "expected_result": "User is prompted with CAPTCHA verification after several failed attempts",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "positive",
+      "test_case": "Successful password reset request",
+      "preconditions": ["User is on the forgot password page"],
+      "steps": ["1. Enter a registered email address", "2. Click on the Reset Password button"],
+      "expected_result": "Confirmation message is shown, and a reset link is sent to the email",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "negative",
+      "test_case": "Password reset request with unregistered email",
+      "preconditions": ["User is on the forgot password page"],
+      "steps": ["1. Enter an unregistered email address", "2. Click on the Reset Password button"],
+      "expected_result": "Inline error message appears indicating that the email is not found",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "edge",
+      "test_case": "Password reset link expiration",
+      "preconditions": ["User has requested a password reset link"],
+      "steps": ["1. Wait for 24 hours", "2. Click on the reset link in the email"],
+      "expected_result": "Error message appears indicating that the reset link has expired",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC022",
+      "category": "positive",
+      "test_case": "Successful hotel booking",
+      "preconditions": ["User is logged in", "User is on the hotel details page"],
+      "steps": ["1. Select a room", "2. Fill in booking form with valid details", "3. Click on the Book Now button"],
+      "expected_result": "User is redirected to the payment page with booking summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC023",
+      "category": "negative",
+      "test_case": "Hotel booking with missing required fields",
+      "preconditions": ["User is logged in", "User is on the hotel details page"],
+      "steps": ["1. Select a room", "2. Leave required fields empty in the booking form", "3. Click on the Book Now button"],
+      "expected_result": "Inline error messages appear indicating which fields are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC024",
+      "category": "edge",
+      "test_case": "Hotel booking with maximum length fields",
+      "preconditions": ["User is logged in", "User is on the hotel details page"],
+      "steps": ["1. Select a room", "2. Fill in booking form with maximum allowed characters", "3. Click on the Book Now button"],
+      "expected_result": "User is redirected to the payment page with booking summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC025",
+      "category": "positive",
+      "test_case": "Successful flight booking",
+      "preconditions": ["User is logged in", "User is on the flight details page"],
+      "steps": ["1. Fill in passenger details", "2. Click on Continue button"],
+      "expected_result": "User is redirected to the payment page with flight itinerary summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC026",
+      "category": "negative",
+      "test_case": "Flight booking with missing passenger details",
+      "preconditions": ["User is logged in", "User is on the flight details page"],
+      "steps": ["1. Leave required fields empty in the booking form", "2. Click on Continue button"],
+      "expected_result": "Inline error messages appear indicating which fields are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC027",
+      "category": "edge",
+      "test_case": "Flight booking with maximum length fields",
+      "preconditions": ["User is logged in", "User is on the flight details page"],
+      "steps": ["1. Fill in booking form with maximum allowed characters", "2. Click on Continue button"],
+      "expected_result": "User is redirected to the payment page with flight itinerary summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC028",
+      "category": "positive",
+      "test_case": "Successful tour booking",
+      "preconditions": ["User is logged in", "User is on the tour details page"],
+      "steps": ["1. Select a departure date", "2. Fill in traveler details", "3. Click on Book Now button"],
+      "expected_result": "User is redirected to the payment page with tour summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC029",
+      "category": "negative",
+      "test_case": "Tour booking with missing traveler details",
+      "preconditions": ["User is logged in", "User is on the tour details page"],
+      "steps": ["1. Leave required fields empty in the booking form", "2. Click on Book Now button"],
+      "expected_result": "Inline error messages appear indicating which fields are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC030",
+      "category": "edge",
+      "test_case": "Tour booking with maximum length fields",
+      "preconditions": ["User is logged in", "User is on the tour details page"],
+      "steps": ["1. Fill in booking form with maximum allowed characters", "2. Click on Book Now button"],
+      "expected_result": "User is redirected to the payment page with tour summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC031",
+      "category": "positive",
+      "test_case": "Successful car booking",
+      "preconditions": ["User is logged in", "User is on the car details page"],
+      "steps": ["1. Fill in driver details", "2. Select insurance options", "3. Click on Confirm Booking button"],
+      "expected_result": "User is redirected to the payment page with car rental summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC032",
+      "category": "negative",
+      "test_case": "Car booking with missing driver details",
+      "preconditions": ["User is logged in", "User is on the car details page"],
+      "steps": ["1. Leave required fields empty in the booking form", "2. Click on Confirm Booking button"],
+      "expected_result": "Inline error messages appear indicating which fields are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC033",
+      "category": "edge",
+      "test_case": "Car booking with maximum length fields",
+      "preconditions": ["User is logged in", "User is on the car details page"],
+      "steps": ["1. Fill in booking form with maximum allowed characters", "2. Click on Confirm Booking button"],
+      "expected_result": "User is redirected to the payment page with car rental summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC034",
+      "category": "positive",
+      "test_case": "Successful visa application submission",
+      "preconditions": ["User is logged in", "User is on the visa services page"],
+      "steps": ["1. Fill in personal and travel details", "2. Upload required documents", "3. Click on Submit button"],
+      "expected_result": "Confirmation message is shown, and application status is updated",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC035",
+      "category": "negative",
+      "test_case": "Visa application submission with missing documents",
+      "preconditions": ["User is logged in", "User is on the visa services page"],
+      "steps": ["1. Fill in personal and travel details", "2. Leave document upload section empty", "3. Click on Submit button"],
+      "expected_result": "Inline error message appears indicating that documents are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC036",
+      "category": "edge",
+      "test_case": "Visa application with maximum length fields",
+      "preconditions": ["User is logged in", "User is on the visa services page"],
+      "steps": ["1. Fill in application form with maximum allowed characters", "2. Upload required documents", "3. Click on Submit button"],
+      "expected_result": "Confirmation message is shown, and application status is updated",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC037",
+      "category": "positive",
+      "test_case": "Successful logout",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Click on the Logout button"],
+      "expected_result": "User is logged out and redirected to the home page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC038",
+      "category": "negative",
+      "test_case": "Access protected page after logout",
+      "preconditions": ["User is logged out"],
+      "steps": ["1. Attempt to access a protected page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC039",
+      "category": "edge",
+      "test_case": "Logout during an ongoing booking process",
+      "preconditions": ["User is logged in", "User is on the booking page"],
+      "steps": ["1. Click on the Logout button"],
+      "expected_result": "User is logged out and redirected to the home page, with no booking saved",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC040",
+      "category": "positive",
+      "test_case": "Successful currency selection",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Select a different currency from the currency selector", "2. Observe the price updates"],
+      "expected_result": "All prices on the page are updated to the selected currency",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC041",
+      "category": "negative",
+      "test_case": "Currency selection with unsupported currency",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Attempt to select an unsupported currency", "2. Observe the response"],
+      "expected_result": "Inline error message appears indicating that the currency is not supported",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC042",
+      "category": "edge",
+      "test_case": "Currency selection with rapid changes",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Rapidly change currency multiple times", "2. Observe the price updates"],
+      "expected_result": "Prices update correctly without errors or delays",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC043",
+      "category": "positive",
+      "test_case": "Successful language selection",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Select a different language from the language selector", "2. Observe the interface updates"],
+      "expected_result": "All text on the page is updated to the selected language",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC044",
+      "category": "negative",
+      "test_case": "Language selection with unsupported language",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Attempt to select an unsupported language", "2. Observe the response"],
+      "expected_result": "Inline error message appears indicating that the language is not supported",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC045",
+      "category": "edge",
+      "test_case": "Language selection with rapid changes",
+      "preconditions": ["User is on any page"],
+      "steps": ["1. Rapidly change language multiple times", "2. Observe the interface updates"],
+      "expected_result": "Interface updates correctly without errors or delays",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC046",
+      "category": "positive",
+      "test_case": "Successful review submission",
+      "preconditions": ["User is logged in", "User has completed a booking"],
+      "steps": ["1. Navigate to the Reviews section", "2. Fill in the review form with valid data", "3. Click on Submit button"],
+      "expected_result": "Review is submitted successfully and appears in the reviews section",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC047",
+      "category": "negative",
+      "test_case": "Review submission with missing required fields",
+      "preconditions": ["User is logged in", "User has completed a booking"],
+      "steps": ["1. Navigate to the Reviews section", "2. Leave required fields empty in the review form", "3. Click on Submit button"],
+      "expected_result": "Inline error messages appear indicating which fields are required",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC048",
+      "category": "edge",
+      "test_case": "Review submission with maximum length fields",
+      "preconditions": ["User is logged in", "User has completed a booking"],
+      "steps": ["1. Navigate to the Reviews section", "2. Fill in the review form with maximum allowed characters", "3. Click on Submit button"],
+      "expected_result": "Review is submitted successfully and appears in the reviews section",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC049",
+      "category": "positive",
+      "test_case": "Successful offer application",
+      "preconditions": ["User is on the Offers page"],
+      "steps": ["1. Click on a Book Now button for a deal", "2. Observe the application of the promotional code"],
+      "expected_result": "User is redirected to the booking flow with the discount applied",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC050",
+      "category": "negative",
+      "test_case": "Offer application with expired deal",
+      "preconditions": ["User is on the Offers page"],
+      "steps": ["1. Click on a Book Now button for an expired deal", "2. Observe the response"],
+      "expected_result": "Inline error message appears indicating that the deal has expired",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC051",
+      "category": "edge",
+      "test_case": "Offer application with rapid clicks",
+      "preconditions": ["User is on the Offers page"],
+      "steps": ["1. Rapidly click on multiple Book Now buttons", "2. Observe the response"],
+      "expected_result": "System handles the requests without errors or delays",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 51,
+    "high_priority": 30,
+    "medium_priority": 21,
+    "low_priority": 0
+  }
+}

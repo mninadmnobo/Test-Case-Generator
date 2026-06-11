@@ -1,0 +1,507 @@
+{
+  "module": "Parabank",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": ["User has a registered account with valid credentials."],
+      "steps": ["1. Navigate to the login page.", "2. Enter valid Email/Username.", "3. Enter valid Password.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees 'Signed in successfully.' and is redirected to the Accounts Overview page.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Login failure with incorrect password",
+      "preconditions": ["User has a registered account."],
+      "steps": ["1. Navigate to the login page.", "2. Enter valid Email/Username.", "3. Enter incorrect Password.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees 'Incorrect email or password. Please try again.' and password field is cleared.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "edge",
+      "test_case": "Login with maximum length username and password",
+      "preconditions": ["User has a registered account with maximum length credentials."],
+      "steps": ["1. Navigate to the login page.", "2. Enter maximum length Email/Username.", "3. Enter maximum length Password.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees 'Signed in successfully.' and is redirected to the Accounts Overview page.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "negative",
+      "test_case": "Login failure with empty username",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page.", "2. Leave Email/Username field empty.", "3. Enter valid Password.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees an error message indicating that the Email/Username is required.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "negative",
+      "test_case": "Login failure with empty password",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page.", "2. Enter valid Email/Username.", "3. Leave Password field empty.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees an error message indicating that the Password is required.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "edge",
+      "test_case": "Login with email format edge case",
+      "preconditions": [],
+      "steps": ["1. Navigate to the login page.", "2. Enter an email with special characters (e.g., test+123@example.com).", "3. Enter valid Password.", "4. Click on 'Sign In' button."],
+      "expected_result": "User sees 'Signed in successfully.' and is redirected to the Accounts Overview page.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "positive",
+      "test_case": "Successful registration with valid data",
+      "preconditions": [],
+      "steps": ["1. Navigate to the registration page.", "2. Fill in all required fields with valid data.", "3. Click on 'Register' button."],
+      "expected_result": "User sees 'Account created successfully — please sign in.' and is redirected to the login page.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "negative",
+      "test_case": "Registration failure with invalid email format",
+      "preconditions": [],
+      "steps": ["1. Navigate to the registration page.", "2. Enter invalid email format in Username field.", "3. Fill in other fields with valid data.", "4. Click on 'Register' button."],
+      "expected_result": "User sees an error message indicating that the Username must be a valid email format.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "negative",
+      "test_case": "Registration failure with mismatched passwords",
+      "preconditions": [],
+      "steps": ["1. Navigate to the registration page.", "2. Fill in all fields with valid data.", "3. Enter different values in Password and Confirm Password fields.", "4. Click on 'Register' button."],
+      "expected_result": "User sees an error message indicating that Password and Confirm Password must match.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "edge",
+      "test_case": "Registration with maximum length fields",
+      "preconditions": [],
+      "steps": ["1. Navigate to the registration page.", "2. Fill in all fields with maximum length data.", "3. Click on 'Register' button."],
+      "expected_result": "User sees 'Account created successfully — please sign in.' and is redirected to the login page.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "negative",
+      "test_case": "Registration failure with empty required fields",
+      "preconditions": [],
+      "steps": ["1. Navigate to the registration page.", "2. Leave required fields empty.", "3. Click on 'Register' button."],
+      "expected_result": "User sees error messages indicating that required fields must be filled.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "positive",
+      "test_case": "View accounts overview after successful login",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Accounts Overview page."],
+      "expected_result": "User sees a welcome message with their name and a table of all customer accounts.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "positive",
+      "test_case": "Open new checking account with valid data",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Open New Account page.", "2. Select Checking account type.", "3. Enter valid Initial Deposit Amount ($25 or more).", "4. Select Funding Source Account.", "5. Click on 'Open Account' button."],
+      "expected_result": "User sees 'Account opened successfully!' and is redirected to accounts overview.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "negative",
+      "test_case": "Open new checking account with insufficient initial deposit",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Open New Account page.", "2. Select Checking account type.", "3. Enter Initial Deposit Amount less than $25.", "4. Select Funding Source Account.", "5. Click on 'Open Account' button."],
+      "expected_result": "User sees an error message indicating that the deposit must be at least $25.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "edge",
+      "test_case": "Open new savings account with maximum initial deposit",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Open New Account page.", "2. Select Savings account type.", "3. Enter maximum valid Initial Deposit Amount.", "4. Select Funding Source Account.", "5. Click on 'Open Account' button."],
+      "expected_result": "User sees 'Account opened successfully!' and is redirected to accounts overview.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "negative",
+      "test_case": "Open new account without selecting account type",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Open New Account page.", "2. Leave account type unselected.", "3. Enter valid Initial Deposit Amount.", "4. Select Funding Source Account.", "5. Click on 'Open Account' button."],
+      "expected_result": "User sees an error message indicating that an account type must be selected.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "positive",
+      "test_case": "Transfer funds between accounts successfully",
+      "preconditions": ["User is logged in with sufficient funds in source account."],
+      "steps": ["1. Navigate to the Transfer Funds page.", "2. Select 'My ParaBank Account' as transfer type.", "3. Enter valid Transfer Amount.", "4. Select Source Account.", "5. Select Destination Account.", "6. Click on 'Transfer' button."],
+      "expected_result": "User sees 'Transfer completed successfully.' with a transaction ID.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "negative",
+      "test_case": "Transfer funds with insufficient funds in source account",
+      "preconditions": ["User is logged in with insufficient funds in source account."],
+      "steps": ["1. Navigate to the Transfer Funds page.", "2. Select 'My ParaBank Account' as transfer type.", "3. Enter Transfer Amount greater than available balance.", "4. Select Source Account.", "5. Select Destination Account.", "6. Click on 'Transfer' button."],
+      "expected_result": "User sees 'Insufficient funds' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "negative",
+      "test_case": "Transfer funds with invalid external account number",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Transfer Funds page.", "2. Select 'External Account' as transfer type.", "3. Enter valid Transfer Amount.", "4. Select Source Account.", "5. Enter invalid external account number.", "6. Confirm external account number with a different value.", "7. Click on 'Transfer' button."],
+      "expected_result": "User sees 'Account numbers do not match.' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "edge",
+      "test_case": "Transfer funds with maximum transfer amount",
+      "preconditions": ["User is logged in with sufficient funds."],
+      "steps": ["1. Navigate to the Transfer Funds page.", "2. Select 'My ParaBank Account' as transfer type.", "3. Enter maximum valid Transfer Amount.", "4. Select Source Account.", "5. Select Destination Account.", "6. Click on 'Transfer' button."],
+      "expected_result": "User sees 'Transfer completed successfully.' with a transaction ID.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "positive",
+      "test_case": "Pay a bill successfully",
+      "preconditions": ["User is logged in with sufficient funds."],
+      "steps": ["1. Navigate to the Bill Pay page.", "2. Fill in all required fields with valid data.", "3. Click on 'Pay' button."],
+      "expected_result": "User sees 'Payment submitted successfully.' with a reference code.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC022",
+      "category": "negative",
+      "test_case": "Bill payment failure with insufficient funds",
+      "preconditions": ["User is logged in with insufficient funds."],
+      "steps": ["1. Navigate to the Bill Pay page.", "2. Fill in all required fields with valid data.", "3. Enter Payment Amount greater than available balance.", "4. Click on 'Pay' button."],
+      "expected_result": "User sees 'Insufficient funds' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC023",
+      "category": "negative",
+      "test_case": "Bill payment failure with mismatched account numbers",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Bill Pay page.", "2. Fill in all required fields with valid data.", "3. Enter different values in Payee Account Number and Confirm Account Number fields.", "4. Click on 'Pay' button."],
+      "expected_result": "User sees 'Account numbers do not match.' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC024",
+      "category": "edge",
+      "test_case": "Pay a bill with maximum payment amount",
+      "preconditions": ["User is logged in with sufficient funds."],
+      "steps": ["1. Navigate to the Bill Pay page.", "2. Fill in all required fields with maximum valid Payment Amount.", "3. Click on 'Pay' button."],
+      "expected_result": "User sees 'Payment submitted successfully.' with a reference code.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC025",
+      "category": "positive",
+      "test_case": "Request a loan successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Request Loan page.", "2. Select loan type (e.g., Personal).", "3. Enter valid Loan Amount within range.", "4. Enter valid Down Payment Amount.", "5. Select Collateral Account.", "6. Click on 'Request Loan' button."],
+      "expected_result": "User sees 'Loan approved and created successfully!' with account details.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC026",
+      "category": "negative",
+      "test_case": "Loan request failure with insufficient down payment",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Request Loan page.", "2. Select loan type (e.g., Personal).", "3. Enter valid Loan Amount.", "4. Enter Down Payment Amount less than 10%.", "5. Select Collateral Account.", "6. Click on 'Request Loan' button."],
+      "expected_result": "User sees 'Minimum down payment requirement not met.' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC027",
+      "category": "negative",
+      "test_case": "Loan request failure with inadequate collateral value",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Request Loan page.", "2. Select loan type (e.g., Auto).", "3. Enter valid Loan Amount.", "4. Enter valid Down Payment Amount.", "5. Select Collateral Account with insufficient value.", "6. Click on 'Request Loan' button."],
+      "expected_result": "User sees 'Inadequate collateral value.' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC028",
+      "category": "edge",
+      "test_case": "Request a loan with maximum loan amount",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Request Loan page.", "2. Select loan type (e.g., Home).", "3. Enter maximum valid Loan Amount.", "4. Enter valid Down Payment Amount.", "5. Select Collateral Account.", "6. Click on 'Request Loan' button."],
+      "expected_result": "User sees 'Loan approved and created successfully!' with account details.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC029",
+      "category": "negative",
+      "test_case": "Update contact info with invalid phone number format",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Update Contact Info page.", "2. Enter invalid Phone Number format.", "3. Click on 'Update Profile' button."],
+      "expected_result": "User sees an error message indicating that the Phone Number must follow the format (123) 456-7890.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC030",
+      "category": "positive",
+      "test_case": "Update contact info successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Update Contact Info page.", "2. Fill in all fields with valid data.", "3. Click on 'Update Profile' button."],
+      "expected_result": "User sees 'Profile updated successfully.' and data is refreshed.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC031",
+      "category": "negative",
+      "test_case": "Update contact info with empty required fields",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Update Contact Info page.", "2. Leave required fields empty.", "3. Click on 'Update Profile' button."],
+      "expected_result": "User sees error messages indicating that required fields must be filled.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC032",
+      "category": "positive",
+      "test_case": "Manage cards - request card successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Manage Cards page.", "2. Fill in all fields in the card request form with valid data.", "3. Click on 'Request Card' button."],
+      "expected_result": "User sees 'Card request submitted successfully.' with a tracking ID.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC033",
+      "category": "negative",
+      "test_case": "Manage cards - request card with incomplete address",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Manage Cards page.", "2. Fill in all fields in the card request form but leave Shipping Address incomplete.", "3. Click on 'Request Card' button."],
+      "expected_result": "User sees an error message indicating that the Shipping Address must be complete.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC034",
+      "category": "positive",
+      "test_case": "Manage cards - update card controls successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Manage Cards page.", "2. Select an existing card from the dropdown.", "3. Set a new Spending Limit within policy.", "4. Click on 'Update Controls' button."],
+      "expected_result": "User sees 'Card controls updated successfully.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC035",
+      "category": "negative",
+      "test_case": "Manage cards - update card controls with invalid spending limit",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Manage Cards page.", "2. Select an existing card from the dropdown.", "3. Set a Spending Limit above policy.", "4. Click on 'Update Controls' button."],
+      "expected_result": "User sees an error message indicating that the Spending Limit exceeds policy.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC036",
+      "category": "positive",
+      "test_case": "Investments - execute trade successfully",
+      "preconditions": ["User is logged in with sufficient buying power."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the trade funds form with valid data.", "3. Click on 'Execute Trade' button."],
+      "expected_result": "User sees 'Trade executed successfully.' with an order ID.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC037",
+      "category": "negative",
+      "test_case": "Investments - execute trade with insufficient buying power",
+      "preconditions": ["User is logged in with insufficient buying power."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the trade funds form with valid data but insufficient quantity.", "3. Click on 'Execute Trade' button."],
+      "expected_result": "User sees an error message indicating insufficient buying power.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC038",
+      "category": "edge",
+      "test_case": "Investments - execute trade with maximum quantity",
+      "preconditions": ["User is logged in with sufficient buying power."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the trade funds form with maximum valid quantity.", "3. Click on 'Execute Trade' button."],
+      "expected_result": "User sees 'Trade executed successfully.' with an order ID.",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC039",
+      "category": "positive",
+      "test_case": "Create recurring investment plan successfully",
+      "preconditions": ["User is logged in with sufficient funds."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the recurring investment plan form with valid data.", "3. Click on 'Create Plan' button."],
+      "expected_result": "User sees 'Plan created successfully.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC040",
+      "category": "negative",
+      "test_case": "Create recurring investment plan with insufficient funds",
+      "preconditions": ["User is logged in with insufficient funds."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the recurring investment plan form with valid data but insufficient funds.", "3. Click on 'Create Plan' button."],
+      "expected_result": "User sees an error message indicating insufficient funds.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC041",
+      "category": "negative",
+      "test_case": "Create recurring investment plan with past start date",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Investments page.", "2. Fill in all fields in the recurring investment plan form with a past Start Date.", "3. Click on 'Create Plan' button."],
+      "expected_result": "User sees an error message indicating that the Start Date must be in the future.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC042",
+      "category": "positive",
+      "test_case": "Generate account statement successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Account Statements page.", "2. Select valid Statement Period and Account.", "3. Click on 'Generate Statement' button."],
+      "expected_result": "User sees 'Statement generated successfully.' with the relevant transactions.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC043",
+      "category": "negative",
+      "test_case": "Generate account statement with invalid date range",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Account Statements page.", "2. Select invalid Statement Period (e.g., end date before start date).", "3. Click on 'Generate Statement' button."],
+      "expected_result": "User sees 'Unable to generate statement — please try again later.' error message.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC044",
+      "category": "positive",
+      "test_case": "Update e-statement preference successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Account Statements page.", "2. Check the e-statement preference checkbox.", "3. Enter valid Email Address.", "4. Click on 'Save Preference' button."],
+      "expected_result": "User sees 'e-Statement preference updated.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC045",
+      "category": "negative",
+      "test_case": "Update e-statement preference with invalid email format",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Account Statements page.", "2. Check the e-statement preference checkbox.", "3. Enter invalid Email Address.", "4. Click on 'Save Preference' button."],
+      "expected_result": "User sees an error message indicating that the Email Address must be valid.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC046",
+      "category": "positive",
+      "test_case": "Change password successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Security Settings page.", "2. Enter valid Current Password.", "3. Enter valid New Password.", "4. Confirm New Password.", "5. Click on 'Change Password' button."],
+      "expected_result": "User sees 'Password changed successfully.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC047",
+      "category": "negative",
+      "test_case": "Change password with incorrect current password",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Security Settings page.", "2. Enter incorrect Current Password.", "3. Enter valid New Password.", "4. Confirm New Password.", "5. Click on 'Change Password' button."],
+      "expected_result": "User sees an error message indicating that the current password is incorrect.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC048",
+      "category": "negative",
+      "test_case": "Change password with mismatched new passwords",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Security Settings page.", "2. Enter valid Current Password.", "3. Enter New Password.", "4. Enter different Confirm New Password.", "5. Click on 'Change Password' button."],
+      "expected_result": "User sees an error message indicating that New Password and Confirm New Password must match.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC049",
+      "category": "edge",
+      "test_case": "Change password with maximum length new password",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Security Settings page.", "2. Enter valid Current Password.", "3. Enter maximum length New Password.", "4. Confirm maximum length New Password.", "5. Click on 'Change Password' button."],
+      "expected_result": "User sees 'Password changed successfully.'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC050",
+      "category": "positive",
+      "test_case": "Send secure message successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Fill in all fields in the secure message form with valid data.", "3. Click on 'Send Message' button."],
+      "expected_result": "User sees 'Message sent successfully.' with a ticket ID.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC051",
+      "category": "negative",
+      "test_case": "Send secure message with empty subject",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Leave Subject field empty.", "3. Fill in other fields with valid data.", "4. Click on 'Send Message' button."],
+      "expected_result": "User sees an error message indicating that the Subject is required.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC052",
+      "category": "negative",
+      "test_case": "Send secure message with empty message body",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Fill in Subject field with valid data.", "3. Leave Message Body empty.", "4. Click on 'Send Message' button."],
+      "expected_result": "User sees an error message indicating that the Message Body is required.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC053",
+      "category": "positive",
+      "test_case": "Request callback successfully",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Fill in all fields in the schedule callback form with valid data.", "3. Click on 'Request Callback' button."],
+      "expected_result": "User sees 'Callback request submitted.' and receives an email confirmation.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC054",
+      "category": "negative",
+      "test_case": "Request callback with past preferred date",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Fill in all fields in the schedule callback form with a past Preferred Date.", "3. Click on 'Request Callback' button."],
+      "expected_result": "User sees an error message indicating that the Preferred Date must be at least the next business day.",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC055",
+      "category": "negative",
+      "test_case": "Request callback with invalid phone number format",
+      "preconditions": ["User is logged in."],
+      "steps": ["1. Navigate to the Support Center page.", "2. Fill in all fields in the schedule callback form with an invalid Phone Number format.", "3. Click on 'Request Callback' button."],
+      "expected_result": "User sees an error message indicating that the Phone Number must follow the format (123) 456-7890.",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 55,
+    "high_priority": 43,
+    "medium_priority": 12,
+    "low_priority": 0
+  }
+}

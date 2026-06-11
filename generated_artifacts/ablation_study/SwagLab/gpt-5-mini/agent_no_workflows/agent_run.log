@@ -1,0 +1,156 @@
+run_id: swaglab-20260611-004304-4697e7
+  Sidecar: generated_artifacts\.checkpoints\swaglab-20260611-004304-4697e7.json
+  Output directory: generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows
+  (use `--resume swaglab-20260611-004304-4697e7` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: swaglab-20260611-004304-4697e7
+
+[1/4] Generating Structural Model with critic-guided retry (9 module(s))...
+    [00:43:04] >> Structural Model Agent | sending request (~835 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~546 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~431 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~355 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~505 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~388 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~314 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~291 chars)
+    [00:43:04] >> Structural Model Agent | sending request (~266 chars)
+    [00:43:14] << Structural Model Agent | response in 9.2s | tokens: 2233+597=2830
+    [00:43:14] >> Structural Model Validator | sending request (~576 chars)
+    [00:43:15] << Structural Model Agent | response in 10.4s | tokens: 2240+732=2972
+    [00:43:15] >> Structural Model Validator | sending request (~660 chars)
+    [00:43:19] << Structural Model Validator | response in 5.0s | tokens: 1074+266=1340
+  OK Reset App State | attempt 1/3 | 1 component(s)
+    [00:43:20] << Structural Model Validator | response in 4.8s | tokens: 1088+265=1353
+  OK Checkout - Confirmation | attempt 1/3 | 1 component(s)
+    [00:43:20] << Structural Model Agent | response in 15.7s | tokens: 2253+1130=3383
+    [00:43:20] >> Structural Model Validator | sending request (~1026 chars)
+    [00:43:21] << Structural Model Agent | response in 16.2s | tokens: 2255+1146=3401
+    [00:43:21] >> Structural Model Validator | sending request (~860 chars)
+    [00:43:23] << Structural Model Agent | response in 18.5s | tokens: 2267+1343=3610
+    [00:43:23] >> Structural Model Validator | sending request (~1549 chars)
+    [00:43:26] << Structural Model Agent | response in 21.3s | tokens: 2282+1426=3708
+    [00:43:26] >> Structural Model Validator | sending request (~1715 chars)
+    [00:43:26] << Structural Model Validator | response in 5.2s | tokens: 1133+331=1464
+  OK Checkout - Overview | attempt 1/3 | 1 component(s)
+    [00:43:29] << Structural Model Agent | response in 24.9s | tokens: 2352+1667=4019
+    [00:43:29] >> Structural Model Validator | sending request (~2318 chars)
+    [00:43:30] << Structural Model Validator | response in 10.0s | tokens: 1180+520=1700
+  OK Shopping Cart | attempt 1/3 | 2 component(s)
+    [00:43:31] << Structural Model Agent | response in 26.4s | tokens: 2237+1798=4035
+    [00:43:31] >> Structural Model Validator | sending request (~1383 chars)
+    [00:43:33] << Structural Model Validator | response in 6.8s | tokens: 1312+393=1705
+  OK Checkout - Information | attempt 1/3 | 1 component(s)
+    [00:43:34] << Structural Model Validator | response in 10.6s | tokens: 1287+774=2061
+  OK Product Detail | attempt 1/3 | 3 component(s)
+    [00:43:42] << Structural Model Validator | response in 12.9s | tokens: 1432+908=2340
+  OK Login | attempt 1/3 | 1 component(s)
+    [00:43:43] << Structural Model Agent | response in 38.4s | tokens: 2301+2779=5080
+    [00:43:43] >> Structural Model Validator | sending request (~2710 chars)
+    [00:44:23] << Structural Model Validator | response in 40.4s | tokens: 1551+2847=4398
+  ~~ Product Inventory | attempt 1/3 | verdict=retry | missing=2 phantoms=1 | retrying...
+    [00:44:23] >> Structural Model Agent | sending request (~1732 chars)
+    [00:44:30] << Structural Model Validator | response in 59.3s | tokens: 1277+1368=2645
+  OK Logout | attempt 1/3 | 5 component(s)
+    [00:45:06] << Structural Model Agent | response in 43.0s | tokens: 2534+2847=5381
+    [00:45:06] >> Structural Model Validator | sending request (~3724 chars)
+    [00:45:19] << Structural Model Validator | response in 13.0s | tokens: 1711+876=2587
+  OK Product Inventory | attempt 2/3 | 2 component(s)
+  Done in 134.7s
+
+[2/4] Extracting & critiquing workflows (9 module(s))...
+  OK Login | skipping workflow extraction (ablation)
+  OK Product Inventory | skipping workflow extraction (ablation)
+  OK Product Detail | skipping workflow extraction (ablation)
+  OK Shopping Cart | skipping workflow extraction (ablation)
+  OK Checkout - Information | skipping workflow extraction (ablation)
+  OK Checkout - Overview | skipping workflow extraction (ablation)
+  OK Checkout - Confirmation | skipping workflow extraction (ablation)
+  OK Logout | skipping workflow extraction (ablation)
+  OK Reset App State | skipping workflow extraction (ablation)
+  Done in 0.0s
+
+[3/4] Generating test cases (27 calls across 9 module(s), types: edge/negative/positive)...
+    [00:45:19] >> Test-Positive | sending request (~2352 chars)
+    [00:45:19] >> Test-Negative | sending request (~2352 chars)
+    [00:45:19] >> Test-Edge | sending request (~2352 chars)
+    [00:45:19] >> Test-Positive | sending request (~3770 chars)
+    [00:45:19] >> Test-Negative | sending request (~3770 chars)
+    [00:45:19] >> Test-Edge | sending request (~3770 chars)
+    [00:45:19] >> Test-Positive | sending request (~1592 chars)
+    [00:45:19] >> Test-Negative | sending request (~1592 chars)
+    [00:45:19] >> Test-Edge | sending request (~1592 chars)
+    [00:45:19] >> Test-Positive | sending request (~1068 chars)
+    [00:45:19] >> Test-Negative | sending request (~1068 chars)
+    [00:45:19] >> Test-Edge | sending request (~1068 chars)
+    [00:45:19] >> Test-Positive | sending request (~1766 chars)
+    [00:45:19] >> Test-Negative | sending request (~1766 chars)
+    [00:45:19] >> Test-Edge | sending request (~1766 chars)
+    [00:45:19] >> Test-Positive | sending request (~908 chars)
+    [00:45:19] >> Test-Negative | sending request (~908 chars)
+    [00:45:19] >> Test-Edge | sending request (~908 chars)
+    [00:45:19] >> Test-Positive | sending request (~712 chars)
+    [00:45:19] >> Test-Negative | sending request (~712 chars)
+    [00:45:19] >> Test-Edge | sending request (~712 chars)
+    [00:45:19] >> Test-Positive | sending request (~1418 chars)
+    [00:45:19] >> Test-Negative | sending request (~1418 chars)
+    [00:45:19] >> Test-Edge | sending request (~1418 chars)
+    [00:45:19] >> Test-Positive | sending request (~620 chars)
+    [00:45:19] >> Test-Negative | sending request (~620 chars)
+    [00:45:19] >> Test-Edge | sending request (~620 chars)
+    [00:45:43] << Test-Negative | response in 23.5s | tokens: 3166+1895=5061
+    [00:45:47] << Test-Positive | response in 27.6s | tokens: 4171+2325=6496
+    [00:45:51] << Test-Edge | response in 31.7s | tokens: 3231+2597=5828
+    [00:45:51] << Test-Edge | response in 32.3s | tokens: 3087+2654=5741
+    [00:45:53] << Test-Positive | response in 34.0s | tokens: 4422+2690=7112
+    [00:45:56] << Test-Positive | response in 37.0s | tokens: 4278+2897=7175
+  OK Product Detail | 12 test(s) (pos=5 neg=2 edge=5)
+    [00:45:57] << Test-Negative | response in 37.4s | tokens: 3310+3117=6427
+  OK Login | 13 test(s) (pos=3 neg=6 edge=4)
+    [00:45:57] << Test-Negative | response in 37.9s | tokens: 3590+3113=6703
+    [00:46:03] << Test-Negative | response in 20.2s | tokens: 3059+1602=4661
+    [00:46:04] << Test-Positive | response in 45.0s | tokens: 4702+3554=8256
+    [00:46:12] << Test-Positive | response in 20.8s | tokens: 4304+1435=5739
+    [00:46:13] << Test-Negative | response in 21.5s | tokens: 3192+1657=4849
+    [00:46:15] << Test-Edge | response in 56.3s | tokens: 3511+4679=8190
+  OK Product Inventory | 18 test(s) (pos=7 neg=4 edge=7)
+    [00:46:25] << Test-Edge | response in 37.8s | tokens: 2980+3027=6007
+  OK Shopping Cart | 9 test(s) (pos=3 neg=2 edge=4)
+    [00:46:25] << Test-Negative | response in 28.2s | tokens: 3013+2153=5166
+    [00:46:27] << Test-Edge | response in 30.2s | tokens: 2934+2366=5300
+    [00:46:31] << Test-Positive | response in 34.6s | tokens: 4125+2688=6813
+  OK Checkout - Overview | 8 test(s) (pos=3 neg=2 edge=3)
+    [00:46:33] << Test-Edge | response in 40.1s | tokens: 3113+3119=6232
+  OK Checkout - Information | 8 test(s) (pos=2 neg=2 edge=5)
+    [00:46:34] << Test-Negative | response in 30.2s | tokens: 2968+2089=5057
+    [00:46:41] << Test-Positive | response in 38.3s | tokens: 4080+2950=7030
+    [00:46:43] << Test-Negative | response in 27.3s | tokens: 3155+1791=4946
+    [00:46:45] << Test-Positive | response in 31.6s | tokens: 4267+2498=6765
+    [00:46:50] << Test-Edge | response in 38.3s | tokens: 2889+3062=5951
+  OK Checkout - Confirmation | 8 test(s) (pos=2 neg=2 edge=4)
+    [00:46:54] << Test-Positive | response in 28.7s | tokens: 4066+2283=6349
+    [00:47:01] << Test-Edge | response in 36.5s | tokens: 3076+2715=5791
+  OK Logout | 11 test(s) (pos=5 neg=2 edge=4)
+    [00:47:03] << Test-Edge | response in 32.5s | tokens: 2875+2378=5253
+    [00:47:05] << Test-Negative | response in 37.8s | tokens: 2954+2609=5563
+  OK Reset App State | 7 test(s) (pos=2 neg=2 edge=3)
+  Done in 105.8s
+
+[4/4] Saving output...
+  Saved Structural Model to:       generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\structural-model.json
+  Saved critique to:     generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\structural-model-critique.json
+  Saved critique (md):   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\Swaglab-openai-gpt-5-mini-critique.md
+  Saved test cases to:   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\test-cases.json  (94 total)
+  Saved test cases (md): generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\Swaglab-openai-gpt-5-mini-tests.md
+  Saved workflows to:    generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\workflows.json  (0 total)
+  Saved wf-critique to:  generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\workflow-validator-critique.json
+  Saved wf-critique(md): generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows\Swaglab-openai-gpt-5-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 9 module(s).
+  Structural Model:     generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows/structural-model.json
+  Critique:   generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows/structural-model-critique.json
+  Tests:      generated_artifacts\ablation_study\SwagLab\gpt-5-mini\agent_no_workflows/test-cases.json
+

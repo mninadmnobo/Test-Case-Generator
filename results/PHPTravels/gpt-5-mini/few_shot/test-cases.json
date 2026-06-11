@@ -1,0 +1,1436 @@
+{
+  "module": "PHPTravels",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Home page loads with top navigation and search widget visible",
+      "preconditions": [
+        "User is on the site URL (unauthenticated)"
+      ],
+      "steps": [
+        "1. Open the home page",
+        "2. Observe top navigation bar and search widget area"
+      ],
+      "expected_result": "Top navigation displays Home, Hotels, Flights, Tours, Cars, Visa, Offers, Blog, Account/Login; search widget with Hotels, Flights, Tours, Cars tabs is visible; currency and language selectors and Login/Signup option are present",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "Switch between search tabs (Hotels, Flights, Tours, Cars)",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Hotels tab",
+        "2. Click Flights tab",
+        "3. Click Tours tab",
+        "4. Click Cars tab"
+      ],
+      "expected_result": "Clicking each tab switches visible search fields to those relevant to the service (Hotels shows destination and dates, Flights shows trip type etc.) without page reload",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "Search Hotels with valid destination and date range",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Hotels tab",
+        "2. Enter a valid destination city in Destination",
+        "3. Select valid check-in and check-out dates (check-out after check-in)",
+        "4. Set number of rooms and guests (adults and children)",
+        "5. Click Search"
+      ],
+      "expected_result": "User is redirected to hotel listing page showing available hotels with hotel name, rating, and starting price per night",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Search Flights one-way with valid inputs",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Flights tab",
+        "2. Select One-way trip type",
+        "3. Enter valid departure and arrival cities",
+        "4. Select a valid travel date (today or future)",
+        "5. Set passengers and cabin class",
+        "6. Click Search"
+      ],
+      "expected_result": "User is redirected to flight listing page showing matching one-way flights",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "Search Flights round-trip with valid return date",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Flights tab",
+        "2. Select Round-trip",
+        "3. Enter valid departure and arrival cities",
+        "4. Select departure and return dates (return after departure)",
+        "5. Set passengers and cabin class",
+        "6. Click Search"
+      ],
+      "expected_result": "User is redirected to flight listing page showing round-trip options including price per passenger",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Search Flights multi-city with two segments",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Flights tab",
+        "2. Select Multi-city",
+        "3. Enter segment 1 departure/arrival and date",
+        "4. Add segment 2 with departure/arrival and date",
+        "5. Set passengers and cabin class",
+        "6. Click Search"
+      ],
+      "expected_result": "User is redirected to flight listing page showing multi-city itineraries combining both segments",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Search Tours with valid destination and date range",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Tours tab",
+        "2. Enter destination and select travel date range",
+        "3. Click Search"
+      ],
+      "expected_result": "User is redirected to tour listing page showing tours matching destination and dates",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "Search Cars with valid pick-up/drop-off and times",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Cars tab",
+        "2. Enter pick-up location and drop-off location",
+        "3. Select pick-up and drop-off date and time",
+        "4. Click Search"
+      ],
+      "expected_result": "User is redirected to car listing page showing available vehicles for selected locations and period",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Hotels search missing destination shows inline error",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Hotels tab",
+        "2. Leave Destination empty",
+        "3. Enter valid check-in and check-out dates",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline validation error is shown on Destination field; search is not performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "Hotels search with check-out before check-in is rejected",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Hotels tab",
+        "2. Enter destination",
+        "3. Select check-in date later than check-out date",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline validation error indicates invalid date range; search is not performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "Flights search with zero passengers shows error",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Flights tab",
+        "2. Set adults to 0 and children/infants as appropriate",
+        "3. Fill other required fields",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline validation error indicates at least one adult passenger required; search is blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Flight one-way search for today's date (same-day travel)",
+      "preconditions": [
+        "User is on the home page"
+      ],
+      "steps": [
+        "1. Click Flights tab",
+        "2. Select One-way",
+        "3. Enter departure and arrival cities",
+        "4. Select today's date as travel date",
+        "5. Click Search"
+      ],
+      "expected_result": "Flight listing shows available flights departing today or displays appropriate 'no flights' message",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "Registration with valid data creates account and logs user in (auto-login)",
+      "preconditions": [
+        "User is on Registration page"
+      ],
+      "steps": [
+        "1. Fill First Name, Last Name, unique Email, Password, Confirm Password (matching), Mobile Number with country code, Address, Country",
+        "2. Check Terms and Conditions",
+        "3. Click Register"
+      ],
+      "expected_result": "Account is created, user is automatically logged in and redirected to dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Registration with mismatched password and confirmation shows inline error",
+      "preconditions": [
+        "User is on Registration page"
+      ],
+      "steps": [
+        "1. Fill all required fields with valid data except enter different values for Password and Confirm Password",
+        "2. Check Terms and Conditions",
+        "3. Click Register"
+      ],
+      "expected_result": "Inline validation error shown on Confirm Password; account not created",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Registration with already-registered email is rejected",
+      "preconditions": [
+        "User is on Registration page",
+        "An account exists with test@example.com"
+      ],
+      "steps": [
+        "1. Fill form using test@example.com as Email",
+        "2. Complete other fields and accept Terms",
+        "3. Click Register"
+      ],
+      "expected_result": "Inline or form-level error indicates Email already in use; account not created",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "Registration without optional Address and Country fields succeeds",
+      "preconditions": [
+        "User is on Registration page"
+      ],
+      "steps": [
+        "1. Fill required fields (First/Last Name, Email, Password, Confirm Password, Mobile Number)",
+        "2. Leave Address and Country blank",
+        "3. Accept Terms and click Register"
+      ],
+      "expected_result": "Account is created successfully and user is logged in or prompted to verify email according to system settings",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "Login with valid credentials redirects to dashboard",
+      "preconditions": [
+        "User has an active account",
+        "User is on Login page"
+      ],
+      "steps": [
+        "1. Enter registered Email and Password",
+        "2. (Optionally) Check Remember Me",
+        "3. Click Login"
+      ],
+      "expected_result": "User is authenticated and redirected to dashboard or originally requested protected page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Login with invalid credentials shows error and clears password field",
+      "preconditions": [
+        "User is on Login page"
+      ],
+      "steps": [
+        "1. Enter invalid Email or wrong Password",
+        "2. Click Login"
+      ],
+      "expected_result": "Error message displayed for invalid credentials and password field is cleared",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "Multiple failed login attempts trigger CAPTCHA requirement",
+      "preconditions": [
+        "User is on Login page"
+      ],
+      "steps": [
+        "1. Attempt login with wrong password repeatedly (exceed threshold)",
+        "2. Observe login form"
+      ],
+      "expected_result": "After multiple failed attempts, CAPTCHA is displayed and further login attempts require passing CAPTCHA",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-011",
+      "category": "positive",
+      "test_case": "Forgot password flow sends reset link for existing email",
+      "preconditions": [
+        "User is on Forgot Password page",
+        "User email exists in system"
+      ],
+      "steps": [
+        "1. Enter registered email in Email field",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "Confirmation message indicates reset link sent; user receives email with reset link",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Forgot password with non-existent email shows error",
+      "preconditions": [
+        "User is on Forgot Password page"
+      ],
+      "steps": [
+        "1. Enter an email not present in system",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "Error message indicates email not found; form remains editable",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Password reset link expires after 24 hours",
+      "preconditions": [
+        "User received a password reset link older than 24 hours"
+      ],
+      "steps": [
+        "1. Click expired reset link",
+        "2. Observe the reset password page"
+      ],
+      "expected_result": "System indicates the link has expired and prompts user to request a new reset link",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-012",
+      "category": "positive",
+      "test_case": "Hotels listing displays cards with required information after search",
+      "preconditions": [
+        "User performed a successful hotels search and is on listing page"
+      ],
+      "steps": [
+        "1. Observe hotel cards in results",
+        "2. Expand several cards or scroll"
+      ],
+      "expected_result": "Each hotel card shows name, location, star rating, thumbnail, starting price, amenity icons, and Book Now button",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-013",
+      "category": "positive",
+      "test_case": "Hotel filters update results dynamically and active filters summary appears",
+      "preconditions": [
+        "User is on hotels listing page with results"
+      ],
+      "steps": [
+        "1. Open left sidebar and select a price range and a star rating filter",
+        "2. Observe results update without full page reload",
+        "3. Observe active filters summary at top",
+        "4. Remove an individual filter from summary",
+        "5. Click Reset all filters"
+      ],
+      "expected_result": "Results update dynamically to match selected filters; active filters summarized with remove buttons; Reset all restores default results",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Applying filters that result in zero hotels shows appropriate message",
+      "preconditions": [
+        "User is on hotels listing page"
+      ],
+      "steps": [
+        "1. Apply a combination of restrictive filters (e.g., very low price max, specific rare amenity, 5-star only in a small town)",
+        "2. Observe results area"
+      ],
+      "expected_result": "Results area shows message indicating no hotels match the current filters and suggests clearing filters or modifying search",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "Price range slider set to extreme min and max yields same full results set",
+      "preconditions": [
+        "User is on hotels listing page"
+      ],
+      "steps": [
+        "1. Move price slider to its minimum value and confirm results",
+        "2. Move price slider to its maximum value and confirm results"
+      ],
+      "expected_result": "At extremes, slider either restricts to cheapest/all hotels appropriately; UI remains responsive and result count reflects selection",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-014",
+      "category": "positive",
+      "test_case": "Hotel details page shows gallery, description, map, rooms, reviews and policies",
+      "preconditions": [
+        "User is on a hotel listing page"
+      ],
+      "steps": [
+        "1. Click a hotel's name or details link",
+        "2. Observe the hotel details page content"
+      ],
+      "expected_result": "Page shows photo gallery, full description, location map, list of room types with pricing and occupancy, guest reviews and policies",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-015",
+      "category": "positive",
+      "test_case": "Selecting a room and filling booking form prompts login if unauthenticated and proceeds when authenticated",
+      "preconditions": [
+        "User is on hotel details page",
+        "Room is available"
+      ],
+      "steps": [
+        "1. Select a room and click Book Now",
+        "2. If unauthenticated, observe redirect to login page and then login",
+        "3. If authenticated, fill First Name, Last Name, Email, Phone and optional Special Requests",
+        "4. Click Continue/Proceed to payment"
+      ],
+      "expected_result": "Unauthenticated users are redirected to login; after login or if already logged in, booking form accepts data and navigates to payment page with price breakdown",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Hotel booking with missing required guest info shows inline errors",
+      "preconditions": [
+        "User is on hotel booking form (authenticated)"
+      ],
+      "steps": [
+        "1. Leave First Name or Last Name or Email or Phone blank",
+        "2. Click Book Now/Continue"
+      ],
+      "expected_result": "Inline validation errors appear on missing fields; user cannot proceed to payment",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Attempt to book more guests than room max occupancy is rejected",
+      "preconditions": [
+        "User is on hotel details page"
+      ],
+      "steps": [
+        "1. Select a room with a specified maximum occupancy",
+        "2. Enter guest count exceeding the maximum",
+        "3. Attempt to proceed to booking"
+      ],
+      "expected_result": "Validation error indicates maximum occupancy exceeded and blocks booking",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-016",
+      "category": "positive",
+      "test_case": "Flight listing displays required details and expanding result shows fare rules and baggage",
+      "preconditions": [
+        "User performed a successful flight search"
+      ],
+      "steps": [
+        "1. On flight listing page, inspect a flight result",
+        "2. Click to expand flight result details"
+      ],
+      "expected_result": "Each result displays airline logo/name, times, airports, duration, stops, price, and Select button; expanding shows baggage allowance, fare rules and seat availability",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-017",
+      "category": "positive",
+      "test_case": "Flight filters (airlines, stops, times, price) update results dynamically",
+      "preconditions": [
+        "User is on flight listing page with results"
+      ],
+      "steps": [
+        "1. Apply airline filter",
+        "2. Adjust number-of-stops filter",
+        "3. Set departure time range",
+        "4. Observe results updating after each change"
+      ],
+      "expected_result": "Results update dynamically to reflect selected filters; result count updates accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-010",
+      "category": "negative",
+      "test_case": "Round-trip flight search with return date before departure is rejected",
+      "preconditions": [
+        "User is on home page"
+      ],
+      "steps": [
+        "1. Click Flights tab and select Round-trip",
+        "2. Enter departure and arrival cities",
+        "3. Select a departure date and a return date earlier than departure",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline validation indicates return date must be after departure; search is blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Flights search with departure and arrival as same city handled (invalid or interpreted as nearby airports)",
+      "preconditions": [
+        "User is on Flights tab"
+      ],
+      "steps": [
+        "1. Enter the same city for departure and arrival",
+        "2. Click Search"
+      ],
+      "expected_result": "System either shows validation error preventing identical departure/arrival or displays flights for different airports in the same city; behavior is consistent and documented",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-018",
+      "category": "positive",
+      "test_case": "Flight booking passenger details validation and proceed to payment",
+      "preconditions": [
+        "User selected a flight and is on flight booking page (authenticated)"
+      ],
+      "steps": [
+        "1. Fill title, first name, last name, date of birth, passport number, passport expiry for each passenger",
+        "2. Provide lead passenger email and phone",
+        "3. Optionally select meal preferences and seats",
+        "4. Click Continue/Proceed to payment"
+      ],
+      "expected_result": "All required fields validated; on success user navigates to payment page with fare breakdown",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-011",
+      "category": "negative",
+      "test_case": "Flight booking with passport expiry before travel date is rejected",
+      "preconditions": [
+        "User is on flight booking page"
+      ],
+      "steps": [
+        "1. Enter passport expiry date earlier than travel return or required validity threshold",
+        "2. Click Continue"
+      ],
+      "expected_result": "Inline validation error indicates passport expiry invalid for travel; cannot proceed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Infant passenger entered without adult triggers validation",
+      "preconditions": [
+        "User is on Flights search or booking page"
+      ],
+      "steps": [
+        "1. Set passengers with 0 adults and 1 infant",
+        "2. Attempt to search or book"
+      ],
+      "expected_result": "Validation error requires at least one adult per infant; user must adjust passenger counts",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-019",
+      "category": "positive",
+      "test_case": "Tours listing shows tour cards with image, name, duration, price and availability",
+      "preconditions": [
+        "User performed a successful tours search"
+      ],
+      "steps": [
+        "1. Observe tour cards on listing page",
+        "2. Check details on a sample card"
+      ],
+      "expected_result": "Each tour card displays image, name, destination, duration, starting price, brief description, availability status and rating",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-020",
+      "category": "positive",
+      "test_case": "Tour details allow selecting departure date and travelers then proceed to booking",
+      "preconditions": [
+        "User is on a tour details page"
+      ],
+      "steps": [
+        "1. Select a departure date from available dates",
+        "2. Enter number of adults and children",
+        "3. Click Book Now",
+        "4. If unauthenticated, login when prompted"
+      ],
+      "expected_result": "Booking form displays traveler details fields and total cost breakdown; unauthenticated users are redirected to login before proceeding",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-012",
+      "category": "negative",
+      "test_case": "Tour booking with travelers exceeding availability shows error",
+      "preconditions": [
+        "User is on tour details page"
+      ],
+      "steps": [
+        "1. Select departure date with limited seats",
+        "2. Enter number of travelers greater than available seats",
+        "3. Click Book Now"
+      ],
+      "expected_result": "Error displayed indicating insufficient availability; user cannot proceed unless adjusting traveler count or selecting another date",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-009",
+      "category": "edge",
+      "test_case": "Tour search with very long duration range returns appropriate results or message",
+      "preconditions": [
+        "User is on Tours tab"
+      ],
+      "steps": [
+        "1. Set duration filter to extreme high value (e.g., 365 days)",
+        "2. Click Search"
+      ],
+      "expected_result": "System handles range gracefully, returns matching long-duration tours or shows none available, without performance degradation",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-021",
+      "category": "positive",
+      "test_case": "Cars listing groups vehicles by category and shows required details",
+      "preconditions": [
+        "User performed a cars search"
+      ],
+      "steps": [
+        "1. Observe car listing page",
+        "2. Verify vehicles are grouped by categories (Economy, SUV, etc.) and each shows image, model, transmission, fuel policy, capacity and price"
+      ],
+      "expected_result": "Vehicles are shown grouped by category with required details and Book Now buttons",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-022",
+      "category": "positive",
+      "test_case": "Car booking form accepts valid driver details and optional add-ons; proceeds to payment",
+      "preconditions": [
+        "User selected a vehicle and is on car booking page (authenticated)"
+      ],
+      "steps": [
+        "1. Fill driver full name, age (>= minimum limit), license number, issue country, email, phone",
+        "2. Select optional add-ons and insurance plan",
+        "3. Accept terms and click Confirm Booking"
+      ],
+      "expected_result": "Form validates inputs and proceeds to payment page with full pricing breakdown",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-013",
+      "category": "negative",
+      "test_case": "Car search with driver age below minimum shows validation error",
+      "preconditions": [
+        "User is on Cars tab"
+      ],
+      "steps": [
+        "1. Enter driver age less than allowed minimum (e.g., 16)",
+        "2. Fill other required fields",
+        "3. Click Search"
+      ],
+      "expected_result": "Validation error indicates minimum driver age not met and search is blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-010",
+      "category": "edge",
+      "test_case": "Car pick-up and drop-off at same minute/time handled correctly",
+      "preconditions": [
+        "User is on Cars tab"
+      ],
+      "steps": [
+        "1. Set pick-up and drop-off date and time identical",
+        "2. Click Search"
+      ],
+      "expected_result": "System either rejects extremely short rentals with validation or allows per business rules and displays accurate total cost (e.g., minimum one day charge) without errors",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-023",
+      "category": "positive",
+      "test_case": "Visa service displays requirements for nationality-destination combination",
+      "preconditions": [
+        "User is on Visa services page"
+      ],
+      "steps": [
+        "1. Select Nationality and Destination Country from dropdowns",
+        "2. Click Search/View Requirements"
+      ],
+      "expected_result": "Visa requirements are displayed including visa type, processing time, required documents and fees",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-024",
+      "category": "positive",
+      "test_case": "Submitting a visa application with all required docs creates application and appears in dashboard",
+      "preconditions": [
+        "User is authenticated and on Visa application form",
+        "All required documents available"
+      ],
+      "steps": [
+        "1. Fill personal info and travel details",
+        "2. Upload required documents in supported formats",
+        "3. Submit application"
+      ],
+      "expected_result": "Application submitted successfully and status appears in My Bookings or Visa applications in dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-014",
+      "category": "negative",
+      "test_case": "Visa application missing required document upload shows error",
+      "preconditions": [
+        "User is on Visa application form (authenticated)"
+      ],
+      "steps": [
+        "1. Fill form but leave required document upload empty",
+        "2. Click Submit"
+      ],
+      "expected_result": "Validation error indicates required documents missing; application not submitted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-011",
+      "category": "edge",
+      "test_case": "Visa document upload rejects unsupported file types and oversized files",
+      "preconditions": [
+        "User is on Visa application form"
+      ],
+      "steps": [
+        "1. Attempt to upload files with unsupported extension or exceeding allowed size",
+        "2. Observe upload behavior"
+      ],
+      "expected_result": "System rejects files and shows clear inline error messages about allowed formats and max size",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-025",
+      "category": "positive",
+      "test_case": "Dashboard shows My Bookings with bookings for all service types",
+      "preconditions": [
+        "User is authenticated and has bookings across Hotels, Flights, Tours, Cars"
+      ],
+      "steps": [
+        "1. Navigate to Dashboard",
+        "2. Open My Bookings section"
+      ],
+      "expected_result": "Bookings list shows entries with booking reference, service type, dates, status and action buttons (View Details, Cancel, Modify where applicable)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-026",
+      "category": "positive",
+      "test_case": "Download invoice/voucher from booking detail",
+      "preconditions": [
+        "User is on a booking detail page for a confirmed booking"
+      ],
+      "steps": [
+        "1. Click View Details for a booking",
+        "2. Click Download Invoice or Voucher"
+      ],
+      "expected_result": "Invoice or voucher downloads as PDF and is viewable; confirmation shown in UI",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-015",
+      "category": "negative",
+      "test_case": "Attempt to access dashboard after logout redirects to login",
+      "preconditions": [
+        "User logged out"
+      ],
+      "steps": [
+        "1. Attempt to navigate to Dashboard URL directly",
+        "2. Observe redirection"
+      ],
+      "expected_result": "User is redirected to Login page and cannot access protected dashboard content",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-012",
+      "category": "edge",
+      "test_case": "Modify booking date that is unavailable triggers appropriate message and shows fees",
+      "preconditions": [
+        "User has a modifiable booking and system has changed availability"
+      ],
+      "steps": [
+        "1. Click Modify on a booking",
+        "2. Attempt to change dates to unavailable dates",
+        "3. Observe response"
+      ],
+      "expected_result": "System indicates unavailable dates, shows possible alternative dates or waits for confirmation; if modification allowed with fees, displays fees clearly before confirming",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-027",
+      "category": "positive",
+      "test_case": "Cancellation flow displays refund amount and requires explicit confirmation",
+      "preconditions": [
+        "User is on booking detail page and cancellation is permitted by policy"
+      ],
+      "steps": [
+        "1. Click Cancel booking",
+        "2. Observe cancellation confirmation dialog with refund amount",
+        "3. Confirm cancellation"
+      ],
+      "expected_result": "Booking status updates to Cancelled, refund initiated to original payment method, and email notification queued/sent; UI reflects canceled status",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-016",
+      "category": "negative",
+      "test_case": "Attempt to cancel a booking not eligible for cancellation shows error",
+      "preconditions": [
+        "User is on a booking detail page that is non-cancellable per policy"
+      ],
+      "steps": [
+        "1. Click Cancel booking",
+        "2. Observe behavior"
+      ],
+      "expected_result": "System shows message that booking cannot be canceled per policy and does not allow cancellation",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-028",
+      "category": "positive",
+      "test_case": "Payment with valid credit card completes booking and shows confirmation with reference number",
+      "preconditions": [
+        "User is on payment page with a prepared booking (authenticated)"
+      ],
+      "steps": [
+        "1. Select Credit/Debit Card payment",
+        "2. Enter valid cardholder name, card number, expiry, CVV",
+        "3. Optionally select save card",
+        "4. Click Pay/Confirm"
+      ],
+      "expected_result": "Payment succeeds, user is shown booking confirmation page with reference number and options to download invoice; confirmation email sent",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-017",
+      "category": "negative",
+      "test_case": "Payment failure due to card declined shows descriptive error and preserves booking details",
+      "preconditions": [
+        "User is on payment page with a prepared booking"
+      ],
+      "steps": [
+        "1. Enter card details that will simulate a declined card",
+        "2. Click Pay/Confirm"
+      ],
+      "expected_result": "Payment fails with an error message (e.g., Card declined); booking details are retained and user can retry payment",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-013",
+      "category": "edge",
+      "test_case": "Attempt payment with expired card is rejected with inline error",
+      "preconditions": [
+        "User is on payment page"
+      ],
+      "steps": [
+        "1. Enter card with expiry date in the past",
+        "2. Click Pay/Confirm"
+      ],
+      "expected_result": "Validation error indicates card is expired and prevents submission",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-029",
+      "category": "positive",
+      "test_case": "Selecting PayPal redirects to PayPal flow and returns to confirmation on success",
+      "preconditions": [
+        "PayPal payment method enabled",
+        "User is on payment page"
+      ],
+      "steps": [
+        "1. Select PayPal",
+        "2. Click Pay/Confirm",
+        "3. Complete PayPal authorization in the popup or redirect",
+        "4. Return to site"
+      ],
+      "expected_result": "After successful PayPal payment, user is redirected to booking confirmation page with reference number",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-030",
+      "category": "positive",
+      "test_case": "Wallet/Credits payment completes when sufficient balance exists",
+      "preconditions": [
+        "User has sufficient wallet/credit balance",
+        "User is authenticated on payment page"
+      ],
+      "steps": [
+        "1. Select Wallet/Credits as payment method",
+        "2. Confirm payment using wallet balance"
+      ],
+      "expected_result": "Payment succeeds using wallet, booking confirmed and wallet balance reduced accordingly; confirmation shown",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-018",
+      "category": "negative",
+      "test_case": "Attempt wallet payment with insufficient balance shows error",
+      "preconditions": [
+        "User has insufficient wallet balance",
+        "User is on payment page"
+      ],
+      "steps": [
+        "1. Select Wallet as payment method",
+        "2. Attempt to pay"
+      ],
+      "expected_result": "Error indicates insufficient funds and user remains on payment page to choose another method",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-031",
+      "category": "positive",
+      "test_case": "Currency selector updates prices across site without losing search context",
+      "preconditions": [
+        "User on a listing or details page with results visible"
+      ],
+      "steps": [
+        "1. Change currency via currency selector",
+        "2. Observe prices and totals on the page"
+      ],
+      "expected_result": "All displayed prices update to selected currency in real-time and current search/listing context (filters, results) remains intact",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-032",
+      "category": "positive",
+      "test_case": "Language selector updates UI labels and content to selected language",
+      "preconditions": [
+        "User on any page"
+      ],
+      "steps": [
+        "1. Change language via language selector",
+        "2. Observe navigation labels, form labels and content text"
+      ],
+      "expected_result": "Site interface switches to the chosen language for navigation and labels; for authenticated users preference saved in profile and for guests stored in session/cookie",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-019",
+      "category": "negative",
+      "test_case": "Selecting unsupported currency or language is gracefully handled",
+      "preconditions": [
+        "User on any page"
+      ],
+      "steps": [
+        "1. Attempt to select a currency or language not supported by system (via URL/domain manipulation or UI if possible)",
+        "2. Observe behavior"
+      ],
+      "expected_result": "System either prevents selection or falls back to default currency/language with an informative message; no crash occurs",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-014",
+      "category": "edge",
+      "test_case": "Language selector switches to a right-to-left language and layout adjusts accordingly",
+      "preconditions": [
+        "Arabic (RTL) language available"
+      ],
+      "steps": [
+        "1. Switch site language to Arabic or another RTL language",
+        "2. Observe layout and text direction"
+      ],
+      "expected_result": "UI adjusts to RTL layout including navigation and form alignment; content remains readable and functional",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-033",
+      "category": "positive",
+      "test_case": "Search result sorting (price, rating, duration) functions correctly",
+      "preconditions": [
+        "User is on a listing page with multiple results"
+      ],
+      "steps": [
+        "1. Select sort by price low to high",
+        "2. Observe result order",
+        "3. Select sort by star/guest rating or duration",
+        "4. Observe result order updates"
+      ],
+      "expected_result": "Results reorder correctly according to selected sort criterion",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-020",
+      "category": "negative",
+      "test_case": "Invalid filter input (e.g., non-numeric price) is rejected",
+      "preconditions": [
+        "User is on a listing page with filter inputs"
+      ],
+      "steps": [
+        "1. Manually input non-numeric characters into numeric filter fields (if allowed)",
+        "2. Attempt to apply filter"
+      ],
+      "expected_result": "Inline validation prevents non-numeric input or shows error and filter is not applied",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-015",
+      "category": "edge",
+      "test_case": "Applying and removing many filters in sequence maintains application stability and correct counts",
+      "preconditions": [
+        "User is on a listing page"
+      ],
+      "steps": [
+        "1. Rapidly apply multiple filters across categories",
+        "2. Remove filters individually and then click Reset all filters",
+        "3. Observe result counts and UI responsiveness"
+      ],
+      "expected_result": "Application remains stable; filters update results correctly; Reset all clears filters and restores initial result set",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-034",
+      "category": "positive",
+      "test_case": "Reviews section displays aggregate and individual reviews with filters",
+      "preconditions": [
+        "User is on a listing or details page with reviews available"
+      ],
+      "steps": [
+        "1. Scroll to Reviews section",
+        "2. Observe aggregate rating and review list",
+        "3. Apply review filters by rating and date"
+      ],
+      "expected_result": "Aggregate rating and review count shown; individual reviews display category ratings, reviewer name/country, dates, comments and photos; filters update displayed reviews",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-035",
+      "category": "positive",
+      "test_case": "Authenticated user who completed booking can submit a review via dashboard",
+      "preconditions": [
+        "User is authenticated and has a completed booking eligible for review"
+      ],
+      "steps": [
+        "1. Navigate to Reviews or My Bookings and choose to leave a review on a completed booking",
+        "2. Enter star ratings for overall and individual categories, write comments, optionally upload photos",
+        "3. Submit review"
+      ],
+      "expected_result": "Review is accepted and displayed on the detail page after moderation if applicable; user sees confirmation",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-021",
+      "category": "negative",
+      "test_case": "Attempt to submit review without completing booking is blocked",
+      "preconditions": [
+        "User is authenticated but has no completed booking for the item"
+      ],
+      "steps": [
+        "1. Attempt to leave a review for a hotel/tour/flight not completed by user",
+        "2. Submit review form"
+      ],
+      "expected_result": "System prevents submission and shows message that only users who completed a booking may review",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-016",
+      "category": "edge",
+      "test_case": "Submitting long review text and multiple large photo uploads handled gracefully",
+      "preconditions": [
+        "User is authenticated and eligible to review"
+      ],
+      "steps": [
+        "1. Enter a very long comment near maximum allowed length",
+        "2. Upload multiple photos near allowed size limits",
+        "3. Submit review"
+      ],
+      "expected_result": "System accepts within limits and displays review; if limits exceeded, shows clear errors specifying allowed limits",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-036",
+      "category": "positive",
+      "test_case": "Offers page lists promotions and applying an offer pre-fills search or applies promo code",
+      "preconditions": [
+        "User is on Offers page"
+      ],
+      "steps": [
+        "1. View offers and click Book Now on a featured deal",
+        "2. Observe whether promo is applied or search is pre-filled"
+      ],
+      "expected_result": "Clicking Book Now applies the promotional code automatically or redirects to a pre-filled search with discounted rates applied",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-022",
+      "category": "negative",
+      "test_case": "Expired or invalid promotional codes are rejected",
+      "preconditions": [
+        "User is on booking/payment page with promo code field"
+      ],
+      "steps": [
+        "1. Enter an expired or invalid promo code",
+        "2. Attempt to apply it"
+      ],
+      "expected_result": "System rejects code with a message explaining reason (expired/invalid) and price remains unchanged",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-017",
+      "category": "edge",
+      "test_case": "Subscribe to newsletter with invalid email shows validation error",
+      "preconditions": [
+        "User is on Offers page"
+      ],
+      "steps": [
+        "1. Enter malformed email address in newsletter subscription field",
+        "2. Click Subscribe"
+      ],
+      "expected_result": "Inline validation rejects invalid email and subscription not accepted",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-037",
+      "category": "positive",
+      "test_case": "Logout clears session and redirects to home page",
+      "preconditions": [
+        "User is authenticated"
+      ],
+      "steps": [
+        "1. Click Logout",
+        "2. Observe redirect and attempt to navigate to dashboard"
+      ],
+      "expected_result": "Session terminated, user redirected to home page, and accessing protected pages redirects to login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-038",
+      "category": "positive",
+      "test_case": "Account settings updates (change password, default currency/language) persist",
+      "preconditions": [
+        "User is authenticated and on Settings page"
+      ],
+      "steps": [
+        "1. Change password with current and new password fields filled correctly",
+        "2. Change default currency and language",
+        "3. Save settings and logout then login again"
+      ],
+      "expected_result": "Password change succeeds; currency and language preferences persist in profile after re-login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-023",
+      "category": "negative",
+      "test_case": "Change password with incorrect current password is rejected",
+      "preconditions": [
+        "User is on Settings page"
+      ],
+      "steps": [
+        "1. Enter wrong current password and a valid new password twice",
+        "2. Click Save/Change Password"
+      ],
+      "expected_result": "Error indicates current password incorrect and change is not applied",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-018",
+      "category": "edge",
+      "test_case": "Session timeout behavior redirects to login and preserves intended destination after re-authentication",
+      "preconditions": [
+        "User is authenticated and idle until session timeout"
+      ],
+      "steps": [
+        "1. Wait for session to expire (or simulate)",
+        "2. Attempt to perform an action requiring authentication (e.g., Book Now)",
+        "3. Authenticate again when prompted"
+      ],
+      "expected_result": "User is redirected to login when attempting protected action; after re-authentication user is returned to the original flow/page to continue",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-039",
+      "category": "positive",
+      "test_case": "Booking modification flow allows updating traveler info and special requests when permitted",
+      "preconditions": [
+        "User is authenticated and has modifiable booking"
+      ],
+      "steps": [
+        "1. Open booking details and click Modify",
+        "2. Update traveler name/phone or add special requests",
+        "3. Save changes"
+      ],
+      "expected_result": "Changes applied if allowed and booking updated; confirmation message and email notification sent",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-024",
+      "category": "negative",
+      "test_case": "Modify booking with invalid traveler data shows validation errors",
+      "preconditions": [
+        "User is on Modify booking form"
+      ],
+      "steps": [
+        "1. Enter invalid email/phone or empty required traveler fields",
+        "2. Attempt to save modifications"
+      ],
+      "expected_result": "Inline errors prevent saving until valid data provided",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-019",
+      "category": "edge",
+      "test_case": "Attempt to modify booking close to departure date shows applicable fees and requires confirmation",
+      "preconditions": [
+        "User has booking with departure imminent and modification allowed with fees"
+      ],
+      "steps": [
+        "1. Click Modify and change dates or services",
+        "2. Observe displayed fees and confirm changes"
+      ],
+      "expected_result": "System correctly calculates additional fees, displays them, and requires explicit confirmation before applying changes",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-040",
+      "category": "positive",
+      "test_case": "Search preserves user-selected currency and language across navigation for authenticated user",
+      "preconditions": [
+        "User is authenticated and changed currency/language in settings"
+      ],
+      "steps": [
+        "1. Perform a search",
+        "2. Navigate to different sections and return to search results"
+      ],
+      "expected_result": "Currency and language remain as user preferences across pages and sessions (persisted in profile)",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-020",
+      "category": "edge",
+      "test_case": "Search with maximum allowable text length in destination field handled correctly",
+      "preconditions": [
+        "User is on search widget"
+      ],
+      "steps": [
+        "1. Enter a destination string at maximum allowed length or beyond",
+        "2. Attempt to search"
+      ],
+      "expected_result": "System accepts up to max length and either truncates or rejects beyond limit with clear message; no crash occurs",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-025",
+      "category": "negative",
+      "test_case": "Attempt to book without accepting Terms and Conditions blocks progression",
+      "preconditions": [
+        "User is on booking or payment page"
+      ],
+      "steps": [
+        "1. Leave Terms and Conditions unchecked",
+        "2. Attempt to Confirm Booking or Pay"
+      ],
+      "expected_result": "Validation prevents progression until Terms and Conditions are accepted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-041",
+      "category": "positive",
+      "test_case": "Saved payment card option stores card securely when opted in",
+      "preconditions": [
+        "User is authenticated and paying by card"
+      ],
+      "steps": [
+        "1. Enter valid card details and check Save Card option",
+        "2. Complete payment",
+        "3. Return to payment methods in profile or next booking"
+      ],
+      "expected_result": "Saved card token appears under saved payment methods (masked) and can be selected for future payments",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-026",
+      "category": "negative",
+      "test_case": "Attempt to save invalid card details shows error and does not store card",
+      "preconditions": [
+        "User is entering card details"
+      ],
+      "steps": [
+        "1. Enter invalid card number or CVV",
+        "2. Check Save Card and attempt payment"
+      ],
+      "expected_result": "Validation blocks saving and shows error; no card stored",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-021",
+      "category": "edge",
+      "test_case": "Bank transfer payment shows instructions and marks booking as pending until payment confirmed",
+      "preconditions": [
+        "Bank Transfer option enabled",
+        "User chooses bank transfer"
+      ],
+      "steps": [
+        "1. Select Bank Transfer payment method",
+        "2. Confirm booking and view instructions",
+        "3. Return to dashboard and view booking status"
+      ],
+      "expected_result": "Booking is created with pending payment status and instructions displayed; status updates when payment confirmed (via backend)",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-042",
+      "category": "positive",
+      "test_case": "Active filters summary shows individual remove buttons and total active count",
+      "preconditions": [
+        "User applied multiple filters on a listing page"
+      ],
+      "steps": [
+        "1. Apply several filters",
+        "2. Observe active filters summary area",
+        "3. Click individual remove buttons"
+      ],
+      "expected_result": "Active filters listed with individual remove buttons and count; removing a filter updates results dynamically",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "N-027",
+      "category": "negative",
+      "test_case": "Attempt to upload disallowed image formats in review or visa upload is rejected",
+      "preconditions": [
+        "User is on a review upload or visa document upload form"
+      ],
+      "steps": [
+        "1. Attempt to upload a .exe or other disallowed file",
+        "2. Observe upload error"
+      ],
+      "expected_result": "File rejected with clear message about allowed formats",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "E-022",
+      "category": "edge",
+      "test_case": "Large result sets pagination and 'load more' behavior remains functional",
+      "preconditions": [
+        "Search returns many results"
+      ],
+      "steps": [
+        "1. Perform a broad search returning many pages of results",
+        "2. Navigate using pagination or Load More control",
+        "3. Apply a filter on page 3 and observe behavior"
+      ],
+      "expected_result": "Pagination or infinite scroll loads results correctly; applying filters resets or updates page appropriately without UI breakage",
+      "priority": "low"
+    },
+    {
+      "tc_id": "P-043",
+      "category": "positive",
+      "test_case": "Account wishlist adds and removes items correctly",
+      "preconditions": [
+        "User is authenticated and on a listing or details page"
+      ],
+      "steps": [
+        "1. Click Save/Wishlist on a hotel/tour/flight",
+        "2. Navigate to Wishlist in dashboard",
+        "3. Remove the item from wishlist"
+      ],
+      "expected_result": "Item is added to wishlist and visible in dashboard; remove action deletes it from wishlist",
+      "priority": "low"
+    },
+    {
+      "tc_id": "N-028",
+      "category": "negative",
+      "test_case": "Attempt to add duplicate items to wishlist does not create duplicates",
+      "preconditions": [
+        "User has item in wishlist"
+      ],
+      "steps": [
+        "1. Click Save/Wishlist again on same item",
+        "2. View wishlist"
+      ],
+      "expected_result": "Wishlist does not contain duplicate entries; UI indicates item already saved",
+      "priority": "low"
+    },
+    {
+      "tc_id": "E-023",
+      "category": "edge",
+      "test_case": "Concurrent modification: two sessions try to book the last available room concurrently",
+      "preconditions": [
+        "Only one room left for specific dates",
+        "Two browser sessions/users"
+      ],
+      "steps": [
+        "1. Both users initiate booking concurrently and proceed to payment",
+        "2. First completes payment, second attempts to complete payment",
+        "3. Observe second user's experience"
+      ],
+      "expected_result": "First user booking confirmed; second user receives clear message about unavailability at payment time and is offered alternatives or refund if charged",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-044",
+      "category": "positive",
+      "test_case": "Email notifications are queued/sent for booking confirmation, modification, and cancellation",
+      "preconditions": [
+        "User has contact email valid and system email configured"
+      ],
+      "steps": [
+        "1. Complete a booking",
+        "2. Modify the booking",
+        "3. Cancel the booking",
+        "4. Check email notifications or message indicator"
+      ],
+      "expected_result": "Email notifications are generated for confirmation, modification and cancellation; UI shows success messages that emails were sent",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 95,
+    "positive": 44,
+    "negative": 28,
+    "edge": 23,
+    "high_priority": 36,
+    "medium_priority": 44,
+    "low_priority": 15
+  },
+  "_meta": {
+    "website": "PHPTravels",
+    "model": "gpt-5-mini",
+    "approach": "few_shot",
+    "generated_at": "2026-06-10T17:42:46.000533Z"
+  }
+}

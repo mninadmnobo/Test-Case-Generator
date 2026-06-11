@@ -1,0 +1,359 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-10T20:09:51.906381Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Successful login",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sign In",
+          "on_success": "Signed in successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Failed login attempt",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sign In",
+          "on_success": "Incorrect email or password. Please try again."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Register with valid inputs",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Register",
+          "on_success": "Account created successfully \u2014 please sign in"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Register with invalid Username format",
+          "actor": "<role>",
+          "conditional_branch": "Username is invalid",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Register with invalid Phone Number format",
+          "actor": "<role>",
+          "conditional_branch": "Phone Number is invalid",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Register with invalid ZIP Code format",
+          "actor": "<role>",
+          "conditional_branch": "ZIP Code is invalid",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Register with invalid SSN format",
+          "actor": "<role>",
+          "conditional_branch": "SSN is invalid",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Register with short Password",
+          "actor": "<role>",
+          "conditional_branch": "Password is too short",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Register with Password and Confirm Password mismatch",
+          "actor": "<role>",
+          "conditional_branch": "Password does not match Confirm Password",
+          "terminal_action": "Register",
+          "on_success": "Specific field-level errors are displayed for correction"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "workflows": [],
+      "attempts": 3
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Checking Account with valid deposit",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Initial_Deposit_Amount >= 25",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully!"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open Savings Account with valid deposit",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Initial_Deposit_Amount >= 100",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully!"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Transfer from My ParaBank Account",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == My_ParaBank_Account",
+          "terminal_action": "Submit",
+          "on_success": "Transfer completed successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Transfer from External Account",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == External_Account",
+          "terminal_action": "Submit",
+          "on_success": "Transfer completed successfully."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit payment with valid details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Pay",
+          "on_success": "Payment submitted successfully with a reference code"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit payment with account numbers not matching",
+          "actor": "<role>",
+          "conditional_branch": "Account_Number != Confirm_Account_Number",
+          "terminal_action": "Pay",
+          "on_success": "Account numbers do not match"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Submit payment with insufficient funds",
+          "actor": "<role>",
+          "conditional_branch": "Insufficient_Funds == true",
+          "terminal_action": "Pay",
+          "on_success": "Insufficient funds"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Request Personal Loan",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal",
+          "terminal_action": "Submit",
+          "on_success": "Loan approved and created successfully!"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Request Auto Loan",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto",
+          "terminal_action": "Submit",
+          "on_success": "Loan approved and created successfully!"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Request Home Loan",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home",
+          "terminal_action": "Submit",
+          "on_success": "Loan approved and created successfully!"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit profile update with valid data",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "Profile updated successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit profile update with invalid data",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "Invalid fields highlighted and error banner displayed."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Request Card with valid details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Card",
+          "on_success": "Card request submitted successfully. Tracking ID shown."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Update Controls with valid details",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Controls",
+          "on_success": "Card controls updated successfully."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "workflows": [],
+      "attempts": 3
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Generate statement with valid date range",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Generate Statement",
+          "on_success": "Statement generated successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Generate statement with invalid date range",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Generate Statement",
+          "on_success": "Unable to generate statement \u2014 please try again later."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Save e-statement preference with valid email",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save Preference",
+          "on_success": "e-Statement preference updated."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Save e-statement preference with invalid email",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save Preference",
+          "on_success": "Email field highlighted with guidance."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Change Password with valid inputs",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Change Password",
+          "on_success": "Password changed successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Change Password with invalid current password",
+          "actor": "<role>",
+          "conditional_branch": "Current Password is invalid",
+          "terminal_action": "Change Password",
+          "on_success": "Validation errors highlight the appropriate fields."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Change Password with non-matching new passwords",
+          "actor": "<role>",
+          "conditional_branch": "New Password does not match Confirm New Password",
+          "terminal_action": "Change Password",
+          "on_success": "Validation errors highlight the appropriate fields."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Change Password with weak new password",
+          "actor": "<role>",
+          "conditional_branch": "New Password does not meet strong-password policy",
+          "terminal_action": "Change Password",
+          "on_success": "Validation errors highlight the appropriate fields."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Send Message with valid input",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send Message",
+          "on_success": "Message sent successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Request Callback with valid input",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Callback",
+          "on_success": "Callback request submitted."
+        }
+      ],
+      "attempts": 3
+    }
+  ]
+}

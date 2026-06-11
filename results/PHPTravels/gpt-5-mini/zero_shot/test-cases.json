@@ -1,0 +1,1901 @@
+{
+  "module": "PHPTravels",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "PT-001",
+      "category": "positive",
+      "test_case": "Navigate to Home page and top navigation visible",
+      "preconditions": [
+        "User is on site landing URL"
+      ],
+      "steps": [
+        "1. Load home page URL",
+        "2. Observe top navigation bar"
+      ],
+      "expected_result": "Home, Hotels, Flights, Tours, Cars, Visa, Offers, Blog, Account/Login and currency/language selectors are visible in the top navigation",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-002",
+      "category": "positive",
+      "test_case": "Click each main navigation item routes correctly",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Click Hotels",
+        "2. Verify page",
+        "3. Repeat for Flights, Tours, Cars, Visa, Offers, Blog, Account/Login"
+      ],
+      "expected_result": "Each click redirects to the correct section/page and main navigation persists",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-003",
+      "category": "edge",
+      "test_case": "Navigation remains visible on different viewport sizes",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Resize viewport to mobile width",
+        "2. Check navigation (hamburger) visibility",
+        "3. Resize to tablet and desktop",
+        "4. Verify navigation layout"
+      ],
+      "expected_result": "Navigation adapts (hamburger on mobile) and all options accessible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-004",
+      "category": "negative",
+      "test_case": "Broken link in navigation shows 404",
+      "preconditions": [
+        "A navigation link is misconfigured (test environment)"
+      ],
+      "steps": [
+        "1. Click the broken navigation link"
+      ],
+      "expected_result": "User sees a 404 or friendly error page and navigation still available",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-005",
+      "category": "positive",
+      "test_case": "Home page search widget defaults to Hotels tab",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Observe active search tab on load"
+      ],
+      "expected_result": "Hotels tab is active by default with hotel search fields visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-006",
+      "category": "positive",
+      "test_case": "Switch to Flights tab displays fields for trip type and passenger counts",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Click Flights tab"
+      ],
+      "expected_result": "Fields for trip type, departure/arrival, dates, passenger counts, and cabin class are visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-007",
+      "category": "positive",
+      "test_case": "Hotels search with valid inputs redirects to listing",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Hotels tab",
+        "2. Enter destination",
+        "3. Select valid check-in and check-out dates",
+        "4. Enter rooms and guest counts",
+        "5. Click Search"
+      ],
+      "expected_result": "Redirects to hotels listing page showing results matching destination and dates",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-008",
+      "category": "negative",
+      "test_case": "Hotels search with missing destination shows inline error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Hotels tab",
+        "2. Leave destination empty",
+        "3. Fill other required fields",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline error shown on destination field and search blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-009",
+      "category": "edge",
+      "test_case": "Hotels search with same check-in and check-out date",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Hotels tab",
+        "2. Enter destination",
+        "3. Set check-in and check-out to same date",
+        "4. Click Search"
+      ],
+      "expected_result": "Either allowed (0 nights) or validation error displayed depending on business rules; system handles gracefully",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-010",
+      "category": "negative",
+      "test_case": "Hotels search with check-out before check-in shows error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Hotels tab",
+        "2. Enter destination",
+        "3. Set check-in date after check-out date",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline validation error shown for dates and search blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-011",
+      "category": "edge",
+      "test_case": "Hotels search with maximum rooms and guests accepted",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Hotels tab",
+        "2. Enter destination",
+        "3. Select maximum allowed rooms and guests",
+        "4. Click Search"
+      ],
+      "expected_result": "Search processes and results reflect the specified large party; UI does not break",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-012",
+      "category": "positive",
+      "test_case": "Flights search One-way with valid inputs",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Flights tab",
+        "2. Select One-way",
+        "3. Enter departure and arrival cities",
+        "4. Select travel date",
+        "5. Enter passenger counts and cabin class",
+        "6. Click Search"
+      ],
+      "expected_result": "Redirects to flights listing showing One-way options matching criteria",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-013",
+      "category": "positive",
+      "test_case": "Flights Round-trip requires return date and searches successfully",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Flights tab",
+        "2. Select Round-trip",
+        "3. Enter departure and arrival",
+        "4. Set valid outbound and return dates",
+        "5. Click Search"
+      ],
+      "expected_result": "Redirects to listing showing round-trip itineraries",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-014",
+      "category": "negative",
+      "test_case": "Flights Round-trip without return date shows inline error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Flights tab",
+        "2. Select Round-trip",
+        "3. Enter departure/arrival and outbound date only",
+        "4. Click Search"
+      ],
+      "expected_result": "Inline error for missing return date and search blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-015",
+      "category": "edge",
+      "test_case": "Flights multi-city accepts multiple legs up to allowed limit",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Flights tab",
+        "2. Select Multi-city",
+        "3. Add multiple legs up to system maximum",
+        "4. Fill each leg with valid cities and dates",
+        "5. Click Search"
+      ],
+      "expected_result": "Search succeeds and user redirected to multi-city results; UI handles all legs",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-016",
+      "category": "negative",
+      "test_case": "Flights with infant count exceeding allowed per adult shows error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Choose Flights tab",
+        "2. Enter adults and infants where infants > allowed per adult",
+        "3. Click Search"
+      ],
+      "expected_result": "Validation error indicating infant-to-adult ratio exceeded",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-017",
+      "category": "positive",
+      "test_case": "Tours search with destination and date range returns results",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Tours tab",
+        "2. Enter destination and date range",
+        "3. Click Search"
+      ],
+      "expected_result": "Redirects to tours listing with matching tours and availability",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-018",
+      "category": "negative",
+      "test_case": "Tours search with invalid date range shows error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Tours tab",
+        "2. Enter travel dates where end before start",
+        "3. Click Search"
+      ],
+      "expected_result": "Inline error for date range and search blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-019",
+      "category": "positive",
+      "test_case": "Cars search with valid pick-up/drop-off and times",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Cars tab",
+        "2. Enter pick-up and drop-off locations",
+        "3. Set pick-up and drop-off date and times",
+        "4. Enter driver age",
+        "5. Click Search"
+      ],
+      "expected_result": "Redirects to cars listing showing vehicles available for specified period",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-020",
+      "category": "negative",
+      "test_case": "Cars search with drop-off before pick-up time shows error",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Cars tab",
+        "2. Set drop-off datetime earlier than pick-up",
+        "3. Click Search"
+      ],
+      "expected_result": "Validation error shown and search blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-021",
+      "category": "edge",
+      "test_case": "Cars search with driver age below minimum shows warning or restriction",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Select Cars tab",
+        "2. Enter driver age below allowed minimum",
+        "3. Click Search"
+      ],
+      "expected_result": "Warning or validation error about minimum driver age; no results if disallowed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-022",
+      "category": "positive",
+      "test_case": "Open Registration form from Login/Signup and fill valid data",
+      "preconditions": [
+        "Home page loaded"
+      ],
+      "steps": [
+        "1. Click Account/Login",
+        "2. Click Signup",
+        "3. Enter First Name, Last Name, unique Email, Password and Confirm Password, Mobile Number with country code, Address, Country; check Terms",
+        "4. Submit registration"
+      ],
+      "expected_result": "Account created; user either auto-logged-in and redirected to dashboard or shown email verification prompt",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-023",
+      "category": "negative",
+      "test_case": "Registration with missing required fields shows inline errors",
+      "preconditions": [
+        "Registration form open"
+      ],
+      "steps": [
+        "1. Leave First Name and Email empty",
+        "2. Fill other fields correctly",
+        "3. Submit"
+      ],
+      "expected_result": "Inline validation errors for missing required fields and registration blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-024",
+      "category": "negative",
+      "test_case": "Registration with invalid email format rejected",
+      "preconditions": [
+        "Registration form open"
+      ],
+      "steps": [
+        "1. Enter invalid email (e.g., user@invalid)",
+        "2. Fill other fields correctly",
+        "3. Submit"
+      ],
+      "expected_result": "Inline error for email format; registration blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-025",
+      "category": "negative",
+      "test_case": "Registration with password mismatch shows error",
+      "preconditions": [
+        "Registration form open"
+      ],
+      "steps": [
+        "1. Enter Password and different Confirm Password",
+        "2. Submit"
+      ],
+      "expected_result": "Inline error for password mismatch; registration blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-026",
+      "category": "negative",
+      "test_case": "Registration with duplicate email is rejected",
+      "preconditions": [
+        "Email already exists in system"
+      ],
+      "steps": [
+        "1. Fill registration with existing email",
+        "2. Submit"
+      ],
+      "expected_result": "Inline or global error indicating email already registered",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-027",
+      "category": "edge",
+      "test_case": "Registration with maximum length inputs accepted",
+      "preconditions": [
+        "Registration form open"
+      ],
+      "steps": [
+        "1. Enter first/last name at maximum allowed length",
+        "2. Enter long address and country fields",
+        "3. Submit with valid email/password and terms checked"
+      ],
+      "expected_result": "Registration succeeds or shows validation if any field exceeds limits without UI breakage",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-028",
+      "category": "positive",
+      "test_case": "Login with valid credentials redirects to dashboard",
+      "preconditions": [
+        "User account exists",
+        "Login page open"
+      ],
+      "steps": [
+        "1. Enter registered Email and Password",
+        "2. Optionally check Remember Me",
+        "3. Click Login"
+      ],
+      "expected_result": "User is logged in and redirected to dashboard or previous page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-029",
+      "category": "negative",
+      "test_case": "Login with invalid password shows error and clears password field",
+      "preconditions": [
+        "Login page open"
+      ],
+      "steps": [
+        "1. Enter valid email and wrong password",
+        "2. Click Login"
+      ],
+      "expected_result": "Error message displayed; password field cleared; email remains",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-030",
+      "category": "edge",
+      "test_case": "Login with Remember Me persists session across browser restart",
+      "preconditions": [
+        "User valid credentials"
+      ],
+      "steps": [
+        "1. Login with Remember Me checked",
+        "2. Close and reopen browser",
+        "3. Revisit site"
+      ],
+      "expected_result": "User remains logged in based on Remember Me behavior",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-031",
+      "category": "positive",
+      "test_case": "Social login (Google) flows when enabled",
+      "preconditions": [
+        "Social login enabled in config",
+        "User has Google account"
+      ],
+      "steps": [
+        "1. Click Google login button on Login page",
+        "2. Complete OAuth consent",
+        "3. Return to site"
+      ],
+      "expected_result": "User account authenticated and redirected to dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-032",
+      "category": "negative",
+      "test_case": "Multiple failed login attempts trigger CAPTCHA",
+      "preconditions": [
+        "Login page open"
+      ],
+      "steps": [
+        "1. Attempt login with wrong password repeatedly until threshold",
+        "2. Observe login form"
+      ],
+      "expected_result": "CAPTCHA challenge appears and must be completed before further attempts",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-033",
+      "category": "positive",
+      "test_case": "Forgot Password with registered email sends reset link",
+      "preconditions": [
+        "User exists",
+        "Forgot Password page open"
+      ],
+      "steps": [
+        "1. Enter registered email",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "Confirmation message shown and reset link emailed; link validity 24 hours",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-034",
+      "category": "negative",
+      "test_case": "Forgot Password with unregistered email shows error",
+      "preconditions": [
+        "Forgot Password page open"
+      ],
+      "steps": [
+        "1. Enter email not in system",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "Error shown indicating email not found; form remains editable",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-035",
+      "category": "edge",
+      "test_case": "Using expired reset link shows expiration message",
+      "preconditions": [
+        "Reset link older than 24 hours"
+      ],
+      "steps": [
+        "1. Click expired reset link",
+        "2. Observe reset page"
+      ],
+      "expected_result": "Message indicating link expired with option to request new link",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-036",
+      "category": "positive",
+      "test_case": "Reset password successfully and login with new password",
+      "preconditions": [
+        "Valid reset link received"
+      ],
+      "steps": [
+        "1. Open reset link",
+        "2. Enter new password and confirm",
+        "3. Submit",
+        "4. Login using new password"
+      ],
+      "expected_result": "Password updated; redirected to login with success message and able to login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-037",
+      "category": "positive",
+      "test_case": "Hotels listing shows cards with required elements",
+      "preconditions": [
+        "Hotels search executed and listing page loaded"
+      ],
+      "steps": [
+        "1. Observe first page of hotel results"
+      ],
+      "expected_result": "Each hotel card shows name, location, star rating, thumbnail, starting price, amenity icons, and Book Now button",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-038",
+      "category": "positive",
+      "test_case": "Apply hotel filters updates results dynamically",
+      "preconditions": [
+        "Hotels listing page loaded"
+      ],
+      "steps": [
+        "1. Expand filters sidebar",
+        "2. Apply price range, star rating and amenities",
+        "3. Observe results and active filters summary"
+      ],
+      "expected_result": "Results update without full page reload; active filters summarized with remove buttons; result count updates",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-039",
+      "category": "negative",
+      "test_case": "Filter combination yields no results displays appropriate message",
+      "preconditions": [
+        "Hotels listing page loaded"
+      ],
+      "steps": [
+        "1. Apply restrictive filters expected to return zero results"
+      ],
+      "expected_result": "No results message displayed with option to reset filters or broaden search",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-040",
+      "category": "edge",
+      "test_case": "Reset all filters clears filters and refreshes results",
+      "preconditions": [
+        "Multiple filters applied"
+      ],
+      "steps": [
+        "1. Click Reset all control"
+      ],
+      "expected_result": "All filters cleared, active filters summary removed, full result set restored",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-041",
+      "category": "positive",
+      "test_case": "Hotel details page displays photo gallery and map",
+      "preconditions": [
+        "User clicked a hotel card Book Now or details link"
+      ],
+      "steps": [
+        "1. Open hotel details page"
+      ],
+      "expected_result": "Photo gallery, full description, location map, room types, reviews, policies are visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-042",
+      "category": "positive",
+      "test_case": "Select room and proceed to booking form when authenticated",
+      "preconditions": [
+        "User logged in",
+        "Hotel details open",
+        "Available room selected"
+      ],
+      "steps": [
+        "1. Select room type and rate",
+        "2. Confirm guest count and dates",
+        "3. Click Book Now"
+      ],
+      "expected_result": "Booking form pre-filled with selected details and user contact info; proceed to payment possible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-043",
+      "category": "negative",
+      "test_case": "Unauthenticated user attempting to book hotel is redirected to login",
+      "preconditions": [
+        "User logged out",
+        "Hotel details open"
+      ],
+      "steps": [
+        "1. Select room and click Book Now"
+      ],
+      "expected_result": "User redirected to login page; after login returns to booking flow",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-044",
+      "category": "negative",
+      "test_case": "Hotel booking with missing contact fields blocked",
+      "preconditions": [
+        "User logged in",
+        "Booking form open"
+      ],
+      "steps": [
+        "1. Clear First Name or Email",
+        "2. Click Book Now"
+      ],
+      "expected_result": "Inline validation errors shown and booking blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-045",
+      "category": "edge",
+      "test_case": "Hotel booking with special requests containing long text accepted",
+      "preconditions": [
+        "User logged in",
+        "Booking form open"
+      ],
+      "steps": [
+        "1. Enter large text in Special Requests",
+        "2. Submit booking"
+      ],
+      "expected_result": "Large input accepted up to backend limit; preserved in booking without UI break",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-046",
+      "category": "positive",
+      "test_case": "Flight listing displays required information per result",
+      "preconditions": [
+        "Flights search executed"
+      ],
+      "steps": [
+        "1. Open flights listing page"
+      ],
+      "expected_result": "Each result shows airline logo/name, times, airports, duration, stops, price, and Select button",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-047",
+      "category": "positive",
+      "test_case": "Expand flight result shows fare rules and baggage details",
+      "preconditions": [
+        "Flights listing page loaded"
+      ],
+      "steps": [
+        "1. Click Expand on a flight result"
+      ],
+      "expected_result": "Baggage allowance, fare rules, seat availability and other details visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-048",
+      "category": "negative",
+      "test_case": "Select flight and proceed with incomplete passenger info blocked",
+      "preconditions": [
+        "Flight selected, booking page open"
+      ],
+      "steps": [
+        "1. Leave required passenger fields empty",
+        "2. Click Continue"
+      ],
+      "expected_result": "Inline errors for required passenger fields and progression blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-049",
+      "category": "edge",
+      "test_case": "Flight passenger DOB results in age-category mismatch (infant vs child) validation",
+      "preconditions": [
+        "Flight booking page open"
+      ],
+      "steps": [
+        "1. Enter passenger DOB that makes them infant but selected as child/adult",
+        "2. Click Continue"
+      ],
+      "expected_result": "Validation error prompting correction of passenger type or DOB",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-050",
+      "category": "positive",
+      "test_case": "Flight booking with valid passport and lead contact proceeds to payment",
+      "preconditions": [
+        "Flight booking form filled with valid passenger passport data"
+      ],
+      "steps": [
+        "1. Fill all required traveler passport fields and lead contact",
+        "2. Click Continue"
+      ],
+      "expected_result": "Proceed to payment page with fare breakdown preserved",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-051",
+      "category": "positive",
+      "test_case": "Tours listing displays tour cards with availability and rating",
+      "preconditions": [
+        "Tours search executed"
+      ],
+      "steps": [
+        "1. Open tours listing page"
+      ],
+      "expected_result": "Cards show image, name, destination, duration, starting price, brief description, availability, rating",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-052",
+      "category": "negative",
+      "test_case": "Attempt to book tour date that is unavailable shows error",
+      "preconditions": [
+        "Tour details open with some dates unavailable"
+      ],
+      "steps": [
+        "1. Select unavailable departure date",
+        "2. Click Book Now"
+      ],
+      "expected_result": "Error or unselectable indication; booking blocked",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-053",
+      "category": "positive",
+      "test_case": "Tour booking redirects unauthenticated users to login",
+      "preconditions": [
+        "User logged out",
+        "Tour details open"
+      ],
+      "steps": [
+        "1. Select departure date, specify travelers and click Book Now"
+      ],
+      "expected_result": "User redirected to login; after login returns to booking form",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-054",
+      "category": "edge",
+      "test_case": "Tour booking with child pricing applied correctly",
+      "preconditions": [
+        "Tour details show different adult/child pricing"
+      ],
+      "steps": [
+        "1. Select number of adults and children",
+        "2. Click Book Now",
+        "3. Observe price breakdown"
+      ],
+      "expected_result": "Total cost correctly reflects adult and child prices and displayed breakdown",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-055",
+      "category": "positive",
+      "test_case": "Cars listing groups vehicles by category and shows total rental cost",
+      "preconditions": [
+        "Cars search executed"
+      ],
+      "steps": [
+        "1. Open cars listing page"
+      ],
+      "expected_result": "Vehicles grouped by category; each listing shows make/model, transmission, fuel policy, capacities, daily and total price, Book Now button",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-056",
+      "category": "negative",
+      "test_case": "Car booking blocked when driver age missing or invalid",
+      "preconditions": [
+        "Car booking form open"
+      ],
+      "steps": [
+        "1. Leave driver age empty or enter unrealistic age",
+        "2. Click Confirm Booking"
+      ],
+      "expected_result": "Inline error for driver age and booking blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-057",
+      "category": "edge",
+      "test_case": "Select optional add-ons and insurance adjusts price dynamically",
+      "preconditions": [
+        "Car booking page loaded"
+      ],
+      "steps": [
+        "1. Select GPS and additional driver and choose insurance plan",
+        "2. Observe price breakdown updates"
+      ],
+      "expected_result": "Total price updates reflect add-ons and insurance immediately",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-058",
+      "category": "positive",
+      "test_case": "Visa service shows requirements for nationality/destination combination",
+      "preconditions": [
+        "Visa services page open"
+      ],
+      "steps": [
+        "1. Select Nationality",
+        "2. Select Destination Country"
+      ],
+      "expected_result": "Visa requirements, processing time, documents and fees are displayed for that pair",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-059",
+      "category": "positive",
+      "test_case": "Submit visa application with required documents and view status in dashboard",
+      "preconditions": [
+        "User logged in",
+        "Visa application prepared"
+      ],
+      "steps": [
+        "1. Fill personal and travel details",
+        "2. Upload required documents",
+        "3. Submit application",
+        "4. Open dashboard > My Bookings"
+      ],
+      "expected_result": "Application accepted; status visible in bookings with reference and documents attached",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-060",
+      "category": "negative",
+      "test_case": "Visa application missing required document is rejected with inline error",
+      "preconditions": [
+        "Visa application form open"
+      ],
+      "steps": [
+        "1. Leave required passport copy or photo upload empty",
+        "2. Submit form"
+      ],
+      "expected_result": "Inline error indicating missing document; submission blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-061",
+      "category": "edge",
+      "test_case": "Visa application file upload accepts allowed file types only",
+      "preconditions": [
+        "Visa application open"
+      ],
+      "steps": [
+        "1. Attempt to upload unsupported file type (e.g., .exe)",
+        "2. Attempt to upload large file exceeding limit"
+      ],
+      "expected_result": "Unsupported types rejected; oversized files rejected with clear message",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-062",
+      "category": "positive",
+      "test_case": "Dashboard My Bookings lists bookings across services",
+      "preconditions": [
+        "User has bookings across Hotels, Flights, Tours, Cars",
+        "User logged in"
+      ],
+      "steps": [
+        "1. Navigate to Dashboard > My Bookings"
+      ],
+      "expected_result": "All bookings listed with reference, service type, dates, status and action buttons",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-063",
+      "category": "positive",
+      "test_case": "Dashboard My Profile editing persists changes",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Navigate to Dashboard > My Profile",
+        "2. Edit address and phone",
+        "3. Save changes"
+      ],
+      "expected_result": "Profile updated; changes reflected immediately and persisted on refresh",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-064",
+      "category": "positive",
+      "test_case": "Wallet/Credits shows balance and transaction history",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Open Dashboard > Wallet/Credits"
+      ],
+      "expected_result": "Available credit balance displayed with full transaction history and dates",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-065",
+      "category": "positive",
+      "test_case": "Wishlist stores and displays saved items",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Save a hotel, tour and flight to wishlist",
+        "2. Open Dashboard > Wishlist"
+      ],
+      "expected_result": "Saved items appear in wishlist with ability to navigate to details or remove",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-066",
+      "category": "positive",
+      "test_case": "Settings allow password change with validation",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Go to Dashboard > Settings > Change Password",
+        "2. Enter current and new password and confirm",
+        "3. Submit"
+      ],
+      "expected_result": "Password changed and success message displayed; old password no longer accepted",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-067",
+      "category": "negative",
+      "test_case": "Password change with wrong current password shows error",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Enter incorrect current password while changing to new password",
+        "2. Submit"
+      ],
+      "expected_result": "Inline error indicating current password incorrect; change blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-068",
+      "category": "positive",
+      "test_case": "Booking details view displays full information and actions",
+      "preconditions": [
+        "User logged in",
+        "Booking exists"
+      ],
+      "steps": [
+        "1. Open a booking's details from My Bookings"
+      ],
+      "expected_result": "Confirmation number, service details, traveler info, payment info and actions (Modify, Cancel) displayed where applicable",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-069",
+      "category": "positive",
+      "test_case": "Modify booking flow allows date change with fee estimation",
+      "preconditions": [
+        "Booking modifiable per policy",
+        "User logged in"
+      ],
+      "steps": [
+        "1. Click Modify on a booking",
+        "2. Change travel dates",
+        "3. System calculates availability and fees",
+        "4. Confirm modification"
+      ],
+      "expected_result": "System shows adjusted price/fees and completes modification when confirmed; booking updated",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-070",
+      "category": "negative",
+      "test_case": "Attempt to modify non-modifiable booking shows restriction",
+      "preconditions": [
+        "Booking non-modifiable by policy"
+      ],
+      "steps": [
+        "1. Click Modify on such booking"
+      ],
+      "expected_result": "Message explaining modification not allowed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-071",
+      "category": "positive",
+      "test_case": "Cancel booking flow shows refund amount and requires explicit confirmation",
+      "preconditions": [
+        "Booking cancellable",
+        "User logged in"
+      ],
+      "steps": [
+        "1. Click Cancel",
+        "2. Review cancellation confirmation modal with refund amount",
+        "3. Confirm cancellation"
+      ],
+      "expected_result": "Booking status updated to Cancelled; refund initiated; email notification sent",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-072",
+      "category": "negative",
+      "test_case": "Cancellation without explicit confirmation is not processed",
+      "preconditions": [
+        "Cancellation confirmation modal displays"
+      ],
+      "steps": [
+        "1. Click Cancel",
+        "2. Close dialog without confirming"
+      ],
+      "expected_result": "No cancellation processed; booking remains unchanged",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-073",
+      "category": "positive",
+      "test_case": "Email notifications sent on booking confirmation, modification, cancellation",
+      "preconditions": [
+        "User email valid in profile",
+        "Booking action performed"
+      ],
+      "steps": [
+        "1. Perform booking action (confirm/modify/cancel)",
+        "2. Check user's email inbox"
+      ],
+      "expected_result": "Appropriate email notification received with details and reference",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-074",
+      "category": "positive",
+      "test_case": "Payment page shows full booking summary and supported methods",
+      "preconditions": [
+        "Proceeding to payment with completed booking form"
+      ],
+      "steps": [
+        "1. Open payment page"
+      ],
+      "expected_result": "Price breakdown and options for Card, PayPal, Bank Transfer, Wallet displayed; security badges visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-075",
+      "category": "positive",
+      "test_case": "Pay with valid credit card succeeds and shows confirmation page",
+      "preconditions": [
+        "Valid card details and sufficient funds",
+        "Payment gateway simulated/test mode"
+      ],
+      "steps": [
+        "1. Enter cardholder name, number, expiry, CVV",
+        "2. Optionally save card",
+        "3. Click Pay"
+      ],
+      "expected_result": "Payment success; redirected to booking confirmation with reference; email sent",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-076",
+      "category": "negative",
+      "test_case": "Payment with invalid card number shows decline error and preserves booking details",
+      "preconditions": [
+        "Payment page open"
+      ],
+      "steps": [
+        "1. Enter invalid card number",
+        "2. Click Pay"
+      ],
+      "expected_result": "Payment failed with descriptive error (Card declined); booking details retained so user can retry",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-077",
+      "category": "negative",
+      "test_case": "Insufficient funds response prevents booking and shows message",
+      "preconditions": [
+        "Payment gateway can simulate insufficient funds"
+      ],
+      "steps": [
+        "1. Attempt payment resulting in insufficient funds",
+        "2. Observe response"
+      ],
+      "expected_result": "Error message 'Insufficient funds' displayed; booking not confirmed; details retained",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-078",
+      "category": "edge",
+      "test_case": "Save card option stores tokenized card for future if permitted",
+      "preconditions": [
+        "User logged in",
+        "Save card option enabled"
+      ],
+      "steps": [
+        "1. Make payment and check Save Card",
+        "2. Complete payment",
+        "3. Revisit Payment methods in profile"
+      ],
+      "expected_result": "Saved card appears as tokenized entry without full card number visible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-079",
+      "category": "positive",
+      "test_case": "Currency selector updates prices site-wide without losing search context",
+      "preconditions": [
+        "Any listing or search page open"
+      ],
+      "steps": [
+        "1. Change currency via top selector",
+        "2. Observe prices and current search inputs"
+      ],
+      "expected_result": "All prices update to selected currency and search context persists",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-080",
+      "category": "edge",
+      "test_case": "Language selector switches interface and saves preference for authenticated users",
+      "preconditions": [
+        "User logged in",
+        "Page open in English"
+      ],
+      "steps": [
+        "1. Change language to French",
+        "2. Observe interface text change",
+        "3. Reload page and check user profile preference"
+      ],
+      "expected_result": "Interface switched to French; preference stored in user profile; persists across sessions",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-081",
+      "category": "negative",
+      "test_case": "Unsupported currency selection defaults back or shows message",
+      "preconditions": [
+        "Currency not supported in system (test)"
+      ],
+      "steps": [
+        "1. Attempt to select unsupported currency"
+      ],
+      "expected_result": "System prevents selection or falls back to default with message",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-082",
+      "category": "positive",
+      "test_case": "Listing filters common (price slider) updates result count dynamically",
+      "preconditions": [
+        "Any listing page open"
+      ],
+      "steps": [
+        "1. Adjust price slider",
+        "2. Observe results and result count"
+      ],
+      "expected_result": "Result count updates and results filtered accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-083",
+      "category": "positive",
+      "test_case": "Remove individual active filter updates results",
+      "preconditions": [
+        "Filters applied and active filter chips visible"
+      ],
+      "steps": [
+        "1. Click remove on one active filter chip"
+      ],
+      "expected_result": "Filter removed and results updated accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-084",
+      "category": "edge",
+      "test_case": "Applying many filters does not crash UI and maintains correct count",
+      "preconditions": [
+        "Listing page open"
+      ],
+      "steps": [
+        "1. Apply multiple filters across categories",
+        "2. Observe UI responsiveness and result consistency"
+      ],
+      "expected_result": "UI remains responsive and results accurately reflect filters",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-085",
+      "category": "positive",
+      "test_case": "Listing sorting by price low to high works",
+      "preconditions": [
+        "Listing page with multiple items"
+      ],
+      "steps": [
+        "1. Select sort by price low to high",
+        "2. Observe order of results"
+      ],
+      "expected_result": "Results ordered ascending by price",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-086",
+      "category": "positive",
+      "test_case": "Reviews section shows aggregated rating and individual reviews with filters",
+      "preconditions": [
+        "Item detail page with reviews"
+      ],
+      "steps": [
+        "1. Open Reviews section",
+        "2. Filter by rating or date",
+        "3. Observe reviews displayed"
+      ],
+      "expected_result": "Aggregate rating and filtered individual reviews displayed correctly with reviewer info and photos",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-087",
+      "category": "positive",
+      "test_case": "Authenticated completed-booking user can submit a review",
+      "preconditions": [
+        "User logged in",
+        "User has completed booking eligible for review"
+      ],
+      "steps": [
+        "1. From Dashboard or post-stay email, open review form",
+        "2. Provide overall and category ratings and text",
+        "3. Submit review"
+      ],
+      "expected_result": "Review saved and visible in reviews section; aggregate rating updated",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-088",
+      "category": "negative",
+      "test_case": "Unauthenticated user cannot submit review and prompted to login",
+      "preconditions": [
+        "User not logged in"
+      ],
+      "steps": [
+        "1. Attempt to access review submission form from detail page",
+        "2. Click submit"
+      ],
+      "expected_result": "User prompted to login and review not accepted until authenticated",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-089",
+      "category": "edge",
+      "test_case": "Review text with special characters and long length accepted up to limit",
+      "preconditions": [
+        "User eligible to review"
+      ],
+      "steps": [
+        "1. Enter very long review with emojis and special characters",
+        "2. Submit"
+      ],
+      "expected_result": "Review accepted up to maximum length and stored/displayed correctly; XSS filtered",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-090",
+      "category": "positive",
+      "test_case": "Offers page displays promotion cards and filters by service type",
+      "preconditions": [
+        "Offers page open"
+      ],
+      "steps": [
+        "1. View offers list",
+        "2. Filter by Hotels or Flights or Packages",
+        "3. Observe cards"
+      ],
+      "expected_result": "Promotional cards shown with title, image, discount, validity and Book Now button; filters narrow list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-091",
+      "category": "positive",
+      "test_case": "Clicking Book Now on offer applies discount to booking flow",
+      "preconditions": [
+        "Offer available and valid",
+        "Search context pre-filled"
+      ],
+      "steps": [
+        "1. Click Book Now on an offer card",
+        "2. Proceed to booking flow"
+      ],
+      "expected_result": "Offer discount applied automatically or promotional code prefilled; discounted prices reflected in booking",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-092",
+      "category": "negative",
+      "test_case": "Expired offer shows not available or not appliable message",
+      "preconditions": [
+        "Offer validity expired"
+      ],
+      "steps": [
+        "1. Click expired offer's Book Now"
+      ],
+      "expected_result": "System notifies user that offer is expired and prevents applying discount",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-093",
+      "category": "positive",
+      "test_case": "Newsletter subscription accepts valid email and confirms",
+      "preconditions": [
+        "Offers page open"
+      ],
+      "steps": [
+        "1. Enter valid email in newsletter field",
+        "2. Submit"
+      ],
+      "expected_result": "Confirmation message displayed and email added to subscription list",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-094",
+      "category": "negative",
+      "test_case": "Newsletter subscription rejects invalid email format",
+      "preconditions": [
+        "Offers page open"
+      ],
+      "steps": [
+        "1. Enter invalid email into newsletter field",
+        "2. Submit"
+      ],
+      "expected_result": "Validation error shown; subscription rejected",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-095",
+      "category": "positive",
+      "test_case": "Logout clears session and prevents access to protected pages",
+      "preconditions": [
+        "User logged in"
+      ],
+      "steps": [
+        "1. Click Logout",
+        "2. Try to access dashboard URL directly"
+      ],
+      "expected_result": "User redirected to home after logout; attempts to access protected pages redirect to login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-096",
+      "category": "edge",
+      "test_case": "Attempt to open protected page after logout via browser back button redirects to login",
+      "preconditions": [
+        "User logged out"
+      ],
+      "steps": [
+        "1. Use browser back button to return to previously viewed dashboard page"
+      ],
+      "expected_result": "Protected content not displayed; user redirected to login or shown session expired message",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-097",
+      "category": "positive",
+      "test_case": "Search widget persists selected tab when navigating back",
+      "preconditions": [
+        "User performed a search and navigated to listing and back"
+      ],
+      "steps": [
+        "1. Select Flights tab and perform search",
+        "2. Navigate to results and then click back to home",
+        "3. Observe active tab"
+      ],
+      "expected_result": "Search tab selection persists or context restored so user can edit previous search",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-098",
+      "category": "negative",
+      "test_case": "Search with invalid city codes shows helpful suggestions",
+      "preconditions": [
+        "Flights search open"
+      ],
+      "steps": [
+        "1. Enter invalid or misspelled city/airport",
+        "2. Click Search"
+      ],
+      "expected_result": "System suggests nearest valid airports or shows validation error",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-099",
+      "category": "edge",
+      "test_case": "Special characters in destination input are sanitized",
+      "preconditions": [
+        "Hotels search open"
+      ],
+      "steps": [
+        "1. Enter destination with SQL/JS special characters",
+        "2. Click Search"
+      ],
+      "expected_result": "Input sanitized; search either proceeds or shows invalid input error without security vulnerability",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-100",
+      "category": "positive",
+      "test_case": "Session/cookie stores language/currency for unauthenticated users",
+      "preconditions": [
+        "User not logged in"
+      ],
+      "steps": [
+        "1. Choose language and currency",
+        "2. Navigate around site and reload"
+      ],
+      "expected_result": "Preferences persist for session via cookies; revert after session end if not saved to profile",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-101",
+      "category": "positive",
+      "test_case": "Download invoice/voucher from booking detail",
+      "preconditions": [
+        "Booking confirmed and downloadable invoice available",
+        "User logged in"
+      ],
+      "steps": [
+        "1. Open booking detail",
+        "2. Click Download Invoice or Voucher"
+      ],
+      "expected_result": "PDF or appropriate file generated and download starts",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-102",
+      "category": "negative",
+      "test_case": "Attempt to download invoice for cancelled booking is restricted if policy prevents",
+      "preconditions": [
+        "Booking cancelled and system configured to restrict"
+      ],
+      "steps": [
+        "1. Open cancelled booking detail",
+        "2. Click Download Invoice"
+      ],
+      "expected_result": "Either invoice available for past bookings or system shows message explaining unavailability",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-103",
+      "category": "positive",
+      "test_case": "Modify traveler personal info on a modifiable booking",
+      "preconditions": [
+        "Booking allows traveler info updates",
+        "User logged in"
+      ],
+      "steps": [
+        "1. Click Modify > Update traveler name or contact",
+        "2. Save changes"
+      ],
+      "expected_result": "Traveler information updated and confirmation email sent",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-104",
+      "category": "negative",
+      "test_case": "Invalid passport expiry date in flight booking blocked",
+      "preconditions": [
+        "Flight booking page open"
+      ],
+      "steps": [
+        "1. Enter passport expiry date that is before current date or before travel date as per rules",
+        "2. Click Continue"
+      ],
+      "expected_result": "Validation error displayed and progression blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-105",
+      "category": "edge",
+      "test_case": "Passenger name with unicode characters accepted",
+      "preconditions": [
+        "Flight booking form open"
+      ],
+      "steps": [
+        "1. Enter passenger name with accents and non-latin characters",
+        "2. Submit booking form"
+      ],
+      "expected_result": "System accepts unicode characters and stores/display them correctly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-106",
+      "category": "positive",
+      "test_case": "Fare breakdown shows taxes and fees per passenger and overall",
+      "preconditions": [
+        "Booking summary open for hotel/flight/car/tour"
+      ],
+      "steps": [
+        "1. Open price breakdown section on booking page"
+      ],
+      "expected_result": "Breakdown lists base fare, taxes, fees, per passenger and total amounts",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-107",
+      "category": "negative",
+      "test_case": "Currency conversion rounding displayed correctly",
+      "preconditions": [
+        "Currency changed",
+        "Booking has decimal amounts"
+      ],
+      "steps": [
+        "1. Change currency",
+        "2. Observe price rounding and totals"
+      ],
+      "expected_result": "Totals correctly reflect rounded converted values; subtle discrepancies highlighted if any",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-108",
+      "category": "positive",
+      "test_case": "Search results pagination and infinite scroll operate correctly",
+      "preconditions": [
+        "Listing page with many results"
+      ],
+      "steps": [
+        "1. Scroll or click next page",
+        "2. Observe more results load"
+      ],
+      "expected_result": "Next set of results loaded via pagination or infinite scroll and accessible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-109",
+      "category": "edge",
+      "test_case": "Search results preserve sort and filters after page reload",
+      "preconditions": [
+        "Filters and sort applied on listing page"
+      ],
+      "steps": [
+        "1. Reload the listing page",
+        "2. Observe applied filters and sort order"
+      ],
+      "expected_result": "Filters and sort persist across reload via query params or session",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-110",
+      "category": "positive",
+      "test_case": "Admin-configured content (blog/offers) displays correctly across languages",
+      "preconditions": [
+        "Multilingual content exists"
+      ],
+      "steps": [
+        "1. Switch language",
+        "2. View blog and offers content"
+      ],
+      "expected_result": "Content displayed in selected language where translations available; fallbacks handled",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-111",
+      "category": "negative",
+      "test_case": "Attempt booking when payment gateway is down shows graceful error",
+      "preconditions": [
+        "Simulated payment gateway outage"
+      ],
+      "steps": [
+        "1. Submit payment while gateway unavailable"
+      ],
+      "expected_result": "User shown friendly error and ability to retry or choose alternate payment method; booking not confirmed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-112",
+      "category": "positive",
+      "test_case": "Saved search or recent searches displayed if feature enabled",
+      "preconditions": [
+        "User has performed searches; feature enabled"
+      ],
+      "steps": [
+        "1. Open search widget and view recent/saved searches"
+      ],
+      "expected_result": "Recent or saved searches displayed for quick re-use",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-113",
+      "category": "edge",
+      "test_case": "Large number of wishlist items displayed and pagination handles performance",
+      "preconditions": [
+        "User has many wishlist items"
+      ],
+      "steps": [
+        "1. Open wishlist",
+        "2. Scroll through items"
+      ],
+      "expected_result": "Wishlist loads with pagination or lazy load without UI crash",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-114",
+      "category": "positive",
+      "test_case": "Inline form validation messages are descriptive and accessible",
+      "preconditions": [
+        "Any form with validation errors"
+      ],
+      "steps": [
+        "1. Trigger validation error (e.g., empty required field)",
+        "2. Observe the message and its accessibility attributes"
+      ],
+      "expected_result": "Inline messages are descriptive, associated with fields, and screen-reader accessible",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-115",
+      "category": "negative",
+      "test_case": "Client-side validation bypassed but server-side validation prevents bad submissions",
+      "preconditions": [
+        "Client-side validation disabled in browser dev tools"
+      ],
+      "steps": [
+        "1. Remove required attribute via dev tools and submit invalid data",
+        "2. Observe response"
+      ],
+      "expected_result": "Server-side returns validation errors and blocks processing",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-116",
+      "category": "edge",
+      "test_case": "Simultaneous bookings by two sessions handle inventory correctly",
+      "preconditions": [
+        "Limited inventory item available",
+        "Two users attempt booking simultaneously"
+      ],
+      "steps": [
+        "1. Both users attempt to book the last available room/seat at same time",
+        "2. Observe which booking succeeds and how the other is handled"
+      ],
+      "expected_result": "One booking confirmed, other receives out-of-stock/unavailable message with alternative options",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-117",
+      "category": "positive",
+      "test_case": "Downloadable voucher contains correct booking references and guest names",
+      "preconditions": [
+        "Booking confirmed with voucher generated"
+      ],
+      "steps": [
+        "1. Download voucher from booking details",
+        "2. Inspect content"
+      ],
+      "expected_result": "Voucher lists correct reference, service details, traveler names, dates and supplier info",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-118",
+      "category": "negative",
+      "test_case": "Malformed input in file upload prevented",
+      "preconditions": [
+        "Forms with file upload open"
+      ],
+      "steps": [
+        "1. Attempt to upload file with harmful name or script",
+        "2. Submit"
+      ],
+      "expected_result": "Upload sanitized/rejected and server-side validation prevents storage/execution",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-119",
+      "category": "edge",
+      "test_case": "Time zone differences handled for pick-up/drop-off times in car bookings",
+      "preconditions": [
+        "Pick-up and drop-off locations in different time zones"
+      ],
+      "steps": [
+        "1. Enter pick-up/drop-off in different time zones",
+        "2. Review rental period and total days"
+      ],
+      "expected_result": "Duration and pricing calculated correctly considering time zones",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-120",
+      "category": "positive",
+      "test_case": "System displays meaningful tooltips/help for complex fields",
+      "preconditions": [
+        "Forms with complex fields (e.g., fare rules, board basis)"
+      ],
+      "steps": [
+        "1. Hover or click help icons next to fields",
+        "2. Read tooltip content"
+      ],
+      "expected_result": "Helpful explanatory text displayed in tooltip/popover",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-121",
+      "category": "positive",
+      "test_case": "Search suggestions/autocomplete provide valid options for cities and hotels",
+      "preconditions": [
+        "Search widget active"
+      ],
+      "steps": [
+        "1. Type partial city or hotel name",
+        "2. Observe autocomplete list and select item"
+      ],
+      "expected_result": "Autocomplete shows relevant suggestions and selecting one fills field correctly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-122",
+      "category": "negative",
+      "test_case": "Autocomplete returns no results gracefully",
+      "preconditions": [
+        "Type gibberish into search field"
+      ],
+      "steps": [
+        "1. Enter random invalid text",
+        "2. Observe suggestions"
+      ],
+      "expected_result": "Message like 'No suggestions' displayed and user can still type full query",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-123",
+      "category": "edge",
+      "test_case": "Search with very long query string handled without crash",
+      "preconditions": [
+        "Search widget open"
+      ],
+      "steps": [
+        "1. Enter extremely long destination string",
+        "2. Click Search"
+      ],
+      "expected_result": "System handles input by truncating or validating and provides helpful feedback; no crash",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-124",
+      "category": "positive",
+      "test_case": "Admin-set blackout dates prevent booking on blocked dates",
+      "preconditions": [
+        "Admin configured blackout dates for a hotel/tour"
+      ],
+      "steps": [
+        "1. Attempt to select blocked date range in booking flow",
+        "2. Click Book Now"
+      ],
+      "expected_result": "System prevents booking on blackout dates with message and suggests alternatives",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-125",
+      "category": "negative",
+      "test_case": "Attempt to access another user's booking detail denied",
+      "preconditions": [
+        "User A and User B exist",
+        "User A logged in"
+      ],
+      "steps": [
+        "1. User A attempts to access booking URL belonging to User B"
+      ],
+      "expected_result": "Access denied or redirected with error; no sensitive info exposed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-126",
+      "category": "edge",
+      "test_case": "Partial network loss during booking shows recovery options",
+      "preconditions": [
+        "Simulate flaky network during booking submission"
+      ],
+      "steps": [
+        "1. Submit booking while network drops and returns",
+        "2. Observe result"
+      ],
+      "expected_result": "System prevents duplicate bookings and shows clear retry/resume options preserving form data",
+      "priority": "high"
+    },
+    {
+      "tc_id": "PT-127",
+      "category": "positive",
+      "test_case": "Mobile native gestures (tap/swipe) on image galleries function correctly",
+      "preconditions": [
+        "Hotel/tour details page open on mobile device"
+      ],
+      "steps": [
+        "1. Swipe through photo gallery",
+        "2. Tap to open full-screen"
+      ],
+      "expected_result": "Gallery navigates images correctly and gestures are responsive",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-128",
+      "category": "negative",
+      "test_case": "Malformed URLs in deep links handled gracefully",
+      "preconditions": [
+        "User opens malformed query parameters in URL"
+      ],
+      "steps": [
+        "1. Enter URL with invalid params",
+        "2. Load page"
+      ],
+      "expected_result": "Page loads with defaults or shows validation messages; no crash",
+      "priority": "low"
+    },
+    {
+      "tc_id": "PT-129",
+      "category": "positive",
+      "test_case": "Apply promo code during payment adjusts total and displays breakdown",
+      "preconditions": [
+        "Promo code valid and applicable to booking"
+      ],
+      "steps": [
+        "1. Enter promo code on payment page",
+        "2. Apply and observe price breakdown"
+      ],
+      "expected_result": "Discount applied, breakdown updated and promo details shown",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "PT-130",
+      "category": "negative",
+      "test_case": "Invalid or inapplicable promo code shows error",
+      "preconditions": [
+        "Promo code invalid or not applicable"
+      ],
+      "steps": [
+        "1. Enter invalid promo code on payment page",
+        "2. Apply"
+      ],
+      "expected_result": "Error message shown and total remains unchanged",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 130,
+    "positive": 62,
+    "negative": 41,
+    "edge": 27,
+    "high_priority": 62,
+    "medium_priority": 53,
+    "low_priority": 15
+  },
+  "_meta": {
+    "website": "PHPTravels",
+    "model": "gpt-5-mini",
+    "approach": "zero_shot",
+    "generated_at": "2026-06-10T17:59:33.974320Z"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "module": "SwagLab",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter valid username (standard_user)", "2. Enter valid password (secret_sauce)", "3. Click on Login button"],
+      "expected_result": "User is redirected to the Product Inventory page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Login with empty username",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Leave username field empty", "2. Enter valid password (secret_sauce)", "3. Click on Login button"],
+      "expected_result": "Error banner displays 'Epic sadface: Username is required.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "negative",
+      "test_case": "Login with empty password",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter valid username (standard_user)", "2. Leave password field empty", "3. Click on Login button"],
+      "expected_result": "Error banner displays 'Epic sadface: Password is required.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "negative",
+      "test_case": "Login with invalid credentials",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter invalid username (invalid_user)", "2. Enter invalid password (wrong_password)", "3. Click on Login button"],
+      "expected_result": "Error banner displays 'Epic sadface: Username and password do not match any user in this service.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "negative",
+      "test_case": "Login with locked out user",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter username (locked_out_user)", "2. Enter valid password (secret_sauce)", "3. Click on Login button"],
+      "expected_result": "Error banner displays 'Epic sadface: Sorry, this user has been locked out.'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "edge",
+      "test_case": "Login with maximum length username",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter username with maximum length (50 characters)", "2. Enter valid password (secret_sauce)", "3. Click on Login button"],
+      "expected_result": "User is redirected to the Product Inventory page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "edge",
+      "test_case": "Login with special characters in username",
+      "preconditions": ["User is on the login page"],
+      "steps": ["1. Enter username with special characters (user@name)", "2. Enter valid password (secret_sauce)", "3. Click on Login button"],
+      "expected_result": "User is redirected to the Product Inventory page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "positive",
+      "test_case": "View product details",
+      "preconditions": ["User is logged in and on the Product Inventory page"],
+      "steps": ["1. Click on a product name or image"],
+      "expected_result": "User is redirected to the Product Detail page showing product information",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "positive",
+      "test_case": "Add product to cart",
+      "preconditions": ["User is logged in and on the Product Inventory page"],
+      "steps": ["1. Click on 'Add to cart' button for a product"],
+      "expected_result": "Product is added to the cart and button changes to 'Remove'; cart badge count updates",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "positive",
+      "test_case": "Remove product from cart",
+      "preconditions": ["User has added a product to the cart"],
+      "steps": ["1. Click on 'Remove' button for the product in the cart"],
+      "expected_result": "Product is removed from the cart and button changes back to 'Add to cart'; cart badge count updates",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "positive",
+      "test_case": "Sort products by name A-Z",
+      "preconditions": ["User is logged in and on the Product Inventory page"],
+      "steps": ["1. Select 'Name (A to Z)' from the sort dropdown"],
+      "expected_result": "Products are sorted in ascending order by name",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "positive",
+      "test_case": "Sort products by price low-high",
+      "preconditions": ["User is logged in and on the Product Inventory page"],
+      "steps": ["1. Select 'Price (low to high)' from the sort dropdown"],
+      "expected_result": "Products are sorted in ascending order by price",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "negative",
+      "test_case": "Attempt to checkout with empty fields",
+      "preconditions": ["User is logged in and has items in the cart"],
+      "steps": ["1. Click on 'Checkout'", "2. Leave First Name, Last Name, and Zip/Postal Code fields empty", "3. Click on 'Continue'"],
+      "expected_result": "Error banners display 'Error: First Name is required', 'Error: Last Name is required', 'Error: Postal Code is required'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "positive",
+      "test_case": "Successful checkout",
+      "preconditions": ["User is logged in, has items in the cart, and fills in all required fields"],
+      "steps": ["1. Click on 'Checkout'", "2. Enter valid First Name, Last Name, and Zip/Postal Code", "3. Click on 'Continue'"],
+      "expected_result": "User is redirected to the Overview step of checkout",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "negative",
+      "test_case": "Checkout with invalid Zip/Postal Code",
+      "preconditions": ["User is logged in and has items in the cart"],
+      "steps": ["1. Click on 'Checkout'", "2. Enter valid First Name, Last Name, and invalid Zip/Postal Code (e.g., letters)", "3. Click on 'Continue'"],
+      "expected_result": "Error banner displays 'Error: Postal Code is invalid'",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "positive",
+      "test_case": "Finish checkout",
+      "preconditions": ["User is on the Overview step of checkout"],
+      "steps": ["1. Click on 'Finish'"],
+      "expected_result": "User is redirected to the Confirmation page with a success message",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "positive",
+      "test_case": "Logout from the application",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Click on the hamburger menu", "2. Click on 'Logout'"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "negative",
+      "test_case": "Access protected pages after logout",
+      "preconditions": ["User has logged out"],
+      "steps": ["1. Attempt to navigate to Product Inventory page"],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "positive",
+      "test_case": "Reset app state",
+      "preconditions": ["User is logged in and has items in the cart"],
+      "steps": ["1. Click on the hamburger menu", "2. Click on 'Reset App State'"],
+      "expected_result": "Cart is cleared and in-app state is reset",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "edge",
+      "test_case": "Checkout with maximum length names",
+      "preconditions": ["User is logged in and has items in the cart"],
+      "steps": ["1. Click on 'Checkout'", "2. Enter First Name and Last Name with maximum length (50 characters)", "3. Enter valid Zip/Postal Code", "4. Click on 'Continue'"],
+      "expected_result": "User is redirected to the Overview step of checkout",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "edge",
+      "test_case": "Checkout with special characters in names",
+      "preconditions": ["User is logged in and has items in the cart"],
+      "steps": ["1. Click on 'Checkout'", "2. Enter First Name and Last Name with special characters (e.g., John@Doe)", "3. Enter valid Zip/Postal Code", "4. Click on 'Continue'"],
+      "expected_result": "User is redirected to the Overview step of checkout",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 21,
+    "high_priority": 12,
+    "medium_priority": 9,
+    "low_priority": 0
+  }
+}

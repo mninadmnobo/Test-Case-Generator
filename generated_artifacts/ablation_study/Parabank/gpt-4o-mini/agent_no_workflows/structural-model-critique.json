@@ -1,0 +1,227 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-10T20:11:17.884682Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the validation constraint for Confirm Password matching the Password field.",
+        "missing": [
+          "Sign_Up_Form.fields.Confirm_Password.constraints"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a constraint to Confirm_Password stating it must match the Password field."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Accounts_Table.columns.Account_Status",
+          "Accounts_Table.footer.Total_Balance"
+        ],
+        "phantoms": [
+          "Accounts_Table.row_actions[0] (View Account action not in description)",
+          "Accounts_Table.columns.Account_Number.type (should specify masked format)"
+        ],
+        "fixes": [
+          "Add 'Account_Status' to 'Accounts_Table.columns'",
+          "Remove 'View Account' action from 'Accounts_Table.row_actions'",
+          "Specify 'Account_Number' type as 'masked'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and constraints described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items include the contextual error messages for failed transfers and the handling of transaction ID.",
+        "missing": [
+          "Transfer_Form.submit_actions[0].on_failure",
+          "Transfer_Form.submit_actions[0].transaction_id"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add 'on_failure' to Transfer_Form.submit_actions[0] with contextual error messages.",
+          "Add 'transaction_id' to Transfer_Form.submit_actions[0] for successful transfers."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Loan_Application_Form.fields.Loan_Type.options",
+          "Loan_Application_Form.submit_actions[0].preconditions"
+        ],
+        "phantoms": [
+          "Loan_Simulation (button not in description)"
+        ],
+        "fixes": [
+          "Add options for Loan_Type field in Loan_Application_Form.fields.Loan_Type",
+          "Remove Loan_Simulation button from components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and constraints described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required fields and contains phantoms.",
+        "missing": [
+          "Card_Request_Form.fields.Shipping_Address.constraints[0]",
+          "Card_Controls_Form.fields.Travel_Notice.constraints[0]",
+          "Card_Controls_Form.fields.Card_Status.options[0]"
+        ],
+        "phantoms": [
+          "Card_Request_Form.fields.Account_to_Link (not specified in description)",
+          "Card_Controls_Form.fields.New_Spending_Limit.constraints[0] (inferred constraint not stated in description)"
+        ],
+        "fixes": [
+          "Add 'Shipping_Address' constraints to 'Card_Request_Form.fields.Shipping_Address'",
+          "Add 'must be a valid date range' constraint to 'Card_Controls_Form.fields.Travel_Notice'",
+          "Add 'Frozen' option to 'Card_Controls_Form.fields.Card_Status'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Trade_Funds_Form.submit_actions[0].on_success (missing success message 'Trade executed successfully.')",
+          "Recurring_Investment_Plan_Form.submit_actions[0].on_success (missing success message 'Plan created successfully.')",
+          "Trade_Funds_Form.fields.Funding_or_Destination_Account (missing constraints for adequate balance)"
+        ],
+        "phantoms": [
+          "Recurring_Investment_Plan_Form.fields.Fund_Symbol.constraints[0] (constraint 'must exist' not in description)",
+          "Trade_Funds_Form.fields.Funding_or_Destination_Account (no constraints mentioned in description)"
+        ],
+        "fixes": [
+          "Add success message 'Trade executed successfully.' to Trade_Funds_Form.submit_actions[0].on_success",
+          "Add success message 'Plan created successfully.' to Recurring_Investment_Plan_Form.submit_actions[0].on_success",
+          "Add constraints for adequate balance to Trade_Funds_Form.fields.Funding_or_Destination_Account"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the 'Generate Statement' button's type and has a phantom in the E_Statement_Preference_Form submit action.",
+        "missing": [
+          "Generate_Statement_Form.submit_actions[0].type"
+        ],
+        "phantoms": [
+          "E_Statement_Preference_Form.submit_actions[0] (missing type for 'Save Preference' button)"
+        ],
+        "fixes": [
+          "Add 'type' field with value 'button' to 'Generate_Statement_Form.submit_actions[0]'",
+          "Add 'type' field with value 'button' to 'E_Statement_Preference_Form.submit_actions[0]'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required fields and contains phantoms.",
+        "missing": [
+          "Schedule_Callback_Form.fields.Reason_for_Call.options",
+          "Schedule_Callback_Form.fields.Preferred_Time_Window.type"
+        ],
+        "phantoms": [
+          "Schedule_Callback_Form.fields.Preferred_Time_Window (type not specified in description)"
+        ],
+        "fixes": [
+          "Add options for Reason_for_Call in Schedule_Callback_Form.fields.Reason_for_Call",
+          "Specify type for Preferred_Time_Window in Schedule_Callback_Form.fields.Preferred_Time_Window"
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

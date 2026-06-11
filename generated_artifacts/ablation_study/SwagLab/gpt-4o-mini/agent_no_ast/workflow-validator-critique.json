@@ -1,0 +1,145 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-10T18:37:40.508793Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required interactive components as the AST is empty.",
+        "missing": [
+          "No workflows found for any interactive components in the AST."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add interactive components to the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST contains no defined components.",
+        "missing": [
+          "No workflows defined for any components in the AST"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST and regenerate workflows accordingly"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty as there are no components defined in the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add interactive components to the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains actions that are not defined in the AST, indicating missing components.",
+        "missing": [
+          "No workflow for any interactive component as the AST is empty"
+        ],
+        "phantoms": [
+          "WF-001 terminal_action=Continue Shopping not found in any AST node",
+          "WF-002 terminal_action=Checkout not found in any AST node",
+          "WF-003 terminal_action=Remove not found in any AST node"
+        ],
+        "fixes": [
+          "Add the necessary components to the AST to match the workflows",
+          "Remove WF-001, WF-002, WF-003 as they are phantoms"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows found for required form fields as the AST has no components."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add form components to the AST to match the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty as the AST contains no components, indicating a critical failure.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add interactive components to the AST"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty but the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for interactive components in the AST."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate at least one workflow for the logout action."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty but the module has an action defined in the description.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for the action defined in the description: Reset App State"
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

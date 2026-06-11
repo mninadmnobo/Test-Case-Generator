@@ -1,0 +1,914 @@
+{
+  "module": "MoodleTeacher",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "MT-001",
+      "category": "positive",
+      "test_case": "Site name link navigates to home page",
+      "preconditions": ["User is on any page of the site", "User is authenticated or not"],
+      "steps": ["1. Locate the site name 'MoodleTest' on the top left of the navigation bar", "2. Click the 'MoodleTest' site name link"],
+      "expected_result": "The browser navigates to the home page (site front page) and page content updates accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-002",
+      "category": "positive",
+      "test_case": "Navigation links Home, Dashboard, My Courses work",
+      "preconditions": ["User is logged in as teacher"],
+      "steps": ["1. Click 'Home' link on top navigation", "2. Verify navigation", "3. Click 'Dashboard' link", "4. Verify navigation", "5. Click 'My Courses' link", "6. Verify navigation"],
+      "expected_result": "Each click navigates to the corresponding page (Home, Dashboard, My Courses)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-003",
+      "category": "positive",
+      "test_case": "Notifications bell opens alerts panel",
+      "preconditions": ["User is logged in", "There are one or more notifications available"],
+      "steps": ["1. Click the notifications bell icon on top right", "2. Observe the notifications panel/drawer display"],
+      "expected_result": "Notifications panel opens showing list of alerts; clicking an alert navigates to relevant page if supported",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-004",
+      "category": "edge",
+      "test_case": "Notifications bell opens empty state when no alerts",
+      "preconditions": ["User is logged in", "No notifications exist for the user"],
+      "steps": ["1. Click the notifications bell icon", "2. Observe panel contents"],
+      "expected_result": "Notifications panel opens and shows an empty state message such as 'No notifications' or similar",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-005",
+      "category": "positive",
+      "test_case": "Messaging icon opens messaging drawer",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Click the messaging icon on the top navigation", "2. Verify the messaging drawer opens with recent conversations and compose options"],
+      "expected_result": "Messaging drawer opens; user can view messages and start a new message",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-006",
+      "category": "positive",
+      "test_case": "User initials dropdown opens user menu and shows links",
+      "preconditions": ["User is logged in and initials icon is visible"],
+      "steps": ["1. Click the circular user initials icon on top right", "2. Verify dropdown opens", "3. Check presence of links: Profile, Grades, Calendar, Private Files, Reports, Preferences, Log out"],
+      "expected_result": "Dropdown opens and all listed links are present and clickable", 
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-007",
+      "category": "positive",
+      "test_case": "Log out ends session and redirects to login",
+      "preconditions": ["User is logged in"],
+      "steps": ["1. Open user menu by clicking initials icon", "2. Click 'Log out' option", "3. Observe page redirect"],
+      "expected_result": "User session terminates and browser redirects to the login page; protected pages require re-authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-008",
+      "category": "negative",
+      "test_case": "Accessing protected page after logout redirects to login",
+      "preconditions": ["User logged out by MT-007", "Browser back button available"],
+      "steps": ["1. After logout, attempt to navigate to a protected URL (e.g., course page) directly or using back button", "2. Observe result"],
+      "expected_result": "System requires re-authentication and shows login page; protected content is not accessible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-009",
+      "category": "positive",
+      "test_case": "Course tab bar shows Teacher-specific Settings tab",
+      "preconditions": ["User is a teacher and viewing any course page"],
+      "steps": ["1. Open any course page", "2. Observe horizontal tab bar below course title", "3. Confirm presence of Course, Participants, Grades, Activities, Competencies, and Settings tabs"],
+      "expected_result": "Teacher sees the Settings tab along with other tabs; links are clickable and navigate to appropriate pages",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-010",
+      "category": "negative",
+      "test_case": "Student user does not see Settings tab",
+      "preconditions": ["User is a student and viewing a course page"],
+      "steps": ["1. Open any course page as a student", "2. Observe horizontal tab bar"],
+      "expected_result": "Settings tab is not visible in the tab bar for student role",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-011",
+      "category": "positive",
+      "test_case": "Breadcrumbs show full navigation path with clickable segments on activity view",
+      "preconditions": ["User viewing an activity inside a course"],
+      "steps": ["1. Open an activity page (e.g., Assignment)", "2. Observe breadcrumbs at top", "3. Click each breadcrumb segment in turn"],
+      "expected_result": "Breadcrumbs display the course > section > activity path and each segment is clickable and navigates to the respective page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-012",
+      "category": "positive",
+      "test_case": "Course Index sidebar shows hierarchical tree and highlights active item",
+      "preconditions": ["User viewing a course page with multiple sections and activities"],
+      "steps": ["1. Ensure Course Index sidebar is visible on left", "2. Observe sections and activities listed in tree", "3. Expand and collapse several sections using arrows", "4. Navigate to an activity and observe active highlight"],
+      "expected_result": "Sidebar displays hierarchical tree, expand/collapse works, close (X) hides the sidebar, and active item is highlighted",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-013",
+      "category": "edge",
+      "test_case": "Close button (X) hides Course Index and toggling open restores it",
+      "preconditions": ["Course Index sidebar is visible"],
+      "steps": ["1. Click close (X) button on Course Index", "2. Confirm sidebar hides", "3. Use sidebar toggle or navigation link to show sidebar again"],
+      "expected_result": "Sidebar hides on close and can be restored by the appropriate UI control",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-014",
+      "category": "positive",
+      "test_case": "Login with valid credentials redirects to Dashboard",
+      "preconditions": ["Login page accessible", "Valid teacher username and password available"],
+      "steps": ["1. Enter valid username", "2. Enter valid password", "3. Click 'Log in' button"],
+      "expected_result": "User is authenticated and redirected to the Dashboard showing personalized greeting",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-015",
+      "category": "negative",
+      "test_case": "Login with invalid credentials shows inline error and clears password",
+      "preconditions": ["Login page open"],
+      "steps": ["1. Enter valid username", "2. Enter incorrect password", "3. Click 'Log in'"],
+      "expected_result": "Inline error message displayed, password field cleared, username retained for correction",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-016",
+      "category": "negative",
+      "test_case": "Login with empty fields shows validation errors",
+      "preconditions": ["Login page open"],
+      "steps": ["1. Leave username empty and/or password empty", "2. Click 'Log in'"],
+      "expected_result": "Inline validation errors shown indicating required fields; no login attempt is made",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-017",
+      "category": "edge",
+      "test_case": "Lost password link disabled shows message or no action",
+      "preconditions": ["Login page open", "Lost password link is disabled on test site"],
+      "steps": ["1. Click 'Lost password?' link", "2. Observe behavior"],
+      "expected_result": "No password recovery flow starts; either link is non-clickable or a message indicates feature disabled",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-018",
+      "category": "positive",
+      "test_case": "Access as a guest allows browsing without authentication",
+      "preconditions": ["Login page open", "Guest access enabled on site"],
+      "steps": ["1. Click 'Access as a guest' button", "2. Browse a course set to allow guest access"],
+      "expected_result": "User can view allowed content without full authentication; actions requiring login are disabled",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-019",
+      "category": "positive",
+      "test_case": "Cookies notice opens information dialog",
+      "preconditions": ["Login page open"],
+      "steps": ["1. Click 'Cookies notice' button", "2. Read the displayed cookie policy information"],
+      "expected_result": "Cookie usage information dialog opens and can be closed", 
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-020",
+      "category": "positive",
+      "test_case": "Dashboard shows personalized greeting and Timeline/Calendar blocks",
+      "preconditions": ["User logged in and has dashboard access"],
+      "steps": ["1. Navigate to Dashboard", "2. Observe personalized greeting", "3. Verify Timeline and Calendar blocks are displayed side by side"],
+      "expected_result": "Greeting visible and both Timeline and Calendar blocks appear with their controls",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-021",
+      "category": "positive",
+      "test_case": "Timeline block filters time range and search finds activities",
+      "preconditions": ["Dashboard open", "Teacher has upcoming activities across courses"],
+      "steps": ["1. In Timeline block, change time range to 'Next 7 days'", "2. Use sort order dropdown to reorder", "3. Enter an activity name in search and press search"],
+      "expected_result": "Timeline updates to selected range/sort and search returns matching activities or shows empty state if none match",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "edge",
+      "tc_id": "MT-022",
+      "category": "edge",
+      "test_case": "Timeline empty state when no items in selected range",
+      "preconditions": ["Dashboard open", "No activities in selected time range"],
+      "steps": ["1. Select a time range that has no activities", "2. Observe Timeline contents"],
+      "expected_result": "Timeline shows a clear empty state message indicating no upcoming activities",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-023",
+      "category": "positive",
+      "test_case": "Calendar displays current month, highlights current date, and shows event names on dates",
+      "preconditions": ["Dashboard open", "Calendar events exist"],
+      "steps": ["1. Observe Calendar heading showing current month and year", "2. Verify current date is highlighted", "3. Check dates with events display event names inline"],
+      "expected_result": "Calendar correctly highlights current date and shows inline event names for dates with events",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-024",
+      "category": "positive",
+      "test_case": "Calendar 'All courses' dropdown filters events by course",
+      "preconditions": ["Dashboard open", "Events from multiple courses exist"],
+      "steps": ["1. Open the 'All courses' dropdown", "2. Select a specific course", "3. Observe Calendar update"],
+      "expected_result": "Calendar refreshes to show events only for the selected course",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-025",
+      "category": "positive",
+      "test_case": "Calendar New event button opens event creation dialog",
+      "preconditions": ["Dashboard open", "User has permission to create calendar events"],
+      "steps": ["1. Click 'New event' button in Calendar block", "2. Fill required event fields and save"],
+      "expected_result": "Event creation dialog opens and saving creates the event and appears in calendar",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-026",
+      "category": "edge",
+      "test_case": "Calendar navigation arrows change months and highlight date correctly",
+      "preconditions": ["Dashboard open"],
+      "steps": ["1. Click right arrow to move to next month", "2. Click left arrow to return", "3. Observe the month heading and highlighted current date when returning to current month"],
+      "expected_result": "Calendar navigates between months and current date highlighted when the displayed month includes it",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-027",
+      "category": "positive",
+      "test_case": "Full calendar link opens dedicated calendar view",
+      "preconditions": ["Dashboard open"],
+      "steps": ["1. Click 'Full calendar' link at bottom of Calendar block"],
+      "expected_result": "The site navigates to the full calendar view showing all events and calendar controls",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-028",
+      "category": "positive",
+      "test_case": "Import or export calendars link opens calendar data management",
+      "preconditions": ["Dashboard open"],
+      "steps": ["1. Click 'Import or export calendars' link", "2. Observe calendar import/export UI"],
+      "expected_result": "Calendar data management page opens enabling import/export functionality",
+      "priority": "low"
+    },
+    {
+      "tc_id": "positive",
+      "tc_id": "MT-029",
+      "category": "positive",
+      "test_case": "Toggle Edit mode shows Reset and '+ Add a block' buttons",
+      "preconditions": ["User logged in and on Dashboard", "User has permission to edit their Dashboard"],
+      "steps": ["1. Toggle Edit mode on the Dashboard", "2. Observe top-right for 'Reset page to default' and below heading for '+ Add a block'"],
+      "expected_result": "Edit mode UI appears with Reset and '+ Add a block' controls available",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-030",
+      "category": "positive",
+      "test_case": "Add a block page lists all available block types and Cancel returns",
+      "preconditions": ["Edit mode enabled on Dashboard"],
+      "steps": ["1. Click '+ Add a block'", "2. Verify list of block types including Comments, Course overview, etc.", "3. Click 'Cancel' link at bottom"],
+      "expected_result": "Add a block page shows all blocks; clicking Cancel returns to Dashboard without changes",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-031",
+      "category": "edge",
+      "test_case": "Editing blocks shows move icon and options menu for each block",
+      "preconditions": ["Edit mode enabled and at least one block present"],
+      "steps": ["1. Inspect each block on Dashboard in Edit mode", "2. Locate move icon and three-dot options menu", "3. Open options menu for a block"],
+      "expected_result": "Each block displays move icon and options menu with configure, move, delete actions",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-032",
+      "category": "positive",
+      "test_case": "Reset page to default reverts layout changes",
+      "preconditions": ["Edit mode enabled", "Layout has been modified by user"],
+      "steps": ["1. Click 'Reset page to default'", "2. Confirm reset when prompted"],
+      "expected_result": "Dashboard layout reverts to default configuration for the user; custom changes are removed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-033",
+      "category": "positive",
+      "test_case": "My Courses page lists courses as cards with controls and course link navigates",
+      "preconditions": ["User logged in as teacher", "User has enrolled courses"],
+      "steps": ["1. Navigate to My Courses", "2. Observe course cards with banner, name, category", "3. Click a course name"],
+      "expected_result": "Course page opens for the selected course; card shows category and three-dot menu present",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-034",
+      "category": "positive",
+      "test_case": "My Courses filters and layout dropdown work",
+      "preconditions": ["My Courses page open with multiple courses"],
+      "steps": ["1. Use status dropdown to filter (e.g., In progress)", "2. Use search field to search course name", "3. Use sort dropdown to change order", "4. Switch layout to List then Summary"],
+      "expected_result": "Course grid updates to reflect filters, search, sort, and layout changes accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-035",
+      "category": "positive",
+      "test_case": "Course card three-dot menu 'Star this course' pins course to top",
+      "preconditions": ["My Courses page open with a course not starred"],
+      "steps": ["1. Open a course card's three-dot menu", "2. Click 'Star this course'", "3. Observe course ordering or starred section"],
+      "expected_result": "Course becomes starred and is pinned to top of list or appears in starred list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-036",
+      "category": "positive",
+      "test_case": "Course card 'Remove from view' hides the course card",
+      "preconditions": ["My Courses page open with at least one visible course"],
+      "steps": ["1. Open a course card's three-dot menu", "2. Click 'Remove from view'", "3. Observe course card disappearance or moved to hidden view"],
+      "expected_result": "Course card is removed from view but enrollment remains unaffected",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-037",
+      "category": "edge",
+      "test_case": "My Courses search returns no results empty state",
+      "preconditions": ["My Courses open", "Search query that matches no courses"],
+      "steps": ["1. Enter a non-matching search term in the search field", "2. Submit search"],
+      "expected_result": "A clear empty state indicates no courses found for the query",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-038",
+      "category": "positive",
+      "test_case": "Course page displays collapsible sections and activities",
+      "preconditions": ["Course page open with multiple sections and activities"],
+      "steps": ["1. Observe course heading and tab bar", "2. Scroll through sections", "3. Collapse and expand individual sections using chevrons", "4. Click an activity name"],
+      "expected_result": "Sections collapse/expand, activities listed with type icons and clicking activity navigates to its page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-039",
+      "category": "positive",
+      "test_case": "Collapse all link collapses all sections",
+      "preconditions": ["Course page open with expanded sections"],
+      "steps": ["1. Click 'Collapse all' link at top right of sections list", "2. Observe all sections"],
+      "expected_result": "All sections collapse at once",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-040",
+      "category": "edge",
+      "test_case": "Navigate to activity after collapsing sections via Collapse all",
+      "preconditions": ["Course page open", "Sections currently expanded"],
+      "steps": ["1. Click 'Collapse all'", "2. Use Course Index or breadcrumbs to navigate to an activity", "3. Observe section expansion behavior"],
+      "expected_result": "Target section expands or navigation moves to the activity page and clearly indicates its location",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-041",
+      "category": "positive",
+      "test_case": "Enabling Course Edit mode adds inline controls and Add activity buttons",
+      "preconditions": ["User is teacher and on Course page"],
+      "steps": ["1. Toggle Edit mode on the Course page", "2. Observe inline controls on sections and activities", "3. Verify '+ Add an activity or resource' appears in each section"],
+      "expected_result": "Edit mode shows edit icons, three-dot menus, bulk actions toolbar, add activity and add subsection controls",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-042",
+      "category": "positive",
+      "test_case": "Section-level three-dot menu options operate (edit, duplicate, hide, delete, move)",
+      "preconditions": ["Course in Edit mode with at least one section"],
+      "steps": ["1. Open section's three-dot menu", "2. Select 'Edit' and change section name then save", "3. Select 'Duplicate' and verify duplicate created", "4. Select 'Hide' and verify section hidden", "5. Select 'Delete' and confirm deletion", "6. Use 'Move' to reorder sections"],
+      "expected_result": "Each operation performs expected action and UI updates accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-043",
+      "category": "positive",
+      "test_case": "Activity-level three-dot menu options operate (edit settings, move, duplicate, hide, set access restrictions, delete)",
+      "preconditions": ["Course in Edit mode with at least one activity"],
+      "steps": ["1. Open activity's three-dot menu", "2. Select each available option in turn, perform simple edit actions, and save/confirm where needed"],
+      "expected_result": "Each option leads to the correct workflow and activity updates accordingly",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-044",
+      "category": "positive",
+      "test_case": "Bulk actions toolbar performs operations on multiple selected activities",
+      "preconditions": ["Course in Edit mode with multiple activities"],
+      "steps": ["1. Select multiple activity checkboxes", "2. Choose a bulk action (e.g., duplicate or delete) from toolbar", "3. Confirm action"],
+      "expected_result": "Bulk action is applied to selected activities and UI refreshes to reflect changes",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-045",
+      "category": "positive",
+      "test_case": "Activity Chooser modal opens and filters by category",
+      "preconditions": ["Course in Edit mode", "Click '+ Add an activity or resource' in a section"],
+      "steps": ["1. Click the Add activity button", "2. Verify Activity Chooser modal appears", "3. Use category filter bar (All, Activities, Resources, Recommended) and observe grid change", "4. Use search field to find an activity"],
+      "expected_result": "Activity Chooser modal displays tiles filtered correctly and search returns matching tiles",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-046",
+      "category": "positive",
+      "test_case": "Star/favorite toggle on activity tiles persists for quick access",
+      "preconditions": ["Activity Chooser open"],
+      "steps": ["1. Click star/favorite on an activity tile (e.g., Assignment)", "2. Close and reopen Activity Chooser", "3. Observe favorited activity appears in recommended or favorites"],
+      "expected_result": "Starred activity is marked and accessible via favorites or recommended category",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-047",
+      "category": "positive",
+      "test_case": "Selecting an activity tile and clicking Add opens the creation form",
+      "preconditions": ["Activity Chooser open", "Assignment tile present"],
+      "steps": ["1. Select Assignment tile", "2. Click 'Add' in the modal"],
+      "expected_result": "The Assignment creation form opens within course context",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-048",
+      "category": "positive",
+      "test_case": "Assignment creation form requires Assignment name",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Leave Assignment name empty", "2. Attempt to save using 'Save and return to course'"],
+      "expected_result": "Inline validation indicates Assignment name is required; save is blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-049",
+      "category": "negative",
+      "test_case": "Assignment creation with invalid file type in Additional files rejected",
+      "preconditions": ["Assignment creation form open", "Additional files upload area enabled"],
+      "steps": ["1. Upload a file with an extension not allowed by system (e.g., .exe)", "2. Attempt to save assignment"],
+      "expected_result": "Validation error displayed for file type; assignment not saved until file removed or allowed type used",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-050",
+      "category": "edge",
+      "test_case": "Enable/disable date toggles control enforcement of dates",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Toggle 'Allow submissions from' enable on and set a date", "2. Toggle 'Allow submissions from' off", "3. Save assignment and check behavior around that date window"],
+      "expected_result": "When toggle disabled, corresponding date is not enforced; when enabled, date constraints apply",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-051",
+      "category": "positive",
+      "test_case": "Enabling File submissions reveals additional file controls",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Check 'File submissions' checkbox in Submission types", "2. Observe reveal of maximum files, maximum submission size, and accepted file types controls"],
+      "expected_result": "File-specific controls appear and are editable",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-052",
+      "category": "negative",
+      "test_case": "Setting maximum submission size above site limit shows validation error",
+      "preconditions": ["Assignment creation form open", "User attempts to set maximum submission size greater than site-configured limit"],
+      "steps": ["1. In File submission settings, set maximum submission size to a value exceeding site limit", "2. Attempt to save assignment"],
+      "expected_result": "Inline validation blocks save and shows message about maximum upload size constraint",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-053",
+      "category": "positive",
+      "test_case": "Feedback types options selectable and persist",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Enable 'Feedback comments' and 'Feedback files' options", "2. Save and display the assignment", "3. Reopen settings to verify selections persisted"],
+      "expected_result": "Selected feedback types are saved for the assignment",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-054",
+      "category": "positive",
+      "test_case": "Submission settings like require submit button apply to assignment",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Enable 'Require students to click submit' toggle", "2. Save assignment and open assignment as student to verify requirement"],
+      "expected_result": "Student submission workflow requires manual submit when enabled",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-055",
+      "category": "positive",
+      "test_case": "Group submission settings configure group behavior",
+      "preconditions": ["Assignment creation form open with groups set up in course"],
+      "steps": ["1. Enable 'Group submissions' and choose 'Require all group members to submit' option", "2. Select grouping if required", "3. Save and verify group submission behavior in submissions view"],
+      "expected_result": "Assignment enforces group submission rules according to settings",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-056",
+      "category": "positive",
+      "test_case": "Notifications toggles control grader notifications",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Toggle 'Notify graders about submissions' on or off", "2. Save assignment and trigger a student submission", "3. Verify graders receive (or do not receive) notification depending on toggle"],
+      "expected_result": "Notifications sent or suppressed according to chosen toggles",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-057",
+      "category": "positive",
+      "test_case": "Grade settings accept numeric grade and grading method selection",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Set Grade type to 'Point' and enter a maximum grade value (e.g., 100)", "2. Choose grading method (Simple direct grading or Rubric if available)", "3. Save assignment"],
+      "expected_result": "Grade settings saved and reflected on assignment page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-058",
+      "category": "negative",
+      "test_case": "Entering non-numeric value in maximum points shows validation error",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Enter a non-numeric string in maximum points field", "2. Attempt to save assignment"],
+      "expected_result": "Validation error shown indicating numeric input required; save blocked",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-059",
+      "category": "positive",
+      "test_case": "Add restriction button opens restriction-type picker",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Click '+ Add restriction' in Access restrictions panel", "2. Observe restriction type picker modal/panel appears"],
+      "expected_result": "Restriction picker displays available restriction types and allows selecting one to configure",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-060",
+      "category": "positive",
+      "test_case": "Activity completion options configurable and saved",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Open Activity completion panel", "2. Select completion tracking option and required conditions", "3. Save assignment and verify completion behavior in course"],
+      "expected_result": "Completion settings saved and apply to student completion tracking",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-061",
+      "category": "positive",
+      "test_case": "Tags and Competencies accept entries and are stored",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Enter a tag into Tags field and link a competency in Competencies panel", "2. Save assignment and reopen to verify values persisted"],
+      "expected_result": "Tags and competency links are saved and displayed in assignment settings",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-062",
+      "category": "positive",
+      "test_case": "Save and return to course redirects to course page with new assignment listed",
+      "preconditions": ["Assignment creation form filled with required fields"],
+      "steps": ["1. Click 'Save and return to course' at bottom of form"],
+      "expected_result": "Assignment created and course page is displayed with new assignment visible in the chosen section",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-063",
+      "category": "positive",
+      "test_case": "Save and display opens the newly created assignment page",
+      "preconditions": ["Assignment creation form filled with required fields"],
+      "steps": ["1. Click 'Save and display' after filling form"],
+      "expected_result": "Assignment is created and the system navigates to the new assignment's page showing its details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-064",
+      "category": "negative",
+      "test_case": "Cancel discards assignment creation without saving",
+      "preconditions": ["Assignment creation form open with unsaved changes"],
+      "steps": ["1. Click 'Cancel' on the form", "2. Confirm cancel if prompted"],
+      "expected_result": "All unsaved changes are discarded and user returns to course page without new assignment",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-065",
+      "category": "positive",
+      "test_case": "Course Settings form requires full and short name and category",
+      "preconditions": ["User with course editing rights opens Course Settings form"],
+      "steps": ["1. Leave Course full name, short name or category empty", "2. Attempt to save settings"],
+      "expected_result": "Inline validation prevents saving and highlights required fields",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-066",
+      "category": "negative",
+      "test_case": "Course end date toggle disables end date enforcement",
+      "preconditions": ["Course Settings form open"],
+      "steps": ["1. Leave Course end date enable toggle off and set other fields", "2. Save settings and check course availability after proposed end date"],
+      "expected_result": "If end date is disabled, course remains unaffected by end date value; no enforcement occurs",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-067",
+      "category": "edge",
+      "test_case": "Upload invalid course image file type rejected",
+      "preconditions": ["Course Settings form open"],
+      "steps": ["1. Attempt to upload an unsupported image file type (e.g., .bmp if disallowed)", "2. Save settings"],
+      "expected_result": "Validation error prevents upload and prompts user to choose allowed image types",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-068",
+      "category": "positive",
+      "test_case": "Course format selection updates layout controls dynamically",
+      "preconditions": ["Course Settings form open"],
+      "steps": ["1. Change Course format to 'Topics format' and observe layout options", "2. Change Course format to 'Weekly format' and observe different layout options"],
+      "expected_result": "Layout controls update dynamically based on selected course format",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-069",
+      "category": "positive",
+      "test_case": "Appearance settings and completion tracking toggle save correctly",
+      "preconditions": ["Course Settings form open"],
+      "steps": ["1. Change language, news items number, activity dates display, and toggle completion tracking", "2. Save settings and reopen to verify persistence"],
+      "expected_result": "Appearance and completion tracking settings persist and reflect in course behavior",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-070",
+      "category": "positive",
+      "test_case": "Groups settings save and group mode options applied",
+      "preconditions": ["Course Settings form open", "Course has groupings defined"],
+      "steps": ["1. Change group mode and select a grouping", "2. Save settings and validate group behavior in activities that respect group mode"],
+      "expected_result": "Group mode and grouping selection are saved and applied to course/group-aware activities",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-071",
+      "category": "positive",
+      "test_case": "Enrol users dialog opens and enrolling adds a user",
+      "preconditions": ["Participants page open", "User has permission to enrol users"],
+      "steps": ["1. Click 'Enrol users' button", "2. Search for a user in the dialog", "3. Select Role and optional Enrollment duration", "4. Confirm enrolment"],
+      "expected_result": "User is added to course participants list with selected role and duration applied",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-072",
+      "category": "negative",
+      "test_case": "Attempt to enrol invalid/nonexistent username shows error",
+      "preconditions": ["Participants page open", "Enrol users dialog open"],
+      "steps": ["1. Enter a username that does not exist in the user search field", "2. Attempt to confirm enrolment"],
+      "expected_result": "System shows no results or an error message and prevents enrolment of nonexistent user",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-073",
+      "category": "positive",
+      "test_case": "Participants filter system builds complex conditions and applies filters",
+      "preconditions": ["Participants page open with many users enrolled"],
+      "steps": ["1. Use Select attribute dropdown to choose an attribute (e.g., Role)", "2. Click '+ Add condition' to add additional filters", "3. Toggle 'Any' to change logical behavior", "4. Click 'Apply filters'"],
+      "expected_result": "Participants list updates to match combined filter conditions; 'Clear filters' restores original list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-074",
+      "category": "edge",
+      "test_case": "Alphabetical filter buttons for First/Last name narrow results",
+      "preconditions": ["Participants page open"],
+      "steps": ["1. Click a letter (e.g., 'A') under First name filter", "2. Observe participants list filtered to names starting with that letter"],
+      "expected_result": "Only participants whose specified name begins with chosen letter are shown",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-075",
+      "category": "positive",
+      "test_case": "Participants table columns sortable and profile links navigate",
+      "preconditions": ["Participants page open"],
+      "steps": ["1. Click sortable column headers like First/Last name to reorder", "2. Click a user's name link"],
+      "expected_result": "Table sorts accordingly and clicking name navigates to that user's profile",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-076",
+      "category": "positive",
+      "test_case": "Participants row action menu allows viewing profile, editing role, and sending message",
+      "preconditions": ["Participants page open", "At least one participant present"],
+      "steps": ["1. Open a participant's three-dot action menu", "2. Select 'View profile', then return", "3. Select 'Edit role', change role and save", "4. Select 'Send message' and send a test message"],
+      "expected_result": "Each action opens expected dialogs/pages and changes are applied or messages sent accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-077",
+      "category": "positive",
+      "test_case": "With selected users bulk actions apply to checked participants",
+      "preconditions": ["Participants page open with multiple participants"],
+      "steps": ["1. Check multiple participant checkboxes", "2. Choose a bulk action from 'With selected users…' dropdown", "3. Confirm action"],
+      "expected_result": "Bulk action is applied to all checked users and participants list updates accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-078",
+      "category": "positive",
+      "test_case": "Assignment teacher view shows metadata and Grade button",
+      "preconditions": ["Existing assignment present in course", "User is teacher"],
+      "steps": ["1. Open the assignment page as teacher", "2. Observe Opened date, Due date, Description and attachments", "3. Click 'Grade' button"],
+      "expected_result": "Metadata displayed and Grade button opens grading interface",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-079",
+      "category": "positive",
+      "test_case": "Grading summary displays read-only metrics accurately",
+      "preconditions": ["Assignment has participants and submissions in system"],
+      "steps": ["1. Open assignment page as teacher", "2. Inspect Grading summary panel for Number of participants, Number of submissions, Needs grading, Visibility, Time remaining"],
+      "expected_result": "Grading summary shows correct counts and statuses as read-only values",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-080",
+      "category": "positive",
+      "test_case": "Assignment Submissions view lists all student submissions and supports search/filter",
+      "preconditions": ["Assignment exists with multiple student records"],
+      "steps": ["1. Click Submissions tab on assignment page", "2. Use search and filter controls to narrow results by name and status", "3. Observe filtered results in table"],
+      "expected_result": "Table updates to show only rows matching search/filter criteria",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-081",
+      "category": "positive",
+      "test_case": "Submissions table displays expected columns and actions",
+      "preconditions": ["Submissions page open with data"],
+      "steps": ["1. Check that table contains Student identity, Submission status, Grading status, Submission date/time, Online text preview, File submission links, Comments, Feedback, Final grade", "2. Open action menu for a student row"],
+      "expected_result": "All columns present and action menu opens grading workflow for the selected student",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-082",
+      "category": "positive",
+      "test_case": "Quick grading enables inline grade entry and saves changes",
+      "preconditions": ["Submissions page open", "Teacher has permission to grade", "Quick grading available"],
+      "steps": ["1. Enable 'Quick grading' mode", "2. Enter inline grades for multiple students", "3. Click 'Save changes' or relevant save control"],
+      "expected_result": "Inline grades are saved and reflected in student records",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-083",
+      "category": "negative",
+      "test_case": "Entering grade outside allowed range shows inline flag and blocks save",
+      "preconditions": ["Quick grading mode or grade edit enabled", "Activity grade range configured (e.g., 0-100)"],
+      "steps": ["1. Enter a grade greater than maximum allowed (e.g., 200) in a grade cell", "2. Attempt to save changes"],
+      "expected_result": "Cell shows inline validation flag/error and saving is blocked until corrected",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-084",
+      "category": "positive",
+      "test_case": "Gradebook Grader report loads and allows switching report types",
+      "preconditions": ["User with grader permission logged in"],
+      "steps": ["1. Navigate to Gradebook Grader report", "2. Use report-type selector to switch between Grader report, User report, Overview report"],
+      "expected_result": "Report content updates appropriately to each selected report type",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-085",
+      "category": "positive",
+      "test_case": "Gradebook user search and group filters narrow rows",
+      "preconditions": ["Gradebook open with multiple students and groups"],
+      "steps": ["1. Search for a student by name", "2. Select a group filter", "3. Observe table filtering"],
+      "expected_result": "Grade table shows only rows matching search and group filter",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-086",
+      "category": "positive",
+      "test_case": "Per-column action menu allows editing activity grade settings",
+      "preconditions": ["Grader report open", "At least one graded activity column present"],
+      "steps": ["1. Open per-column action menu on an activity header", "2. Choose edit settings and change a value (e.g., max grade)", "3. Save changes"],
+      "expected_result": "Activity grade settings update and reflected in grade calculations as appropriate",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-087",
+      "category": "positive",
+      "test_case": "Per-cell three-dot menu allows editing individual grade entries",
+      "preconditions": ["Grader report open with edit mode available"],
+      "steps": ["1. Open a cell's three-dot menu", "2. Choose edit and modify grade or comment", "3. Save the individual edit"],
+      "expected_result": "Individual grade edit is saved and table updates accordingly",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-088",
+      "category": "positive",
+      "test_case": "Overall average row shows class average per activity and updates after edits",
+      "preconditions": ["Grader report open with grades present"],
+      "steps": ["1. Note class average per activity in the bottom average row", "2. Edit a grade cell and save edits", "3. Verify average row updates"],
+      "expected_result": "Average recalculates and displays updated averages after grade changes",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-089",
+      "category": "positive",
+      "test_case": "Profile page displays teacher initials icon, full name, and message button",
+      "preconditions": ["User logged in and viewing own profile or another teacher profile"],
+      "steps": ["1. Open profile page", "2. Observe circular initials icon, full name, optional description, and 'Message' button"],
+      "expected_result": "Profile header displays initials icon, name, and message button; clicking message opens messaging UI",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-090",
+      "category": "positive",
+      "test_case": "Profile information cards show user details, privacy links, course links, and reports",
+      "preconditions": ["Profile page open"],
+      "steps": ["1. Inspect User details card for email, visibility, timezone and 'Edit profile' link", "2. Inspect Privacy and policies card for Data retention link", "3. Inspect Course details and Reports cards for links"],
+      "expected_result": "All information cards present and links navigate to the correct pages",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-091",
+      "category": "positive",
+      "test_case": "Profile Edit form validates required fields and updates profile",
+      "preconditions": ["User editing own profile"],
+      "steps": ["1. Open Edit profile form", "2. Change First name, Last name, Email address and save", "3. Verify changes are saved and profile page updated"],
+      "expected_result": "Required fields validated and profile updates reflected on profile page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-092",
+      "category": "negative",
+      "test_case": "Invalid email format in Edit profile shows validation error",
+      "preconditions": ["Edit profile form open"],
+      "steps": ["1. Enter an invalid email address (e.g., 'user@invalid')", "2. Click 'Update profile'"],
+      "expected_result": "Inline validation error shown for email field and profile is not saved",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-093",
+      "category": "edge",
+      "test_case": "User picture upload supports drag-and-drop and enforces size limits",
+      "preconditions": ["Edit profile open with user picture upload area visible"],
+      "steps": ["1. Drag and drop an image into upload area", "2. Drag and drop an image exceeding allowed file size", "3. Observe results"],
+      "expected_result": "First image uploads successfully; oversized image triggers validation error preventing upload",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-094",
+      "category": "positive",
+      "test_case": "Expand all and collapsible sections in Edit profile expand/collapse properly",
+      "preconditions": ["Edit profile form open with multiple collapsible sections"],
+      "steps": ["1. Click 'Expand all' to expand every section", "2. Click individual collapsible headers to collapse a specific section"],
+      "expected_result": "Sections expand/collapse as expected; 'Expand all' affects all sections",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-095",
+      "category": "positive",
+      "test_case": "Additional names, Interests and Optional custom fields accept input and save",
+      "preconditions": ["Edit profile open with optional fields visible"],
+      "steps": ["1. Fill Additional names optional fields, add interests via tag input, fill any custom optional fields", "2. Click 'Update profile' and verify persistence"],
+      "expected_result": "Optional details saved and displayed on profile page",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-096",
+      "category": "positive",
+      "test_case": "Logout from user menu terminates session and prevents access to protected pages",
+      "preconditions": ["User logged in"],
+      "steps": ["1. Open user dropdown from initials icon", "2. Click 'Log out'", "3. Try to access a protected page URL directly after logout"],
+      "expected_result": "Session ends, user redirected to login, and direct access to protected pages requires login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-097",
+      "category": "negative",
+      "test_case": "Attempt to access Settings tab as unauthorized user shows permission denied",
+      "preconditions": ["User with student role logged in and viewing course"],
+      "steps": ["1. Inspect tab bar for Settings tab", "2. Attempt to navigate to Settings page via direct URL"],
+      "expected_result": "Settings tab not visible; direct URL shows permission denied or redirects to an allowed page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "MT-098",
+      "category": "edge",
+      "test_case": "Large number of blocks on Dashboard can be reordered and persistence verifies",
+      "preconditions": ["Edit mode enabled", "User has added many blocks to Dashboard"],
+      "steps": ["1. Drag and drop blocks to reorder several times", "2. Save layout and reload Dashboard", "3. Verify order persisted per user"],
+      "expected_result": "Block order persists after reload; reversion via 'Reset to default' restores defaults",
+      "priority": "low"
+    },
+    {
+      "tc_id": "MT-099",
+      "category": "positive",
+      "test_case": "Activity creation form 'Cancel' returns without partial creation",
+      "preconditions": ["Activity creation form opened from Activity Chooser with partial input filled"],
+      "steps": ["1. Fill some fields in creation form", "2. Click 'Cancel'", "3. Confirm action if prompted"],
+      "expected_result": "No activity is created and user returns to course page with no partial records",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "MT-100",
+      "category": "edge",
+      "test_case": "Creating assignment with maximum allowed boundary values",
+      "preconditions": ["Assignment creation form open"],
+      "steps": ["1. Enter the longest allowed string for Assignment name (boundary length)", "2. Set maximum grade to highest allowed value by system", "3. Configure maximum submission size to system max and accepted file types list to long allowed list", "4. Save assignment"],
+      "expected_result": "Assignment is created successfully if inputs are within allowed boundaries; if any input exceeds server limits, appropriate validation messages appear",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "high_priority": 60,
+    "medium_priority": 30,
+    "low_priority": 10
+  }
+}

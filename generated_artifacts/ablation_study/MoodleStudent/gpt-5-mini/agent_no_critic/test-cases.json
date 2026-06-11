@@ -1,0 +1,3230 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:58:49.283345Z",
+  "model": "openai/gpt-5-mini",
+  "modules": [
+    {
+      "module": "Login",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Successful login redirects to Dashboard",
+          "preconditions": [
+            "User not authenticated",
+            "Login page is open"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Enter <valid password> in the Password field",
+            "3. Click the 'Log in' button"
+          ],
+          "expected_result": "redirects to Dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Access the site as a guest",
+          "preconditions": [
+            "User not authenticated",
+            "Login page is open"
+          ],
+          "steps": [
+            "1. Click the 'Access as a guest' button"
+          ],
+          "expected_result": "grants unauthenticated browsing access",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Open the cookies notice",
+          "preconditions": [
+            "User not authenticated",
+            "Login page is open"
+          ],
+          "steps": [
+            "1. Click the 'Cookies notice' button"
+          ],
+          "expected_result": "displays cookie usage information",
+          "priority": "low",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Verify 'Lost password?' link is present but disabled on this test site",
+          "preconditions": [
+            "User not authenticated",
+            "Login page is open",
+            "Lost password feature disabled on this test site"
+          ],
+          "steps": [
+            "1. Attempt to click the 'Lost password?' link"
+          ],
+          "expected_result": "'Lost password?' link is visible and displayed in a disabled state (not clickable)",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-001",
+          "test_case": "Submit with Username left blank (text required field representative)",
+          "preconditions": [
+            "User is on the Login page and is not authenticated"
+          ],
+          "steps": [
+            "1. Leave the Username field blank",
+            "2. Enter <valid password> in the Password field",
+            "3. Click the \"Log in\" button"
+          ],
+          "expected_result": "Inline validation error appears on the Username field indicating it is required; the form is not submitted; the user remains on the Login page (no redirect).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "test_case": "Submit with Password left blank (password required field representative)",
+          "preconditions": [
+            "User is on the Login page and is not authenticated"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Leave the Password field blank",
+            "3. Click the \"Log in\" button"
+          ],
+          "expected_result": "Inline validation error appears on the Password field indicating it is required; the form is not submitted; the user remains on the Login page (no redirect).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Submit with ALL required fields empty",
+          "preconditions": [
+            "User is on the Login page and is not authenticated"
+          ],
+          "steps": [
+            "1. Leave the Username field blank",
+            "2. Leave the Password field blank",
+            "3. Click the \"Log in\" button"
+          ],
+          "expected_result": "Inline validation errors appear on the Username and Password fields indicating they are required; the form is not submitted; the user remains on the Login page (no redirect).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "test_case": "Submit with invalid credentials (authentication failure)",
+          "preconditions": [
+            "User is on the Login page and is not authenticated"
+          ],
+          "steps": [
+            "1. Enter <valid username> in the Username field",
+            "2. Enter <invalid password> in the Password field",
+            "3. Click the \"Log in\" button"
+          ],
+          "expected_result": "An inline error message appears on the form indicating invalid credentials; the Password field is cleared; the Username field retains its entered value; the user remains on the Login page (no redirect to Dashboard).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Attempt to use disabled \"Lost password?\" link (precondition: feature disabled)",
+          "preconditions": [
+            "User is on the Login page and is not authenticated",
+            "The Lost password? feature is disabled on this test site"
+          ],
+          "steps": [
+            "1. Observe the \"Lost password?\" link on the page",
+            "2. Click the \"Lost password?\" link"
+          ],
+          "expected_result": "The \"Lost password?\" link is visibly disabled/non-interactive (disabled attribute or visually greyed); clicking it does not navigate or open a password recovery flow; the user remains on the Login page.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Very long Username retained on failed login; Password cleared",
+          "preconditions": [
+            "Login page is open"
+          ],
+          "steps": [
+            "1. Enter <very long string (200+ characters)> in the Username field",
+            "2. Enter an incorrect value in the Password field",
+            "3. Click the Log in button"
+          ],
+          "expected_result": "Login is blocked / error shown: an inline error message is shown; the Password field is cleared; the Username field retains the entered very long string (exact characters remain visible in the Username input).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-001",
+          "subcategory": "input_edge",
+          "test_case": "Username with leading/trailing whitespace retained after failed login",
+          "preconditions": [
+            "Login page is open"
+          ],
+          "steps": [
+            "1. Enter <username with leading and trailing whitespace> in the Username field",
+            "2. Enter an incorrect value in the Password field",
+            "3. Click the Log in button"
+          ],
+          "expected_result": "Login is blocked / error shown: an inline error message is shown; the Password field is cleared; the Username field retains the entered value including the leading and trailing whitespace (visible in the Username input).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click Log in with valid credentials \u2014 second submission blocked",
+          "preconditions": [
+            "Login page is open",
+            "Valid credentials are available"
+          ],
+          "steps": [
+            "1. Enter a valid Username in the Username field",
+            "2. Enter the matching valid Password in the Password field",
+            "3. Click the Log in button",
+            "4. Immediately click the Log in button a second time"
+          ],
+          "expected_result": "First click succeeds: user is redirected to the Dashboard. The second submission attempt is blocked: no second navigation or duplicate submission occurs and no additional error is shown; user ends up on the Dashboard (single successful redirect).",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 12,
+        "positive": 4,
+        "negative": 5,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 5,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Dashboard",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Reset page to default while in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open"
+          ],
+          "steps": [
+            "1. Toggle Edit Mode on using the Edit Mode control",
+            "2. Click the 'Reset page to default' button at the top right"
+          ],
+          "expected_result": "Dashboard layout returns to the default arrangement; the default set of blocks and their default positions are visible on the page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open Block Types page via '+ Add a block' in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open"
+          ],
+          "steps": [
+            "1. Toggle Edit Mode on using the Edit Mode control",
+            "2. Click the '+ Add a block' button below the Dashboard heading"
+          ],
+          "expected_result": "Block Types page is displayed listing available block types",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Select a block type from Block Types page and add it to the dashboard",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled and Block Types page is displayed"
+          ],
+          "steps": [
+            "1. On the Block Types page, click the 'Select' action on an available block type row"
+          ],
+          "expected_result": "A new block of the selected type appears on the Dashboard in the visible block area",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Open Configure for an existing dashboard block via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "At least one Dashboard block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on an existing Dashboard block",
+            "2. Click 'Configure' from the menu"
+          ],
+          "expected_result": "Block configuration panel or modal opens for that block",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Initiate drag-and-drop move of a dashboard block using the Move icon",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "At least one Dashboard block is present"
+          ],
+          "steps": [
+            "1. Click the Move icon on a Dashboard block to engage move mode",
+            "2. Observe the block's drag handle/placeholder UI"
+          ],
+          "expected_result": "The selected block shows drag-and-drop move state (drag handle or placeholder visible) indicating it can be repositioned",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Initiate move for a dashboard block via three-dot menu",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "At least one Dashboard block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on a Dashboard block",
+            "2. Click 'Move' from the menu"
+          ],
+          "expected_result": "The block shows move controls or drag state for that specific block indicating a move can be performed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Delete a dashboard block via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "At least one Dashboard block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on an existing Dashboard block",
+            "2. Click 'Delete' from the menu"
+          ],
+          "expected_result": "The deleted block is no longer visible on the Dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Open Timeline block configuration via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Timeline block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Timeline block",
+            "2. Click 'Configure' from the menu"
+          ],
+          "expected_result": "Timeline configuration panel or modal is displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Initiate drag-and-drop move of the Timeline block using its Move icon",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Timeline block is present"
+          ],
+          "steps": [
+            "1. Click the Move icon on the Timeline block to engage move mode",
+            "2. Observe the Timeline block's drag placeholder or drag handle"
+          ],
+          "expected_result": "Timeline block displays drag-and-drop move state indicating it can be repositioned",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Initiate move for the Timeline block via three-dot menu",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Timeline block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Timeline block",
+            "2. Click 'Move' from the menu"
+          ],
+          "expected_result": "UI shows move controls for the Timeline block indicating it can be repositioned",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Delete the Timeline block via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Timeline block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Timeline block",
+            "2. Click 'Delete' from the menu"
+          ],
+          "expected_result": "Timeline block is no longer present on the Dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Open Calendar block configuration via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Calendar block",
+            "2. Click 'Configure' from the menu"
+          ],
+          "expected_result": "Calendar block configuration panel or modal opens",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-013",
+          "test_case": "Initiate drag-and-drop move of the Calendar block using its Move icon",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the Move icon on the Calendar block to engage move mode",
+            "2. Observe the Calendar block's drag handle or placeholder"
+          ],
+          "expected_result": "Calendar block displays drag-and-drop move state indicating it can be repositioned",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-014",
+          "test_case": "Initiate move for the Calendar block via three-dot menu",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Calendar block",
+            "2. Click 'Move' from the menu"
+          ],
+          "expected_result": "UI shows move controls for the Calendar block indicating it can be repositioned",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-015",
+          "test_case": "Delete the Calendar block via three-dot menu in Edit mode",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Edit mode is enabled",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the three-dot menu on the Calendar block",
+            "2. Click 'Delete' from the menu"
+          ],
+          "expected_result": "Calendar block is no longer present on the Dashboard",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-016",
+          "test_case": "Open New event modal from Calendar block",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the 'New event' button inside the Calendar block"
+          ],
+          "expected_result": "New event modal is displayed for creating a personal calendar entry",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-017",
+          "test_case": "Navigate to previous month in Calendar block",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block is visible showing a month and year heading"
+          ],
+          "steps": [
+            "1. Click the 'Previous month' arrow inside the Calendar block"
+          ],
+          "expected_result": "Calendar month view updates to the previous month and the month/year heading reflects the previous month",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-018",
+          "test_case": "Navigate to next month in Calendar block",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block is visible showing a month and year heading"
+          ],
+          "steps": [
+            "1. Click the 'Next month' arrow inside the Calendar block"
+          ],
+          "expected_result": "Calendar month view updates to the next month and the month/year heading reflects the next month",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-019",
+          "test_case": "Open full calendar view via 'Full calendar' link",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the 'Full calendar' link at the bottom of the Calendar block"
+          ],
+          "expected_result": "Full calendar view is displayed",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-020",
+          "test_case": "Open Import or export calendars via link",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block is present"
+          ],
+          "steps": [
+            "1. Click the 'Import or export calendars' link at the bottom of the Calendar block"
+          ],
+          "expected_result": "Calendar data management page is displayed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": null,
+          "test_case": "Timeline search filters activities by name or type",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Timeline block contains multiple activities across courses"
+          ],
+          "steps": [
+            "1. Enter <search term> in the Timeline block Search field",
+            "2. Press Enter or invoke the search action"
+          ],
+          "expected_result": "Timeline displays only activities matching <search term> by name or type; unrelated activities are no longer visible",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": null,
+          "test_case": "Timeline shows empty state when selected time range has no activities",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "A Time Range is available that contains no activities"
+          ],
+          "steps": [
+            "1. Select a Time Range in the Timeline block that has no activities"
+          ],
+          "expected_result": "Empty state is shown in the Timeline block indicating there are no activities in the selected range",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-023",
+          "wf_ref": null,
+          "test_case": "Current date is highlighted and event dates show names in Calendar block",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block contains at least one event and current date exists in the displayed month"
+          ],
+          "steps": [
+            "1. Observe the Calendar block month view on load"
+          ],
+          "expected_result": "The current date is visually highlighted in the Calendar; dates that have events display event names inline in the calendar cells",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-024",
+          "wf_ref": null,
+          "test_case": "Filter Calendar block by a specific course using 'All courses' dropdown",
+          "preconditions": [
+            "User logged in as <role>",
+            "Dashboard page is open",
+            "Calendar block contains events from multiple courses"
+          ],
+          "steps": [
+            "1. Select a course from the 'All courses' dropdown in the Calendar block"
+          ],
+          "expected_result": "Calendar displays only events for the selected course; events from other courses are not visible in the month view",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-025",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt 'Reset page to default' when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Edit_Mode toggle is OFF (Edit mode not active)",
+            "Dashboard has a custom layout (not default)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate the 'Reset page to default' button in the top-right"
+          ],
+          "expected_result": "The 'Reset page to default' button is not visible; no reset action can be performed and the dashboard remains in its current customized state (page is unchanged).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-026",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt '+ Add a block' when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate and click the '+ Add a block' button below the Dashboard heading"
+          ],
+          "expected_result": "The '+ Add a block' button is not visible/clickable while Edit mode is OFF; clicking is not possible and the Block Types page is not opened.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-027",
+          "wf_ref": "WF-004",
+          "test_case": "Attempt to open the three-dot menu (Configure/Move/Delete) for a dashboard block when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Dashboard contains at least one dashboard block",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate and click the three-dot menu for any dashboard block"
+          ],
+          "expected_result": "The three-dot menu control is not visible for dashboard blocks while Edit mode is OFF; Configure/Move/Delete options are not accessible and no block configuration, move, or delete action can be initiated.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-028",
+          "wf_ref": "WF-005",
+          "test_case": "Attempt to use the Move icon (drag) on a dashboard block when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Dashboard contains at least one dashboard block",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate and drag the Move icon on any dashboard block"
+          ],
+          "expected_result": "The Move icon is not visible / not interactive while Edit mode is OFF; drag-and-drop cannot be started and the block remains in its current position.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-029",
+          "wf_ref": "WF-008",
+          "test_case": "Attempt to open the Timeline block three-dot menu (Configure/Move/Delete) when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Timeline block is present",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate and click the three-dot menu in the Timeline block"
+          ],
+          "expected_result": "The three-dot menu control for the Timeline block is not visible while Edit mode is OFF; Configure/Move/Delete actions for the Timeline block are not accessible and no configuration, move, or deletion occurs.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-030",
+          "wf_ref": "WF-014",
+          "test_case": "Attempt to open the Calendar block three-dot menu (Configure/Move/Delete) when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Calendar block is present",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to locate and click the three-dot menu in the Calendar block"
+          ],
+          "expected_result": "The three-dot menu control for the Calendar block is not visible while Edit mode is OFF; Configure/Move/Delete actions for the Calendar block are not accessible and no configuration, move, or deletion occurs.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-031",
+          "wf_ref": "WF-007",
+          "test_case": "Attempt to Delete a dashboard block (three-dot menu) when Edit mode is OFF",
+          "preconditions": [
+            "User is on the Dashboard page",
+            "Dashboard contains at least one dashboard block",
+            "Edit_Mode toggle is OFF (Edit mode not active)"
+          ],
+          "steps": [
+            "1. Ensure Edit_Mode is OFF",
+            "2. Attempt to delete a block by opening its three-dot menu and selecting 'Delete'"
+          ],
+          "expected_result": "The three-dot menu (and its 'Delete' action) is not visible/accessible while Edit mode is OFF; the delete action cannot be performed and the block remains on the page (no block is removed).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-032",
+          "wf_ref": "WF-004",
+          "subcategory": "interaction_edge",
+          "test_case": "Toggle Edit mode off while a block's three-dot menu is open then attempt Configure",
+          "preconditions": [
+            "User is signed in and on the Dashboard",
+            "At least one dashboard block exists",
+            "Edit_Mode is initially off"
+          ],
+          "steps": [
+            "1. Click the Edit_Mode checkbox to turn Edit mode on",
+            "2. Click the three-dot menu (Three_Dot_Menu) for an existing dashboard block to open the menu",
+            "3. Immediately click the Edit_Mode checkbox to turn Edit mode off",
+            "4. Attempt to click the Configure action in the three-dot menu"
+          ],
+          "expected_result": "Configure action is blocked: the three-dot menu closes/is no longer visible immediately after Edit mode is toggled off and no configuration modal opens when Configure is clicked; no new configuration UI persists. (Edit mode toggle and menu visibility change succeeds)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-033",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Reset page to default after deleting all blocks (empty dashboard)",
+          "preconditions": [
+            "User is signed in and on the Dashboard",
+            "Edit_Mode is initially off",
+            "There is at least one block on the dashboard"
+          ],
+          "steps": [
+            "1. Click the Edit_Mode checkbox to turn Edit mode on",
+            "2. For each existing dashboard block, open its Three_Dot_Menu and select Delete until no blocks remain",
+            "3. Verify the dashboard shows no blocks (empty)",
+            "4. Click the Reset page to default button"
+          ],
+          "expected_result": "Reset action succeeds: the dashboard is reset to the default layout and default blocks are restored and displayed; a visible indicator or default blocks appear confirming the reset (Reset page to default on_success succeeds)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-034",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Timeline Search accepts very long and multi-language input (special characters and emoji)",
+          "preconditions": [
+            "User is signed in and on the Dashboard",
+            "Timeline block is visible"
+          ],
+          "steps": [
+            "1. Click into the Timeline block Search field",
+            "2. Enter a very long string (200+ characters) containing emoji, accented characters, and punctuation into the Search field",
+            "3. Press Enter or trigger the search action"
+          ],
+          "expected_result": "Search accepts the long multi-language input and search executes successfully; the Search input displays the entered string (no silent truncation without indicator). If no activities match, the Timeline shows a visible 'no activities found' / empty state message; no validation error is shown and the search action succeeds",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 34,
+        "positive": 24,
+        "negative": 7,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 2,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 19,
+        "medium_priority": 14,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "My Courses",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open a course by clicking its Course Name link",
+          "preconditions": [
+            "User logged in as <Student>"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Click the Course Name link on the card for <course>"
+          ],
+          "expected_result": "Browser navigates to the Course main page for <course> (navigates to course main page)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Star a course from the card menu and verify it is pinned to the top",
+          "preconditions": [
+            "User logged in as <Student>",
+            "My Courses page contains visible course card for <course> that is not starred"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Open the three-dot menu on the card for <course>",
+            "3. Click 'Star this course' in the card menu"
+          ],
+          "expected_result": "The Courses Grid displays the card for <course> at the top of the grid (pins the course to the top); <course> is shown above other courses in the grid",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Remove a course from view via card menu and verify it is hidden",
+          "preconditions": [
+            "User logged in as <Student>",
+            "My Courses page contains visible course card for <course>"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Open the three-dot menu on the card for <course>",
+            "3. Click 'Remove from view' in the card menu"
+          ],
+          "expected_result": "The course card for <course> is no longer visible in the Courses Grid; this hides the course without unenrolling",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Filter My Courses by 'Starred' status shows only starred courses",
+          "preconditions": [
+            "User logged in as <Student>",
+            "My Courses contains at least one course in Starred state (<starred course>) and at least one course not starred (<other course>)"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Open the Status filter dropdown",
+            "3. Select 'Starred' from the Status filter"
+          ],
+          "expected_result": "Courses Grid displays only courses that are starred (for example <starred course> is visible) and non-starred courses (for example <other course>) are not visible",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Search for a course and verify results are filtered to matches",
+          "preconditions": [
+            "User logged in as <Student>",
+            "My Courses contains multiple courses including at least one that matches <search term>"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Enter <search term> in the Search field and submit the search"
+          ],
+          "expected_result": "Courses Grid displays only courses matching <search term>; unrelated courses are no longer visible",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Change Layout to Summary and verify the grid updates",
+          "preconditions": [
+            "User logged in as <Student>",
+            "My Courses page is accessible"
+          ],
+          "steps": [
+            "1. Navigate to the My Courses page",
+            "2. Open the Layout dropdown",
+            "3. Select 'Summary' from the Layout options"
+          ],
+          "expected_result": "The Courses Grid updates to the Summary layout and course items are displayed in the Summary view",
+          "priority": "low",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Access My Courses while unauthenticated",
+          "preconditions": [
+            "User is not authenticated / no active session"
+          ],
+          "steps": [
+            "1. In a browser session with no user logged in, navigate to <My Courses page URL>"
+          ],
+          "expected_result": "Navigation is blocked: the user is redirected to the login page; the My Courses page is not displayed; a login/sign-in prompt is visible and no course cards or course name links are shown.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Row actions ('Star' / 'Remove from view') not available to non-student role",
+          "preconditions": [
+            "User is logged in as <non-student role> (not a student)"
+          ],
+          "steps": [
+            "1. Log in as <non-student role>",
+            "2. Navigate to <My Courses page URL>",
+            "3. Inspect a course card for the three-dot menu and its menu options"
+          ],
+          "expected_result": "The three-dot menu is not visible on course cards for this user; the row actions 'Star this course' and 'Remove from view' are not present and cannot be invoked (no menu, no action items).",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search with a very long string ( >200 chars )",
+          "preconditions": [
+            "User is signed in and My Courses page is open",
+            "At least one course exists in the Courses_Grid"
+          ],
+          "steps": [
+            "1. Focus the Search control",
+            "2. Enter <a very long string (200+ characters)> into the Search control",
+            "3. Press Enter or click the search/submit control"
+          ],
+          "expected_result": "Search submits successfully; Courses_Grid updates (may be empty) and the Search control displays the full entered string (no truncation) \u2014 UI does not crash and no inline error is shown; overall action succeeds",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Search with special characters and emoji",
+          "preconditions": [
+            "User is signed in and My Courses page is open",
+            "At least one course exists in the Courses_Grid"
+          ],
+          "steps": [
+            "1. Focus the Search control",
+            "2. Enter <string containing special characters, punctuation, and emoji> into the Search control",
+            "3. Press Enter or click the search/submit control"
+          ],
+          "expected_result": "Search submits successfully; Courses_Grid updates (may be empty) and the Search control displays the entered characters exactly as typed; no inline validation error is shown and the UI remains responsive; action succeeds",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-003",
+          "subcategory": "state_edge",
+          "test_case": "Star a course then immediately Remove from view (rapid consecutive state changes)",
+          "preconditions": [
+            "User is signed in and My Courses page is open",
+            "At least one course is visible in the Courses_Grid and is not currently Hidden"
+          ],
+          "steps": [
+            "1. Open the three-dot menu for the target course card",
+            "2. Click the 'Star this course' action",
+            "3. Immediately (without waiting for an explicit page refresh) open the three-dot menu for the same course card",
+            "4. Click the 'Remove from view' action"
+          ],
+          "expected_result": "Remove from view succeeds and the course is removed from the visible Courses_Grid (hidden) with a visible UI indication that it is hidden; the previously applied Star state (pinned to top) no longer appears in the visible grid; no duplicate card remains and no error dialog is shown \u2014 final Remove action succeeds",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Open course from Course_Name link when filtered to Hidden",
+          "preconditions": [
+            "User is signed in and My Courses page is open",
+            "At least one course is currently Hidden (either previously hidden via 'Remove from view' or by data state)"
+          ],
+          "steps": [
+            "1. Set the Status_Filter dropdown to 'Hidden'",
+            "2. Wait for Courses_Grid to update",
+            "3. Click the Course_Name link of a course shown in the Hidden filter results"
+          ],
+          "expected_result": "Navigation to the course main page succeeds (the app navigates to the course main page) and no error is shown; the click action succeeds while viewing hidden-filtered results",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 12,
+        "positive": 6,
+        "negative": 2,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 1,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 5,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Course Page",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Toggle a section to collapse from expanded state",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Course page is open",
+            "The <target section> is currently expanded and its items are visible"
+          ],
+          "steps": [
+            "1. Click the Section_Toggle (chevron) for <target section>"
+          ],
+          "expected_result": "toggles this section expanded/collapsed \u2014 the <target section> is now collapsed: its item list is hidden and the chevron shows the collapsed state",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Use 'Collapse all' to collapse every section",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Course page is open",
+            "The course contains multiple sections with at least one section expanded"
+          ],
+          "steps": [
+            "1. Click the 'Collapse all' link at the top-right of the course content area"
+          ],
+          "expected_result": "all sections set to collapsed \u2014 each section's item list is hidden and every section's chevron shows the collapsed state",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Open an activity/resource from a section",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Course page is open",
+            "A section contains at least one visible item with an Item_Link"
+          ],
+          "steps": [
+            "1. Click the Item_Link for <target activity/resource> inside the section"
+          ],
+          "expected_result": "navigates to activity or resource \u2014 the browser navigates to the activity or resource page (the activity/resource page is displayed)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Enable Edit mode as a non-Student user",
+          "preconditions": [
+            "User logged in as <Instructor>",
+            "Course page is open"
+          ],
+          "steps": [
+            "1. Click the 'Enable Edit mode' button in the Page Actions area"
+          ],
+          "expected_result": "enables edit mode for the user \u2014 edit controls are visible on the Course page indicating Edit mode is active",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-004",
+          "test_case": "Student cannot see 'Enable Edit mode' action (button hidden for Student role)",
+          "preconditions": [
+            "User is logged in with role Student",
+            "Course page exists and displays at least one section"
+          ],
+          "steps": [
+            "1. Navigate to the Course page for the course",
+            "2. Inspect the Page Actions area / action toolbar at the top of the page"
+          ],
+          "expected_result": "The 'Enable Edit mode' button is not visible in the Page Actions area (no clickable control labeled 'Enable Edit mode'); the page remains in view-only mode and no edit controls are present",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-004",
+          "test_case": "Student attempts to trigger Enable Edit mode and is blocked (precondition failure)",
+          "preconditions": [
+            "User is logged in with role Student",
+            "The Course page is open and the 'Enable Edit mode' control is visible (e.g., due to misconfiguration)"
+          ],
+          "steps": [
+            "1. While logged in as Student, navigate to the Course page where the 'Enable Edit mode' control is visible",
+            "2. Click the 'Enable Edit mode' button"
+          ],
+          "expected_result": "Action is blocked: an authorization error message or inline error indicator is displayed near the action stating the user is not authorized to enable edit mode; Edit mode is not enabled and no edit controls appear on the page (page remains in view-only state)",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Rapid consecutive toggle of a single section",
+          "preconditions": [
+            "User is logged in (any role with view access)",
+            "A specific section (Section A) is currently expanded and its items are visible"
+          ],
+          "steps": [
+            "1. Click the Section_Toggle for Section A",
+            "2. Immediately (within 500ms) click the same Section_Toggle for Section A again"
+          ],
+          "expected_result": "Both toggle actions succeed; the UI reflects the final state dictated by the second click (chevron and items visibility match the last toggle). No error message is shown and the page remains responsive",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Click 'Collapse all' when all sections are already collapsed",
+          "preconditions": [
+            "User is logged in (any role with view access)",
+            "All course sections are already collapsed"
+          ],
+          "steps": [
+            "1. Click the Collapse All link"
+          ],
+          "expected_result": "Clicking Collapse all succeeds; all sections remain collapsed (no visible state change). No error or warning is shown and no additional UI changes occur",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-002",
+          "subcategory": "interaction_edge",
+          "test_case": "Click 'Collapse all' while multiple sections are expanded",
+          "preconditions": [
+            "User is logged in (any role with view access)",
+            "At least two sections are expanded and have visible items"
+          ],
+          "steps": [
+            "1. Click the Collapse All link"
+          ],
+          "expected_result": "Collapse all succeeds; all sections are set to collapsed and their chevrons update to the collapsed state (succeeds). No error is shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-003",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click on an item link (duplicate navigation attempt)",
+          "preconditions": [
+            "User is logged in (any role with view access)",
+            "Parent section is expanded and the Item_Link is visible"
+          ],
+          "steps": [
+            "1. Click the Item_Link for an activity/resource",
+            "2. Immediately (within 300ms) click the same Item_Link again"
+          ],
+          "expected_result": "First click navigates to the activity/resource; the immediate second click is blocked such that only one navigation occurs (second navigation attempt is blocked). No duplicate pages or duplicate navigations occur and no error is shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-004",
+          "subcategory": "boundary",
+          "test_case": "Attempt to enable Edit mode as a Student (role boundary)",
+          "preconditions": [
+            "User is logged in with the Student role",
+            "Course page is loaded"
+          ],
+          "steps": [
+            "1. Click the Enable Edit mode action in Page_Actions (or attempt to access it if present)"
+          ],
+          "expected_result": "Action is blocked / error shown: enabling Edit mode is prevented for Student users. The UI either disables or hides the Enable Edit mode control and an inline permission error is shown or no state change occurs (is blocked / error shown)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-004",
+          "subcategory": "state_edge",
+          "test_case": "Enable Edit mode (non-Student) then immediately Collapse all",
+          "preconditions": [
+            "User is logged in with a non-Student role (e.g., Instructor)",
+            "At least one section is expanded"
+          ],
+          "steps": [
+            "1. Click the Enable Edit mode action",
+            "2. Immediately (within 500ms) click the Collapse All link"
+          ],
+          "expected_result": "Enable Edit mode succeeds; the subsequent Collapse all action also succeeds. Final visible state: Edit mode is enabled for the user and all sections are collapsed (succeeds). No error is shown",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-004",
+          "subcategory": "input_edge",
+          "test_case": "Save a very long section name while in Edit mode",
+          "preconditions": [
+            "User is logged in with a non-Student role (e.g., Instructor)",
+            "Edit mode is enabled",
+            "A section exists and its name is editable"
+          ],
+          "steps": [
+            "1. Enter a very long string (longer than 200 characters) into the section name field",
+            "2. Click the Save/Apply control for the section name change"
+          ],
+          "expected_result": "Saving the very long section name succeeds; the change is persisted. The section name field in edit mode shows the saved value (succeeds). If the UI truncates display, the full saved value is still visible when re-opening the name editor (succeeds)",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 4,
+        "negative": 2,
+        "edge": 7,
+        "boundary": 1,
+        "input_edge": 1,
+        "interaction_edge": 3,
+        "state_edge": 2,
+        "data_edge": 0,
+        "high_priority": 6,
+        "medium_priority": 5,
+        "low_priority": 2
+      }
+    },
+    {
+      "module": "Participants",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Add a new filter condition row",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. In the Filters area, click '+ Add condition'"
+          ],
+          "expected_result": "adds a new condition row to Conditions repeating_group",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Apply filter conditions to participants list",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click '+ Add condition' in the Filters area",
+            "2. In the new condition row, select <attribute> from the Attribute dropdown",
+            "3. Click 'Apply filters'"
+          ],
+          "expected_result": "applies filter conditions to participants list; Participants table displays only rows matching the specified condition(s)",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Clear active filters and restore defaults",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open",
+            "At least one filter control is active (e.g., a condition row or alphabet filter)"
+          ],
+          "steps": [
+            "1. Click 'Clear filters' in the Filters area"
+          ],
+          "expected_result": "resets all filter controls to default; filter controls return to their default state and the Participants table displays the unfiltered list",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Toggle Match Any to change AND/OR behavior",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click the Match Any checkbox to enable it"
+          ],
+          "expected_result": "Match Any toggle shows enabled state; When enabled, filter conditions are OR'ed (Any). When disabled, conditions are AND'ed.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Select 'All' in First-name alphabet filter to show all participants",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click 'All' in the First name alphabet filter"
+          ],
+          "expected_result": "Participants table shows all participants; no first-name initial filter is active",
+          "priority": "low",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Filter participants by first-name initial 'A'",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click 'A' in the First name alphabet filter"
+          ],
+          "expected_result": "Participants table displays only rows whose First name begins with 'A'",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Select 'All' in Last-name alphabet filter to show all participants",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click 'All' in the Last name alphabet filter"
+          ],
+          "expected_result": "Participants table shows all participants; no last-name initial filter is active",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Filter participants by last-name initial 'A'",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click 'A' in the Last name alphabet filter"
+          ],
+          "expected_result": "Participants table displays only rows whose Last name begins with 'A'",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Open a participant's profile from the table row",
+          "preconditions": [
+            "User logged in as <role>",
+            "Participants page is open",
+            "At least one participant row is present in the Participants table"
+          ],
+          "steps": [
+            "1. Click the participant's name link for <target participant> in the Participants table"
+          ],
+          "expected_result": "navigates to participant profile",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Enrol selected user(s) using Enrollment actions (instructor/admin)",
+          "preconditions": [
+            "User logged in as <Instructor or Admin>",
+            "Participants page is open",
+            "At least one participant row is present in the Participants table"
+          ],
+          "steps": [
+            "1. Check the selection checkbox for <target participant> in the Participants table",
+            "2. Click 'Enrol User' in the Enrollment Management Actions"
+          ],
+          "expected_result": "enrols selected user(s)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Unenrol selected user(s) using Enrollment actions (instructor/admin)",
+          "preconditions": [
+            "User logged in as <Instructor or Admin>",
+            "Participants page is open",
+            "At least one participant row is present in the Participants table"
+          ],
+          "steps": [
+            "1. Check the selection checkbox for <target participant> in the Participants table",
+            "2. Click 'Unenrol User' in the Enrollment Management Actions"
+          ],
+          "expected_result": "unenrols selected user(s)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Open Edit Roles for selected user(s) (instructor/admin)",
+          "preconditions": [
+            "User logged in as <Instructor or Admin>",
+            "Participants page is open",
+            "At least one participant row is present in the Participants table"
+          ],
+          "steps": [
+            "1. Check the selection checkbox for <target participant> in the Participants table",
+            "2. Click 'Edit Roles' in the Enrollment Management Actions"
+          ],
+          "expected_result": "opens role editing for selected user(s)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-013",
+          "test_case": "Open the Enrollment Management interface (instructor/admin)",
+          "preconditions": [
+            "User logged in as <Instructor or Admin>",
+            "Participants page is open"
+          ],
+          "steps": [
+            "1. Click 'Open Enrollment Management' in the Enrollment Management Actions"
+          ],
+          "expected_result": "navigates to enrollment management interface",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-010",
+          "test_case": "Student cannot see 'Enrol User' action when lacking instructor/admin role",
+          "preconditions": [
+            "Logged in as <student role>"
+          ],
+          "steps": [
+            "1. Navigate to the Participants page"
+          ],
+          "expected_result": "The 'Enrol User' button is not visible in the Enrollment Management action group; no enrol UI is accessible from the Participants page and no enrolment can be performed by the student",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-011",
+          "test_case": "Student cannot see 'Unenrol User' action when lacking instructor/admin role",
+          "preconditions": [
+            "Logged in as <student role>"
+          ],
+          "steps": [
+            "1. Navigate to the Participants page"
+          ],
+          "expected_result": "The 'Unenrol User' button is not visible in the Enrollment Management action group; the student cannot unenrol users from the Participants page and no unenrolment occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-012",
+          "test_case": "Student cannot see 'Edit Roles' action when lacking instructor/admin role",
+          "preconditions": [
+            "Logged in as <student role>"
+          ],
+          "steps": [
+            "1. Navigate to the Participants page"
+          ],
+          "expected_result": "The 'Edit Roles' button is not visible in the Enrollment Management action group; the student cannot open role-editing UI for any selected user and no role changes occur",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-013",
+          "test_case": "Student cannot access 'Open Enrollment Management' link from Participants page",
+          "preconditions": [
+            "Logged in as <student role>"
+          ],
+          "steps": [
+            "1. Navigate to the Participants page",
+            "2. Attempt to locate and click the 'Open Enrollment Management' link in the Enrollment Management action group"
+          ],
+          "expected_result": "The 'Open Enrollment Management' link is not visible on the Participants page for the student; the student cannot navigate to the enrollment management interface from this page",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-013",
+          "test_case": "Direct navigation to Enrollment Management is blocked for student role",
+          "preconditions": [
+            "Logged in as <student role>"
+          ],
+          "steps": [
+            "1. Enter the Enrollment Management interface URL directly in the browser address bar and navigate"
+          ],
+          "expected_result": "Access is blocked: the page displays an authorization error (e.g., 'You do not have permission to access this page') or redirects away; the enrollment management interface is not shown and no enrollment management actions are available to the student",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Add several condition rows then remove all rows and Apply filters",
+          "preconditions": [
+            "User is on the Participants page",
+            "Conditions repeating_group is visible"
+          ],
+          "steps": [
+            "1. Click the '+ Add condition' button",
+            "2. Click the '+ Add condition' button",
+            "3. Click the '+ Add condition' button",
+            "4. Click the remove/delete control on the first condition row",
+            "5. Click the remove/delete control on the second condition row",
+            "6. Click the remove/delete control on the third condition row",
+            "7. Click the 'Apply filters' button"
+          ],
+          "expected_result": "Apply filters succeeds; the Conditions repeating_group contains zero rows and the Participants table shows the unfiltered/default participant list (filter controls reflect default state)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-006",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapidly toggle First-name alphabet buttons and Apply filters \u2014 final selection should take effect",
+          "preconditions": [
+            "User is on the Participants page",
+            "First_Name_Alphabet_Filter button group is visible"
+          ],
+          "steps": [
+            "1. Click the First-name alphabet filter button 'A'",
+            "2. Immediately click the First-name alphabet filter button 'Z'",
+            "3. Immediately click the First-name alphabet filter button 'M'",
+            "4. Click the 'Apply filters' button",
+            "5. Observe the selected state of the First-name alphabet buttons and the Participants table"
+          ],
+          "expected_result": "Apply filters succeeds; the final selected First-name alphabet button is the last one clicked ('M') and the Participants table displays results filtered by first-name initial 'M' (final selection is applied visibly in the UI)",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-010",
+          "subcategory": "interaction_edge",
+          "test_case": "Student role attempts to access enrollment-management actions (permission edge)",
+          "preconditions": [
+            "User is logged in with Student role",
+            "User is on the Participants page"
+          ],
+          "steps": [
+            "1. Inspect the Enrollment Management Actions area on the Participants page",
+            "2. Attempt to click the 'Enrol User' button (if visible)",
+            "3. Attempt to click the 'Unenrol User' button (if visible)",
+            "4. Attempt to click the 'Edit Roles' button (if visible)",
+            "5. Attempt to click the 'Open Enrollment Management' link (if visible)"
+          ],
+          "expected_result": "Enrollment-management actions are not available to the Student: the Enrol/Unenrol/Edit Roles buttons and Open Enrollment Management link are either not visible or disabled; any attempt to invoke them is blocked and an access-denied/error is shown (action is blocked / error shown)",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "positive": 13,
+        "negative": 5,
+        "edge": 3,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 3,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 9,
+        "medium_priority": 11,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Grades",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Expand course group to reveal graded activities",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User is enrolled in the course",
+            "view_scope == own_grades_only"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page for the course",
+            "2. Click the course header labeled <Course> to toggle its collapse state"
+          ],
+          "expected_result": "The course group expands or collapses, showing or hiding the graded activities under the course header.",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-001",
+          "test_case": "Collapse course group to hide graded activities",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User is enrolled in the course",
+            "view_scope == own_grades_only",
+            "The course group <Course> is currently expanded"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page for the course",
+            "2. Click the course header labeled <Course> to toggle its collapse state"
+          ],
+          "expected_result": "The course group expands or collapses, showing or hiding the graded activities under the course header.",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": null,
+          "test_case": "Aggregation row displays the course total cumulative grade",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User is enrolled in the course",
+            "view_scope == own_grades_only"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page for the course",
+            "2. If the course group <Course> is collapsed, click the course header to expand it",
+            "3. Scroll to the bottom of the grade table to view the aggregation row"
+          ],
+          "expected_result": "The AGGREGATION Course total row is visible and displays the cumulative grade across all weighted items",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Ungraded activity shows en dash in Grade column",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User is enrolled in the course",
+            "view_scope == own_grades_only",
+            "There exists a graded activity <ungraded activity> with no grade yet"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page for the course",
+            "2. Click the course header <Course> to expand graded activities if it is collapsed",
+            "3. Locate the row for <ungraded activity> in the Grade item column"
+          ],
+          "expected_result": "Row for <ungraded activity> shows '\u2013' in the Grade column",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "Grades table displays all expected columns",
+          "preconditions": [
+            "User logged in as <Student>",
+            "User is enrolled in the course",
+            "view_scope == own_grades_only"
+          ],
+          "steps": [
+            "1. Navigate to the Grades page for the course",
+            "2. Observe the columns of the grade table"
+          ],
+          "expected_result": "The grade table shows columns: Grade item, Calculated weight, Grade, Range, Percentage, Feedback, and Contribution to course total",
+          "priority": "low",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user cannot access Grades page",
+          "preconditions": [
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. In a browser session where no user is logged in, navigate to the Grades page URL for <course>",
+            "2. Observe the page that loads"
+          ],
+          "expected_result": "User is redirected to the login page or shown a login prompt; the Grades table is not displayed and no graded activities or aggregation row are visible.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "test_case": "Student not enrolled cannot view or toggle course grades",
+          "preconditions": [
+            "Logged in as a user with role Student who is NOT enrolled in <course>"
+          ],
+          "steps": [
+            "1. Log in as a Student account that is not enrolled in <course>",
+            "2. Navigate to the Grades page for <course>",
+            "3. Attempt to click the Course header to Toggle Course Collapse"
+          ],
+          "expected_result": "Page displays an enrollment-required or access-denied message indicating the user is not enrolled in the course; the Grades table and the course collapse/expand control are not available or are disabled; clicking the header does not expand graded activities and no aggregation row for the course is shown.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Non-Student role cannot access student-only Grades page",
+          "preconditions": [
+            "Logged in as a user with role != Student (e.g., Teacher or Admin)"
+          ],
+          "steps": [
+            "1. Log in as a user whose role is not Student",
+            "2. Navigate to the Grades page URL for <course> as if viewing a student's grades",
+            "3. Observe the page and available controls"
+          ],
+          "expected_result": "Page displays a permission/authorization error (access denied) and the Grades table for the student is not shown; controls to view the student's own grades (collapsible course headers and graded activities) are not available in this view.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Student cannot view another student's grades by URL manipulation",
+          "preconditions": [
+            "Logged in as Student A who is enrolled in <course>"
+          ],
+          "steps": [
+            "1. Log in as Student A (enrolled in <course>)",
+            "2. In the address bar, navigate to the Grades page URL with a parameter referencing another student: set user_id=<another student's id>",
+            "3. Press Enter to load that URL"
+          ],
+          "expected_result": "Request to view another student's grades is blocked; the system either redirects back to Student A's own Grades page or displays an access-denied message; no data belonging to <another student> is displayed and the Grades table does not show other students' grades.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Very long course and grade item names render in Grades table",
+          "preconditions": [
+            "User is enrolled in the course",
+            "User role is Student",
+            "Course exists in User report with a course name and at least one grade item name of length >= 200 characters"
+          ],
+          "steps": [
+            "1. Sign in as the Student",
+            "2. Navigate to the Grades page for the course",
+            "3. Locate the course header text in the Grade item column",
+            "4. Locate the long grade item name in the Grade item column cell",
+            "5. Hover over the long course name cell",
+            "6. Hover over the long grade item name cell"
+          ],
+          "expected_result": "Page renders successfully; long course and grade item names do not cause layout overflow. The table cell either truncates the long text with a visible ellipsis and a tooltip that reveals the full text on hover, or wraps the text without breaking layout. The Grades page loads and interaction succeeds.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Course and grade item names containing special characters and emoji",
+          "preconditions": [
+            "User is enrolled in the course",
+            "User role is Student",
+            "Course exists in User report with course and grade item names containing various Unicode characters (emoji, non-Latin scripts, control characters like ZERO-WIDTH SPACE)"
+          ],
+          "steps": [
+            "1. Sign in as the Student",
+            "2. Navigate to the Grades page for the course",
+            "3. Locate the course header and grade item rows containing special characters/emoji",
+            "4. Observe rendering of those cells",
+            "5. Attempt to copy the cell text to clipboard (select and copy)"
+          ],
+          "expected_result": "Special characters and emoji are displayed without causing rendering errors; table cells remain readable and do not break layout. Copied text contains the same Unicode characters as displayed. The Grades page interaction succeeds.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid repeated Toggle Course Collapse clicks do not duplicate or drop rows",
+          "preconditions": [
+            "User is enrolled in the course",
+            "User role is Student",
+            "Course group has multiple graded activities visible when expanded"
+          ],
+          "steps": [
+            "1. Sign in as the Student",
+            "2. Navigate to the Grades page for the course",
+            "3. Verify the course group header is visible",
+            "4. Click the course header 'Toggle Course Collapse' control",
+            "5. Click the course header 'Toggle Course Collapse' control",
+            "6. Click the course header 'Toggle Course Collapse' control",
+            "7. Click the course header 'Toggle Course Collapse' control",
+            "8. Click the course header 'Toggle Course Collapse' control",
+            "9. Click the course header 'Toggle Course Collapse' control",
+            "10. Click the course header 'Toggle Course Collapse' control",
+            "11. Click the course header 'Toggle Course Collapse' control",
+            "12. Click the course header 'Toggle Course Collapse' control",
+            "13. Click the course header 'Toggle Course Collapse' control (10 rapid toggles total)",
+            "14. Inspect the course group's expanded/collapsed state and the graded activity rows",
+            "15. Inspect the 'AGGREGATION Course total' row at the bottom of the table"
+          ],
+          "expected_result": "After the rapid toggles, the course group reflects the final toggle state (expanded if final click expanded, collapsed if final click collapsed). Graded activity rows are neither duplicated nor missing; row count equals the source data. The 'AGGREGATION Course total' row remains present and its displayed value is unchanged by the toggling. Toggle interactions succeed (no JavaScript error visible, no broken rendering).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-001",
+          "subcategory": "data_edge",
+          "test_case": "Toggle behavior when a course has zero graded activities",
+          "preconditions": [
+            "User is enrolled in the course",
+            "User role is Student",
+            "Course exists in User report with zero graded activities (course header present, no child graded activity rows)"
+          ],
+          "steps": [
+            "1. Sign in as the Student",
+            "2. Navigate to the Grades page for the course",
+            "3. Locate the course header that has no graded activity children",
+            "4. Click the course header 'Toggle Course Collapse' control",
+            "5. Observe the area beneath the course header after toggling"
+          ],
+          "expected_result": "Toggle action succeeds; expanding the course header shows no graded activity rows (no empty placeholder that misleads or shows duplicates), collapsing hides nothing obvious. The 'AGGREGATION Course total' row remains present and displays either the course total if computable or '\u2013' per UI conventions; no errors are shown and the Grades page remains usable.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 13,
+        "positive": 5,
+        "negative": 4,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 2,
+        "interaction_edge": 1,
+        "state_edge": 0,
+        "data_edge": 1,
+        "high_priority": 6,
+        "medium_priority": 4,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Assignment",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open Add submission form from Not Submitted state",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Not Submitted state"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Add submission' button in the Submission Actions area"
+          ],
+          "expected_result": "The Submission form is displayed (Submission_Form); form UI is visible so the student can enter content (online text editor and/or file upload area appear only if the assignment is configured to allow them)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open submission in view mode from Submitted state",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'View submission' button in the Submission Actions area"
+          ],
+          "expected_result": "The Submission form (Submission_Form) is displayed in view mode; submission fields are presented read-only (online text shown as non-editable content and any uploaded files are listed as non-editable items)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Open Edit submission and save (updates existing submission)",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Edit submission' button in the Submission Actions area",
+            "3. (If visible) Make an edit: enter <online text> in the Online Text Editor or upload a <valid file> in the File Upload Area as applicable",
+            "4. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission form is closed and the Assignment page's submission summary updates visually: the Submission status displays 'Submitted for grading' and the 'Last modified' timestamp is updated to reflect the save",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "View graded submission and feedback in Graded state",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Graded state",
+            "submission exists"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'View submission' button in the Submission Actions area"
+          ],
+          "expected_result": "Submission form is displayed in view mode and the Assignment page shows the earned grade and written feedback visibly in the grading section",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Submit new submission when neither online text nor file upload is allowed",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Not Submitted state",
+            "assignment_allows_online_text == false",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Add submission' button",
+            "3. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Submit new submission with online text only",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Not Submitted state",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Add submission' button",
+            "3. Enter <online text> in the Online Text Editor",
+            "4. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the submitted online text is visible in the submission summary",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Submit new submission with file upload only",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Not Submitted state",
+            "assignment_allows_online_text == false",
+            "assignment_allows_file_upload == true"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Add submission' button",
+            "3. Click 'Upload' in the File Upload Area and select a <valid file> from the OS file picker",
+            "4. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the uploaded file is listed in the submission summary",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Submit new submission with both online text and file upload",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Not Submitted state",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == true"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Add submission' button",
+            "3. Enter <online text> in the Online Text Editor",
+            "4. Click 'Upload' in the File Upload Area and select a <valid file> from the OS file picker",
+            "5. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the submission summary shows the submitted online text and lists the uploaded file",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Submit edited submission when neither online text nor file upload is allowed",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission",
+            "assignment_allows_online_text == false",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Edit submission' button",
+            "3. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the 'Last modified' timestamp is updated",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Submit edited submission with online text only",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Edit submission' button",
+            "3. Enter updated <online text> in the Online Text Editor",
+            "4. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the submission summary shows the updated online text",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Submit edited submission with file upload only",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission",
+            "assignment_allows_online_text == false",
+            "assignment_allows_file_upload == true"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Edit submission' button",
+            "3. Click 'Upload' in the File Upload Area and select a <valid file> from the OS file picker",
+            "4. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the submission summary lists the newly uploaded file",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Submit edited submission with both online text and file upload",
+          "preconditions": [
+            "User logged in as <Student>",
+            "Assignment is in Submitted state",
+            "submission exists",
+            "due date not passed",
+            "teacher permits resubmission",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == true"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page for <assignment>",
+            "2. Click the 'Edit submission' button",
+            "3. Enter updated <online text> in the Online Text Editor",
+            "4. Click 'Upload' in the File Upload Area and select a <valid file> from the OS file picker",
+            "5. Click the 'Submit' button on the Submission form"
+          ],
+          "expected_result": "Submission status displays 'Submitted for grading' in the Submission status section on the Assignment page and the submission summary shows the updated online text and lists the uploaded file",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-002",
+          "test_case": "Attempt to View submission in Submitted state when no submission exists",
+          "preconditions": [
+            "Assignment page is in 'Submitted' state",
+            "No submission exists for the current student"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page that is in the 'Submitted' state",
+            "2. Inspect the Submission Actions action bar for a 'View submission' control",
+            "3. Attempt to click the 'View submission' control if present"
+          ],
+          "expected_result": "'View submission' button is not visible on the page (control absent); Submission_Form does not open and no submission details are shown \u2014 the student cannot view a submission because none exists",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt to Edit submission after due date has passed (precondition 'due date not passed' violated)",
+          "preconditions": [
+            "Assignment page is in 'Submitted' state",
+            "A submission exists for the student",
+            "Assignment due date has already passed"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page in the 'Submitted' state where the student's submission exists",
+            "2. Confirm the system date is after the assignment due date",
+            "3. Inspect the Submission Actions area for the 'Edit submission' button and attempt to click it"
+          ],
+          "expected_result": "'Edit submission' button is not visible or not enabled (disabled/absent) because the due date has passed; Submission_Form does not open and the submission is not editable \u2014 no edit occurs",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-003",
+          "test_case": "Attempt to Edit submission when teacher does not permit resubmission",
+          "preconditions": [
+            "Assignment page is in 'Submitted' state",
+            "A submission exists for the student",
+            "Teacher setting 'permits resubmission' is set to false"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page in the 'Submitted' state where the student's submission exists",
+            "2. Verify teacher's resubmission permission is disabled",
+            "3. Look for the 'Edit submission' control in the Submission Actions and attempt to click it"
+          ],
+          "expected_result": "'Edit submission' button is not visible or not enabled (control absent/disabled) due to teacher resubmission permission being revoked; Submission_Form does not open and no edit is allowed",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": null,
+          "test_case": "Attempt to View submission from Not Submitted state (wrong-state action)",
+          "preconditions": [
+            "Assignment page is in 'Not Submitted' state"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page which is in the 'Not Submitted' state",
+            "2. Inspect the Submission Actions action bar for a 'View submission' control",
+            "3. Attempt to click 'View submission' if it appears"
+          ],
+          "expected_result": "'View submission' button is not visible on the page in the 'Not Submitted' state; no Submission_Form opens and no view action occurs",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": null,
+          "test_case": "Attempt to Add submission from Submitted state (wrong-state action)",
+          "preconditions": [
+            "Assignment page is in 'Submitted' state"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page which is in the 'Submitted' state",
+            "2. Inspect the Submission Actions action bar for an 'Add submission' button",
+            "3. Attempt to click 'Add submission' if present"
+          ],
+          "expected_result": "'Add submission' button is not visible on the page when the assignment is in 'Submitted' state; Submission_Form is not opened and a new submission cannot be started from this state",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": null,
+          "test_case": "Attempt to Edit submission in Graded state (wrong-state action)",
+          "preconditions": [
+            "Assignment page is in 'Graded' state",
+            "A submission exists for the student"
+          ],
+          "steps": [
+            "1. Navigate to the Assignment page which is in the 'Graded' state",
+            "2. Inspect the Submission Actions action bar for an 'Edit submission' control",
+            "3. Attempt to click 'Edit submission' if present"
+          ],
+          "expected_result": "'Edit submission' button is not visible or not enabled in the 'Graded' state; Submission_Form does not open for editing and the graded submission cannot be edited",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Edit submission on the exact due date (same-day) is allowed",
+          "preconditions": [
+            "Assignment is in Submitted state",
+            "A submission exists for the current user",
+            "Due date = today (due date not passed)",
+            "Teacher permits resubmission",
+            "Assignment is configured with assignment_allows_online_text == true"
+          ],
+          "steps": [
+            "1. Open the Assignment page for the assignment in precondition",
+            "2. Click the 'Edit submission' button",
+            "3. In Online_Text_Editor, modify the text (enter any change)",
+            "4. Click the 'Submit' button on the Submission_Form"
+          ],
+          "expected_result": "Form submits successfully; existing submission is updated and Submission status remains 'Submitted for grading' (edit action succeeds). The submission detail page shows the updated online text.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-003",
+          "subcategory": "boundary",
+          "test_case": "Edit submission one day after due date is blocked",
+          "preconditions": [
+            "Assignment is in Submitted state",
+            "A submission exists for the current user",
+            "Due date = yesterday (due date has passed)",
+            "Teacher permits resubmission",
+            "Assignment is configured with assignment_allows_online_text == true"
+          ],
+          "steps": [
+            "1. Open the Assignment page for the assignment in precondition",
+            "2. Attempt to click the 'Edit submission' button"
+          ],
+          "expected_result": "Edit submission is blocked / error shown: the UI prevents entering edit mode (Edit submission button is not actionable or an error modal/inline message is shown) indicating the due date has passed and resubmission is not permitted.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-006",
+          "subcategory": "input_edge",
+          "test_case": "Submit very long online text (200+ characters) in online editor",
+          "preconditions": [
+            "Assignment state == Not Submitted",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Open the Assignment page",
+            "2. Click 'Add submission'",
+            "3. In Online_Text_Editor, enter a very long string (200+ characters)",
+            "4. Click the 'Submit' button"
+          ],
+          "expected_result": "Form submits successfully; a submission is created (submission status becomes 'Submitted for grading'), and the submission detail displays the full entered online text without truncation (long text submission succeeds).",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": "WF-006",
+          "subcategory": "input_edge",
+          "test_case": "Submit online text containing emojis and special/unicode characters",
+          "preconditions": [
+            "Assignment state == Not Submitted",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Open the Assignment page",
+            "2. Click 'Add submission'",
+            "3. In Online_Text_Editor, enter text with emojis and non-ASCII unicode characters",
+            "4. Click the 'Submit' button"
+          ],
+          "expected_result": "Form submits successfully; submission is created and the submission detail shows the emojis and unicode characters intact (special characters preserved; submission succeeds).",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-023",
+          "wf_ref": "WF-005",
+          "subcategory": "interaction_edge",
+          "test_case": "Press browser Back immediately after successful submission to attempt duplicate submit",
+          "preconditions": [
+            "Assignment state == Not Submitted",
+            "assignment_allows_online_text == false",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Open the Assignment page",
+            "2. Click 'Add submission'",
+            "3. Click the 'Submit' button to create a submission",
+            "4. After success redirect to submission detail, press the browser Back button",
+            "5. Click the 'Submit' button again on the returned page (if visible)"
+          ],
+          "expected_result": "Second submission attempt is blocked / error shown: only one submission exists in the Submission status table. The UI indicates the submission already exists or prevents duplicate creation (duplicate creation is blocked).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-024",
+          "wf_ref": "WF-008",
+          "subcategory": "state_edge",
+          "test_case": "Rapid double-submit (click Submit twice quickly) results in a single submission",
+          "preconditions": [
+            "Assignment state == Not Submitted",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == true"
+          ],
+          "steps": [
+            "1. Open the Assignment page",
+            "2. Click 'Add submission'",
+            "3. Fill Online_Text_Editor and attach a file in File_Upload_Area",
+            "4. Click the 'Submit' button twice in rapid succession"
+          ],
+          "expected_result": "Only one submission is created; second click is ignored or blocked and no duplicate submission appears. The UI shows a single submission entry and a success confirmation (second submission attempt is blocked / error shown if applicable).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-025",
+          "wf_ref": "WF-006",
+          "subcategory": "data_edge",
+          "test_case": "Leading and trailing whitespace in online text is trimmed on save",
+          "preconditions": [
+            "Assignment state == Not Submitted",
+            "assignment_allows_online_text == true",
+            "assignment_allows_file_upload == false"
+          ],
+          "steps": [
+            "1. Open the Assignment page",
+            "2. Click 'Add submission'",
+            "3. In Online_Text_Editor, enter a value with leading and trailing spaces",
+            "4. Click the 'Submit' button"
+          ],
+          "expected_result": "Form submits successfully; saved submission detail displays the entered text with leading/trailing whitespace removed (saved value is trimmed) or the UI clearly shows the trimmed value. (If the system does not trim, it should display the exact text including spaces \u2014 test records visible outcome.)",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 25,
+        "positive": 12,
+        "negative": 6,
+        "edge": 7,
+        "boundary": 2,
+        "input_edge": 3,
+        "interaction_edge": 1,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 15,
+        "medium_priority": 7,
+        "low_priority": 3
+      }
+    },
+    {
+      "module": "Activities",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open an assignment by clicking its Name link in the Assignments section",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open; Assignments section is visible and expanded"
+          ],
+          "steps": [
+            "1. In the Assignments section, click the <assignment Name> link in the Name column"
+          ],
+          "expected_result": "Activity page is displayed (navigates to activity page)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Add an additional activity section and open an activity from its Name link",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open"
+          ],
+          "steps": [
+            "1. Click Add Row to create a new activity section",
+            "2. Enter <Section Name> in the Section Name field for the new row",
+            "3. Check the default_expanded checkbox for the new section (or click its Expand/Collapse to ensure it is expanded)",
+            "4. In the new section's table, click the <activity Name> link in the Name column"
+          ],
+          "expected_result": "Activity page is displayed (navigates to activity page)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "Collapse the Assignments section using its Expand/Collapse control",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open; Assignments section is expanded by default"
+          ],
+          "steps": [
+            "1. Click the Assignments section's Expand/Collapse control (arrow) to collapse it"
+          ],
+          "expected_result": "Assignments section collapsed",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Expand the Forums section using its Expand/Collapse control",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open; Forums section is collapsed by default"
+          ],
+          "steps": [
+            "1. Click the Forums section's Expand/Collapse control (arrow) to expand it"
+          ],
+          "expected_result": "Forums section expanded",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Expand the Resources section using its Expand/Collapse control",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open; Resources section is collapsed by default"
+          ],
+          "steps": [
+            "1. Click the Resources section's Expand/Collapse control (arrow) to expand it"
+          ],
+          "expected_result": "Resources section expanded",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Add an additional activity section then toggle its Expand/Collapse control to expand it",
+          "preconditions": [
+            "User logged in as <role>",
+            "Activities page is open"
+          ],
+          "steps": [
+            "1. Click Add Row to add a new additional activity section",
+            "2. Enter <Section Name> in the Section Name field for the new row",
+            "3. Click the new section's Expand/Collapse control (arrow) to expand it"
+          ],
+          "expected_result": "Additional activity section expanded",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": null,
+          "test_case": "Unauthenticated user cannot access Activities page",
+          "preconditions": [
+            "User is not logged in (unauthenticated)"
+          ],
+          "steps": [
+            "1. Open the Activities page URL in a browser as an unauthenticated user"
+          ],
+          "expected_result": "User is redirected to the login page; Activities page is not displayed (access blocked).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": null,
+          "test_case": "Creating additional activity section: leave required Section_Name blank",
+          "preconditions": [
+            "User is logged in and has access to the Activities page"
+          ],
+          "steps": [
+            "1. Navigate to the Activities page",
+            "2. Open the Add / Create Additional Activity Section dialog (start adding a new repeating group item)",
+            "3. Leave the Section_Name field blank",
+            "4. Click Save (submit the add-section form)"
+          ],
+          "expected_result": "Inline validation error appears on the Section_Name field indicating it is required; the additional activity section is not created and does not appear in the Activities accordion.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": null,
+          "test_case": "Submit add-section form with ALL required fields empty",
+          "preconditions": [
+            "User is logged in and has access to the Activities page"
+          ],
+          "steps": [
+            "1. Navigate to the Activities page",
+            "2. Open the Add / Create Additional Activity Section dialog",
+            "3. Leave all required fields in the dialog empty (Section_Name and any other required fields)",
+            "4. Click Save (submit the add-section form)"
+          ],
+          "expected_result": "Form does not submit; inline validation error appears on the Section_Name field indicating it is required; no additional section is created in the Activities accordion.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-001",
+          "test_case": "Cannot open assignment via Name link when Assignments section is collapsed (link not visible)",
+          "preconditions": [
+            "User is logged in and on the Activities page",
+            "There is at least one assignment listed in the Assignments section"
+          ],
+          "steps": [
+            "1. Navigate to the Activities page",
+            "2. Collapse the Assignments section by clicking its Expand/Collapse arrow",
+            "3. Attempt to click the Name link for an assignment in the Assignments section"
+          ],
+          "expected_result": "Name links for assignments are not visible when the Assignments section is collapsed; clicking where a Name link would be has no effect; no navigation to the activity page occurs and the Activities page remains displayed.",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-003",
+          "subcategory": "state_edge",
+          "test_case": "Rapid consecutive toggles of Assignments accordion",
+          "preconditions": [
+            "User is logged in and on the Activities page",
+            "Assignments section is expanded by default and contains visible rows"
+          ],
+          "steps": [
+            "1. Click the Assignments section 'Expand/Collapse' toggle to start collapsing",
+            "2. Immediately (before collapse animation completes) click the Assignments 'Expand/Collapse' toggle to expand",
+            "3. Immediately click the Assignments 'Expand/Collapse' toggle again to collapse"
+          ],
+          "expected_result": "Sequence of toggles succeeds; final visible state is: Assignments section collapsed (chevron indicates collapsed) and the Assignments table rows are not visible; no duplicate section headers or stale row content appear.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Click activity Name link during accordion collapse animation navigates correctly and shows parent section on activity page",
+          "preconditions": [
+            "User is logged in and on the Activities page",
+            "Assignments section is expanded and contains at least one activity with a clickable Name link"
+          ],
+          "steps": [
+            "1. Click the Assignments section 'Expand/Collapse' toggle to start collapsing",
+            "2. Before the collapse animation completes, click the first activity's Name link in the Assignments table"
+          ],
+          "expected_result": "Navigation to the Activity_Page succeeds; Activity_Page is shown and displays the parent section context below the activity (the parent section is visible on the Activity_Page); no navigation error occurs and only one activity page is opened (no duplicate navigations).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": null,
+          "subcategory": "input_edge",
+          "test_case": "Very long Section_Name when adding an additional activity section",
+          "preconditions": [
+            "User is logged in and on the Activities page",
+            "UI exposes an 'Add section' control for adding an additional activity section"
+          ],
+          "steps": [
+            "1. Click the 'Add section' control to create a new additional activity section item",
+            "2. Enter a string of 200+ characters into the Section_Name field",
+            "3. Click the control to save/add the new section"
+          ],
+          "expected_result": "Creation succeeds; the new collapsible section appears in the Activities accordion; the section header displays the Section_Name but the visible header text is truncated to fit the UI (ellipsis or clipped text visible in the header) so the page remains usable and no layout break is shown.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": null,
+          "subcategory": "interaction_edge",
+          "test_case": "Add an additional activity section then remove it (remove-all repeating-group entries)",
+          "preconditions": [
+            "User is logged in and on the Activities page",
+            "UI exposes an 'Add section' control and a delete/remove action for additional activity sections"
+          ],
+          "steps": [
+            "1. Click the 'Add section' control to create a new additional activity section item",
+            "2. Enter a valid non-empty value into the Section_Name field",
+            "3. Click the control to save/add the new section",
+            "4. Click the newly created section's delete/remove action",
+            "5. Confirm the deletion if a confirmation is required"
+          ],
+          "expected_result": "Removal succeeds; no additional activity sections remain on the page; the Activities page continues to display the default sections (Assignments, Forums, Resources) with no error message shown and no leftover UI artifacts from the removed section.",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 14,
+        "positive": 6,
+        "negative": 4,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 1,
+        "interaction_edge": 2,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 5,
+        "medium_priority": 8,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Profile",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Open message composer from a user's profile",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Message' button on the profile page"
+          ],
+          "expected_result": "opens message composer to this student",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": "WF-002",
+          "test_case": "Open Edit profile form as profile owner",
+          "preconditions": [
+            "User logged in as <Role>",
+            "user must be the profile owner",
+            "Profile page for <profile owner> is open"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link on the User details card"
+          ],
+          "expected_result": "opens Profile_Edit_Form",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-003",
+          "test_case": "View Data retention summary from Privacy and policies card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Data retention summary' link in the Privacy and policies card"
+          ],
+          "expected_result": "opens Data retention summary",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": "WF-004",
+          "test_case": "Open an enrolled course profile from the Enrolled Courses card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open",
+            "At least one course is listed in the Enrolled Courses card"
+          ],
+          "steps": [
+            "1. In the Enrolled Courses card, click the 'Course profile link' for one enrolled course"
+          ],
+          "expected_result": "opens course profile",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": "WF-005",
+          "test_case": "Open Blog entries from Miscellaneous card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Blog entries' link in the Miscellaneous card"
+          ],
+          "expected_result": "opens Blog entries",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-006",
+          "test_case": "Open Forum posts from Miscellaneous card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Forum posts' link in the Miscellaneous card"
+          ],
+          "expected_result": "opens Forum posts",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-007",
+          "test_case": "Open Forum discussions from Miscellaneous card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Forum discussions' link in the Miscellaneous card"
+          ],
+          "expected_result": "opens Forum discussions",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-008",
+          "test_case": "Open Learning plans from Miscellaneous card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Learning plans' link in the Miscellaneous card"
+          ],
+          "expected_result": "opens Learning plans",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-009",
+          "test_case": "Open Browser sessions report from Reports card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Browser sessions' link in the Reports card"
+          ],
+          "expected_result": "opens Browser sessions",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-010",
+          "wf_ref": "WF-010",
+          "test_case": "Open Grades overview report from Reports card",
+          "preconditions": [
+            "User logged in as <Role>",
+            "Profile page for <target student> is open"
+          ],
+          "steps": [
+            "1. Click the 'Grades overview' link in the Reports card"
+          ],
+          "expected_result": "opens Grades overview",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-011",
+          "wf_ref": "WF-011",
+          "test_case": "Update profile with valid required fields and save",
+          "preconditions": [
+            "User logged in as <Role>",
+            "user must be the profile owner",
+            "Profile page for <profile owner> is open"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link on the User details card to open the Profile_Edit_Form",
+            "2. In the General panel enter <valid first name> in First Name",
+            "3. Enter <valid last name> in Last Name",
+            "4. Enter <valid email> in Email Address",
+            "5. (optional) Select <Email visibility> from the Email Visibility dropdown",
+            "6. Click the 'Update profile' button"
+          ],
+          "expected_result": "Profile page displays the updated First Name, Last Name and Email Address as entered (the profile changes are saved and visible)",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-012",
+          "wf_ref": "WF-012",
+          "test_case": "Cancel profile edit and return without saving changes",
+          "preconditions": [
+            "User logged in as <Role>",
+            "user must be the profile owner",
+            "Profile page for <profile owner> is open"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link on the User details card to open the Profile_Edit_Form",
+            "2. In the General panel change Description to <new description>",
+            "3. Click the 'Cancel' button"
+          ],
+          "expected_result": "Profile edit form closes and Profile page is displayed without the unsaved Description change (edits were not applied)",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-013",
+          "wf_ref": "WF-011",
+          "test_case": "Leave required text field (First_Name) blank and attempt to update profile",
+          "preconditions": [
+            "Logged in as the profile owner",
+            "Profile page is accessible"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link",
+            "2. Leave the First_Name field blank",
+            "3. Enter <valid last name> in the Last_Name field",
+            "4. Enter <valid email address> in the Email_Address field",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Inline validation error appears on the First_Name field indicating it is required; the form does not submit and the profile is not saved; user remains on the edit form.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-014",
+          "wf_ref": "WF-011",
+          "test_case": "Leave required email field blank and attempt to update profile",
+          "preconditions": [
+            "Logged in as the profile owner",
+            "Profile page is accessible"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link",
+            "2. Enter <valid first name> in the First_Name field",
+            "3. Enter <valid last name> in the Last_Name field",
+            "4. Leave the Email_Address field blank",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Inline validation error appears on the Email_Address field indicating it is required; the form does not submit and the profile is not saved; the edit form remains open.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-015",
+          "wf_ref": "WF-011",
+          "test_case": "Submit update with ALL required fields empty",
+          "preconditions": [
+            "Logged in as the profile owner",
+            "Profile page is accessible"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link",
+            "2. Clear the First_Name field",
+            "3. Clear the Last_Name field",
+            "4. Clear the Email_Address field",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Inline validation errors appear on First_Name, Last_Name and Email_Address indicating each is required; the form does not submit; no profile changes are saved and the user remains on the edit form.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-016",
+          "wf_ref": "WF-011",
+          "test_case": "Enter invalid email format and attempt to update profile",
+          "preconditions": [
+            "Logged in as the profile owner",
+            "Profile page is accessible"
+          ],
+          "steps": [
+            "1. Click the 'Edit profile' link",
+            "2. Enter <valid first name> in the First_Name field",
+            "3. Enter <valid last name> in the Last_Name field",
+            "4. Enter <invalid email format> in the Email_Address field",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Email_Address field displays an inline validation error indicating the email address format is invalid; the form does not submit and the profile is not saved; the edit form remains open.",
+          "priority": "medium",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-017",
+          "wf_ref": "WF-002",
+          "test_case": "Edit profile link is not visible to non-owner",
+          "preconditions": [
+            "Logged in as a different user (not the profile owner)",
+            "Target user's profile page is open"
+          ],
+          "steps": [
+            "1. Open the target user's profile page while logged in as a different user"
+          ],
+          "expected_result": "The 'Edit profile' link is not visible on the profile page for the non-owner; no link or button to open the Profile_Edit_Form is shown.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-018",
+          "wf_ref": "WF-011",
+          "test_case": "Non-owner attempts direct navigation to profile edit form and is blocked",
+          "preconditions": [
+            "Logged in as a different user (not the profile owner)"
+          ],
+          "steps": [
+            "1. Navigate directly to the Profile_Edit_Form URL for the target user's profile"
+          ],
+          "expected_result": "Access is denied and the Profile_Edit_Form is not displayed; the page shows an access-denied indication and the 'Update profile' button is not available; no edits can be made or saved.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-019",
+          "wf_ref": "WF-011",
+          "subcategory": "input_edge",
+          "test_case": "Very long Description (200+ characters) saved via Update profile",
+          "preconditions": [
+            "User is the profile owner",
+            "Profile page is open"
+          ],
+          "steps": [
+            "1. Click 'Edit profile' link",
+            "2. Expand the 'General' panel if collapsed",
+            "3. Enter <very long string (200+ characters)> in the Description field",
+            "4. Ensure all required fields are filled with valid values",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Update profile succeeds; detail (profile) page displays the saved Description. If the UI truncates long text, a visible truncation control (e.g. 'show more') is displayed on the Description card.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-020",
+          "wf_ref": "WF-011",
+          "subcategory": "input_edge",
+          "test_case": "Special characters and emoji in First_Name and Last_Name",
+          "preconditions": [
+            "User is the profile owner",
+            "Profile page is open"
+          ],
+          "steps": [
+            "1. Click 'Edit profile' link",
+            "2. Expand the 'General' panel if collapsed",
+            "3. Enter <string with emoji and special unicode characters> in the First_Name field",
+            "4. Enter <string with emoji and special unicode characters> in the Last_Name field",
+            "5. Ensure Email_Address and other required fields are filled with valid values",
+            "6. Click the 'Update profile' button"
+          ],
+          "expected_result": "Update profile succeeds; profile header displays the First and Last name using the same characters entered. If the system disallows certain characters, an inline validation error is shown on the field and Update profile is blocked / error shown.",
+          "priority": "low",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-021",
+          "wf_ref": "WF-011",
+          "subcategory": "input_edge",
+          "test_case": "Leading and trailing whitespace in Email_Address is handled on save",
+          "preconditions": [
+            "User is the profile owner",
+            "Profile page is open"
+          ],
+          "steps": [
+            "1. Click 'Edit profile' link",
+            "2. Expand the 'General' panel if collapsed",
+            "3. Enter <email value with leading and trailing whitespace> in Email_Address",
+            "4. Ensure First_Name and Last_Name and other required fields are filled with valid values",
+            "5. Click the 'Update profile' button"
+          ],
+          "expected_result": "Update profile succeeds; Email_Address displayed on the profile is trimmed of leading and trailing whitespace (no visible leading/trailing spaces in the displayed email).",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-022",
+          "wf_ref": "WF-011",
+          "subcategory": "input_edge",
+          "test_case": "Upload a zero-byte file for New_Picture",
+          "preconditions": [
+            "User is the profile owner",
+            "Profile page is open"
+          ],
+          "steps": [
+            "1. Click 'Edit profile' link",
+            "2. Expand the 'User picture' panel if collapsed",
+            "3. In New_Picture file upload control, choose a file of size 0 bytes",
+            "4. Attempt to click the 'Update profile' button"
+          ],
+          "expected_result": "New_Picture upload is blocked; an inline error is shown on the New_Picture field and Update profile is blocked / error shown (the profile is not saved while the 0-byte file error is present).",
+          "priority": "medium",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 22,
+        "positive": 12,
+        "negative": 6,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 4,
+        "interaction_edge": 0,
+        "state_edge": 0,
+        "data_edge": 0,
+        "high_priority": 7,
+        "medium_priority": 14,
+        "low_priority": 1
+      }
+    },
+    {
+      "module": "Logout",
+      "test_cases": [
+        {
+          "tc_id": "TC-001",
+          "wf_ref": "WF-001",
+          "test_case": "Authenticated user clicks Log out and is returned to the Login page",
+          "preconditions": [
+            "User logged in as <role>",
+            "user must be authenticated"
+          ],
+          "steps": [
+            "1. Locate the 'Log out' button in the application header or account menu",
+            "2. Click the 'Log out' button"
+          ],
+          "expected_result": "Login page is displayed; terminates the current authenticated session and redirects to the login page",
+          "priority": "high",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-002",
+          "wf_ref": null,
+          "test_case": "After logging out, attempting to open a protected page redirects to the Login page",
+          "preconditions": [
+            "User logged in as <role>",
+            "user must be authenticated"
+          ],
+          "steps": [
+            "1. Click the 'Log out' button",
+            "2. Wait until the Login page is displayed",
+            "3. Enter the URL of a protected page in the browser address bar (or click a bookmarked protected page) and navigate to it"
+          ],
+          "expected_result": "Login page is displayed instead of the protected content; access to all protected pages requires re-authentication after logout",
+          "priority": "medium",
+          "category": "positive"
+        },
+        {
+          "tc_id": "TC-003",
+          "wf_ref": "WF-001",
+          "test_case": "Attempt Log out when user is NOT authenticated (precondition failure)",
+          "preconditions": [
+            "User is not authenticated (no active session)"
+          ],
+          "steps": [
+            "1. Ensure there is no active authenticated session (e.g. open a new incognito window)",
+            "2. Navigate directly to the <logout endpoint/URL>"
+          ],
+          "expected_result": "Navigation is redirected to the Login page; no logout action is performed on any session (no session termination message); protected pages remain inaccessible without authentication.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-004",
+          "wf_ref": null,
+          "test_case": "Log out control is not visible to unauthenticated users",
+          "preconditions": [
+            "User is not authenticated"
+          ],
+          "steps": [
+            "1. Ensure there is no active authenticated session",
+            "2. Open the application main page / header where authentication controls are shown"
+          ],
+          "expected_result": "The Log out / \"Log out\" button is not visible in the UI for unauthenticated users; only authentication entry controls (e.g., Login) are shown. Attempting to locate or click a non-present Log out control is not possible.",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-005",
+          "wf_ref": null,
+          "test_case": "After clicking Log out, access to a protected page is blocked (postcondition enforcement)",
+          "preconditions": [
+            "User is authenticated as <role>"
+          ],
+          "steps": [
+            "1. Authenticate as <role>",
+            "2. Click the Log out button",
+            "3. After logout completes, navigate to a known <protected page URL>"
+          ],
+          "expected_result": "Navigation to the <protected page URL> is redirected to the Login page; protected page content is not displayed and the user remains unauthenticated (no session restored).",
+          "priority": "high",
+          "category": "negative"
+        },
+        {
+          "tc_id": "TC-006",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Rapid double-click on Log out button",
+          "preconditions": [
+            "User is authenticated and viewing a protected page with the Log out button visible"
+          ],
+          "steps": [
+            "1. Click the Log out button once",
+            "2. Immediately (before the UI completes navigation) click the Log out button a second time"
+          ],
+          "expected_result": "First logout attempt succeeds: user is redirected to the login page and the authenticated session is terminated. The second immediate click is ignored (no additional session creation or errors); no visible error message is shown and only one redirect to the login page occurs.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-007",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Logout in one tab, then reload or navigate to protected page in another tab",
+          "preconditions": [
+            "User is authenticated and has two browser tabs open on protected pages (Tab A and Tab B)"
+          ],
+          "steps": [
+            "1. In Tab A, click the Log out button",
+            "2. In Tab B, reload a protected page or navigate to another protected route"
+          ],
+          "expected_result": "Access to the protected page in Tab B is blocked: the user is redirected to the login page or shown an authentication prompt; protected content must not be displayed without re-authentication.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-008",
+          "wf_ref": "WF-001",
+          "subcategory": "interaction_edge",
+          "test_case": "Use browser Back after logout (cached protected page scenario)",
+          "preconditions": [
+            "User is authenticated and viewing a protected page"
+          ],
+          "steps": [
+            "1. Click the Log out button",
+            "2. After redirect to the login page completes, press the browser Back button"
+          ],
+          "expected_result": "Access is blocked: pressing Back must not grant authenticated access. Either the app redirects back to the login page immediately, or a cached view appears but any interaction with that view immediately redirects to login / shows authentication required. Protected actions remain unavailable without re-authentication.",
+          "priority": "medium",
+          "category": "edge"
+        },
+        {
+          "tc_id": "TC-009",
+          "wf_ref": "WF-001",
+          "subcategory": "state_edge",
+          "test_case": "Click Log out when the UI shows authenticated but the server-side session has already expired",
+          "preconditions": [
+            "User session has expired on the server side but the client UI still displays as authenticated (simulate by waiting for session expiry or invalidating server session)",
+            "Log out button is visible"
+          ],
+          "steps": [
+            "1. Click the Log out button"
+          ],
+          "expected_result": "Logout action succeeds idempotently: the user is redirected to the login page and no error is shown. The system remains in an unauthenticated state and no additional errors or duplicate session termination messages are displayed.",
+          "priority": "low",
+          "category": "edge"
+        }
+      ],
+      "summary": {
+        "total": 9,
+        "positive": 2,
+        "negative": 3,
+        "edge": 4,
+        "boundary": 0,
+        "input_edge": 0,
+        "interaction_edge": 3,
+        "state_edge": 1,
+        "data_edge": 0,
+        "high_priority": 4,
+        "medium_priority": 4,
+        "low_priority": 1
+      }
+    }
+  ],
+  "total_summary": {
+    "total_modules": 10,
+    "total_tests": 175,
+    "positive": 88,
+    "negative": 44,
+    "boundary": 3,
+    "edge": 43,
+    "high_priority": 81,
+    "medium_priority": 77,
+    "low_priority": 17
+  }
+}

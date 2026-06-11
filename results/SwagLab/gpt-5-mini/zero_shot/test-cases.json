@@ -1,0 +1,1015 @@
+{
+  "module": "SwagLab",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "SL-001",
+      "category": "positive",
+      "test_case": "Login with valid standard_user credentials",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = standard_user",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "User is authenticated and redirected to the Product Inventory page; header with hamburger, title, and cart icon is visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-002",
+      "category": "negative",
+      "test_case": "Login with empty username shows required username error",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Leave Username empty",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "Error banner displays 'Epic sadface: Username is required.' and user remains on Login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-003",
+      "category": "negative",
+      "test_case": "Login with empty password shows required password error",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = standard_user",
+        "2. Leave Password empty",
+        "3. Click Login"
+      ],
+      "expected_result": "Error banner displays 'Epic sadface: Password is required.' and user remains on Login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-004",
+      "category": "negative",
+      "test_case": "Login with invalid credentials shows mismatch error",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = invalid_user",
+        "2. Enter Password = wrong_password",
+        "3. Click Login"
+      ],
+      "expected_result": "Error banner displays 'Epic sadface: Username and password do not match any user in this service.' and user remains on Login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-005",
+      "category": "negative",
+      "test_case": "Login with locked_out_user shows locked out message",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = locked_out_user",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "Error banner displays 'Epic sadface: Sorry, this user has been locked out.' and user remains on Login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-006",
+      "category": "edge",
+      "test_case": "Login with usernames that include whitespace only should be treated as empty",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = '   ' (spaces)",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "Error banner displays 'Epic sadface: Username is required.' and user remains on Login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-007",
+      "category": "edge",
+      "test_case": "Login with extremely long username and password",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = string of 500 characters",
+        "2. Enter Password = string of 500 characters",
+        "3. Click Login"
+      ],
+      "expected_result": "System rejects invalid credentials with 'Epic sadface: Username and password do not match any user in this service.' or safely handles input without crashing",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-008",
+      "category": "positive",
+      "test_case": "Login with performance_glitch_user eventually loads inventory",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = performance_glitch_user",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "User is authenticated and redirected to Product Inventory page; page may load slowly but eventually displays inventory and header",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-009",
+      "category": "edge",
+      "test_case": "Login with problem_user logs in but product images or content may be incorrect",
+      "preconditions": [
+        "User is on the Login page"
+      ],
+      "steps": [
+        "1. Enter Username = problem_user",
+        "2. Enter Password = secret_sauce",
+        "3. Click Login"
+      ],
+      "expected_result": "User is authenticated and redirected to Product Inventory; verify if any images are broken/mapped incorrectly as additional check (system still allows navigation)",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-010",
+      "category": "positive",
+      "test_case": "Inventory lists all products after login",
+      "preconditions": [
+        "User is logged in as standard_user and on Product Inventory page"
+      ],
+      "steps": [
+        "1. Observe product list on Inventory page"
+      ],
+      "expected_result": "All products are displayed with name, description, price, and Add to cart button for each",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-011",
+      "category": "positive",
+      "test_case": "Add single product to cart from Inventory updates button and cart badge",
+      "preconditions": [
+        "User is on Product Inventory with visible products"
+      ],
+      "steps": [
+        "1. Click 'Add to cart' on first product",
+        "2. Observe the button label and cart badge"
+      ],
+      "expected_result": "Button label changes to 'Remove'; cart icon badge increments to 1",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-012",
+      "category": "positive",
+      "test_case": "Remove product from cart from Inventory updates button and cart badge",
+      "preconditions": [
+        "User has added one item to cart (badge = 1)"
+      ],
+      "steps": [
+        "1. Click 'Remove' on the same product in Inventory",
+        "2. Observe the button label and cart badge"
+      ],
+      "expected_result": "Button label changes back to 'Add to cart'; cart badge decrements to 0 or disappears",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-013",
+      "category": "positive",
+      "test_case": "Click product name opens Product Detail page",
+      "preconditions": [
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Click on the name of a product"
+      ],
+      "expected_result": "Product Detail page opens showing product image, name, description, price, and Add to cart / Remove state button; back to products button visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-014",
+      "category": "positive",
+      "test_case": "Click product image opens Product Detail page",
+      "preconditions": [
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Click on the image of a product"
+      ],
+      "expected_result": "Product Detail page opens for that product with image, name, description, price and appropriate add/remove button",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-015",
+      "category": "positive",
+      "test_case": "Add item to cart from Product Detail reflects in Inventory and cart badge",
+      "preconditions": [
+        "User is on Product Detail for a product"
+      ],
+      "steps": [
+        "1. Click 'Add to cart' on Product Detail",
+        "2. Click 'Back to products' to return to Inventory"
+      ],
+      "expected_result": "On Inventory, the product's button displays 'Remove' and cart badge increments; Product Detail button also shows 'Remove' if revisited",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-016",
+      "category": "positive",
+      "test_case": "Cart page lists added items with quantity 1 and remove buttons",
+      "preconditions": [
+        "User has added multiple distinct items to cart"
+      ],
+      "steps": [
+        "1. Click cart icon",
+        "2. Observe the list of items on Shopping Cart page"
+      ],
+      "expected_result": "Each added item is listed with quantity = 1, description, and a 'Remove' button; 'Checkout' and 'Continue Shopping' buttons visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-017",
+      "category": "positive",
+      "test_case": "Remove item from Cart page updates cart badge and inventory state",
+      "preconditions": [
+        "User has at least one item in cart and is on Shopping Cart page"
+      ],
+      "steps": [
+        "1. Click 'Remove' for an item in cart",
+        "2. Click cart icon or return to Inventory"
+      ],
+      "expected_result": "Item is removed from cart, cart badge decrements, and corresponding product in Inventory shows 'Add to cart'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-018",
+      "category": "positive",
+      "test_case": "Continue Shopping from Cart navigates back to Inventory preserving cart",
+      "preconditions": [
+        "User is on Shopping Cart page with items in cart"
+      ],
+      "steps": [
+        "1. Click 'Continue Shopping'"
+      ],
+      "expected_result": "User is navigated back to Product Inventory; cart contents remain intact and cart badge unchanged",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-019",
+      "category": "positive",
+      "test_case": "Begin Checkout from Cart navigates to Checkout Information step",
+      "preconditions": [
+        "User is on Shopping Cart page with >=1 items"
+      ],
+      "steps": [
+        "1. Click 'Checkout'"
+      ],
+      "expected_result": "User is taken to Checkout - Information form which includes First Name, Last Name, Postal Code fields along with Continue and Cancel buttons",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-020",
+      "category": "negative",
+      "test_case": "Checkout Information missing First Name displays error",
+      "preconditions": [
+        "User has items in cart and is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Leave First Name empty",
+        "2. Fill Last Name and Postal Code",
+        "3. Click 'Continue'"
+      ],
+      "expected_result": "Error banner displays 'Error: First Name is required' and user remains on Information step",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-021",
+      "category": "negative",
+      "test_case": "Checkout Information missing Last Name displays error",
+      "preconditions": [
+        "User has items in cart and is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Fill First Name",
+        "2. Leave Last Name empty",
+        "3. Fill Postal Code",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "Error banner displays 'Error: Last Name is required' and user remains on Information step",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-022",
+      "category": "negative",
+      "test_case": "Checkout Information missing Postal Code displays error",
+      "preconditions": [
+        "User has items in cart and is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Fill First Name and Last Name",
+        "2. Leave Postal Code empty",
+        "3. Click 'Continue'"
+      ],
+      "expected_result": "Error banner displays 'Error: Postal Code is required' and user remains on Information step",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-023",
+      "category": "positive",
+      "test_case": "Complete Checkout Information with valid inputs proceeds to Overview",
+      "preconditions": [
+        "User has items in cart and is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Fill First Name = John",
+        "2. Fill Last Name = Doe",
+        "3. Fill Postal Code = 12345",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "User navigates to Checkout - Overview which lists order summary, payment and shipping information, and shows Item total, Tax and Total",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-024",
+      "category": "positive",
+      "test_case": "Overview displays correct item total and total equals item total + tax",
+      "preconditions": [
+        "User is on Checkout - Overview with known cart items and prices"
+      ],
+      "steps": [
+        "1. Note each item price and item total",
+        "2. Note Tax amount and Total displayed"
+      ],
+      "expected_result": "Item total equals sum of item prices; Total equals Item total + Tax (values computed correctly and displayed)",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-025",
+      "category": "positive",
+      "test_case": "Finish checkout completes order and navigates to Confirmation",
+      "preconditions": [
+        "User is on Checkout - Overview"
+      ],
+      "steps": [
+        "1. Click 'Finish'"
+      ],
+      "expected_result": "User is navigated to Checkout - Confirmation page which displays a success message like 'Thank you for your order!' and a 'Back Home' button",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-026",
+      "category": "positive",
+      "test_case": "Back Home after Confirmation clears cart and returns to Inventory",
+      "preconditions": [
+        "User is on Checkout - Confirmation after finishing an order"
+      ],
+      "steps": [
+        "1. Click 'Back Home'"
+      ],
+      "expected_result": "User is returned to Product Inventory and cart is cleared (cart badge reset to 0 and all product buttons show 'Add to cart')",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-027",
+      "category": "positive",
+      "test_case": "Cancel on Checkout Information returns to Shopping Cart preserving items",
+      "preconditions": [
+        "User is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Click 'Cancel'"
+      ],
+      "expected_result": "User is returned to Shopping Cart and previously added items remain in cart",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-028",
+      "category": "positive",
+      "test_case": "Cancel on Checkout Overview returns to Shopping Cart preserving items",
+      "preconditions": [
+        "User is on Checkout - Overview"
+      ],
+      "steps": [
+        "1. Click 'Cancel'"
+      ],
+      "expected_result": "User exits checkout and returns to Shopping Cart; cart contents remain intact",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-029",
+      "category": "positive",
+      "test_case": "Hamburger menu opens and shows All Items, About, Logout, Reset App State",
+      "preconditions": [
+        "User is logged in and on any protected page"
+      ],
+      "steps": [
+        "1. Click hamburger menu icon in header"
+      ],
+      "expected_result": "Menu opens showing options: All Items, About, Logout, Reset App State",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "positive",
+      "category": "invalid",
+      "test_case": "This placeholder - should not be used",
+      "preconditions": [],
+      "steps": [],
+      "expected_result": "",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-030",
+      "category": "positive",
+      "test_case": "Hamburger 'All Items' navigates to Product Inventory",
+      "preconditions": [
+        "User is on a page other than Inventory and hamburger menu is open"
+      ],
+      "steps": [
+        "1. Click hamburger menu",
+        "2. Click 'All Items'"
+      ],
+      "expected_result": "User is navigated to Product Inventory page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-031",
+      "category": "positive",
+      "test_case": "Hamburger 'About' opens Sauce Labs website in a new tab",
+      "preconditions": [
+        "User is logged in and on any protected page"
+      ],
+      "steps": [
+        "1. Open hamburger menu",
+        "2. Click 'About'"
+      ],
+      "expected_result": "A new browser tab opens with the Sauce Labs website; original app remains open",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-032",
+      "category": "positive",
+      "test_case": "Hamburger 'Logout' logs out the user and returns to Login page",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Open hamburger menu",
+        "2. Click 'Logout'"
+      ],
+      "expected_result": "User session ends and user is redirected to the Login page; protected pages no longer accessible without login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-033",
+      "category": "positive",
+      "test_case": "Hamburger 'Reset App State' clears cart and resets add/remove button states without logging out",
+      "preconditions": [
+        "User is logged in and has items in cart and toggled some add/remove buttons"
+      ],
+      "steps": [
+        "1. Open hamburger menu",
+        "2. Click 'Reset App State'"
+      ],
+      "expected_result": "Cart is cleared, cart badge reset to 0, all Inventory and Product Detail buttons show 'Add to cart'; user remains logged in on current page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-034",
+      "category": "negative",
+      "test_case": "Protected page (Inventory) inaccessible after logout via URL direct access",
+      "preconditions": [
+        "User has logged out and is on Login page"
+      ],
+      "steps": [
+        "1. Attempt to navigate directly to /inventory URL or use browser back button"
+      ],
+      "expected_result": "System redirects to Login page; protected content is not visible without login",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-035",
+      "category": "edge",
+      "test_case": "Reset App State when cart is already empty has no adverse effect",
+      "preconditions": [
+        "User is logged in and cart is empty"
+      ],
+      "steps": [
+        "1. Open hamburger menu",
+        "2. Click 'Reset App State'"
+      ],
+      "expected_result": "No error occurs; Inventory buttons remain 'Add to cart', cart badge still 0, and user remains logged in",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-036",
+      "category": "positive",
+      "test_case": "Sort products by Name A–Z orders items ascending alphabetically",
+      "preconditions": [
+        "User is on Product Inventory with multiple products"
+      ],
+      "steps": [
+        "1. Open sort dropdown",
+        "2. Select 'Name (A to Z)'"
+      ],
+      "expected_result": "Product list sorts alphabetically from A to Z by name",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-037",
+      "category": "positive",
+      "test_case": "Sort products by Name Z–A orders items descending alphabetically",
+      "preconditions": [
+        "User is on Product Inventory with multiple products"
+      ],
+      "steps": [
+        "1. Open sort dropdown",
+        "2. Select 'Name (Z to A)'"
+      ],
+      "expected_result": "Product list sorts alphabetically from Z to A by name",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-038",
+      "category": "positive",
+      "test_case": "Sort products by Price low–high orders items by ascending price",
+      "preconditions": [
+        "User is on Product Inventory with multiple products with different prices"
+      ],
+      "steps": [
+        "1. Open sort dropdown",
+        "2. Select 'Price (low to high)'"
+      ],
+      "expected_result": "Product list sorts by price from lowest to highest",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-039",
+      "category": "positive",
+      "test_case": "Sort products by Price high–low orders items by descending price",
+      "preconditions": [
+        "User is on Product Inventory with multiple products with different prices"
+      ],
+      "steps": [
+        "1. Open sort dropdown",
+        "2. Select 'Price (high to low)'"
+      ],
+      "expected_result": "Product list sorts by price from highest to lowest",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-040",
+      "category": "edge",
+      "test_case": "Sort stability: add/remove buttons state remains with items after sorting",
+      "preconditions": [
+        "User has added several items to cart",
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Note which items show 'Remove'",
+        "2. Change sort order several times"
+      ],
+      "expected_result": "Add/Remove button states remain correct for each product after sorting; cart badge unchanged",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-041",
+      "category": "negative",
+      "test_case": "Clicking Add to cart repeatedly toggles state rather than incrementing quantity",
+      "preconditions": [
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Click 'Add to cart' for a product",
+        "2. Click 'Add to cart' again repeatedly (if allowed)"
+      ],
+      "expected_result": "Button toggles to 'Remove' on first click and remains 'Remove'; subsequent clicks (should be 'Remove') toggle back to 'Add to cart' — cart quantity for that product remains one or zero, not multiple",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-042",
+      "category": "edge",
+      "test_case": "Adding same product from Inventory and Product Detail keeps a single cart entry",
+      "preconditions": [
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Add product A from Inventory",
+        "2. Open product A detail and click 'Add to cart' there (if still showing Add)"
+      ],
+      "expected_result": "Cart contains a single entry for product A (quantity displayed as 1); UI add/remove buttons are consistent between Inventory and Detail",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-043",
+      "category": "positive",
+      "test_case": "Cart badge accurately reflects number of unique items added",
+      "preconditions": [
+        "User is on Product Inventory"
+      ],
+      "steps": [
+        "1. Add three different products to cart",
+        "2. Observe the cart badge"
+      ],
+      "expected_result": "Cart badge displays '3' corresponding to three unique items",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-044",
+      "category": "edge",
+      "test_case": "Cart behavior after browser refresh retains cart contents for logged in user",
+      "preconditions": [
+        "User is logged in and has items in cart"
+      ],
+      "steps": [
+        "1. Refresh the browser while on Inventory or Cart page"
+      ],
+      "expected_result": "Cart contents persist and cart badge shows correct count; user remains logged in",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-045",
+      "category": "negative",
+      "test_case": "Attempting to access /cart URL when not logged in redirects to Login",
+      "preconditions": [
+        "User is logged out or session cleared"
+      ],
+      "steps": [
+        "1. Manually navigate to /cart URL"
+      ],
+      "expected_result": "User is redirected to Login page; Shopping Cart contents are not visible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-046",
+      "category": "edge",
+      "test_case": "Using browser back button during checkout returns to previous step with data preserved",
+      "preconditions": [
+        "User is in Checkout - Overview, having filled Information form previously"
+      ],
+      "steps": [
+        "1. Click browser back to return to Information step",
+        "2. Observe filled fields"
+      ],
+      "expected_result": "Information fields retain previously entered values; user can proceed again to Overview",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-047",
+      "category": "negative",
+      "test_case": "Submitting checkout info with only whitespace in required fields is treated as empty",
+      "preconditions": [
+        "User is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Enter First Name = '  '",
+        "2. Enter Last Name = '  '",
+        "3. Enter Postal Code = '  '",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "Appropriate error banners appear indicating required fields are missing; user remains on Information step",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-048",
+      "category": "edge",
+      "test_case": "Checkout postal code accepts alphanumeric postal codes",
+      "preconditions": [
+        "User is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Enter First Name = Jane",
+        "2. Enter Last Name = Smith",
+        "3. Enter Postal Code = 'A1B 2C3'",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "System accepts postal code and proceeds to Checkout - Overview (no numeric-only restriction enforced)",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-049",
+      "category": "edge",
+      "test_case": "Checkout with extremely long first/last name inputs",
+      "preconditions": [
+        "User is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Enter First Name = 256-character string",
+        "2. Enter Last Name = 256-character string",
+        "3. Enter Postal Code = 12345",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "System either accepts and proceeds or shows a validation message if there is a max length; app does not crash",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-050",
+      "category": "positive",
+      "test_case": "Overview shows payment and shipping information section present",
+      "preconditions": [
+        "User is on Checkout - Overview"
+      ],
+      "steps": [
+        "1. Observe the Overview page content"
+      ],
+      "expected_result": "Payment information (e.g., 'SauceCard ****') and shipping information text are visible along with order items and totals",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-051",
+      "category": "positive",
+      "test_case": "After finishing an order, attempting to access /cart shows empty cart",
+      "preconditions": [
+        "User completed an order and clicked 'Back Home' which cleared the cart"
+      ],
+      "steps": [
+        "1. Click cart icon / navigate to Shopping Cart"
+      ],
+      "expected_result": "Shopping Cart shows no items (empty) and cart badge is zero or absent",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-052",
+      "category": "negative",
+      "test_case": "Attempt to proceed to Checkout when cart is empty (direct manual navigation) is blocked or redirects",
+      "preconditions": [
+        "User is logged in but cart is empty"
+      ],
+      "steps": [
+        "1. Attempt to navigate directly to /checkout-step-one or click Checkout if visible (shouldn't be)"
+      ],
+      "expected_result": "System redirects to Product Inventory or Shopping Cart and does not allow checkout with empty cart",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-053",
+      "category": "positive",
+      "test_case": "Product Detail 'Back to products' returns to Inventory retaining cart state",
+      "preconditions": [
+        "User is on a Product Detail page and has items in cart"
+      ],
+      "steps": [
+        "1. Click 'Back to products'"
+      ],
+      "expected_result": "User is returned to Inventory; cart state (badge and add/remove states) remains unchanged",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-054",
+      "category": "edge",
+      "test_case": "Product Detail shows consistent add/remove label with Inventory when toggled from either page",
+      "preconditions": [
+        "User is on Inventory, add some products",
+        "Open Product Detail for a product that is added"
+      ],
+      "steps": [
+        "1. Verify Product Detail button shows 'Remove' if product was added in Inventory",
+        "2. Click 'Remove' on Detail",
+        "3. Return to Inventory and verify button state"
+      ],
+      "expected_result": "Button states synchronize correctly between Inventory and Detail",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-055",
+      "category": "negative",
+      "test_case": "Problem_user displays incorrect product images or broken images on Inventory",
+      "preconditions": [
+        "User logs in as problem_user and reaches Inventory"
+      ],
+      "steps": [
+        "1. Inspect images on the inventory page for mismatches or broken images"
+      ],
+      "expected_result": "Detectable image mismatches or broken images may appear (expected behavior for problem_user); app still allows navigation",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-056",
+      "category": "edge",
+      "test_case": "Visual_user may have visual bugs; test layout elements present and accessible",
+      "preconditions": [
+        "User logs in as visual_user and reaches Inventory"
+      ],
+      "steps": [
+        "1. Observe header, hamburger, title, cart icon are present and clickable",
+        "2. Attempt to add an item to cart and proceed to Cart"
+      ],
+      "expected_result": "Even if visual differences exist, functionality remains (buttons clickable and navigation works) or visual discrepancies are noted",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-057",
+      "category": "edge",
+      "test_case": "performance_glitch_user inventory interactions may be slow but eventually reflect state changes",
+      "preconditions": [
+        "User logs in as performance_glitch_user"
+      ],
+      "steps": [
+        "1. Add an item to cart",
+        "2. Wait and observe button label and cart badge update time"
+      ],
+      "expected_result": "UI updates occur albeit with delay; cart ultimately shows correct content without errors",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-058",
+      "category": "negative",
+      "test_case": "Application handles server error for error_user gracefully when loading inventory",
+      "preconditions": [
+        "User logs in as error_user and attempts to view Inventory"
+      ],
+      "steps": [
+        "1. Login as error_user",
+        "2. Observe Inventory page loading and any error messages"
+      ],
+      "expected_result": "If server-side error occurs, an error message is shown and app doesn't crash; user may be informed appropriately",
+      "priority": "low"
+    },
+    {
+      "tc_id": "SL-059",
+      "category": "positive",
+      "test_case": "Cart remove button on Inventory and Cart both remove item consistently",
+      "preconditions": [
+        "User has an item added to cart"
+      ],
+      "steps": [
+        "1. Remove item from Cart page and verify Inventory button",
+        "2. Add item again, remove it from Inventory and verify Cart"
+      ],
+      "expected_result": "Item removal works from both Inventory and Cart; UI states remain synchronized",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-060",
+      "category": "edge",
+      "test_case": "Multiple rapid add/remove clicks do not corrupt cart state",
+      "preconditions": [
+        "User is on Inventory or Product Detail page"
+      ],
+      "steps": [
+        "1. Rapidly click Add/Remove for a product multiple times",
+        "2. Observe final state and cart badge"
+      ],
+      "expected_result": "Cart ends in a consistent final state (either added or removed) and doesn't show multiple duplicates for same product",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-061",
+      "category": "edge",
+      "test_case": "International characters in checkout name fields accepted",
+      "preconditions": [
+        "User is on Checkout - Information"
+      ],
+      "steps": [
+        "1. Enter First Name = 'José'",
+        "2. Enter Last Name = 'Łukasz'",
+        "3. Enter Postal Code = '12345'",
+        "4. Click 'Continue'"
+      ],
+      "expected_result": "System accepts international characters and proceeds to Overview; no validation error for characters",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-062",
+      "category": "negative",
+      "test_case": "Attempt to perform checkout without being logged in redirects to Login",
+      "preconditions": [
+        "User is not logged in"
+      ],
+      "steps": [
+        "1. Attempt to navigate manually to checkout /checkout-step-one URL"
+      ],
+      "expected_result": "System redirects to Login page; checkout pages are protected",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-063",
+      "category": "edge",
+      "test_case": "Session persistence across tabs: cart state shared in other tab when logged in",
+      "preconditions": [
+        "User is logged in in one tab and has items in cart"
+      ],
+      "steps": [
+        "1. Open a new browser tab and navigate to Inventory",
+        "2. Observe cart badge and item button states"
+      ],
+      "expected_result": "New tab shows same cart badge count and add/remove button states reflecting shared session",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-064",
+      "category": "negative",
+      "test_case": "Attempt to use back button after logout does not reveal protected content",
+      "preconditions": [
+        "User logged in then logged out via Logout"
+      ],
+      "steps": [
+        "1. After logout, click browser back button to go to Inventory or Cart"
+      ],
+      "expected_result": "System redirects to Login page; protected content remains inaccessible",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-065",
+      "category": "edge",
+      "test_case": "Adding maximum number of unique items (all products) updates cart badge accordingly",
+      "preconditions": [
+        "User is on Inventory with N products available"
+      ],
+      "steps": [
+        "1. Click 'Add to cart' for each product until all are added",
+        "2. Observe cart badge"
+      ],
+      "expected_result": "Cart badge displays N (number of unique products); Cart page lists all N items each with quantity 1",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-066",
+      "category": "edge",
+      "test_case": "Checkout Overview with many items correctly sums totals without overflow",
+      "preconditions": [
+        "User has added all products to cart and proceeds to Checkout Overview"
+      ],
+      "steps": [
+        "1. Proceed through Checkout Information to Overview",
+        "2. Verify Item total, Tax and Total calculations"
+      ],
+      "expected_result": "Totals correctly calculated and displayed without numeric overflow or rounding errors beyond currency precision",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-067",
+      "category": "negative",
+      "test_case": "UI error banner clears after user fixes input and resubmits",
+      "preconditions": [
+        "User on Login page saw an error banner for bad credentials or missing fields"
+      ],
+      "steps": [
+        "1. Enter valid credentials after previously failing",
+        "2. Click Login"
+      ],
+      "expected_result": "Error banner disappears and user is redirected to Inventory on successful login",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "SL-068",
+      "category": "edge",
+      "test_case": "Navigating directly to a Product Detail URL without login redirects to Login",
+      "preconditions": [
+        "User is logged out"
+      ],
+      "steps": [
+        "1. Attempt to open a detail page URL directly (e.g., /inventory-item.html?id=1)"
+      ],
+      "expected_result": "System redirects to Login page; product detail not accessible without authentication",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-069",
+      "category": "positive",
+      "test_case": "Cart quantity displays as '1' for each unique item in cart",
+      "preconditions": [
+        "User has added multiple distinct items to cart"
+      ],
+      "steps": [
+        "1. Navigate to Shopping Cart page",
+        "2. Observe quantity column for each item"
+      ],
+      "expected_result": "Each line item displays quantity value '1' as specified",
+      "priority": "high"
+    },
+    {
+      "tc_id": "SL-070",
+      "category": "edge",
+      "test_case": "Back Home from Confirmation returns user to Inventory and retains login session",
+      "preconditions": [
+        "User is on Confirmation page after order completion"
+      ],
+      "steps": [
+        "1. Click 'Back Home'",
+        "2. Verify user is on Inventory and attempts to access Cart or Checkout without re-login"
+      ],
+      "expected_result": "User is on Inventory and remains logged in (able to add items to cart again); cart is cleared from previous order",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 71,
+    "positive": 33,
+    "negative": 17,
+    "edge": 20,
+    "high_priority": 42,
+    "medium_priority": 22,
+    "low_priority": 7
+  },
+  "_meta": {
+    "website": "SwagLab",
+    "model": "gpt-5-mini",
+    "approach": "zero_shot",
+    "generated_at": "2026-06-10T17:24:36.324840Z"
+  }
+}

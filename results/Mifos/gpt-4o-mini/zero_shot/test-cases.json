@@ -1,0 +1,510 @@
+{
+  "module": "Mifos",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "TC001",
+      "category": "positive",
+      "test_case": "Successful login with valid credentials",
+      "preconditions": [
+        "User is on the login page",
+        "User has valid credentials"
+      ],
+      "steps": [
+        "1. Select tenant from dropdown",
+        "2. Enter valid username",
+        "3. Enter valid password",
+        "4. Click on Login button"
+      ],
+      "expected_result": "User is redirected to the Dashboard page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC002",
+      "category": "negative",
+      "test_case": "Login attempt with invalid credentials",
+      "preconditions": [
+        "User is on the login page"
+      ],
+      "steps": [
+        "1. Select tenant from dropdown",
+        "2. Enter invalid username",
+        "3. Enter invalid password",
+        "4. Click on Login button"
+      ],
+      "expected_result": "Error message displayed indicating invalid credentials",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC003",
+      "category": "negative",
+      "test_case": "Login attempt with empty username and password",
+      "preconditions": [
+        "User is on the login page"
+      ],
+      "steps": [
+        "1. Select tenant from dropdown",
+        "2. Leave username field empty",
+        "3. Leave password field empty",
+        "4. Click on Login button"
+      ],
+      "expected_result": "Inline validation messages for empty fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC004",
+      "category": "edge",
+      "test_case": "Login attempt with maximum length username and password",
+      "preconditions": [
+        "User is on the login page"
+      ],
+      "steps": [
+        "1. Select tenant from dropdown",
+        "2. Enter username with maximum allowed length",
+        "3. Enter password with maximum allowed length",
+        "4. Click on Login button"
+      ],
+      "expected_result": "User is redirected to the Dashboard page",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC005",
+      "category": "positive",
+      "test_case": "Access Home page after successful login",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Navigate to Home page"
+      ],
+      "expected_result": "Welcome card with message 'Welcome, mifos!' is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC006",
+      "category": "positive",
+      "test_case": "Search activity on Dashboard",
+      "preconditions": [
+        "User is on the Dashboard page"
+      ],
+      "steps": [
+        "1. Enter search term in 'Search Activity' field",
+        "2. Press Enter"
+      ],
+      "expected_result": "Relevant activity results are displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC007",
+      "category": "negative",
+      "test_case": "Search activity with no results",
+      "preconditions": [
+        "User is on the Dashboard page"
+      ],
+      "steps": [
+        "1. Enter a non-existent search term in 'Search Activity' field",
+        "2. Press Enter"
+      ],
+      "expected_result": "Message 'No results found' is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC008",
+      "category": "edge",
+      "test_case": "Search activity with special characters",
+      "preconditions": [
+        "User is on the Dashboard page"
+      ],
+      "steps": [
+        "1. Enter special characters in 'Search Activity' field",
+        "2. Press Enter"
+      ],
+      "expected_result": "System handles input gracefully and displays relevant results or no results found",
+      "priority": "low"
+    },
+    {
+      "tc_id": "TC009",
+      "category": "positive",
+      "test_case": "Create a new client successfully",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Clients page"
+      ],
+      "steps": [
+        "1. Click on 'Create Client' button",
+        "2. Fill in all required fields in the multi-step wizard",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "New client is created and displayed in the clients list with status 'Pending'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC010",
+      "category": "negative",
+      "test_case": "Create a new client with missing required fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Clients page"
+      ],
+      "steps": [
+        "1. Click on 'Create Client' button",
+        "2. Leave required fields empty",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Inline validation messages for missing required fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC011",
+      "category": "edge",
+      "test_case": "Create a new client with maximum length fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Clients page"
+      ],
+      "steps": [
+        "1. Click on 'Create Client' button",
+        "2. Fill in all fields with maximum allowed length",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "New client is created successfully and displayed in the clients list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC012",
+      "category": "positive",
+      "test_case": "View client details from the client list",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Clients page"
+      ],
+      "steps": [
+        "1. Click on a client's name in the list"
+      ],
+      "expected_result": "Client detail page is displayed with all relevant information",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC013",
+      "category": "negative",
+      "test_case": "Attempt to view client details for a non-existent client",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Manually enter a non-existent client ID in the URL"
+      ],
+      "expected_result": "Error message indicating client not found is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC014",
+      "category": "positive",
+      "test_case": "Activate a pending client",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page of a pending client"
+      ],
+      "steps": [
+        "1. Click on 'Activate' button",
+        "2. Enter required activation date",
+        "3. Click on 'Confirm'"
+      ],
+      "expected_result": "Client status changes to 'Active'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC015",
+      "category": "negative",
+      "test_case": "Attempt to activate a client without an activation date",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page of a pending client"
+      ],
+      "steps": [
+        "1. Click on 'Activate' button",
+        "2. Leave activation date empty",
+        "3. Click on 'Confirm'"
+      ],
+      "expected_result": "Error message indicating activation date is required is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC016",
+      "category": "edge",
+      "test_case": "Activate a client with an activation date before submission date",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page of a pending client"
+      ],
+      "steps": [
+        "1. Click on 'Activate' button",
+        "2. Enter an activation date before submission date",
+        "3. Click on 'Confirm'"
+      ],
+      "expected_result": "Error message indicating activation date cannot be before submission date is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC017",
+      "category": "positive",
+      "test_case": "Create a new loan application successfully",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page"
+      ],
+      "steps": [
+        "1. Click on 'New Loan' button",
+        "2. Fill in all required fields in the loan application wizard",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Loan application is created with status 'Submitted and Pending Approval'",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC018",
+      "category": "negative",
+      "test_case": "Create a new loan application with missing required fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page"
+      ],
+      "steps": [
+        "1. Click on 'New Loan' button",
+        "2. Leave required fields empty",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Inline validation messages for missing required fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC019",
+      "category": "edge",
+      "test_case": "Create a new loan application with maximum length fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Client Detail page"
+      ],
+      "steps": [
+        "1. Click on 'New Loan' button",
+        "2. Fill in all fields with maximum allowed length",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Loan application is created successfully and displayed in the loan list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC020",
+      "category": "positive",
+      "test_case": "View loan details from the loan list",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Loan page"
+      ],
+      "steps": [
+        "1. Click on a loan account number in the list"
+      ],
+      "expected_result": "Loan detail page is displayed with all relevant information",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC021",
+      "category": "negative",
+      "test_case": "Attempt to view loan details for a non-existent loan",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Manually enter a non-existent loan ID in the URL"
+      ],
+      "expected_result": "Error message indicating loan not found is displayed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC022",
+      "category": "positive",
+      "test_case": "Submit a journal entry successfully",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Journal Entries page"
+      ],
+      "steps": [
+        "1. Click on '+ Add Journal Entry' button",
+        "2. Fill in all required fields",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Journal entry is created and displayed in the journal entries list",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC023",
+      "category": "negative",
+      "test_case": "Submit a journal entry with missing required fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Journal Entries page"
+      ],
+      "steps": [
+        "1. Click on '+ Add Journal Entry' button",
+        "2. Leave required fields empty",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Inline validation messages for missing required fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC024",
+      "category": "edge",
+      "test_case": "Submit a journal entry with maximum length fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Journal Entries page"
+      ],
+      "steps": [
+        "1. Click on '+ Add Journal Entry' button",
+        "2. Fill in all fields with maximum allowed length",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Journal entry is created successfully and displayed in the journal entries list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC025",
+      "category": "positive",
+      "test_case": "Create a new tax component successfully",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Tax Components page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Tax Component' button",
+        "2. Fill in all required fields",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Tax component is created and displayed in the tax components list",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC026",
+      "category": "negative",
+      "test_case": "Create a new tax component with missing required fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Tax Components page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Tax Component' button",
+        "2. Leave required fields empty",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Inline validation messages for missing required fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC027",
+      "category": "edge",
+      "test_case": "Create a new tax component with maximum length fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Tax Components page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Tax Component' button",
+        "2. Fill in all fields with maximum allowed length",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Tax component is created successfully and displayed in the tax components list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC028",
+      "category": "positive",
+      "test_case": "Create a new office successfully",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Offices page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Office' button",
+        "2. Fill in all required fields",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Office is created and displayed in the offices list",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC029",
+      "category": "negative",
+      "test_case": "Create a new office with missing required fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Offices page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Office' button",
+        "2. Leave required fields empty",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Inline validation messages for missing required fields are displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC030",
+      "category": "edge",
+      "test_case": "Create a new office with maximum length fields",
+      "preconditions": [
+        "User is logged in",
+        "User is on the Offices page"
+      ],
+      "steps": [
+        "1. Click on '+ Create Office' button",
+        "2. Fill in all fields with maximum allowed length",
+        "3. Click on 'Submit'"
+      ],
+      "expected_result": "Office is created successfully and displayed in the offices list",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "TC031",
+      "category": "positive",
+      "test_case": "Logout successfully",
+      "preconditions": [
+        "User is logged in"
+      ],
+      "steps": [
+        "1. Click on user profile icon",
+        "2. Click on 'Log Out'"
+      ],
+      "expected_result": "User is logged out and redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "TC032",
+      "category": "negative",
+      "test_case": "Attempt to access a page after logout",
+      "preconditions": [
+        "User is logged out"
+      ],
+      "steps": [
+        "1. Manually enter a protected page URL in the browser"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    }
+  ],
+  "summary": {
+    "total": 32,
+    "positive": 12,
+    "negative": 12,
+    "edge": 8,
+    "high_priority": 20,
+    "medium_priority": 11,
+    "low_priority": 1
+  },
+  "_meta": {
+    "website": "Mifos",
+    "model": "gpt-4o-mini",
+    "approach": "zero_shot",
+    "generated_at": "2026-06-10T17:25:17.007622Z"
+  }
+}

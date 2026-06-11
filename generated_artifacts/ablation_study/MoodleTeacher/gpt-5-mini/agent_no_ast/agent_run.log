@@ -1,0 +1,317 @@
+run_id: moodleteacher-20260611-031527-20cc49
+  Sidecar: generated_artifacts\.checkpoints\moodleteacher-20260611-031527-20cc49.json
+  Output directory: generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast
+  (use `--resume moodleteacher-20260611-031527-20cc49` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: moodleteacher-20260611-031527-20cc49
+
+[1/4] Generating Structural Model with critic-guided retry (15 module(s))...
+  OK Login | skipped AST (ablation)
+  OK Dashboard | skipped AST (ablation)
+  OK Dashboard — Edit Mode | skipped AST (ablation)
+  OK My Courses | skipped AST (ablation)
+  OK Course Page | skipped AST (ablation)
+  OK Course Edit Mode and Activity Chooser | skipped AST (ablation)
+  OK Assignment Creation | skipped AST (ablation)
+  OK Course Settings | skipped AST (ablation)
+  OK Participants Management | skipped AST (ablation)
+  OK Assignment — Teacher View | skipped AST (ablation)
+  OK Assignment Submissions | skipped AST (ablation)
+  OK Gradebook — Grader Report | skipped AST (ablation)
+  OK Profile | skipped AST (ablation)
+  OK Profile Edit | skipped AST (ablation)
+  OK Logout | skipped AST (ablation)
+  Done in 0.0s
+
+[2/4] Extracting & critiquing workflows (15 module(s))...
+    [03:15:27] >> Workflow-Extractor | sending request (~743 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~1146 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~977 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~814 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~633 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~1224 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~2069 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~1050 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~1279 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~717 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~951 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~1023 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~823 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~989 chars)
+    [03:15:27] >> Workflow-Extractor | sending request (~367 chars)
+    [03:15:40] << Workflow-Extractor | response in 12.7s | tokens: 1390+1080=2470
+    [03:15:40] >> Workflow-Validator | sending request (~1457 chars)
+    [03:15:41] << Workflow-Extractor | response in 13.6s | tokens: 1401+1168=2569
+    [03:15:41] >> Workflow-Validator | sending request (~2086 chars)
+    [03:15:44] << Workflow-Extractor | response in 17.3s | tokens: 1410+1582=2992
+    [03:15:44] >> Workflow-Validator | sending request (~1805 chars)
+    [03:15:58] << Workflow-Extractor | response in 31.1s | tokens: 1440+2684=4124
+    [03:15:58] >> Workflow-Validator | sending request (~4233 chars)
+    [03:16:00] << Workflow-Extractor | response in 32.7s | tokens: 1490+2833=4323
+    [03:16:00] >> Workflow-Validator | sending request (~3529 chars)
+    [03:16:00] << Workflow-Extractor | response in 33.3s | tokens: 1622+2632=4254
+    [03:16:00] >> Workflow-Validator | sending request (~3755 chars)
+    [03:16:05] << Workflow-Extractor | response in 20.3s | tokens: 1423+1550=2973
+    [03:16:05] >> Workflow-Validator | sending request (~3133 chars)
+    [03:16:05] << Workflow-Extractor | response in 38.0s | tokens: 1467+3281=4748
+    [03:16:05] >> Workflow-Validator | sending request (~2804 chars)
+    [03:16:07] << Workflow-Extractor | response in 27.4s | tokens: 1452+2467=3919
+    [03:16:07] >> Workflow-Validator | sending request (~3440 chars)
+    [03:16:07] << Workflow-Extractor | response in 7.7s | tokens: 1332+567=1899
+    [03:16:07] >> Workflow-Validator | sending request (~739 chars)
+    [03:16:09] << Workflow-Validator | response in 8.4s | tokens: 1356+716=2072
+  OK Course Page | attempt 1/3 | 3 workflow(s)
+    [03:16:12] << Workflow-Validator | response in 7.3s | tokens: 1515+572=2087
+  OK Assignment — Teacher View | attempt 1/3 | 6 workflow(s)
+    [03:16:16] << Workflow-Extractor | response in 48.7s | tokens: 1521+4151=5672
+    [03:16:16] >> Workflow-Validator | sending request (~6122 chars)
+    [03:16:17] << Workflow-Extractor | response in 36.1s | tokens: 1457+3171=4628
+    [03:16:17] >> Workflow-Validator | sending request (~3733 chars)
+    [03:16:19] << Workflow-Extractor | response in 52.3s | tokens: 1461+4418=5879
+    [03:16:19] >> Workflow-Validator | sending request (~13739 chars)
+    [03:16:22] << Workflow-Validator | response in 17.2s | tokens: 1432+1602=3034
+  ~~ Login | attempt 1/3 | verdict=retry | missing=2 phantoms=0 | retrying...
+    [03:16:22] >> Workflow-Extractor | sending request (~1609 chars)
+    [03:16:23] << Workflow-Validator | response in 4.1s | tokens: 1174+324=1498
+  OK Logout | attempt 1/3 | 1 workflow(s)
+    [03:16:24] << Workflow-Extractor | response in 26.1s | tokens: 1451+1801=3252
+    [03:16:24] >> Workflow-Validator | sending request (~2164 chars)
+    [03:16:24] << Workflow-Validator | response in 12.5s | tokens: 1797+639=2436
+  OK Profile | attempt 1/3 | 10 workflow(s)
+    [03:16:25] << Workflow-Validator | response in 16.0s | tokens: 1796+1495=3291
+  ~~ Assignment Creation | attempt 1/3 | verdict=retry | missing=4 phantoms=0 | retrying...
+    [03:16:25] >> Workflow-Extractor | sending request (~3038 chars)
+    [03:16:32] << Workflow-Validator | response in 25.0s | tokens: 1867+1814=3681
+  ~~ Dashboard | attempt 1/3 | verdict=retry | missing=0 phantoms=0 | retrying...
+    [03:16:32] >> Workflow-Extractor | sending request (~1872 chars)
+    [03:16:33] << Workflow-Validator | response in 17.7s | tokens: 1710+1162=2872
+  ~~ Dashboard — Edit Mode | attempt 1/3 | verdict=retry | missing=0 phantoms=0 | retrying...
+    [03:16:33] >> Workflow-Extractor | sending request (~2877 chars)
+    [03:16:37] << Workflow-Validator | response in 20.7s | tokens: 1843+1457=3300
+  ~~ Assignment Submissions | attempt 1/3 | verdict=retry | missing=1 phantoms=0 | retrying...
+    [03:16:37] >> Workflow-Extractor | sending request (~1639 chars)
+    [03:16:39] << Workflow-Validator | response in 31.5s | tokens: 2114+2291=4405
+  ~~ My Courses | attempt 1/3 | verdict=retry | missing=10 phantoms=0 | retrying...
+    [03:16:39] >> Workflow-Extractor | sending request (~2209 chars)
+    [03:16:45] << Workflow-Extractor | response in 21.1s | tokens: 1593+1603=3196
+    [03:16:45] >> Workflow-Validator | sending request (~1892 chars)
+    [03:16:48] << Workflow-Validator | response in 24.3s | tokens: 4349+1723=6072
+  ~~ Course Settings | attempt 1/3 | verdict=retry | missing=2 phantoms=0 | retrying...
+    [03:16:48] >> Workflow-Extractor | sending request (~2258 chars)
+    [03:16:51] << Workflow-Validator | response in 27.5s | tokens: 1906+2043=3949
+  ~~ Gradebook — Grader Report | attempt 1/3 | verdict=retry | missing=0 phantoms=0 | retrying...
+    [03:16:51] >> Workflow-Extractor | sending request (~3051 chars)
+    [03:16:51] << Workflow-Validator | response in 26.4s | tokens: 1498+1892=3390
+  ~~ Profile Edit | attempt 1/3 | verdict=retry | missing=3 phantoms=0 | retrying...
+    [03:16:51] >> Workflow-Extractor | sending request (~2230 chars)
+    [03:16:53] << Workflow-Extractor | response in 20.9s | tokens: 1824+1757=3581
+    [03:16:53] >> Workflow-Validator | sending request (~3560 chars)
+    [03:16:57] << Workflow-Validator | response in 34.9s | tokens: 2522+2610=5132
+  ~~ Participants Management | attempt 1/3 | verdict=retry | missing=9 phantoms=0 | retrying...
+    [03:16:57] >> Workflow-Extractor | sending request (~2228 chars)
+    [03:16:58] << Workflow-Extractor | response in 24.9s | tokens: 1647+2206=3853
+    [03:16:58] >> Workflow-Validator | sending request (~3685 chars)
+    [03:17:01] << Workflow-Extractor | response in 94.4s | tokens: 1516+8091=9607
+    [03:17:01] >> Workflow-Validator | sending request (~16617 chars)
+    [03:17:05] << Workflow-Validator | response in 16.9s | tokens: 1459+1488=2947
+  ~~ Login | attempt 2/3 | verdict=retry | missing=2 phantoms=0 | retrying...
+    [03:17:05] >> Workflow-Extractor | sending request (~1683 chars)
+    [03:17:12] << Workflow-Validator | response in 11.0s | tokens: 1880+840=2720
+  OK Dashboard | attempt 2/3 | 9 workflow(s)
+    [03:17:13] << Workflow-Extractor | response in 20.0s | tokens: 1706+1710=3416
+    [03:17:13] >> Workflow-Validator | sending request (~2563 chars)
+    [03:17:15] << Workflow-Extractor | response in 30.0s | tokens: 1768+2658=4426
+    [03:17:15] >> Workflow-Validator | sending request (~2468 chars)
+    [03:17:16] << Workflow-Extractor | response in 38.9s | tokens: 1867+3444=5311
+    [03:17:16] >> Workflow-Validator | sending request (~3184 chars)
+    [03:17:18] << Workflow-Extractor | response in 39.4s | tokens: 1604+3606=5210
+    [03:17:18] >> Workflow-Validator | sending request (~3145 chars)
+    [03:17:19] << Workflow-Validator | response in 21.7s | tokens: 1753+2059=3812
+  ~~ Assignment Creation | attempt 2/3 | verdict=retry | missing=4 phantoms=0 | retrying...
+    [03:17:19] >> Workflow-Extractor | sending request (~2845 chars)
+    [03:17:28] << Workflow-Extractor | response in 36.6s | tokens: 1900+3038=4938
+    [03:17:28] >> Workflow-Validator | sending request (~3179 chars)
+    [03:17:31] << Workflow-Validator | response in 15.2s | tokens: 1640+1166=2806
+  OK My Courses | attempt 2/3 | 7 workflow(s)
+    [03:17:32] << Workflow-Validator | response in 13.6s | tokens: 1766+1228=2994
+  OK Assignment Submissions | attempt 2/3 | 9 workflow(s)
+    [03:17:32] << Workflow-Validator | response in 26.4s | tokens: 5454+2103=7557
+  ~~ Course Edit Mode and Activity Chooser | attempt 1/3 | verdict=retry | missing=2 phantoms=0 | retrying...
+    [03:17:32] >> Workflow-Extractor | sending request (~1875 chars)
+    [03:17:32] << Workflow-Validator | response in 16.1s | tokens: 1809+1486=3295
+  ~~ Dashboard — Edit Mode | attempt 2/3 | verdict=retry | missing=0 phantoms=0 | retrying...
+    [03:17:32] >> Workflow-Extractor | sending request (~2763 chars)
+    [03:17:33] << Workflow-Validator | response in 20.0s | tokens: 1614+1908=3522
+  ~~ Profile Edit | attempt 2/3 | verdict=retry | missing=4 phantoms=0 | retrying...
+    [03:17:33] >> Workflow-Extractor | sending request (~2030 chars)
+    [03:17:37] << Workflow-Extractor | response in 17.8s | tokens: 1780+1445=3225
+    [03:17:37] >> Workflow-Validator | sending request (~2785 chars)
+    [03:17:41] << Workflow-Validator | response in 13.4s | tokens: 1773+1278=3051
+  OK Gradebook — Grader Report | attempt 2/3 | 9 workflow(s)
+    [03:17:43] << Workflow-Extractor | response in 51.7s | tokens: 1710+4434=6144
+    [03:17:43] >> Workflow-Validator | sending request (~13643 chars)
+    [03:17:44] << Workflow-Validator | response in 7.1s | tokens: 1569+519=2088
+  OK Assignment Creation | attempt 3/3 | 3 workflow(s)
+    [03:17:44] << Workflow-Extractor | response in 31.3s | tokens: 1621+2604=4225
+    [03:17:44] >> Workflow-Validator | sending request (~1771 chars)
+    [03:17:54] << Workflow-Extractor | response in 55.5s | tokens: 1733+4734=6467
+    [03:17:54] >> Workflow-Validator | sending request (~5476 chars)
+    [03:18:02] << Workflow-Extractor | response in 28.4s | tokens: 1678+2094=3772
+    [03:18:02] >> Workflow-Validator | sending request (~2617 chars)
+    [03:18:02] << Workflow-Validator | response in 19.1s | tokens: 4365+1730=6095
+  ~~ Course Settings | attempt 2/3 | verdict=retry | missing=5 phantoms=0 | retrying...
+    [03:18:02] >> Workflow-Extractor | sending request (~2190 chars)
+    [03:18:07] << Workflow-Validator | response in 23.7s | tokens: 1430+2013=3443
+  !! Login | max attempts reached | missing=3 phantoms=0 | shipping final attempt
+    [03:18:22] << Workflow-Validator | response in 20.8s | tokens: 1611+1747=3358
+  !! Profile Edit | max attempts reached | missing=0 phantoms=0 | shipping final attempt
+    [03:18:30] << Workflow-Validator | response in 36.2s | tokens: 2351+2727=5078
+  ~~ Participants Management | attempt 2/3 | verdict=retry | missing=13 phantoms=0 | retrying...
+    [03:18:30] >> Workflow-Extractor | sending request (~2081 chars)
+    [03:18:30] << Workflow-Extractor | response in 57.7s | tokens: 1880+4676=6556
+    [03:18:30] >> Workflow-Validator | sending request (~7231 chars)
+    [03:18:35] << Workflow-Extractor | response in 32.8s | tokens: 1694+2834=4528
+    [03:18:35] >> Workflow-Validator | sending request (~6723 chars)
+    [03:18:44] << Workflow-Validator | response in 13.5s | tokens: 2849+1225=4074
+  OK Dashboard — Edit Mode | attempt 3/3 | 23 workflow(s)
+    [03:18:54] << Workflow-Validator | response in 19.5s | tokens: 2717+1846=4563
+  !! Course Settings | max attempts reached | missing=2 phantoms=0 | shipping final attempt
+    [03:19:06] << Workflow-Extractor | response in 94.3s | tokens: 1655+8192=9847
+    [03:19:06] ~~ Workflow-Extractor | JSON parse failed (attempt 1/3): Expecting value: line 1 column 1 (char 0) | retrying...
+    [03:19:06] >> Workflow-Extractor | sending request (~1889 chars)
+    [03:19:18] << Workflow-Extractor | response in 48.4s | tokens: 1684+4474=6158
+    [03:19:18] >> Workflow-Validator | sending request (~4107 chars)
+    [03:19:36] << Workflow-Validator | response in 17.6s | tokens: 2002+1677=3679
+  !! Participants Management | max attempts reached | missing=3 phantoms=0 | shipping final attempt
+    [03:20:48] << Workflow-Extractor | response in 102.1s | tokens: 1654+7994=9648
+    [03:20:48] >> Workflow-Validator | sending request (~17221 chars)
+    [03:21:00] << Workflow-Validator | response in 12.4s | tokens: 5634+897=6531
+  OK Course Edit Mode and Activity Chooser | attempt 2/3 | 70 workflow(s)
+  Done in 333.4s
+
+[3/4] Generating test cases (45 calls across 15 module(s), types: edge/negative/positive)...
+    [03:21:00] >> Test-Positive | sending request (~1470 chars)
+    [03:21:00] >> Test-Negative | sending request (~1470 chars)
+    [03:21:00] >> Test-Edge | sending request (~1470 chars)
+    [03:21:00] >> Test-Positive | sending request (~2982 chars)
+    [03:21:00] >> Test-Negative | sending request (~2982 chars)
+    [03:21:00] >> Test-Edge | sending request (~2982 chars)
+    [03:21:00] >> Test-Positive | sending request (~5392 chars)
+    [03:21:00] >> Test-Negative | sending request (~5392 chars)
+    [03:21:00] >> Test-Edge | sending request (~5392 chars)
+    [03:21:00] >> Test-Positive | sending request (~1930 chars)
+    [03:21:00] >> Test-Negative | sending request (~1930 chars)
+    [03:21:00] >> Test-Edge | sending request (~1930 chars)
+    [03:21:00] >> Test-Positive | sending request (~1248 chars)
+    [03:21:00] >> Test-Negative | sending request (~1248 chars)
+    [03:21:00] >> Test-Edge | sending request (~1248 chars)
+    [03:21:00] >> Test-Positive | sending request (~11544 chars)
+    [03:21:00] >> Test-Negative | sending request (~11544 chars)
+    [03:21:00] >> Test-Edge | sending request (~11544 chars)
+    [03:21:00] >> Test-Positive | sending request (~2584 chars)
+    [03:21:00] >> Test-Negative | sending request (~2584 chars)
+    [03:21:00] >> Test-Edge | sending request (~2584 chars)
+    [03:21:00] >> Test-Positive | sending request (~5340 chars)
+    [03:21:00] >> Test-Negative | sending request (~5340 chars)
+    [03:21:00] >> Test-Edge | sending request (~5340 chars)
+    [03:21:00] >> Test-Positive | sending request (~3243 chars)
+    [03:21:00] >> Test-Negative | sending request (~3243 chars)
+    [03:21:00] >> Test-Edge | sending request (~3243 chars)
+    [03:21:00] >> Test-Positive | sending request (~1645 chars)
+    [03:21:00] >> Test-Negative | sending request (~1645 chars)
+    [03:21:00] >> Test-Edge | sending request (~1645 chars)
+    [03:21:00] >> Test-Positive | sending request (~2455 chars)
+    [03:21:00] >> Test-Negative | sending request (~2455 chars)
+    [03:21:00] >> Test-Edge | sending request (~2455 chars)
+    [03:21:00] >> Test-Positive | sending request (~2492 chars)
+    [03:21:00] >> Test-Negative | sending request (~2492 chars)
+    [03:21:00] >> Test-Edge | sending request (~2492 chars)
+    [03:21:00] >> Test-Positive | sending request (~2346 chars)
+    [03:21:00] >> Test-Negative | sending request (~2346 chars)
+    [03:21:00] >> Test-Edge | sending request (~2346 chars)
+    [03:21:00] >> Test-Positive | sending request (~2217 chars)
+    [03:21:00] >> Test-Negative | sending request (~2217 chars)
+    [03:21:00] >> Test-Edge | sending request (~2217 chars)
+    [03:21:00] >> Test-Positive | sending request (~684 chars)
+    [03:21:00] >> Test-Negative | sending request (~684 chars)
+    [03:21:00] >> Test-Edge | sending request (~684 chars)
+    [03:21:28] << Test-Positive | response in 27.5s | tokens: 4241+2424=6665
+    [03:21:29] << Test-Edge | response in 28.2s | tokens: 3372+2132=5504
+    [03:21:36] << Test-Positive | response in 36.0s | tokens: 4378+2945=7323
+    [03:21:41] << Test-Negative | response in 40.6s | tokens: 3451+1996=5447
+    [03:21:41] << Test-Edge | response in 40.7s | tokens: 3982+3237=7219
+    [03:21:47] << Test-Edge | response in 46.8s | tokens: 3050+3807=6857
+    [03:21:49] << Test-Positive | response in 48.4s | tokens: 4563+3990=8553
+  OK Dashboard | 14 test(s) (pos=10 neg=1 edge=3)
+    [03:21:51] << Test-Negative | response in 23.4s | tokens: 3266+2016=5282
+    [03:21:54] << Test-Negative | response in 53.3s | tokens: 3129+2960=6089
+  OK Login | 13 test(s) (pos=5 neg=4 edge=4)
+    [03:21:59] << Test-Negative | response in 58.8s | tokens: 4061+3390=7451
+    [03:22:00] << Test-Negative | response in 18.7s | tokens: 3083+1671=4754
+    [03:22:01] << Test-Edge | response in 32.2s | tokens: 3187+2478=5665
+  OK My Courses | 13 test(s) (pos=7 neg=2 edge=4)
+    [03:22:12] << Test-Positive | response in 71.1s | tokens: 5173+5880=11053
+  OK Dashboard — Edit Mode | 32 test(s) (pos=23 neg=5 edge=4)
+    [03:22:18] << Test-Edge | response in 37.3s | tokens: 3004+3048=6052
+    [03:22:19] << Test-Positive | response in 42.3s | tokens: 4195+2755=6950
+  OK Course Page | 10 test(s) (pos=4 neg=2 edge=4)
+    [03:22:41] << Test-Positive | response in 47.7s | tokens: 4412+3914=8326
+    [03:22:43] << Test-Edge | response in 52.1s | tokens: 5548+3399=8947
+    [03:22:48] << Test-Negative | response in 59.2s | tokens: 5627+4632=10259
+    [03:22:55] << Test-Negative | response in 55.4s | tokens: 3300+4199=7499
+    [03:23:02] << Test-Negative | response in 50.5s | tokens: 4043+3912=7955
+    [03:23:13] << Test-Positive | response in 54.2s | tokens: 4630+5208=9838
+    [03:23:16] << Test-Edge | response in 76.7s | tokens: 3221+5334=8555
+  OK Assignment Creation | 18 test(s) (pos=4 neg=7 edge=13)
+    [03:23:18] << Test-Edge | response in 35.0s | tokens: 3439+2611=6050
+    [03:23:19] << Test-Negative | response in 24.5s | tokens: 3167+1704=4871
+    [03:23:23] << Test-Positive | response in 81.6s | tokens: 5155+6788=11943
+    [03:23:23] << Test-Edge | response in 65.0s | tokens: 3964+4804=8768
+  OK Course Settings | 28 test(s) (pos=16 neg=5 edge=10)
+    [03:23:24] << Test-Positive | response in 36.5s | tokens: 4279+3040=7319
+    [03:23:30] << Test-Negative | response in 48.3s | tokens: 3518+4423=7941
+  OK Participants Management | 23 test(s) (pos=11 neg=8 edge=5)
+    [03:23:33] << Test-Edge | response in 30.9s | tokens: 3088+2228=5316
+  OK Assignment — Teacher View | 12 test(s) (pos=7 neg=2 edge=3)
+    [03:23:43] << Test-Negative | response in 26.7s | tokens: 3339+2048=5387
+    [03:23:51] << Test-Positive | response in 38.5s | tokens: 4451+3168=7619
+    [03:23:53] << Test-Positive | response in 34.0s | tokens: 4461+2762=7223
+    [03:23:53] << Test-Negative | response in 23.5s | tokens: 3334+1803=5137
+    [03:24:05] << Test-Positive | response in 40.3s | tokens: 4446+3312=7758
+    [03:24:10] << Test-Negative | response in 47.8s | tokens: 3349+3850=7199
+    [03:24:12] << Test-Edge | response in 38.8s | tokens: 3255+3161=6416
+  OK Profile | 18 test(s) (pos=12 neg=2 edge=4)
+    [03:24:13] << Test-Positive | response in 146.2s | tokens: 6739+12403=19142
+  OK Course Edit Mode and Activity Chooser | 80 test(s) (pos=70 neg=6 edge=4)
+    [03:24:13] << Test-Positive | response in 20.3s | tokens: 4062+1756=5818
+    [03:24:16] << Test-Edge | response in 57.2s | tokens: 3260+4639=7899
+  OK Assignment Submissions | 18 test(s) (pos=9 neg=2 edge=7)
+    [03:24:16] << Test-Edge | response in 52.7s | tokens: 3270+4087=7357
+  OK Gradebook — Grader Report | 22 test(s) (pos=9 neg=5 edge=12)
+    [03:24:20] << Test-Positive | response in 36.9s | tokens: 4387+3173=7560
+    [03:24:27] << Test-Negative | response in 21.8s | tokens: 2950+1554=4504
+    [03:24:31] << Test-Edge | response in 37.6s | tokens: 3196+3324=6520
+    [03:24:31] << Test-Negative | response in 39.5s | tokens: 3275+3233=6508
+  OK Profile Edit | 15 test(s) (pos=5 neg=6 edge=4)
+    [03:24:41] << Test-Edge | response in 30.8s | tokens: 2871+2351=5222
+  OK Logout | 7 test(s) (pos=1 neg=2 edge=4)
+  Done in 220.7s
+
+[4/4] Saving output...
+  Saved Structural Model to:       generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\structural-model.json
+  Saved critique to:     generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\structural-model-critique.json
+  Saved critique (md):   generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\Moodleteacher-openai-gpt-5-mini-critique.md
+  Saved test cases to:   generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\test-cases.json  (323 total)
+  Saved test cases (md): generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\Moodleteacher-openai-gpt-5-mini-tests.md
+  Saved workflows to:    generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\workflows.json  (186 total)
+  Saved wf-critique to:  generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\workflow-validator-critique.json
+  Saved wf-critique(md): generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast\Moodleteacher-openai-gpt-5-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 15 module(s).
+  Structural Model:     generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast/structural-model.json
+  Critique:   generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast/structural-model-critique.json
+  Tests:      generated_artifacts\ablation_study\MoodleTeacher\gpt-5-mini\agent_no_ast/test-cases.json
+

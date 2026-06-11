@@ -1,0 +1,599 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T11:47:58.703585Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log in with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "redirects to Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Log in with invalid or empty credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "shows inline error message"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Access as a guest",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Access as a guest",
+          "on_success": "grants unauthenticated browsing"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View cookies notice",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cookies notice",
+          "on_success": "displays cookie usage information"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create new calendar entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "New_Event",
+          "on_success": "creates calendar entry"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Navigate to previous month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Previous Month",
+          "on_success": "Calendar view updated to previous month"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Navigate to next month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Next Month",
+          "on_success": "Calendar view updated to next month"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Open full calendar view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Full calendar",
+          "on_success": "opens dedicated calendar view"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Open calendar data management",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import or export calendars",
+          "on_success": "opens calendar data management"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Sort activities in Timeline block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Sort_Order",
+          "on_success": "Activities sorted based on selected order"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Search activities in Timeline block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Search_Activities",
+          "on_success": "Activities filtered based on search criteria"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Add a block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "+ Add a block",
+          "on_success": "opens Add a block page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Reset page to default",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Reset page to default",
+          "on_success": "reverts layout changes"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Configure existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Configure",
+          "on_success": "Configuration options displayed for the block"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Move existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Move",
+          "on_success": "Block moved to new position"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Delete existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "Block removed from the dashboard"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Star this course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Star this course",
+          "on_success": "pins the course to the top"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Remove from view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Remove from view",
+          "on_success": "hides the course without affecting enrollment"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Navigate to course main page",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Course_Name",
+          "on_success": "navigates to course's main page"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "View Overview Tab",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Overview",
+          "on_success": "Overview tab displayed"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "View Syllabus Tab",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Syllabus",
+          "on_success": "Syllabus tab displayed"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View Assignments Tab",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Assignments",
+          "on_success": "Assignments tab displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View Resources Tab",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Resources",
+          "on_success": "Resources tab displayed"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "View Welcome Video",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Welcome Video",
+          "on_success": "Welcome video played"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "View Course Handbook",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Course Handbook",
+          "on_success": "Course handbook displayed"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "View Reading Assignment",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Reading Assignment",
+          "on_success": "Reading assignment displayed"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "View Lecture Slides",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Lecture Slides",
+          "on_success": "Lecture slides displayed"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Collapse All Sections",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Collapse all",
+          "on_success": "All sections collapsed"
+        }
+      ],
+      "attempts": 2
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Edit section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "edit",
+          "on_success": "Section edited; success message shown"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Duplicate section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "duplicate",
+          "on_success": "Section duplicated; success message shown"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Hide section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "hide",
+          "on_success": "Section hidden; success message shown"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Delete section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "delete",
+          "on_success": "Section deleted; success message shown"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Move section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "move",
+          "on_success": "Section moved; success message shown"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Add activity or resource",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add",
+          "on_success": "Activity chooser modal opened"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Add selected activity/resource",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add",
+          "on_success": "Activity/resource creation form opened"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Save and return to course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save and return to course",
+          "on_success": "creates assignment and redirects to course page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Save and display",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save and display",
+          "on_success": "creates assignment and opens new assignment's page"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Cancel",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "discards all changes"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Save and display settings",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Save and display",
+          "on_success": "persists the configuration and returns to the course page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel settings",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "leaves existing settings unchanged"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Apply filters without conditions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters Button",
+          "on_success": "Filters applied to the participants list"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Apply filters with conditions",
+          "actor": "<role>",
+          "conditional_branch": "Any_Toggle == true AND Select_Attribute is selected",
+          "terminal_action": "Apply Filters Button",
+          "on_success": "Filters applied to the participants list"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Clear filters",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Clear Filters Button",
+          "on_success": "Filters cleared from the participants list"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Enroll users",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enrol Users Button",
+          "on_success": "opens enrollment dialog"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Confirm enrollment",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Confirm Enrollment Button",
+          "on_success": "adds user to course at specified role"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "View user profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View Profile",
+          "on_success": "User profile displayed"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Edit user role",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit Role",
+          "on_success": "User role updated"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Send message to user",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send Message",
+          "on_success": "Message sent to user"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Enroll selected users",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Enroll",
+          "on_success": "Selected users enrolled"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Remove selected users",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Remove",
+          "on_success": "Selected users removed"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Message selected users",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Message",
+          "on_success": "Message sent to selected users"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Add condition to filter",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add Condition Link",
+          "on_success": "Condition added to filter system"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open grading interface",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Grade",
+          "on_success": "opens grading interface for individual students"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Grading Workflow for a submission",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Open Grading Workflow",
+          "on_success": "Grading workflow opened for the selected submission"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Edit individual grade entry",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit Grade Entry",
+          "on_success": "Grade entry updated"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Edit grade settings for an activity",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Edit Grade Settings",
+          "on_success": "Grade settings updated"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Click Message Button",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Message_Button",
+          "on_success": "Message interface opened"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "View Last Access in Login Activity",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Last_Access",
+          "on_success": "Last access date displayed"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Update Profile with valid data",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update_Profile",
+          "on_success": "refreshes the profile page"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Cancel profile edit",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "exits without making changes"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Logout action",
+          "actor": "<role>",
+          "conditional_branch": "user must be authenticated",
+          "terminal_action": "Logout_Button",
+          "on_success": "terminates the current authenticated session and redirects to the login page"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

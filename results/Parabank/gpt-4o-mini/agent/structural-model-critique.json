@@ -1,0 +1,215 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-09T10:34:27.386695Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing the required constraint for the Confirm Password field to match the Password field.",
+        "missing": [
+          "Sign_Up_Form.fields.Confirm_Password.constraints[0] (must match Password)"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a constraint to Confirm_Password: 'must match Password'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing items and phantoms identified in the AST.",
+        "missing": [
+          "Customer_Accounts_Table.footer_row",
+          "Customer_Accounts_Table.columns.Account_Number (masking detail not implemented)"
+        ],
+        "phantoms": [
+          "Customer_Accounts_Table.row_actions[0] (View Account Number action not in description)"
+        ],
+        "fixes": [
+          "Add footer row to Customer_Accounts_Table for total balance.",
+          "Remove View Account Number action from row_actions as it is not mentioned."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and validation requirements described.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements related to the conditional logic and error handling.",
+        "missing": [
+          "Transfer_Form.fields.Destination_Options.item_fields.Account_Number.constraints[0] (missing 'sufficient funds required' for external transfers)",
+          "Transfer_Form.submit_actions[0].on_failure (missing contextual error messages)"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a conditional for Destination_Options based on Transfer_Type selection.",
+          "Add error handling for submit_actions to include contextual errors."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and logic described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements and constraints described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing required elements and contains phantoms.",
+        "missing": [
+          "Card_Request_Form.fields.Shipping_Address.constraints[0]",
+          "Card_Controls_Form.fields.Travel_Notice.item_fields.Dates.constraints[0]",
+          "Card_Controls_Form.submit_actions[0].constraints[0]"
+        ],
+        "phantoms": [
+          "Card_Request_Form.fields.Account_to_Link (no type specified in description)",
+          "Card_Controls_Form.fields.Travel_Notice.item_fields.Dates (no constraints specified in description)"
+        ],
+        "fixes": [
+          "Add 'address must be complete' constraint to 'Card_Request_Form.fields.Shipping_Address'",
+          "Add 'valid date ranges' constraint to 'Card_Controls_Form.fields.Travel_Notice.item_fields.Dates'",
+          "Remove 'valid numeric limits' phantom from 'Card_Controls_Form.submit_actions[0].constraints[0]'"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is missing critical elements and contains phantoms.",
+        "missing": [
+          "Trade_Funds_Form.fields.Funding_or_Destination_Account.constraints[0] (must have adequate balance constraint is missing)",
+          "Recurring_Investment_Plan_Form.fields.Funding_Account.constraints[0] (must have adequate balance constraint is missing)"
+        ],
+        "phantoms": [
+          "Trade_Funds_Form.fields.Fund_Symbol.constraints[0] (symbol must exist constraint is inferred but not explicitly stated in the description)",
+          "Recurring_Investment_Plan_Form.fields.Fund_Symbol (no constraints mentioned in the description)"
+        ],
+        "fixes": [
+          "Add 'must have adequate balance' constraint to 'Trade_Funds_Form.fields.Funding_or_Destination_Account'",
+          "Add 'must have adequate balance' constraint to 'Recurring_Investment_Plan_Form.fields.Funding_Account'",
+          "Remove 'symbol must exist' constraint from 'Trade_Funds_Form.fields.Fund_Symbol'",
+          "Add constraints to 'Recurring_Investment_Plan_Form.fields.Fund_Symbol' as per description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately reflects the interactive elements described, with no missing items or phantoms.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "critique": {
+        "verdict": "retry",
+        "summary": "There are missing elements and phantoms in the AST.",
+        "missing": [
+          "Secure_Message_Form.fields.Message_Body.type (should specify rich text)",
+          "Schedule_Callback_Form.fields.Preferred_Time_Window.type (should specify time)"
+        ],
+        "phantoms": [
+          "Secure_Message_Form.fields.Subject.type (unspecified is too vague)",
+          "Schedule_Callback_Form.fields.Reason_for_Call.type (unspecified is too vague)",
+          "Schedule_Callback_Form.fields.Phone_Number.type (unspecified is too vague)"
+        ],
+        "fixes": [
+          "Update Secure_Message_Form.fields.Message_Body.type to 'rich_text'",
+          "Update Schedule_Callback_Form.fields.Preferred_Time_Window.type to 'time'",
+          "Specify Secure_Message_Form.fields.Subject.type to a more specific type",
+          "Specify Schedule_Callback_Form.fields.Reason_for_Call.type to a more specific type",
+          "Specify Schedule_Callback_Form.fields.Phone_Number.type to a more specific type"
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

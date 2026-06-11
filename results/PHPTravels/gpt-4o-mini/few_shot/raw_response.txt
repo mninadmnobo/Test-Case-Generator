@@ -1,0 +1,565 @@
+{
+  "module": "PHPTravels",
+  "category": "all",
+  "test_cases": [
+    {
+      "tc_id": "P-001",
+      "category": "positive",
+      "test_case": "Search for hotels with valid destination and date range",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Hotels tab on the search widget",
+        "2. Enter 'New York' in the Destination field",
+        "3. Select '2023-12-01' as check-in date and '2023-12-05' as check-out date",
+        "4. Set 1 room and 2 guests",
+        "5. Click the Search button"
+      ],
+      "expected_result": "User is redirected to the hotel listing page showing available hotels for New York from December 1 to December 5; each card displays hotel name, rating, and starting price per night",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-001",
+      "category": "negative",
+      "test_case": "Search for hotels with missing destination",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Hotels tab on the search widget",
+        "2. Leave the Destination field empty",
+        "3. Select '2023-12-01' as check-in date and '2023-12-05' as check-out date",
+        "4. Set 1 room and 2 guests",
+        "5. Click the Search button"
+      ],
+      "expected_result": "An inline validation error is shown on the Destination field; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-001",
+      "category": "edge",
+      "test_case": "Search for hotels with check-in date after check-out date",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Hotels tab on the search widget",
+        "2. Enter 'Los Angeles' in the Destination field",
+        "3. Select '2023-12-05' as check-in date and '2023-12-01' as check-out date",
+        "4. Set 1 room and 2 guests",
+        "5. Click the Search button"
+      ],
+      "expected_result": "An inline validation error is shown indicating that the check-out date must be after the check-in date; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-002",
+      "category": "positive",
+      "test_case": "User registration with valid details",
+      "preconditions": ["User is on the Registration page"],
+      "steps": [
+        "1. Fill in First Name, Last Name, Email, and Mobile Number with valid values",
+        "2. Enter 'Password123' in the Password field",
+        "3. Enter 'Password123' in the Confirm Password field",
+        "4. Check the Terms and Conditions checkbox",
+        "5. Click Register"
+      ],
+      "expected_result": "User account is created, and the user is redirected to their dashboard",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-002",
+      "category": "negative",
+      "test_case": "User registration with invalid email format",
+      "preconditions": ["User is on the Registration page"],
+      "steps": [
+        "1. Fill in First Name, Last Name, and Mobile Number with valid values",
+        "2. Enter 'invalidemail' in the Email field",
+        "3. Enter 'Password123' in the Password field",
+        "4. Enter 'Password123' in the Confirm Password field",
+        "5. Check the Terms and Conditions checkbox",
+        "6. Click Register"
+      ],
+      "expected_result": "An inline validation error is shown on the Email field indicating invalid format; the account is not created",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-002",
+      "category": "edge",
+      "test_case": "User registration with maximum length fields",
+      "preconditions": ["User is on the Registration page"],
+      "steps": [
+        "1. Fill in First Name and Last Name with 50 characters each",
+        "2. Enter 'test@example.com' in the Email field",
+        "3. Enter 'Password123' in the Password field",
+        "4. Enter 'Password123' in the Confirm Password field",
+        "5. Check the Terms and Conditions checkbox",
+        "6. Click Register"
+      ],
+      "expected_result": "User account is created successfully; user is redirected to their dashboard",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-003",
+      "category": "positive",
+      "test_case": "User login with valid credentials",
+      "preconditions": ["User is on the Login page"],
+      "steps": [
+        "1. Enter valid Email in the Email field",
+        "2. Enter valid Password in the Password field",
+        "3. Check the Remember Me checkbox",
+        "4. Click Login"
+      ],
+      "expected_result": "User is redirected to their dashboard or the page they were previously trying to access",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-003",
+      "category": "negative",
+      "test_case": "User login with invalid credentials",
+      "preconditions": ["User is on the Login page"],
+      "steps": [
+        "1. Enter invalid Email in the Email field",
+        "2. Enter invalid Password in the Password field",
+        "3. Click Login"
+      ],
+      "expected_result": "An error message is displayed; the password field is cleared",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-003",
+      "category": "edge",
+      "test_case": "User login after multiple failed attempts",
+      "preconditions": ["User is on the Login page"],
+      "steps": [
+        "1. Enter valid Email in the Email field",
+        "2. Enter invalid Password in the Password field",
+        "3. Click Login",
+        "4. Repeat steps 1-3 three times"
+      ],
+      "expected_result": "User is prompted with a CAPTCHA verification after multiple failed attempts",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-004",
+      "category": "positive",
+      "test_case": "Reset password with valid email",
+      "preconditions": ["User is on the Forgot Password page"],
+      "steps": [
+        "1. Enter valid Email in the Email field",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "A reset link is sent to the email address; a confirmation message is displayed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-004",
+      "category": "negative",
+      "test_case": "Reset password with non-existent email",
+      "preconditions": ["User is on the Forgot Password page"],
+      "steps": [
+        "1. Enter non-existent Email in the Email field",
+        "2. Click Reset Password"
+      ],
+      "expected_result": "An error message is displayed indicating the email is not found; the form remains editable",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-004",
+      "category": "edge",
+      "test_case": "Reset password with email that has already been sent a reset link",
+      "preconditions": ["User is on the Forgot Password page"],
+      "steps": [
+        "1. Enter valid Email in the Email field",
+        "2. Click Reset Password",
+        "3. Click Reset Password again within 24 hours"
+      ],
+      "expected_result": "A message indicates that a reset link has already been sent; the form remains editable",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-005",
+      "category": "positive",
+      "test_case": "Search for flights with valid details",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Flights tab on the search widget",
+        "2. Select 'Round-trip' as the trip type",
+        "3. Enter 'Los Angeles' in the departure city and 'New York' in the arrival city",
+        "4. Select '2023-12-01' as the departure date and '2023-12-10' as the return date",
+        "5. Set 1 adult passenger",
+        "6. Click Search"
+      ],
+      "expected_result": "User is redirected to the flight listing page showing available flights for the selected route and dates",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-005",
+      "category": "negative",
+      "test_case": "Search for flights with missing departure city",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Flights tab on the search widget",
+        "2. Leave the departure city field empty",
+        "3. Enter 'New York' in the arrival city",
+        "4. Select '2023-12-01' as the departure date",
+        "5. Set 1 adult passenger",
+        "6. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown on the departure city field; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-005",
+      "category": "edge",
+      "test_case": "Search for flights with same departure and arrival city",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Flights tab on the search widget",
+        "2. Enter 'Los Angeles' in both departure and arrival city fields",
+        "3. Select '2023-12-01' as the departure date",
+        "4. Set 1 adult passenger",
+        "5. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown indicating that departure and arrival cities must be different; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "P-006",
+      "category": "positive",
+      "test_case": "Book a hotel room with valid details",
+      "preconditions": ["User is logged in and on the hotel details page"],
+      "steps": [
+        "1. Select a room type",
+        "2. Enter First Name and Last Name",
+        "3. Enter valid Email and Phone Number",
+        "4. Optionally enter Special Requests",
+        "5. Click Book Now"
+      ],
+      "expected_result": "User is redirected to the payment page with a booking summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-006",
+      "category": "negative",
+      "test_case": "Book a hotel room with missing required fields",
+      "preconditions": ["User is logged in and on the hotel details page"],
+      "steps": [
+        "1. Select a room type",
+        "2. Leave First Name and Last Name empty",
+        "3. Enter valid Email and Phone Number",
+        "4. Click Book Now"
+      ],
+      "expected_result": "An inline validation error is shown on the First Name and Last Name fields; no booking is processed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-006",
+      "category": "edge",
+      "test_case": "Book a hotel room with maximum length fields",
+      "preconditions": ["User is logged in and on the hotel details page"],
+      "steps": [
+        "1. Select a room type",
+        "2. Enter First Name and Last Name with 50 characters each",
+        "3. Enter valid Email and Phone Number",
+        "4. Click Book Now"
+      ],
+      "expected_result": "User is redirected to the payment page with a booking summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-007",
+      "category": "positive",
+      "test_case": "Search for tours with valid details",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Tours tab on the search widget",
+        "2. Enter 'Paris' in the Destination field",
+        "3. Select '2023-12-01' as the travel date",
+        "4. Set 'Cultural' as the tour type",
+        "5. Click Search"
+      ],
+      "expected_result": "User is redirected to the tour listing page showing available tours for Paris on the selected date",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-007",
+      "category": "negative",
+      "test_case": "Search for tours with missing destination",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Tours tab on the search widget",
+        "2. Leave the Destination field empty",
+        "3. Select '2023-12-01' as the travel date",
+        "4. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown on the Destination field; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-007",
+      "category": "edge",
+      "test_case": "Search for tours with maximum length fields",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Tours tab on the search widget",
+        "2. Enter 'A very long destination name that exceeds typical lengths' in the Destination field",
+        "3. Select '2023-12-01' as the travel date",
+        "4. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown indicating the destination name is too long; no search is performed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-008",
+      "category": "positive",
+      "test_case": "Search for cars with valid details",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Cars tab on the search widget",
+        "2. Enter 'Los Angeles' in the pick-up location",
+        "3. Enter '2023-12-01' as the pick-up date and time",
+        "4. Enter '2023-12-05' as the drop-off date and time",
+        "5. Set driver age to 30",
+        "6. Click Search"
+      ],
+      "expected_result": "User is redirected to the car listing page showing available cars for the selected dates and locations",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-008",
+      "category": "negative",
+      "test_case": "Search for cars with missing pick-up location",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Cars tab on the search widget",
+        "2. Leave the pick-up location field empty",
+        "3. Enter '2023-12-01' as the pick-up date and time",
+        "4. Enter '2023-12-05' as the drop-off date and time",
+        "5. Set driver age to 30",
+        "6. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown on the pick-up location field; no search is performed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-008",
+      "category": "edge",
+      "test_case": "Search for cars with maximum length fields",
+      "preconditions": ["User is on the PHPTravels home page"],
+      "steps": [
+        "1. Click the Cars tab on the search widget",
+        "2. Enter 'A very long pick-up location name that exceeds typical lengths' in the pick-up location field",
+        "3. Enter '2023-12-01' as the pick-up date and time",
+        "4. Enter '2023-12-05' as the drop-off date and time",
+        "5. Set driver age to 30",
+        "6. Click Search"
+      ],
+      "expected_result": "An inline validation error is shown indicating the pick-up location name is too long; no search is performed",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-009",
+      "category": "positive",
+      "test_case": "Book a car with valid details",
+      "preconditions": ["User is logged in and on the car details page"],
+      "steps": [
+        "1. Select a car",
+        "2. Enter driver full name",
+        "3. Enter driver age",
+        "4. Enter license number and issue country",
+        "5. Enter valid Email and Phone Number",
+        "6. Click Confirm Booking"
+      ],
+      "expected_result": "User is redirected to the payment page with a booking summary",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-009",
+      "category": "negative",
+      "test_case": "Book a car with missing required fields",
+      "preconditions": ["User is logged in and on the car details page"],
+      "steps": [
+        "1. Select a car",
+        "2. Leave driver full name empty",
+        "3. Enter driver age",
+        "4. Enter license number and issue country",
+        "5. Enter valid Email and Phone Number",
+        "6. Click Confirm Booking"
+      ],
+      "expected_result": "An inline validation error is shown on the driver full name field; no booking is processed",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-009",
+      "category": "edge",
+      "test_case": "Book a car with maximum length fields",
+      "preconditions": ["User is logged in and on the car details page"],
+      "steps": [
+        "1. Select a car",
+        "2. Enter driver full name with 50 characters",
+        "3. Enter driver age",
+        "4. Enter license number and issue country",
+        "5. Enter valid Email and Phone Number",
+        "6. Click Confirm Booking"
+      ],
+      "expected_result": "User is redirected to the payment page with a booking summary",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-010",
+      "category": "positive",
+      "test_case": "View booking details for a hotel",
+      "preconditions": ["User is logged in and has made a hotel booking"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on the hotel booking reference"
+      ],
+      "expected_result": "User sees the booking details including confirmation number, hotel information, and traveler details",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-010",
+      "category": "negative",
+      "test_case": "Attempt to view booking details for a non-existent booking",
+      "preconditions": ["User is logged in"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on a non-existent booking reference"
+      ],
+      "expected_result": "An error message is displayed indicating the booking does not exist",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-010",
+      "category": "edge",
+      "test_case": "View booking details for a booking with maximum length fields",
+      "preconditions": ["User is logged in and has made a hotel booking with maximum length fields"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on the hotel booking reference"
+      ],
+      "expected_result": "User sees the booking details including confirmation number, hotel information, and traveler details without truncation",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-011",
+      "category": "positive",
+      "test_case": "Submit a review for a completed booking",
+      "preconditions": ["User is logged in and has completed a booking"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on the completed booking reference",
+        "3. Click on the Review button",
+        "4. Provide a star rating and written feedback",
+        "5. Click Submit"
+      ],
+      "expected_result": "User receives a confirmation message that the review has been submitted successfully",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-011",
+      "category": "negative",
+      "test_case": "Submit a review for a booking that is not completed",
+      "preconditions": ["User is logged in and has a pending booking"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on the pending booking reference",
+        "3. Click on the Review button"
+      ],
+      "expected_result": "An error message is displayed indicating that reviews can only be submitted for completed bookings",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-011",
+      "category": "edge",
+      "test_case": "Submit a review with maximum length feedback",
+      "preconditions": ["User is logged in and has completed a booking"],
+      "steps": [
+        "1. Navigate to My Bookings in the dashboard",
+        "2. Click on the completed booking reference",
+        "3. Click on the Review button",
+        "4. Provide a star rating and written feedback with 500 characters",
+        "5. Click Submit"
+      ],
+      "expected_result": "User receives a confirmation message that the review has been submitted successfully",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-012",
+      "category": "positive",
+      "test_case": "Change password with valid current password",
+      "preconditions": ["User is logged in and on the Settings page"],
+      "steps": [
+        "1. Enter valid current password",
+        "2. Enter new password",
+        "3. Confirm new password",
+        "4. Click Save Changes"
+      ],
+      "expected_result": "User receives a confirmation message that the password has been changed successfully",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-012",
+      "category": "negative",
+      "test_case": "Change password with incorrect current password",
+      "preconditions": ["User is logged in and on the Settings page"],
+      "steps": [
+        "1. Enter invalid current password",
+        "2. Enter new password",
+        "3. Confirm new password",
+        "4. Click Save Changes"
+      ],
+      "expected_result": "An error message is displayed indicating the current password is incorrect; no changes are made",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-012",
+      "category": "edge",
+      "test_case": "Change password with maximum length new password",
+      "preconditions": ["User is logged in and on the Settings page"],
+      "steps": [
+        "1. Enter valid current password",
+        "2. Enter new password with 50 characters",
+        "3. Confirm new password with 50 characters",
+        "4. Click Save Changes"
+      ],
+      "expected_result": "User receives a confirmation message that the password has been changed successfully",
+      "priority": "medium"
+    },
+    {
+      "tc_id": "P-013",
+      "category": "positive",
+      "test_case": "Logout from the application",
+      "preconditions": ["User is logged in"],
+      "steps": [
+        "1. Click the Logout button"
+      ],
+      "expected_result": "User is logged out and redirected to the home page; session data is cleared",
+      "priority": "high"
+    },
+    {
+      "tc_id": "N-013",
+      "category": "negative",
+      "test_case": "Attempt to access protected page after logout",
+      "preconditions": ["User is logged out"],
+      "steps": [
+        "1. Try to access the dashboard directly"
+      ],
+      "expected_result": "User is redirected to the login page",
+      "priority": "high"
+    },
+    {
+      "tc_id": "E-013",
+      "category": "edge",
+      "test_case": "Logout while in the middle of a booking process",
+      "preconditions": ["User is logged in and on the booking page"],
+      "steps": [
+        "1. Click the Logout button"
+      ],
+      "expected_result": "User is logged out and redirected to the home page; any unsaved booking data is lost",
+      "priority": "medium"
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "high_priority": 70,
+    "medium_priority": 20,
+    "low_priority": 0
+  }
+}
