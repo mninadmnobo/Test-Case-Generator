@@ -1,0 +1,203 @@
+run_id: parabank-20260611-022746-94734c
+  Sidecar: generated_artifacts\.checkpoints\parabank-20260611-022746-94734c.json
+  Output directory: generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic
+  (use `--resume parabank-20260611-022746-94734c` to continue if interrupted)
+============================================================
+TEST CASE GENERATION  (Structural Model Pipeline)
+============================================================
+run_id: parabank-20260611-022746-94734c
+
+[1/4] Generating Structural Model with critic-guided retry (13 module(s))...
+    [02:27:46] >> Structural Model Agent | sending request (~785 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~1071 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~595 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~678 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~822 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~700 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~823 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~522 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~979 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~1231 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~858 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~538 chars)
+    [02:27:46] >> Structural Model Agent | sending request (~952 chars)
+    [02:28:03] << Structural Model Agent | response in 17.1s | tokens: 2332+1318=3650
+  OK Login | attempt 1 (no critic) | 1 component(s)
+    [02:28:07] << Structural Model Agent | response in 20.3s | tokens: 2278+1541=3819
+  OK Update Contact Info | attempt 1 (no critic) | 1 component(s)
+    [02:28:10] << Structural Model Agent | response in 23.2s | tokens: 2300+1809=4109
+  OK Open New Account | attempt 1 (no critic) | 1 component(s)
+    [02:28:12] << Structural Model Agent | response in 25.8s | tokens: 2410+1924=4334
+  OK Investments | attempt 1 (no critic) | 2 component(s)
+    [02:28:12] << Structural Model Agent | response in 26.1s | tokens: 2320+2060=4380
+  OK Payments | attempt 1 (no critic) | 1 component(s)
+    [02:28:14] << Structural Model Agent | response in 27.5s | tokens: 2324+2120=4444
+  OK Transfer Funds | attempt 1 (no critic) | 1 component(s)
+    [02:28:15] << Structural Model Agent | response in 28.3s | tokens: 2296+2217=4513
+  OK Accounts Overview | attempt 1 (no critic) | 1 component(s)
+    [02:28:17] << Structural Model Agent | response in 31.0s | tokens: 2400+2437=4837
+  OK Register | attempt 1 (no critic) | 1 component(s)
+    [02:28:28] << Structural Model Agent | response in 41.3s | tokens: 2360+3332=5692
+  OK Request Loan | attempt 1 (no critic) | 1 component(s)
+    [02:28:30] << Structural Model Agent | response in 23.3s | tokens: 2275+1877=4152
+  OK Security Settings | attempt 1 (no critic) | 1 component(s)
+    [02:28:31] << Structural Model Agent | response in 27.1s | tokens: 2335+2046=4381
+  OK Account Statements | attempt 1 (no critic) | 2 component(s)
+    [02:28:33] << Structural Model Agent | response in 46.2s | tokens: 2362+3744=6106
+  OK Manage Cards | attempt 1 (no critic) | 2 component(s)
+    [02:28:36] << Structural Model Agent | response in 26.7s | tokens: 2356+2316=4672
+  OK Support Center | attempt 1 (no critic) | 2 component(s)
+  Done in 49.9s
+
+[2/4] Extracting & critiquing workflows (13 module(s))...
+    [02:28:36] >> Workflow-Extractor | sending request (~2186 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~4883 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~1894 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~2300 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~3039 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~2469 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~3281 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~2958 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~3918 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~4046 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~3200 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~2024 chars)
+    [02:28:36] >> Workflow-Extractor | sending request (~3132 chars)
+    [02:28:41] << Workflow-Extractor | response in 4.9s | tokens: 1881+411=2292
+  OK Update Contact Info | attempt 1 (no critic) | 1 workflow(s)
+    [02:28:43] << Workflow-Extractor | response in 6.5s | tokens: 2326+546=2872
+  OK Register | attempt 1 (no critic) | 1 workflow(s)
+    [02:28:43] << Workflow-Extractor | response in 6.8s | tokens: 1866+560=2426
+  OK Transfer Funds | attempt 1 (no critic) | 2 workflow(s)
+    [02:28:43] << Workflow-Extractor | response in 7.2s | tokens: 1723+615=2338
+  OK Open New Account | attempt 1 (no critic) | 2 workflow(s)
+    [02:28:45] << Workflow-Extractor | response in 8.3s | tokens: 2087+760=2847
+  OK Investments | attempt 1 (no critic) | 3 workflow(s)
+    [02:28:45] << Workflow-Extractor | response in 9.1s | tokens: 1679+804=2483
+  OK Accounts Overview | attempt 1 (no critic) | 1 workflow(s)
+    [02:28:46] << Workflow-Extractor | response in 9.9s | tokens: 2056+671=2727
+  OK Manage Cards | attempt 1 (no critic) | 2 workflow(s)
+    [02:28:47] << Workflow-Extractor | response in 4.0s | tokens: 1638+291=1929
+  OK Security Settings | attempt 1 (no critic) | 1 workflow(s)
+    [02:28:48] << Workflow-Extractor | response in 11.3s | tokens: 1968+908=2876
+  OK Request Loan | attempt 1 (no critic) | 3 workflow(s)
+    [02:28:48] << Workflow-Extractor | response in 4.7s | tokens: 1902+353=2255
+  OK Support Center | attempt 1 (no critic) | 2 workflow(s)
+    [02:28:52] << Workflow-Extractor | response in 10.5s | tokens: 1939+962=2901
+  OK Account Statements | attempt 1 (no critic) | 4 workflow(s)
+    [02:28:56] << Workflow-Extractor | response in 20.3s | tokens: 1712+1971=3683
+  OK Login | attempt 1 (no critic) | 3 workflow(s)
+    [02:29:01] << Workflow-Extractor | response in 24.4s | tokens: 1802+2477=4279
+  OK Payments | attempt 1 (no critic) | 4 workflow(s)
+  Done in 24.4s
+
+[3/4] Generating test cases (39 calls across 13 module(s), types: edge/negative/positive)...
+    [02:29:01] >> Test-Positive | sending request (~2796 chars)
+    [02:29:01] >> Test-Negative | sending request (~2796 chars)
+    [02:29:01] >> Test-Edge | sending request (~2796 chars)
+    [02:29:01] >> Test-Positive | sending request (~5070 chars)
+    [02:29:01] >> Test-Negative | sending request (~5070 chars)
+    [02:29:01] >> Test-Edge | sending request (~5070 chars)
+    [02:29:01] >> Test-Positive | sending request (~2095 chars)
+    [02:29:01] >> Test-Negative | sending request (~2095 chars)
+    [02:29:01] >> Test-Edge | sending request (~2095 chars)
+    [02:29:01] >> Test-Positive | sending request (~2694 chars)
+    [02:29:01] >> Test-Negative | sending request (~2694 chars)
+    [02:29:01] >> Test-Edge | sending request (~2694 chars)
+    [02:29:01] >> Test-Positive | sending request (~3495 chars)
+    [02:29:01] >> Test-Negative | sending request (~3495 chars)
+    [02:29:01] >> Test-Edge | sending request (~3495 chars)
+    [02:29:01] >> Test-Positive | sending request (~3494 chars)
+    [02:29:01] >> Test-Negative | sending request (~3494 chars)
+    [02:29:01] >> Test-Edge | sending request (~3494 chars)
+    [02:29:01] >> Test-Positive | sending request (~4047 chars)
+    [02:29:01] >> Test-Negative | sending request (~4047 chars)
+    [02:29:01] >> Test-Edge | sending request (~4047 chars)
+    [02:29:01] >> Test-Positive | sending request (~3117 chars)
+    [02:29:01] >> Test-Negative | sending request (~3117 chars)
+    [02:29:01] >> Test-Edge | sending request (~3117 chars)
+    [02:29:01] >> Test-Positive | sending request (~4274 chars)
+    [02:29:01] >> Test-Negative | sending request (~4274 chars)
+    [02:29:01] >> Test-Edge | sending request (~4274 chars)
+    [02:29:01] >> Test-Positive | sending request (~4652 chars)
+    [02:29:01] >> Test-Negative | sending request (~4652 chars)
+    [02:29:01] >> Test-Edge | sending request (~4652 chars)
+    [02:29:01] >> Test-Positive | sending request (~4042 chars)
+    [02:29:01] >> Test-Negative | sending request (~4042 chars)
+    [02:29:01] >> Test-Edge | sending request (~4042 chars)
+    [02:29:01] >> Test-Positive | sending request (~2240 chars)
+    [02:29:01] >> Test-Negative | sending request (~2240 chars)
+    [02:29:01] >> Test-Edge | sending request (~2240 chars)
+    [02:29:01] >> Test-Positive | sending request (~3508 chars)
+    [02:29:01] >> Test-Negative | sending request (~3508 chars)
+    [02:29:01] >> Test-Edge | sending request (~3508 chars)
+    [02:29:21] << Test-Negative | response in 20.8s | tokens: 3277+1964=5241
+    [02:29:28] << Test-Positive | response in 27.8s | tokens: 4512+2207=6719
+    [02:29:29] << Test-Negative | response in 28.1s | tokens: 3400+2633=6033
+    [02:29:29] << Test-Positive | response in 28.7s | tokens: 4389+2273=6662
+    [02:29:33] << Test-Positive | response in 32.2s | tokens: 4471+2570=7041
+    [02:29:43] << Test-Edge | response in 41.9s | tokens: 3321+4068=7389
+  OK Login | 14 test(s) (pos=3 neg=7 edge=6)
+    [02:29:44] << Test-Positive | response in 43.3s | tokens: 5033+3825=8858
+    [02:29:47] << Test-Edge | response in 45.9s | tokens: 3842+4450=8292
+    [02:29:58] << Test-Edge | response in 57.4s | tokens: 3198+3779=6977
+  OK Accounts Overview | 13 test(s) (pos=5 neg=2 edge=9)
+    [02:30:00] << Test-Negative | response in 59.5s | tokens: 3921+5672=9593
+  OK Register | 22 test(s) (pos=4 neg=10 edge=14)
+    [02:30:04] << Test-Negative | response in 42.9s | tokens: 3359+3911=7270
+    [02:30:10] << Test-Positive | response in 41.3s | tokens: 4624+1984=6608
+    [02:30:24] << Test-Negative | response in 40.2s | tokens: 3578+3372=6950
+    [02:30:24] << Test-Negative | response in 54.8s | tokens: 3512+4821=8333
+    [02:30:30] << Test-Positive | response in 31.5s | tokens: 4785+2260=7045
+    [02:30:36] << Test-Edge | response in 67.3s | tokens: 3280+4714=7994
+  OK Open New Account | 20 test(s) (pos=3 neg=8 edge=15)
+    [02:30:37] << Test-Positive | response in 27.2s | tokens: 4581+1969=6550
+    [02:30:39] << Test-Edge | response in 65.8s | tokens: 3433+4645=8078
+  OK Transfer Funds | 18 test(s) (pos=2 neg=8 edge=14)
+    [02:30:41] << Test-Positive | response in 58.2s | tokens: 4690+3613=8303
+    [02:30:51] << Test-Edge | response in 27.2s | tokens: 3390+2168=5558
+    [02:30:51] << Test-Edge | response in 64.8s | tokens: 3499+4691=8190
+  OK Payments | 18 test(s) (pos=4 neg=7 edge=11)
+    [02:30:55] << Test-Negative | response in 31.0s | tokens: 3469+2682=6151
+  OK Update Contact Info | 12 test(s) (pos=3 neg=6 edge=3)
+    [02:30:58] << Test-Negative | response in 58.2s | tokens: 3673+4989=8662
+    [02:31:10] << Test-Positive | response in 40.7s | tokens: 4799+3282=8081
+    [02:31:13] << Test-Edge | response in 68.7s | tokens: 3594+5939=9533
+  OK Request Loan | 23 test(s) (pos=3 neg=11 edge=16)
+    [02:31:15] << Test-Positive | response in 36.2s | tokens: 4888+2979=7867
+    [02:31:20] << Test-Positive | response in 28.9s | tokens: 4790+2343=7133
+    [02:31:24] << Test-Negative | response in 47.9s | tokens: 3687+4149=7836
+    [02:31:32] << Test-Positive | response in 22.0s | tokens: 4347+1725=6072
+    [02:31:47] << Test-Negative | response in 66.5s | tokens: 3776+5770=9546
+    [02:31:50] << Test-Edge | response in 72.8s | tokens: 3608+5350=8958
+  OK Manage Cards | 22 test(s) (pos=4 neg=9 edge=15)
+    [02:31:54] << Test-Negative | response in 59.2s | tokens: 3678+4254=7932
+    [02:31:56] << Test-Edge | response in 57.2s | tokens: 3599+4143=7742
+  OK Account Statements | 17 test(s) (pos=4 neg=7 edge=10)
+    [02:31:57] << Test-Edge | response in 65.3s | tokens: 3697+5420=9117
+  OK Investments | 27 test(s) (pos=3 neg=14 edge=18)
+    [02:31:57] << Test-Edge | response in 42.5s | tokens: 3156+3603=6759
+    [02:31:59] << Test-Positive | response in 39.0s | tokens: 4647+3109=7756
+    [02:32:00] << Test-Negative | response in 46.7s | tokens: 3235+3355=6590
+  OK Security Settings | 12 test(s) (pos=2 neg=5 edge=8)
+    [02:32:16] << Test-Negative | response in 52.4s | tokens: 3535+3790=7325
+    [02:32:38] << Test-Edge | response in 66.1s | tokens: 3456+4707=8163
+  OK Support Center | 20 test(s) (pos=4 neg=7 edge=15)
+  Done in 217.7s
+
+[4/4] Saving output...
+  Saved Structural Model to:       generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\structural-model.json
+  Saved critique to:     generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\structural-model-critique.json
+  Saved critique (md):   generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\Parabank-openai-gpt-5-mini-critique.md
+  Saved test cases to:   generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\test-cases.json  (238 total)
+  Saved test cases (md): generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\Parabank-openai-gpt-5-mini-tests.md
+  Saved workflows to:    generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\workflows.json  (29 total)
+  Saved wf-critique to:  generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\workflow-validator-critique.json
+  Saved wf-critique(md): generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic\Parabank-openai-gpt-5-mini-workflow-validator-critique.md
+  Done in 0.0s
+
+Done! Generated for 13 module(s).
+  Structural Model:     generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic/structural-model.json
+  Critique:   generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic/structural-model-critique.json
+  Tests:      generated_artifacts\ablation_study\Parabank\gpt-5-mini\agent_no_critic/test-cases.json
+

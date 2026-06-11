@@ -1,0 +1,248 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-10T21:11:04.554655Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing the required form component and its actions.",
+        "missing": [
+          "No workflow for form: action=Log in"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for form: action=Log in"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains phantom workflows as the AST has no components defined.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=New event not found in any AST node",
+          "WF-002 terminal_action=Full calendar not found in any AST node",
+          "WF-003 terminal_action=Import or export calendars not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for any interactive components as the AST is empty"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for interactive components based on the description"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST has no defined components.",
+        "missing": [
+          "No workflows for the status dropdown actions",
+          "No workflows for the search field actions",
+          "No workflows for the sort dropdown actions",
+          "No workflows for the layout dropdown actions"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define workflows for the status dropdown actions",
+          "Define workflows for the search field actions",
+          "Define workflows for the sort dropdown actions",
+          "Define workflows for the layout dropdown actions"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the interactive components defined in the description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing workflows for actions that should be present based on the description.",
+        "missing": [
+          "No workflow for adding a subsection action"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for adding a subsection"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required components as the AST is empty.",
+        "missing": [
+          "No workflows found for required actions in the assignment creation form."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the assignment creation form actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty while the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Generate workflows for the Course Settings form actions."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing critical components as the AST has no defined components.",
+        "missing": [
+          "No workflows found for any actions as the AST is empty."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define components in the AST to match the actions in the workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is missing required workflows for the interactive components described in the functional description.",
+        "missing": [
+          "No workflows for the components described in the functional description, as the AST has no components defined."
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Define the necessary components in the AST to match the description and regenerate workflows."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty and the module has interactive components.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for interactive components as defined in the description."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty, and the module clearly has actions.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Regenerate workflows to include actions for the module."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list contains phantom workflows as the AST has no defined components.",
+        "missing": [],
+        "phantoms": [
+          "WF-001 terminal_action=Edit profile not found in any AST node",
+          "WF-002 terminal_action=Data retention summary not found in any AST node",
+          "WF-003 terminal_action=Course profile link not found in any AST node",
+          "WF-004 terminal_action=Blog entry link not found in any AST node",
+          "WF-005 terminal_action=Browser sessions not found in any AST node",
+          "WF-006 terminal_action=First and Last access not found in any AST node",
+          "WF-007 terminal_action=Message not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflows WF-001, WF-002, WF-003, WF-004, WF-005, WF-006, WF-007"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The AST is empty, indicating no interactive components are defined, yet workflows exist.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Remove workflows WF-001 and WF-002 due to absence of corresponding AST components"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow list is empty but the module has an interactive component for logging out.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for the Log out action"
+        ]
+      },
+      "forced_ship": true
+    }
+  ]
+}

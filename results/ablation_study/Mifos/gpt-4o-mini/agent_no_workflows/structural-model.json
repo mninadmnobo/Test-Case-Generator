@@ -1,0 +1,4506 @@
+{
+  "project_name": "Mifos",
+  "generated_at": "2026-06-10T19:15:11.488642Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "ast": {
+        "module_name": "Login",
+        "components": {
+          "Login_Form": {
+            "type": "form",
+            "fields": {
+              "Tenant": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "default"
+                ]
+              },
+              "Username": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Password": {
+                "type": "password",
+                "required": true
+              },
+              "Language_Selector": {
+                "type": "dropdown",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Login",
+                "on_success": "redirects to Dashboard",
+                "constraints": [
+                  "valid credentials"
+                ],
+                "validation_messages": [
+                  "invalid credentials",
+                  "empty required fields"
+                ]
+              }
+            ]
+          },
+          "Forgot_Password_Link": {
+            "type": "link",
+            "action_name": "Forgot Password?"
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 2,
+      "module_title": "Home Page",
+      "ast": {
+        "module_name": "Home Page",
+        "components": {
+          "Welcome_Card": {
+            "type": "unspecified",
+            "fields": {}
+          },
+          "Search_Activity_Input": {
+            "type": "search",
+            "required": false
+          },
+          "Dashboard_Button": {
+            "type": "button",
+            "on_success": "redirects to dashboard"
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard",
+      "ast": {
+        "module_name": "Dashboard",
+        "components": {
+          "Dashboard_Button": {
+            "type": "link",
+            "action_name": "Dashboard"
+          },
+          "Search_Activity_Field": {
+            "type": "search",
+            "required": false
+          },
+          "Client_Trends_Chart": {
+            "type": "chart",
+            "visualization": "client growth over time",
+            "legends": [
+              "New Clients",
+              "Closed Clients"
+            ]
+          },
+          "Summary_Cards": {
+            "type": "repeating_group",
+            "item_fields": {
+              "Amount_Pending_Disbursed": {
+                "type": "number",
+                "constraints": [
+                  "shows 'No Data' if no information is available"
+                ]
+              },
+              "Amount_Collected": {
+                "type": "number",
+                "constraints": [
+                  "shows 'No Data' if no information is available"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 4,
+      "module_title": "Global Search",
+      "ast": {
+        "module_name": "Global Search",
+        "components": {
+          "Search_Icon": {
+            "type": "link",
+            "on_success": "opens search input field",
+            "preconditions": [
+              "user must be logged in"
+            ]
+          },
+          "Search_Input": {
+            "type": "search",
+            "on_success": "searches across Clients, Groups, Loans, and Savings accounts",
+            "constraints": [
+              "supports partial matching",
+              "case-insensitive"
+            ]
+          },
+          "Search_Results": {
+            "type": "dropdown",
+            "visible_when": "results are found",
+            "options": [
+              {
+                "entity_type": "Clients",
+                "fields": {
+                  "entity_name": "string",
+                  "identifier": "string",
+                  "status": "string"
+                }
+              },
+              {
+                "entity_type": "Groups",
+                "fields": {
+                  "entity_name": "string",
+                  "identifier": "string",
+                  "status": "string"
+                }
+              },
+              {
+                "entity_type": "Loans",
+                "fields": {
+                  "entity_name": "string",
+                  "identifier": "string",
+                  "status": "string"
+                }
+              },
+              {
+                "entity_type": "Savings accounts",
+                "fields": {
+                  "entity_name": "string",
+                  "identifier": "string",
+                  "status": "string"
+                }
+              }
+            ]
+          },
+          "No_Results_Message": {
+            "type": "display",
+            "visible_when": "no matches are found",
+            "message": "No results found"
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Client Management",
+      "ast": {
+        "module_name": "Client Management",
+        "components": {
+          "Clients_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View",
+                "element_name": "Name"
+              }
+            ],
+            "bulk_actions": [],
+            "sortable_columns": [
+              "Name",
+              "Account No.",
+              "External ID",
+              "Status",
+              "Office",
+              "Staff"
+            ]
+          },
+          "Search_Field": {
+            "type": "search",
+            "fields": {
+              "Search": {
+                "type": "search",
+                "required": false
+              }
+            }
+          },
+          "Filter_Bar": {
+            "type": "form",
+            "fields": {
+              "Status_Filter": {
+                "type": "dropdown",
+                "options": [
+                  "Pending",
+                  "Active",
+                  "Closed",
+                  "Rejected",
+                  "Withdrawn"
+                ]
+              }
+            }
+          },
+          "Top_Actions": {
+            "type": "action_bar",
+            "submit_actions": [
+              {
+                "element_name": "Import Client",
+                "on_success": "opens Bulk Import page"
+              },
+              {
+                "element_name": "Create Client"
+              }
+            ]
+          },
+          "Bulk_Import_Page": {
+            "type": "form",
+            "submit_actions": [
+              {
+                "element_name": "Download Template",
+                "on_success": "downloads client Excel template"
+              },
+              {
+                "element_name": "Upload File"
+              }
+            ],
+            "fields": {
+              "Import_History": {
+                "type": "data_table",
+                "sortable_columns": [
+                  "Name",
+                  "Import Time",
+                  "End Time",
+                  "Completed",
+                  "Total Records",
+                  "Success Count",
+                  "Failure Count"
+                ]
+              }
+            }
+          },
+          "Create_Client_Wizard": {
+            "type": "wizard",
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates client in Pending status"
+              }
+            ],
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "General Details",
+                "fields": {
+                  "Office": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Legal_Form": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "First_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Middle_Name": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Last_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Date_of_Birth": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Gender": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Staff": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Mobile_Number": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Email_Address": {
+                    "type": "email",
+                    "required": false
+                  },
+                  "Client_Type": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Client_Classification": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "External_ID": {
+                    "type": "unspecified",
+                    "required": true,
+                    "constraints": [
+                      "must be unique"
+                    ]
+                  },
+                  "Submitted_On": {
+                    "type": "date",
+                    "required": true
+                  },
+                  "Is_Staff": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Active": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Open_Savings_Account": {
+                    "type": "checkbox",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Address Details",
+                "fields": {}
+              },
+              {
+                "step_index": 3,
+                "step_name": "Family Members",
+                "fields": {}
+              },
+              {
+                "step_index": 4,
+                "step_name": "Identifiers",
+                "fields": {
+                  "Document_Type": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Document_Key": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              }
+            ]
+          },
+          "Client_Detail_Actions": {
+            "type": "state_bound_action_bar",
+            "states": {
+              "Pending": {
+                "available_actions": [
+                  {
+                    "action_name": "Activate",
+                    "fields": {
+                      "Activation_Date": {
+                        "type": "date",
+                        "required": true,
+                        "constraints": [
+                          "must not be before submission date"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Reject",
+                    "fields": {
+                      "Reason": {
+                        "type": "unspecified",
+                        "required": true
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Withdraw",
+                    "fields": {
+                      "Reason": {
+                        "type": "unspecified",
+                        "required": true
+                      }
+                    }
+                  }
+                ]
+              },
+              "Active": {
+                "available_actions": [
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Transfer Client",
+                    "fields": {
+                      "Destination_Office": {
+                        "type": "unspecified",
+                        "required": true,
+                        "constraints": [
+                          "same office is blocked"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Close",
+                    "fields": {
+                      "Closure_Reason": {
+                        "type": "unspecified",
+                        "required": true,
+                        "constraints": [
+                          "cannot close with active accounts"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Add Charge"
+                  },
+                  {
+                    "action_name": "New Loan"
+                  },
+                  {
+                    "action_name": "New Savings"
+                  },
+                  {
+                    "action_name": "New Share Account"
+                  }
+                ]
+              },
+              "Closed": {
+                "available_actions": [
+                  {
+                    "action_name": "Reactivate"
+                  }
+                ]
+              },
+              "Rejected": {
+                "available_actions": []
+              },
+              "Withdrawn": {
+                "available_actions": []
+              }
+            }
+          },
+          "Client_Detail_Tabs": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "General",
+                "fields": {}
+              },
+              {
+                "tab_name": "Accounts",
+                "tabs": [
+                  {
+                    "tab_name": "Loans",
+                    "fields": {}
+                  },
+                  {
+                    "tab_name": "Savings",
+                    "fields": {}
+                  },
+                  {
+                    "tab_name": "Shares",
+                    "fields": {}
+                  },
+                  {
+                    "tab_name": "Fixed Deposits",
+                    "fields": {}
+                  },
+                  {
+                    "tab_name": "Recurring Deposits",
+                    "fields": {}
+                  }
+                ]
+              },
+              {
+                "tab_name": "Identifiers",
+                "fields": {
+                  "Document_Type": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Document_Key": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "tab_name": "Family Members",
+                "fields": {}
+              },
+              {
+                "tab_name": "Notes",
+                "fields": {}
+              },
+              {
+                "tab_name": "Documents",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 6,
+      "module_title": "Group Management",
+      "ast": {
+        "module_name": "Group Management",
+        "components": {
+          "Groups_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View",
+                "link": "Group Name"
+              }
+            ],
+            "bulk_actions": [
+              {
+                "action_name": "Import Groups"
+              },
+              {
+                "action_name": "Create New Group"
+              }
+            ]
+          },
+          "Create_Group_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Staff": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Submitted_On": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Active": {
+                "type": "checkbox",
+                "required": false
+              },
+              "External_Id": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Add_Clients": {
+                "type": "search",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates the group"
+              }
+            ]
+          },
+          "Bulk_Import_Groups_Page": {
+            "type": "form",
+            "fields": {
+              "Groups_Upload": {
+                "type": "file_upload",
+                "required": false
+              }
+            }
+          },
+          "Group_Detail_Page": {
+            "type": "form",
+            "fields": {
+              "Group_Name": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Account_Number": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Status": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Office": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Staff": {
+                "type": "unspecified",
+                "required": false
+              }
+            },
+            "action_buttons": [
+              {
+                "action_name": "Activate"
+              },
+              {
+                "action_name": "Edit"
+              },
+              {
+                "action_name": "Close"
+              },
+              {
+                "action_name": "Assign Staff"
+              },
+              {
+                "action_name": "Transfer Clients"
+              }
+            ],
+            "tabs": [
+              {
+                "tab_name": "Members",
+                "fields": {}
+              },
+              {
+                "tab_name": "Loan Accounts",
+                "fields": {}
+              },
+              {
+                "tab_name": "Savings Accounts",
+                "fields": {}
+              },
+              {
+                "tab_name": "Notes",
+                "fields": {}
+              },
+              {
+                "tab_name": "Calendar/Meeting",
+                "fields": {}
+              }
+            ]
+          },
+          "Group_Detail_Actions": {
+            "type": "state_bound_action_bar",
+            "states": {
+              "Active": {
+                "available_actions": [
+                  {
+                    "action_name": "Close"
+                  },
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Assign Staff"
+                  },
+                  {
+                    "action_name": "Transfer Clients"
+                  }
+                ]
+              },
+              "Pending": {
+                "available_actions": [
+                  {
+                    "action_name": "Activate"
+                  },
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Close"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 7,
+      "module_title": "Center Management",
+      "ast": {
+        "module_name": "Center Management",
+        "components": {
+          "Centers_Page": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Account #",
+              "External Id",
+              "Status",
+              "Office Name"
+            ],
+            "row_actions": [
+              {
+                "action_name": "View",
+                "element_type": "link"
+              }
+            ],
+            "bulk_actions": [
+              {
+                "action_name": "Import Center"
+              },
+              {
+                "action_name": "Create Center"
+              }
+            ]
+          },
+          "Create_Center_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Staff": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Active": {
+                "type": "checkbox",
+                "required": false
+              },
+              "External_Id": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Submitted_On": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Select_and_Add_Groups": {
+                "type": "dropdown",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates the center"
+              }
+            ]
+          },
+          "Bulk_Import_Centers_Page": {
+            "type": "form",
+            "fields": {
+              "template-download": {
+                "type": "file_upload",
+                "required": false
+              }
+            }
+          },
+          "Center_Detail_Page": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "Groups",
+                "fields": {}
+              },
+              {
+                "tab_name": "Loan Accounts",
+                "fields": {}
+              },
+              {
+                "tab_name": "Savings Accounts",
+                "fields": {}
+              },
+              {
+                "tab_name": "Notes",
+                "fields": {}
+              },
+              {
+                "tab_name": "Calendar/Meeting",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 8,
+      "module_title": "Loan Products",
+      "ast": {
+        "module_name": "Loan Products",
+        "components": {
+          "Loan_Products_Page": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View",
+                "on_success": "opens detail view"
+              }
+            ],
+            "sortable_columns": [
+              "Name",
+              "Short Name",
+              "Expiry Date",
+              "Status"
+            ]
+          },
+          "Create_Loan_Product_Button": {
+            "type": "button",
+            "on_success": "opens 6-step stepper wizard"
+          },
+          "Loan_Product_Stepper_Wizard": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Short_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "External_Id": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Fund": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Include_in_Customer_Loan_Counter": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Start_Date": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Close_Date": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Currency",
+                "fields": {
+                  "Currency_Selection": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "Decimal_Places": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Multiples_of_Rounding": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Principal_Amount": {
+                    "type": "number",
+                    "required": false,
+                    "constraints": [
+                      "Minimum value required",
+                      "Default value required",
+                      "Maximum value required"
+                    ]
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Settings",
+                "fields": {
+                  "Amortization_Method": {
+                    "type": "dropdown",
+                    "options": [
+                      "Equal Installments",
+                      "Equal Principal Payments"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Method": {
+                    "type": "dropdown",
+                    "options": [
+                      "Flat",
+                      "Declining Balance"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Calculation_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily",
+                      "Same as repayment period"
+                    ],
+                    "required": false
+                  },
+                  "Repayment_Strategy": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Days_in_Year": {
+                    "type": "dropdown",
+                    "options": [
+                      "360",
+                      "365",
+                      "Actual"
+                    ],
+                    "required": false
+                  },
+                  "Days_in_Month": {
+                    "type": "dropdown",
+                    "options": [
+                      "30",
+                      "Actual"
+                    ],
+                    "required": false
+                  },
+                  "Grace_Period": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Arrears_Tolerance": {
+                    "type": "number",
+                    "required": true
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Terms",
+                "fields": {
+                  "Number_of_Repayments": {
+                    "type": "number",
+                    "required": false,
+                    "constraints": [
+                      "Minimum value required",
+                      "Default value required",
+                      "Maximum value required"
+                    ]
+                  },
+                  "Repaid_Every": {
+                    "type": "dropdown",
+                    "options": [
+                      "Days",
+                      "Weeks",
+                      "Months"
+                    ],
+                    "required": true
+                  },
+                  "Nominal_Interest_Rate": {
+                    "type": "number",
+                    "required": false,
+                    "constraints": [
+                      "Minimum value required",
+                      "Default value required",
+                      "Maximum value required"
+                    ]
+                  }
+                }
+              },
+              {
+                "step_index": 5,
+                "step_name": "Charges",
+                "fields": {}
+              },
+              {
+                "step_index": 6,
+                "step_name": "Accounting",
+                "fields": {
+                  "Accounting_Method": {
+                    "type": "radio",
+                    "options": [
+                      "None",
+                      "Cash-based",
+                      "Accrual (periodic)",
+                      "Accrual (upfront)"
+                    ],
+                    "required": false
+                  },
+                  "GL_Account_Mappings": {
+                    "type": "dropdown",
+                    "options": [
+                      "Fund Source",
+                      "Loan Portfolio",
+                      "Interest on Loans",
+                      "Income from Fees",
+                      "Income from Penalties",
+                      "Losses Written Off",
+                      "Overpayment Liability"
+                    ],
+                    "required": false
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 9,
+      "module_title": "Savings Products",
+      "ast": {
+        "module_name": "Savings Products",
+        "components": {
+          "Savings_Product_Stepper": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Short_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "External_Id": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Currency",
+                "fields": {
+                  "Currency": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Decimal_Places": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Currency_In_Multiples_Of": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Terms",
+                "fields": {
+                  "Nominal_Annual_Interest_Rate": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Interest_Compounding_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily",
+                      "Monthly",
+                      "Quarterly",
+                      "Semi-Annual",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Posting_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Monthly",
+                      "Quarterly",
+                      "Biannually",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Calculated_Using": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily Balance",
+                      "Average Daily Balance"
+                    ],
+                    "required": false
+                  },
+                  "Days_in_Year": {
+                    "type": "dropdown",
+                    "options": [
+                      "360",
+                      "365",
+                      "Actual"
+                    ],
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Settings",
+                "fields": {
+                  "Minimum_Opening_Balance": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Lock_in_Period": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Apply_Withdrawal_Fee_for_Transfers": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Balance_for_Interest_Calculation": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Enforce_Minimum_Required_Balance": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Required_Balance": {
+                    "type": "number",
+                    "required_when": "Enforce_Minimum_Required_Balance is checked"
+                  },
+                  "Is_Overdraft_Allowed": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Maximum_Overdraft_Amount": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Overdraft_Interest_Rate": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Enable_Withhold_Tax": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Tax_Group": {
+                    "type": "dropdown",
+                    "required_when": "Enable_Withhold_Tax is checked"
+                  },
+                  "Enable_Dormancy_Tracking": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Days_to_Inactive": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Dormancy": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Escheat": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  }
+                }
+              },
+              {
+                "step_index": 5,
+                "step_name": "Charges",
+                "fields": {
+                  "Search_and_Add_Charges": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 6,
+                "step_name": "Accounting",
+                "fields": {
+                  "Accounting_Method": {
+                    "type": "radio",
+                    "options": [
+                      "None",
+                      "Cash-based"
+                    ],
+                    "required": false
+                  },
+                  "GL_Account_Mappings": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Savings_Reference": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Savings_Control": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Transfers_in_Suspense": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Interest_on_Savings": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Income_from_Fees": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Income_from_Penalties": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Escheat_Liability": {
+                        "type": "unspecified",
+                        "required": false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "Fixed_Deposit_Products_Stepper": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Short_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "External_Id": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Currency",
+                "fields": {
+                  "Currency": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Decimal_Places": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Currency_In_Multiples_Of": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Terms",
+                "fields": {
+                  "Nominal_Annual_Interest_Rate": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Interest_Compounding_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily",
+                      "Monthly",
+                      "Quarterly",
+                      "Semi-Annual",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Posting_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Monthly",
+                      "Quarterly",
+                      "Biannually",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Calculated_Using": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily Balance",
+                      "Average Daily Balance"
+                    ],
+                    "required": false
+                  },
+                  "Days_in_Year": {
+                    "type": "dropdown",
+                    "options": [
+                      "360",
+                      "365",
+                      "Actual"
+                    ],
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Settings",
+                "fields": {
+                  "Minimum_Opening_Balance": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Lock_in_Period": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Apply_Withdrawal_Fee_for_Transfers": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Balance_for_Interest_Calculation": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Enforce_Minimum_Required_Balance": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Required_Balance": {
+                    "type": "number",
+                    "required_when": "Enforce_Minimum_Required_Balance is checked"
+                  },
+                  "Is_Overdraft_Allowed": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Maximum_Overdraft_Amount": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Overdraft_Interest_Rate": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Enable_Withhold_Tax": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Tax_Group": {
+                    "type": "dropdown",
+                    "required_when": "Enable_Withhold_Tax is checked"
+                  },
+                  "Enable_Dormancy_Tracking": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Days_to_Inactive": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Dormancy": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Escheat": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  }
+                }
+              },
+              {
+                "step_index": 5,
+                "step_name": "Pre-Closure",
+                "fields": {
+                  "Pre_Mature_Closure_Applicable": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Pre_Closure_Penal_Interest": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Pre_Closure_Penal_Interest_On": {
+                    "type": "dropdown",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 6,
+                "step_name": "Deposit Term",
+                "fields": {
+                  "Minimum_Deposit_Term": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Maximum_Deposit_Term": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "In_Multiples_Of": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Minimum_Deposit_Amount": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Maximum_Deposit_Amount": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Default_Deposit_Amount": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 7,
+                "step_name": "Interest Rate Chart",
+                "fields": {
+                  "Tiered_Rates": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Period_From": {
+                        "type": "number",
+                        "required": false
+                      },
+                      "Period_To": {
+                        "type": "number",
+                        "required": false
+                      },
+                      "Period_Type": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Interest_Rate": {
+                        "type": "number",
+                        "required": false
+                      },
+                      "Amount_Range": {
+                        "type": "number",
+                        "required": false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "Recurring_Deposit_Products_Stepper": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Short_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "External_Id": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Is_Mandatory_Deposit": {
+                    "type": "checkbox",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Currency",
+                "fields": {
+                  "Currency": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Decimal_Places": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Currency_In_Multiples_Of": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Terms",
+                "fields": {
+                  "Nominal_Annual_Interest_Rate": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Interest_Compounding_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily",
+                      "Monthly",
+                      "Quarterly",
+                      "Semi-Annual",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Posting_Period": {
+                    "type": "dropdown",
+                    "options": [
+                      "Monthly",
+                      "Quarterly",
+                      "Biannually",
+                      "Annually"
+                    ],
+                    "required": false
+                  },
+                  "Interest_Calculated_Using": {
+                    "type": "dropdown",
+                    "options": [
+                      "Daily Balance",
+                      "Average Daily Balance"
+                    ],
+                    "required": false
+                  },
+                  "Days_in_Year": {
+                    "type": "dropdown",
+                    "options": [
+                      "360",
+                      "365",
+                      "Actual"
+                    ],
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Settings",
+                "fields": {
+                  "Minimum_Opening_Balance": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Lock_in_Period": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Apply_Withdrawal_Fee_for_Transfers": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Balance_for_Interest_Calculation": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Enforce_Minimum_Required_Balance": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Required_Balance": {
+                    "type": "number",
+                    "required_when": "Enforce_Minimum_Required_Balance is checked"
+                  },
+                  "Is_Overdraft_Allowed": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Maximum_Overdraft_Amount": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Overdraft_Interest_Rate": {
+                    "type": "number",
+                    "required_when": "Is_Overdraft_Allowed is checked"
+                  },
+                  "Enable_Withhold_Tax": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Tax_Group": {
+                    "type": "dropdown",
+                    "required_when": "Enable_Withhold_Tax is checked"
+                  },
+                  "Enable_Dormancy_Tracking": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Days_to_Inactive": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Dormancy": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  },
+                  "Days_to_Escheat": {
+                    "type": "number",
+                    "required_when": "Enable_Dormancy_Tracking is checked"
+                  }
+                }
+              },
+              {
+                "step_index": 5,
+                "step_name": "Charges",
+                "fields": {
+                  "Search_and_Add_Charges": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 6,
+                "step_name": "Accounting",
+                "fields": {
+                  "Accounting_Method": {
+                    "type": "radio",
+                    "options": [
+                      "None",
+                      "Cash-based"
+                    ],
+                    "required": false
+                  },
+                  "GL_Account_Mappings": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Savings_Reference": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Savings_Control": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Transfers_in_Suspense": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Interest_on_Savings": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Income_from_Fees": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Income_from_Penalties": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Escheat_Liability": {
+                        "type": "unspecified",
+                        "required": false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 10,
+      "module_title": "Share Products",
+      "ast": {
+        "module_name": "Share Products",
+        "components": {
+          "Share_Products_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              },
+              {
+                "action_name": "Delete"
+              }
+            ],
+            "columns": [
+              {
+                "column_name": "Product Name",
+                "type": "link"
+              },
+              {
+                "column_name": "Short Name",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Total Shares",
+                "type": "unspecified"
+              }
+            ]
+          },
+          "Create_Share_Product_Stepper": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Short_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": true
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Currency",
+                "fields": {
+                  "Currency": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Decimal_Places": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Currency_In_Multiples_Of": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Terms",
+                "fields": {
+                  "Total_Number_of_Shares": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Shares_to_be_Issued": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Nominal_Unit_Price": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Capital_Value": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Settings",
+                "fields": {
+                  "Allow_Dividends_for_Inactive_Clients": {
+                    "type": "checkbox",
+                    "required": false
+                  },
+                  "Minimum_Maximum_Nominal_Shares_per_Client": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Minimum_Active_Period_Frequency": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Lock_in_Period": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 5,
+                "step_name": "Market Price",
+                "fields": {
+                  "Market_Price_Rows": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "From_Date": {
+                        "type": "date",
+                        "required": true
+                      },
+                      "Share_Value": {
+                        "type": "unspecified",
+                        "required": true
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "step_index": 6,
+                "step_name": "Charges",
+                "fields": {
+                  "Search_and_Add": {
+                    "type": "search",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 7,
+                "step_name": "Accounting",
+                "fields": {
+                  "Accounting_Method": {
+                    "type": "radio",
+                    "options": [
+                      "None",
+                      "Cash-based"
+                    ]
+                  },
+                  "GL_Account_Mappings": {
+                    "visible_when": "Accounting_Method == Cash-based",
+                    "item_fields": {
+                      "Share_Reference": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Share_Suspense": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Equity_in_Shares": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Income_from_Fees": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "Share_Equity": {
+                        "type": "unspecified",
+                        "required": false
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "Create_Share_Product_Button": {
+            "type": "button",
+            "action_name": "+ Create Share Product"
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 11,
+      "module_title": "Charges",
+      "ast": {
+        "module_name": "Charges",
+        "components": {
+          "Charges_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              },
+              {
+                "action_name": "Delete"
+              }
+            ],
+            "columns": [
+              {
+                "column_name": "Name",
+                "type": "link"
+              },
+              {
+                "column_name": "Charge Applies To",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Is Penalty",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Is Active",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Is Paid Derived",
+                "type": "unspecified"
+              }
+            ]
+          },
+          "Create_Charge_Form": {
+            "type": "form",
+            "fields": {
+              "Charge_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Charge_Applies_To": {
+                "type": "dropdown",
+                "required": true,
+                "options": [
+                  "Loan",
+                  "Savings Account",
+                  "Client",
+                  "Shares"
+                ]
+              },
+              "Currency": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Charge_Time_Type": {
+                "type": "dropdown",
+                "required": false,
+                "options": []
+              },
+              "Charge_Calculation_Type": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Flat",
+                  "Percentage of Amount",
+                  "Percentage of Interest",
+                  "Percentage of Total Outstanding"
+                ]
+              },
+              "Amount": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Is_Penalty": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Is_Active": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Tax_Group": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Payment_Mode": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Regular",
+                  "Account Transfer"
+                ]
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates charge definition"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 12,
+      "module_title": "Floating Rates",
+      "ast": {
+        "module_name": "Floating Rates",
+        "components": {
+          "Floating_Rates_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View"
+              },
+              {
+                "action_name": "Edit"
+              }
+            ],
+            "columns": [
+              {
+                "column_name": "Floating Rate Name",
+                "type": "link"
+              },
+              {
+                "column_name": "Is Base Lending Rate",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Is Active",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Created By",
+                "type": "unspecified"
+              }
+            ]
+          },
+          "Create_Floating_Rate_Button": {
+            "type": "button",
+            "on_success": "opens creation form"
+          },
+          "Create_Floating_Rate_Form": {
+            "type": "form",
+            "fields": {
+              "Floating_Rate_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Is_Base_Lending_Rate": {
+                "type": "checkbox",
+                "constraints": [
+                  "only one base rate can exist at a time"
+                ]
+              },
+              "Is_Active": {
+                "type": "checkbox",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 13,
+      "module_title": "Delinquency Management",
+      "ast": {
+        "module_name": "Delinquency Management",
+        "components": {
+          "Delinquency_Ranges_Page": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Classification",
+                "type": "link"
+              }
+            ],
+            "sortable_columns": [
+              "Minimum Age Days",
+              "Maximum Age Days"
+            ]
+          },
+          "Create_Delinquency_Range_Form": {
+            "type": "form",
+            "fields": {
+              "Classification": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Minimum_Age_Days": {
+                "type": "number",
+                "required": true
+              },
+              "Maximum_Age_Days": {
+                "type": "number",
+                "required": false
+              }
+            }
+          },
+          "Delinquency_Buckets_Page": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Bucket Name",
+                "type": "link"
+              }
+            ]
+          },
+          "Create_Delinquency_Bucket_Form": {
+            "type": "form",
+            "fields": {
+              "Bucket_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Delinquency_Ranges": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "Range_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Minimum_Age_Days": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Maximum_Age_Days": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 14,
+      "module_title": "Loan Account",
+      "ast": {
+        "module_name": "Loan Account",
+        "components": {
+          "Loan_Application_Wizard": {
+            "type": "wizard",
+            "steps": [
+              {
+                "step_index": 1,
+                "step_name": "Details",
+                "fields": {
+                  "Product_Name": {
+                    "type": "dropdown",
+                    "required": true,
+                    "options": []
+                  },
+                  "Loan_Officer": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Loan_Purpose": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Fund": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Submitted_On": {
+                    "type": "date",
+                    "required": true
+                  },
+                  "Expected_Disbursement_Date": {
+                    "type": "date",
+                    "required": true
+                  },
+                  "Principal": {
+                    "type": "number",
+                    "required": true,
+                    "constraints": [
+                      "bounded by product min/max"
+                    ]
+                  },
+                  "Number_of_Repayments": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Repaid_Every": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Interest_Rate": {
+                    "type": "number",
+                    "required": true,
+                    "constraints": [
+                      "bounded by product min/max"
+                    ]
+                  },
+                  "External_ID": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 2,
+                "step_name": "Terms",
+                "fields": {
+                  "Repayment_Strategy": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Amortization": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Interest_Method": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Interest_Calculation_Period": {
+                    "type": "dropdown",
+                    "required": true,
+                    "options": []
+                  },
+                  "Grace_Period": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "step_index": 3,
+                "step_name": "Charges",
+                "fields": {
+                  "Inherited_Charges": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Add_Charge": {
+                    "type": "button",
+                    "on_success": "adds additional charges"
+                  }
+                }
+              },
+              {
+                "step_index": 4,
+                "step_name": "Collateral",
+                "fields": {
+                  "Collateral_Items": {
+                    "type": "repeating_group",
+                    "item_fields": {
+                      "Collateral_Type": {
+                        "type": "unspecified",
+                        "required": true
+                      },
+                      "Value": {
+                        "type": "number",
+                        "required": true
+                      },
+                      "Description": {
+                        "type": "unspecified",
+                        "required": false
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates loan in Submitted and Pending Approval status"
+              }
+            ]
+          },
+          "Loan_Detail_Page": {
+            "action_buttons": {
+              "Pending_Approval": [
+                {
+                  "action_name": "Approve",
+                  "fields": {
+                    "Approved_On_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Approved_Amount": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "Expected_Disbursement_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Note": {
+                      "type": "unspecified",
+                      "required": false
+                    }
+                  }
+                },
+                {
+                  "action_name": "Reject"
+                },
+                {
+                  "action_name": "Withdraw"
+                },
+                {
+                  "action_name": "Delete"
+                }
+              ],
+              "Approved": [
+                {
+                  "action_name": "Disburse",
+                  "fields": {
+                    "Disbursed_On_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Transaction_Amount": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "Payment_Type": {
+                      "type": "dropdown",
+                      "required": true,
+                      "options": [
+                        "Cash",
+                        "Check",
+                        "Mobile Money",
+                        "Bank Transfer"
+                      ]
+                    },
+                    "Payment_Detail_Fields": {
+                      "type": "unspecified",
+                      "required": false
+                    },
+                    "Disburse_to_Savings": {
+                      "type": "checkbox",
+                      "required": false
+                    }
+                  }
+                },
+                {
+                  "action_name": "Undo Approval"
+                }
+              ],
+              "Active": [
+                {
+                  "action_name": "Make Repayment",
+                  "fields": {
+                    "Transaction_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Transaction_Amount": {
+                      "type": "number",
+                      "required": true
+                    },
+                    "Payment_Type": {
+                      "type": "dropdown",
+                      "required": true,
+                      "options": []
+                    }
+                  }
+                },
+                {
+                  "action_name": "Waive Interest"
+                },
+                {
+                  "action_name": "Write Off"
+                },
+                {
+                  "action_name": "Close"
+                },
+                {
+                  "action_name": "Reschedule",
+                  "fields": {
+                    "Reschedule_From_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Reason": {
+                      "type": "unspecified",
+                      "required": true
+                    },
+                    "Adjusted_Due_Date": {
+                      "type": "date",
+                      "required": true
+                    },
+                    "Grace_Fields": {
+                      "type": "unspecified",
+                      "required": false
+                    },
+                    "Extra_Terms": {
+                      "type": "unspecified",
+                      "required": false
+                    },
+                    "New_Interest_Rate": {
+                      "type": "number",
+                      "required": false
+                    }
+                  }
+                },
+                {
+                  "action_name": "Prepay Loan"
+                },
+                {
+                  "action_name": "Foreclosure"
+                },
+                {
+                  "action_name": "Charge Off"
+                },
+                {
+                  "action_name": "Assign Loan Officer"
+                }
+              ]
+            },
+            "tabs": [
+              {
+                "tab_name": "Summary",
+                "fields": {}
+              },
+              {
+                "tab_name": "Repayment Schedule",
+                "fields": {
+                  "Repayment_Schedule_Table": {
+                    "type": "data_table",
+                    "row_actions": [],
+                    "sortable_columns": []
+                  }
+                }
+              },
+              {
+                "tab_name": "Transactions",
+                "fields": {
+                  "Transactions_Table": {
+                    "type": "data_table",
+                    "row_actions": [
+                      {
+                        "action_name": "undo"
+                      }
+                    ],
+                    "sortable_columns": []
+                  }
+                }
+              },
+              {
+                "tab_name": "Charges",
+                "fields": {}
+              },
+              {
+                "tab_name": "Collateral",
+                "fields": {}
+              },
+              {
+                "tab_name": "Notes",
+                "fields": {}
+              },
+              {
+                "tab_name": "Documents",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 15,
+      "module_title": "Savings Account",
+      "ast": {
+        "module_name": "Savings Account",
+        "components": {
+          "Savings_Account_Creation_Form": {
+            "type": "form",
+            "fields": {
+              "Product_Name": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Field_Officer": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Submitted_On": {
+                "type": "date",
+                "required": true
+              },
+              "Nominal_Annual_Interest_Rate": {
+                "type": "number",
+                "required": false
+              },
+              "Interest_Compounding_Period": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Interest_Posting_Period": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Interest_Calculated_Using": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Days_in_Year": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Minimum_Opening_Balance": {
+                "type": "number",
+                "required": false
+              },
+              "Lock_in_Period": {
+                "type": "number",
+                "required": true
+              },
+              "Allow_Overdraft": {
+                "type": "checkbox",
+                "required": true
+              },
+              "Charges": {
+                "type": "repeating_group",
+                "item_fields": {},
+                "min": 0,
+                "max": null
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates account in Submitted and Pending Approval status"
+              }
+            ]
+          },
+          "Savings_Account_Detail_Page": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "Summary",
+                "fields": {
+                  "Status": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Status_Badge": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "tab_name": "Transactions",
+                "type": "data_table",
+                "row_actions": [
+                  {
+                    "action_name": "View"
+                  },
+                  {
+                    "action_name": "Edit"
+                  },
+                  {
+                    "action_name": "Delete"
+                  }
+                ]
+              },
+              {
+                "tab_name": "Charges",
+                "fields": {}
+              },
+              {
+                "tab_name": "Documents",
+                "fields": {}
+              }
+            ]
+          },
+          "Savings_Account_Actions": {
+            "type": "state_bound_action_bar",
+            "states": {
+              "Pending": {
+                "available_actions": [
+                  {
+                    "action_name": "Approve"
+                  },
+                  {
+                    "action_name": "Reject"
+                  },
+                  {
+                    "action_name": "Withdraw Application"
+                  }
+                ]
+              },
+              "Approved": {
+                "available_actions": [
+                  {
+                    "action_name": "Activate"
+                  },
+                  {
+                    "action_name": "Undo Approval"
+                  }
+                ]
+              },
+              "Active": {
+                "available_actions": [
+                  {
+                    "action_name": "Deposit",
+                    "fields": {
+                      "Transaction_Date": {
+                        "type": "date",
+                        "required": true
+                      },
+                      "Transaction_Amount": {
+                        "type": "number",
+                        "required": true
+                      },
+                      "Payment_Type": {
+                        "type": "dropdown",
+                        "required": true,
+                        "options": [
+                          "Cash",
+                          "Check",
+                          "Mobile Money"
+                        ]
+                      },
+                      "Payment_Details": {
+                        "type": "unspecified",
+                        "required": false
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Withdraw",
+                    "fields": {
+                      "Transaction_Date": {
+                        "type": "date",
+                        "required": true
+                      },
+                      "Transaction_Amount": {
+                        "type": "number",
+                        "required": true
+                      },
+                      "Payment_Type": {
+                        "type": "dropdown",
+                        "required": true,
+                        "options": [
+                          "Cash",
+                          "Check",
+                          "Mobile Money"
+                        ]
+                      },
+                      "Payment_Details": {
+                        "type": "unspecified",
+                        "required": false
+                      },
+                      "constraints": [
+                        "withdrawal cannot exceed available balance unless overdraft is enabled",
+                        "minimum balance must be maintained"
+                      ]
+                    }
+                  },
+                  {
+                    "action_name": "Post Interest"
+                  },
+                  {
+                    "action_name": "Calculate Interest"
+                  },
+                  {
+                    "action_name": "Close"
+                  },
+                  {
+                    "action_name": "Block Account"
+                  },
+                  {
+                    "action_name": "Block Debit"
+                  },
+                  {
+                    "action_name": "Block Credit"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 16,
+      "module_title": "Share Account",
+      "ast": {
+        "module_name": "Share Account",
+        "components": {
+          "Share_Account_Application_Form": {
+            "type": "form",
+            "fields": {
+              "Share_Product": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "Submitted_On": {
+                "type": "date",
+                "required": true
+              },
+              "Requested_Shares": {
+                "type": "number",
+                "required": true,
+                "constraints": [
+                  "bounded by product min/max per client"
+                ]
+              },
+              "Application_Date": {
+                "type": "date",
+                "required": true
+              },
+              "Savings_Account_for_Charges": {
+                "type": "dropdown",
+                "required": true,
+                "options": []
+              },
+              "External_ID": {
+                "type": "unspecified",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "creates account in Submitted and Pending Approval status"
+              }
+            ]
+          },
+          "Share_Account_Detail_Page": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "Purchased Shares",
+                "fields": {
+                  "Date": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Type": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Number_of_Shares": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Unit_Price": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Amount": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Status": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "tab_name": "Dividends",
+                "fields": {
+                  "Date": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Amount_Per_Share": {
+                    "type": "number",
+                    "required": false
+                  },
+                  "Total_Amount": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              {
+                "tab_name": "Charges",
+                "fields": {}
+              }
+            ]
+          },
+          "Share_Account_Actions": {
+            "type": "state_bound_action_bar",
+            "states": {
+              "Pending": {
+                "available_actions": [
+                  {
+                    "action_name": "Approve",
+                    "fields": {
+                      "Approved_Shares": {
+                        "type": "number",
+                        "required": true
+                      },
+                      "Approved_Date": {
+                        "type": "date",
+                        "required": true
+                      }
+                    }
+                  },
+                  {
+                    "action_name": "Reject"
+                  }
+                ]
+              },
+              "Approved": {
+                "available_actions": [
+                  {
+                    "action_name": "Activate"
+                  },
+                  {
+                    "action_name": "Undo Approval"
+                  }
+                ]
+              },
+              "Active": {
+                "available_actions": [
+                  {
+                    "action_name": "Apply Additional Shares"
+                  },
+                  {
+                    "action_name": "Redeem Shares",
+                    "on_success": "redemption amount calculated as shares multiplied by current unit price and credited to the linked savings account"
+                  },
+                  {
+                    "action_name": "Close"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 17,
+      "module_title": "Fixed & Recurring Deposit Accounts",
+      "ast": {
+        "module_name": "Fixed & Recurring Deposit Accounts",
+        "components": {
+          "FD_Account_Creation_Form": {
+            "type": "form",
+            "fields": {
+              "Fixed_Deposit_Product": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Deposit_Amount": {
+                "type": "number",
+                "required": true
+              },
+              "Deposit_Period": {
+                "type": "number",
+                "required": true
+              },
+              "Maturity_Instructions": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Transfer to Savings",
+                  "Re-Invest",
+                  "Re-Invest Principal and Transfer Interest"
+                ]
+              }
+            }
+          },
+          "FD_Account_Detail": {
+            "type": "data_table",
+            "fields": {
+              "Deposit_Amount": {},
+              "Maturity_Date": {},
+              "Maturity_Amount": {},
+              "Interest_Rate": {},
+              "Status": {}
+            },
+            "row_actions": [
+              {
+                "action_name": "Approve"
+              },
+              {
+                "action_name": "Activate"
+              },
+              {
+                "action_name": "Premature Close"
+              },
+              {
+                "action_name": "Close on Maturity"
+              }
+            ]
+          },
+          "RD_Account_Creation_Form": {
+            "type": "form",
+            "fields": {
+              "Recurring_Deposit_Product": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Mandatory_Deposit_Amount": {
+                "type": "number",
+                "required": true
+              },
+              "Deposit_Frequency": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Daily",
+                  "Weekly",
+                  "Monthly",
+                  "Quarterly",
+                  "Yearly"
+                ]
+              },
+              "Expected_First_Deposit_On": {
+                "type": "date",
+                "required": true
+              }
+            }
+          },
+          "RD_Account_Detail": {
+            "type": "data_table",
+            "fields": {
+              "Deposit_Schedule": {},
+              "Total_Deposits_Made": {},
+              "Maturity_Details": {},
+              "Interest_Rate": {},
+              "Status": {}
+            },
+            "row_actions": [
+              {
+                "action_name": "Approve"
+              },
+              {
+                "action_name": "Activate"
+              },
+              {
+                "action_name": "Deposit"
+              },
+              {
+                "action_name": "Premature Close"
+              },
+              {
+                "action_name": "Close on Maturity"
+              }
+            ]
+          },
+          "FD_RD_Detail_Tabs": {
+            "type": "tab_container",
+            "tabs": [
+              {
+                "tab_name": "Summary",
+                "fields": {}
+              },
+              {
+                "tab_name": "Transactions",
+                "fields": {}
+              },
+              {
+                "tab_name": "Charges",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 18,
+      "module_title": "Accounting \u2014 Chart of Accounts",
+      "ast": {
+        "module_name": "Accounting",
+        "components": {
+          "Chart_of_Accounts": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              },
+              {
+                "action_name": "Delete"
+              }
+            ]
+          },
+          "Create_GL_Account_Form": {
+            "type": "form",
+            "fields": {
+              "Account_Type": {
+                "type": "dropdown",
+                "required": true
+              },
+              "Parent_Account": {
+                "type": "dropdown",
+                "required": true
+              },
+              "GL_Code": {
+                "type": "unspecified",
+                "required": true,
+                "constraints": [
+                  "must be unique"
+                ]
+              },
+              "Account_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Account_Usage": {
+                "type": "dropdown",
+                "options": [
+                  "Header",
+                  "Detail"
+                ],
+                "required": true
+              },
+              "Manual_Entries_Allowed": {
+                "type": "checkbox",
+                "required": true
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Tag": {
+                "type": "dropdown",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "attempts": 2
+    },
+    {
+      "module_id": 19,
+      "module_title": "Accounting \u2014 Journal Entries & Closures",
+      "ast": {
+        "module_name": "Accounting",
+        "components": {
+          "Journal_Entries_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Entry ID",
+              "Office",
+              "Transaction Date",
+              "Created Date",
+              "Transaction ID",
+              "Type",
+              "GL Account",
+              "Amount"
+            ],
+            "row_actions": [],
+            "bulk_actions": []
+          },
+          "Journal_Entry_Creation_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Currency": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Reference_Number": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Transaction_Date": {
+                "type": "date",
+                "required": true
+              },
+              "Payment_Type": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Payment_Details": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Entry_Lines": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "GL_Account": {
+                    "type": "dropdown",
+                    "required": true
+                  },
+                  "Amount": {
+                    "type": "number",
+                    "required": true
+                  }
+                }
+              },
+              "Comments": {
+                "type": "unspecified",
+                "required": false
+              }
+            },
+            "constraints": [
+              "total debits must equal total credits"
+            ]
+          },
+          "Closing_Entries_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Office",
+              "Closing Date",
+              "Created Date",
+              "Comments"
+            ],
+            "row_actions": [],
+            "bulk_actions": []
+          },
+          "Closure_Creation_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Closing_Date": {
+                "type": "date",
+                "required": true
+              },
+              "Comments": {
+                "type": "unspecified",
+                "required": false
+              }
+            },
+            "preconditions": [
+              "prevent journal entries for dates on or before the closing date"
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 20,
+      "module_title": "Accounting Rules & Financial Activity Mappings",
+      "ast": {
+        "module_name": "Accounting Rules & Financial Activity Mappings",
+        "components": {
+          "Accounting_Rules_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Rule Name",
+              "Office",
+              "Debit Account(s)",
+              "Credit Account(s)"
+            ],
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              },
+              {
+                "action_name": "Delete"
+              }
+            ],
+            "bulk_actions": []
+          },
+          "Create_Rule_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Rule_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Debit_Account": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Allow_Multiple_Debit_Entries": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Credit_Account": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Allow_Multiple_Credit_Entries": {
+                "type": "checkbox",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Create Rule",
+                "on_success": "creates a new accounting rule"
+              }
+            ]
+          },
+          "Financial_Activity_Mappings_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Financial Activity",
+              "GL Account"
+            ],
+            "row_actions": [],
+            "bulk_actions": []
+          },
+          "Create_Mapping_Form": {
+            "type": "form",
+            "fields": {
+              "Financial_Activity": {
+                "type": "dropdown",
+                "required": true
+              },
+              "GL_Account": {
+                "type": "dropdown",
+                "required": true
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Create Mapping",
+                "on_success": "creates a new financial activity mapping"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 21,
+      "module_title": "Provisioning",
+      "ast": {
+        "module_name": "Provisioning",
+        "components": {
+          "Provisioning_Criteria_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Criteria Name",
+                "type": "link"
+              }
+            ],
+            "sortable_columns": [
+              "Criteria Name",
+              "Created Date"
+            ]
+          },
+          "Create_Criteria_Form": {
+            "type": "form",
+            "fields": {
+              "Criteria_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Definitions": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "Loan_Product": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Category": {
+                    "type": "dropdown",
+                    "options": [
+                      "STANDARD",
+                      "SUB-STANDARD",
+                      "DOUBTFUL",
+                      "LOSS"
+                    ]
+                  },
+                  "Minimum_Age": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Maximum_Age": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Provisioning_Percentage": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Liability_Account": {
+                    "type": "dropdown",
+                    "required": true
+                  },
+                  "Expense_Account": {
+                    "type": "dropdown",
+                    "required": true
+                  }
+                },
+                "max": null
+              }
+            }
+          },
+          "Provisioning_Entries_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Entry Date",
+              "Journal Entry Created",
+              "Created By"
+            ],
+            "submit_actions": [
+              {
+                "element_name": "+ Create Provisioning Entry",
+                "on_success": "generates new provisioning entries based on current loan portfolio status"
+              }
+            ],
+            "row_actions": [
+              {
+                "action_name": "Review"
+              },
+              {
+                "action_name": "Recreate"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 22,
+      "module_title": "Offices",
+      "ast": {
+        "module_name": "Offices",
+        "components": {
+          "Offices_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Office Name",
+              "External ID",
+              "Parent Office",
+              "Opening Date",
+              "Hierarchy Position"
+            ],
+            "row_actions": [
+              {
+                "action_name": "View",
+                "element_name": "Office Name"
+              }
+            ]
+          },
+          "Create_Office_Button": {
+            "type": "button",
+            "on_success": "opens creation form"
+          },
+          "Create_Office_Form": {
+            "type": "form",
+            "fields": {
+              "Office_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Parent_Office": {
+                "type": "unspecified",
+                "required": true,
+                "constraints": [
+                  "Head Office is the root"
+                ]
+              },
+              "Opened_On_Date": {
+                "type": "date",
+                "required": true
+              },
+              "External_ID": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          },
+          "Office_Detail_Page": {
+            "type": "form",
+            "fields": {
+              "Office_Name": {
+                "type": "unspecified"
+              },
+              "External_ID": {
+                "type": "unspecified"
+              },
+              "Parent_Office": {
+                "type": "unspecified"
+              },
+              "Opened_On_Date": {
+                "type": "date"
+              },
+              "Hierarchy_Position": {
+                "type": "unspecified"
+              }
+            },
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 23,
+      "module_title": "Employees",
+      "ast": {
+        "module_name": "Employees",
+        "components": {
+          "Employees_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit"
+              }
+            ],
+            "bulk_actions": [
+              {
+                "action_name": "Delete Selected"
+              }
+            ],
+            "sortable_columns": [
+              "Name",
+              "Office",
+              "Is Loan Officer",
+              "Status"
+            ]
+          },
+          "Create_Employee_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "First_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Last_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Is_Loan_Officer": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Mobile_Number": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Is_Active": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Joining_Date": {
+                "type": "date",
+                "required": false
+              },
+              "External_ID": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          },
+          "Staff_Detail_Page": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Office": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Is_Loan_Officer": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Mobile_Number": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Is_Active": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Joining_Date": {
+                "type": "date",
+                "required": false
+              },
+              "External_ID": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 24,
+      "module_title": "Teller & Cashier Management",
+      "ast": {
+        "module_name": "Teller & Cashier Management",
+        "components": {
+          "Tellers_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Teller Name",
+                "type": "link"
+              }
+            ],
+            "sortable_columns": [
+              "Teller Name",
+              "Office",
+              "Status",
+              "Description"
+            ]
+          },
+          "Create_Teller_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Teller_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Start_Date": {
+                "type": "date",
+                "required": true
+              },
+              "End_Date": {
+                "type": "date",
+                "required": false
+              },
+              "Status": {
+                "type": "dropdown",
+                "options": [
+                  "Active",
+                  "Inactive"
+                ]
+              }
+            }
+          },
+          "Teller_Detail": {
+            "type": "detail_view",
+            "fields": {
+              "Cashiers": {
+                "type": "data_table",
+                "sortable_columns": [
+                  "Cashier Name",
+                  "Start Date",
+                  "End Date",
+                  "Is Full Day",
+                  "Status"
+                ],
+                "row_actions": []
+              }
+            }
+          },
+          "Allocate_Cashier_Form": {
+            "type": "form",
+            "fields": {
+              "Staff": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Start_Date": {
+                "type": "date",
+                "required": true
+              },
+              "End_Date": {
+                "type": "date",
+                "required": false
+              },
+              "Is_Full_Day": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          },
+          "Cashier_Detail": {
+            "type": "detail_view",
+            "fields": {
+              "Opening_Balance": {
+                "type": "number",
+                "required": false
+              },
+              "Cash_In_Hand": {
+                "type": "number",
+                "required": false
+              }
+            },
+            "actions": [
+              {
+                "action_name": "Allocate Cash",
+                "fields": {}
+              },
+              {
+                "action_name": "Settle Cash",
+                "fields": {
+                  "Amount": {
+                    "type": "number",
+                    "required": true
+                  },
+                  "Currency": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Transaction_Date": {
+                    "type": "date",
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
+          "Cashier_Transactions_List": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Date",
+              "Type",
+              "Amount",
+              "Running Balance"
+            ],
+            "row_actions": []
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 25,
+      "module_title": "Users & Roles",
+      "ast": {
+        "module_name": "Users & Roles",
+        "components": {
+          "Users_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Username",
+              "First Name",
+              "Last Name",
+              "Email",
+              "Office",
+              "Status"
+            ],
+            "row_actions": [
+              {
+                "action_name": "View"
+              }
+            ],
+            "bulk_actions": []
+          },
+          "Create_User_Form": {
+            "type": "form",
+            "fields": {
+              "Username": {
+                "type": "unspecified",
+                "required": true,
+                "constraints": [
+                  "must be unique"
+                ]
+              },
+              "First_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Last_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Email": {
+                "type": "email",
+                "required": true,
+                "constraints": [
+                  "must be valid email format"
+                ]
+              },
+              "Office": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Staff": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Password": {
+                "type": "password",
+                "required": true,
+                "constraints": [
+                  "must meet password policy"
+                ]
+              },
+              "Repeat_Password": {
+                "type": "password",
+                "constraints": [
+                  "must match Password"
+                ]
+              },
+              "Roles": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Override_Password_Expiry_Policy": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Send_Password_to_Email": {
+                "type": "checkbox",
+                "required": false
+              }
+            }
+          },
+          "Roles_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Description"
+            ],
+            "row_actions": [
+              {
+                "action_name": "View"
+              }
+            ],
+            "bulk_actions": []
+          },
+          "Create_Role_Form": {
+            "type": "form",
+            "fields": {
+              "Role_Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          },
+          "Permissions_Page": {
+            "type": "form",
+            "fields": {
+              "Permissions": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "User_Management": {
+                    "type": "checkbox"
+                  },
+                  "Portfolio": {
+                    "type": "checkbox"
+                  },
+                  "Organization": {
+                    "type": "checkbox"
+                  },
+                  "Accounting": {
+                    "type": "checkbox"
+                  },
+                  "Reports": {
+                    "type": "checkbox"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 26,
+      "module_title": "Reports",
+      "ast": {
+        "module_name": "Reports",
+        "components": {
+          "Reports_Page": {
+            "type": "data_table",
+            "row_actions": [],
+            "bulk_actions": [],
+            "sortable_columns": []
+          },
+          "Parameters_Form": {
+            "type": "form",
+            "fields": {
+              "Office": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Branch": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Currency": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Loan_Product": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Date_Range": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Loan_Officer": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Fund": {
+                "type": "dropdown",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Run Report",
+                "on_success": "generates the report as a data table"
+              },
+              {
+                "element_name": "View on Screen",
+                "on_success": "displays report on screen"
+              },
+              {
+                "element_name": "Export to Excel",
+                "on_success": "exports report to Excel"
+              },
+              {
+                "element_name": "Export to CSV",
+                "on_success": "exports report to CSV"
+              },
+              {
+                "element_name": "Export to PDF",
+                "on_success": "exports report to PDF"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 27,
+      "module_title": "Account Transfers & Standing Instructions",
+      "ast": {
+        "module_name": "Account Transfers & Standing Instructions",
+        "components": {
+          "Account_Transfers_Form": {
+            "type": "form",
+            "fields": {
+              "From_Office": {
+                "type": "unspecified",
+                "required": false
+              },
+              "From_Client": {
+                "type": "unspecified",
+                "required": false
+              },
+              "From_Account_Type": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Savings Account",
+                  "Loan Account"
+                ]
+              },
+              "To_Office": {
+                "type": "unspecified",
+                "required": false
+              },
+              "To_Client": {
+                "type": "unspecified",
+                "required": false
+              },
+              "To_Account_Type": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Transfer_Amount": {
+                "type": "number",
+                "required": true,
+                "constraints": [
+                  "must not exceed available balance"
+                ]
+              },
+              "Transfer_Date": {
+                "type": "date",
+                "required": true
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": false
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Submit",
+                "on_success": "processes the transfer, debiting the source and crediting the destination"
+              }
+            ]
+          },
+          "Standing_Instructions_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "From Client",
+              "From Account",
+              "To Client",
+              "To Account",
+              "Amount",
+              "Validity",
+              "Status"
+            ],
+            "bulk_actions": [
+              {
+                "action_name": "Enable"
+              },
+              {
+                "action_name": "Disable"
+              },
+              {
+                "action_name": "Delete"
+              }
+            ]
+          },
+          "Create_Standing_Instruction_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Transfer_Type": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Priority": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Instruction_Type": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Fixed",
+                  "Dues"
+                ]
+              },
+              "Amount": {
+                "type": "number",
+                "required": false
+              },
+              "Validity_From": {
+                "type": "date",
+                "required": false
+              },
+              "Validity_Till": {
+                "type": "date",
+                "required": false
+              },
+              "Recurrence_Type": {
+                "type": "dropdown",
+                "required": false,
+                "options": [
+                  "Periodic",
+                  "As Per Dues"
+                ]
+              },
+              "Recurrence_Frequency": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Recurrence_Interval": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 28,
+      "module_title": "Tax Management",
+      "ast": {
+        "module_name": "Tax Management",
+        "components": {
+          "Tax_Components_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Name",
+                "type": "link"
+              }
+            ],
+            "columns": [
+              "Name",
+              "Percentage",
+              "Debit Account Type",
+              "Debit Account",
+              "Credit Account Type",
+              "Credit Account",
+              "Start Date"
+            ],
+            "bulk_actions": [],
+            "sortable_columns": []
+          },
+          "Create_Tax_Component_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Percentage": {
+                "type": "number",
+                "required": true
+              },
+              "Debit_Account_Type": {
+                "type": "dropdown",
+                "options": [
+                  "Asset",
+                  "Liability",
+                  "Equity",
+                  "Income",
+                  "Expense"
+                ]
+              },
+              "Debit_Account": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Credit_Account_Type": {
+                "type": "dropdown",
+                "options": [
+                  "Asset",
+                  "Liability",
+                  "Equity",
+                  "Income",
+                  "Expense"
+                ]
+              },
+              "Credit_Account": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Start_Date": {
+                "type": "date",
+                "required": true
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "+ Create Tax Component",
+                "on_success": "creates tax component"
+              }
+            ]
+          },
+          "Tax_Groups_Table": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Name",
+                "type": "link"
+              }
+            ],
+            "columns": [
+              "Name",
+              "Associated Components"
+            ],
+            "bulk_actions": [],
+            "sortable_columns": []
+          },
+          "Create_Tax_Group_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Tax_Components": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "Start_Date": {
+                    "type": "date",
+                    "required": true
+                  },
+                  "End_Date": {
+                    "type": "date",
+                    "required": false
+                  },
+                  "Credit_Account_Type": {
+                    "type": "dropdown",
+                    "options": [
+                      "Asset",
+                      "Liability",
+                      "Equity",
+                      "Income",
+                      "Expense"
+                    ]
+                  },
+                  "Credit_Account": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "+ Create Tax Group",
+                "on_success": "creates tax group"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 29,
+      "module_title": "Organization Settings",
+      "ast": {
+        "module_name": "Organization Settings",
+        "components": {
+          "Holidays_Page": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Start Date",
+              "To Date",
+              "Status",
+              "Rescheduling Type"
+            ],
+            "row_actions": [],
+            "bulk_actions": [],
+            "submit_actions": [
+              {
+                "element_name": "+ Create Holiday",
+                "on_success": "opens the holiday creation form"
+              }
+            ]
+          },
+          "Create_Holiday_Form": {
+            "type": "form",
+            "fields": {
+              "Name": {
+                "type": "unspecified",
+                "required": true
+              },
+              "From_Date": {
+                "type": "date",
+                "required": true
+              },
+              "To_Date": {
+                "type": "date",
+                "required": true
+              },
+              "Repayments_Rescheduled_To": {
+                "type": "date",
+                "required": false
+              },
+              "Rescheduling_Type": {
+                "type": "dropdown",
+                "required": false
+              },
+              "Description": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Applicable_Offices": {
+                "type": "multi_select",
+                "required": false
+              }
+            }
+          },
+          "Working_Days_Page": {
+            "type": "form",
+            "fields": {
+              "Working_Days": {
+                "type": "checkbox",
+                "options": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ]
+              },
+              "Repayment_Rescheduling": {
+                "type": "dropdown",
+                "required": false
+              }
+            }
+          },
+          "Currencies_Page": {
+            "type": "form",
+            "fields": {}
+          },
+          "Funds_Page": {
+            "type": "form",
+            "fields": {}
+          },
+          "Payment_Types_Page": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Description",
+              "Is Cash Payment",
+              "Position"
+            ],
+            "row_actions": [],
+            "bulk_actions": [],
+            "submit_actions": [
+              {
+                "element_name": "+ Create",
+                "on_success": "adds new payment type to dropdown options"
+              }
+            ]
+          },
+          "Bulk_Import_Page": {
+            "type": "form",
+            "fields": {
+              "Entity_Types": {
+                "type": "multi_select",
+                "options": [
+                  "Clients",
+                  "Groups",
+                  "Centers",
+                  "Offices",
+                  "Staff",
+                  "Users",
+                  "Loans",
+                  "Savings"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 30,
+      "module_title": "System Administration",
+      "ast": {
+        "module_name": "System Administration",
+        "components": {
+          "Manage_Scheduler_Jobs": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit",
+                "fields": {
+                  "Is_Active": {
+                    "type": "checkbox"
+                  },
+                  "CRON_Expression": {
+                    "type": "unspecified"
+                  },
+                  "Previous_Run_Status": {
+                    "type": "dropdown",
+                    "options": [
+                      "Success",
+                      "Failed"
+                    ]
+                  },
+                  "Next_Run_Time": {
+                    "type": "unspecified"
+                  },
+                  "Currently_Running": {
+                    "type": "checkbox"
+                  }
+                }
+              }
+            ],
+            "bulk_actions": [
+              {
+                "action_name": "Start/Stop Scheduler",
+                "fields": {
+                  "Global_Toggle": {
+                    "type": "checkbox"
+                  }
+                }
+              }
+            ]
+          },
+          "Global_Configuration": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit",
+                "fields": {
+                  "Enabled": {
+                    "type": "checkbox"
+                  },
+                  "Value": {
+                    "type": "unspecified"
+                  },
+                  "Description": {
+                    "type": "unspecified"
+                  }
+                }
+              }
+            ]
+          },
+          "Manage_Codes": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "Edit",
+                "fields": {}
+              }
+            ]
+          },
+          "Manage_Data_Tables": {
+            "type": "form",
+            "fields": {
+              "Data_Table_Name": {
+                "type": "unspecified"
+              },
+              "Application_Table_Name": {
+                "type": "dropdown",
+                "options": [
+                  "m_client",
+                  "m_group",
+                  "m_loan",
+                  "m_office",
+                  "m_saving_account",
+                  "m_product_loan",
+                  "m_savings_product"
+                ]
+              },
+              "Multi_Row": {
+                "type": "checkbox"
+              },
+              "Column_Definitions": {
+                "type": "repeating_group",
+                "item_fields": {
+                  "Name": {
+                    "type": "unspecified"
+                  },
+                  "Type": {
+                    "type": "dropdown",
+                    "options": [
+                      "string",
+                      "number",
+                      "boolean",
+                      "decimal",
+                      "date",
+                      "datetime",
+                      "text",
+                      "dropdown"
+                    ]
+                  },
+                  "Length": {
+                    "type": "number"
+                  },
+                  "Is_Mandatory": {
+                    "type": "checkbox"
+                  },
+                  "Is_Unique": {
+                    "type": "checkbox"
+                  }
+                }
+              }
+            }
+          },
+          "Audit_Trails": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View",
+                "fields": {
+                  "Maker_ID": {
+                    "type": "unspecified"
+                  },
+                  "Checker_ID": {
+                    "type": "unspecified"
+                  },
+                  "Date_Range": {
+                    "type": "unspecified"
+                  }
+                }
+              }
+            ],
+            "filters": {
+              "fields": {
+                "Action_Name": {
+                  "type": "search"
+                },
+                "Entity_Name": {
+                  "type": "search"
+                },
+                "Resource_ID": {
+                  "type": "search"
+                },
+                "Maker": {
+                  "type": "search"
+                },
+                "Checker": {
+                  "type": "search"
+                },
+                "Office": {
+                  "type": "search"
+                },
+                "Date_Range": {
+                  "type": "date"
+                }
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 31,
+      "module_title": "Logout",
+      "ast": {
+        "module_name": "Logout",
+        "components": {
+          "User_Profile_Dropdown": {
+            "type": "dropdown",
+            "trigger": {
+              "element_name": "User Profile Icon",
+              "action": "reveals dropdown"
+            },
+            "options": [
+              {
+                "element_name": "Profile Settings",
+                "action": "navigates to Profile Settings"
+              },
+              {
+                "element_name": "Log Out",
+                "on_success": "terminates authenticated session, clears authentication token, redirects to login page"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    }
+  ]
+}

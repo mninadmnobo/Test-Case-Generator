@@ -1,0 +1,161 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-09T12:05:52.759820Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "ast": {
+        "module_name": "Grades",
+        "components": {
+          "Grades_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Grade item",
+              "Calculated weight",
+              "Grade",
+              "Range",
+              "Percentage",
+              "Feedback",
+              "Contribution to course total"
+            ],
+            "row_actions": [],
+            "bulk_actions": [],
+            "columns": [
+              {
+                "column_name": "Grade item",
+                "type": "collapsible_header"
+              },
+              {
+                "column_name": "Calculated weight",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Grade",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Range",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Percentage",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Feedback",
+                "type": "unspecified"
+              },
+              {
+                "column_name": "Contribution to course total",
+                "type": "unspecified"
+              }
+            ],
+            "footer": {
+              "row_name": "AGGREGATION Course total",
+              "type": "unspecified"
+            }
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "ast": {
+        "module_name": "Activities",
+        "components": {
+          "Assignments_Section": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Due date",
+              "Submission status"
+            ],
+            "row_actions": [
+              {
+                "action_name": "Navigate to Activity",
+                "on_success": "redirects to activity's page"
+              }
+            ]
+          },
+          "Forums_Section": {
+            "type": "collapsible_section",
+            "expanded": false,
+            "fields": {}
+          },
+          "Resources_Section": {
+            "type": "collapsible_section",
+            "expanded": false,
+            "fields": {}
+          },
+          "Additional_Activity_Types": {
+            "type": "collapsible_section",
+            "fields": {}
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times",
+      "ast": {}
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "ast": {
+        "module_name": "Logout",
+        "components": {
+          "Logout_Button": {
+            "type": "button",
+            "on_success": "terminates the current authenticated session and redirects to the login page",
+            "preconditions": [
+              "user must be authenticated"
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    }
+  ]
+}

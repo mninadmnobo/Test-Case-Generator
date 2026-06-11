@@ -1,0 +1,584 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:41:26.451620Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "ast": {
+        "module_name": "Login",
+        "components": {
+          "Login_Form": {
+            "type": "form",
+            "fields": {
+              "Username": {
+                "type": "unspecified",
+                "required": true
+              },
+              "Password": {
+                "type": "password",
+                "required": true,
+                "on_error": "clears password field and retains username"
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Log in",
+                "on_success": "redirects to Dashboard",
+                "on_error": "shows inline error message"
+              }
+            ]
+          },
+          "Guest_Access": {
+            "type": "button",
+            "element_name": "Access as a guest"
+          },
+          "Cookies_Notice": {
+            "type": "button",
+            "element_name": "Cookies notice"
+          },
+          "Lost_Password_Link": {
+            "type": "link",
+            "element_name": "Lost password?",
+            "enabled": false
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "ast": {
+        "module_name": "Dashboard",
+        "components": {
+          "Timeline_Block": {
+            "type": "block",
+            "fields": {
+              "Time_Range": {
+                "type": "dropdown",
+                "options": [
+                  "Next 7 days"
+                ]
+              },
+              "Sort_Order": {
+                "type": "dropdown",
+                "options": []
+              },
+              "Search_Field": {
+                "type": "search"
+              }
+            },
+            "empty_state": "No activities found in the selected range."
+          },
+          "Calendar_Block": {
+            "type": "block",
+            "fields": {
+              "All_Courses": {
+                "type": "dropdown",
+                "options": []
+              },
+              "New_Event_Button": {
+                "type": "button",
+                "action": "create personal calendar entries"
+              },
+              "Month_Navigation": {
+                "type": "button_group",
+                "buttons": [
+                  {
+                    "action_name": "Left Arrow",
+                    "action": "navigate to previous month"
+                  },
+                  {
+                    "action_name": "Right Arrow",
+                    "action": "navigate to next month"
+                  }
+                ]
+              }
+            },
+            "current_date_highlight": true,
+            "event_dates": {
+              "display_names": true
+            }
+          },
+          "Links": {
+            "type": "link_group",
+            "links": [
+              {
+                "link_name": "Full calendar",
+                "action": "open dedicated calendar view"
+              },
+              {
+                "link_name": "Import or export calendars",
+                "action": "open calendar data management"
+              }
+            ]
+          },
+          "Edit_Mode": {
+            "type": "toggle",
+            "fields": {
+              "Reset_Page_Button": {
+                "type": "button",
+                "action": "reset page to default"
+              },
+              "Add_Block_Button": {
+                "type": "button",
+                "action": "open page listing all available block types"
+              }
+            }
+          }
+        }
+      },
+      "attempts": 2
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "ast": {
+        "module_name": "My Courses",
+        "components": {
+          "Course_Grid": {
+            "type": "data_table",
+            "fields": {
+              "Status": {
+                "type": "dropdown",
+                "options": [
+                  "All",
+                  "In progress",
+                  "Future",
+                  "Past",
+                  "Starred",
+                  "Hidden"
+                ]
+              },
+              "Search": {
+                "type": "search"
+              },
+              "Sort": {
+                "type": "dropdown"
+              },
+              "Layout": {
+                "type": "dropdown",
+                "options": [
+                  "Card",
+                  "List",
+                  "Summary"
+                ]
+              },
+              "Course_Name": {
+                "type": "link"
+              }
+            },
+            "row_actions": [
+              {
+                "action_name": "Star this course"
+              },
+              {
+                "action_name": "Remove from view"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "ast": {
+        "module_name": "Course Page",
+        "components": {
+          "Navigation_Tab_Bar": {
+            "type": "tab_container",
+            "tabs": []
+          },
+          "Course_Sections": {
+            "type": "collapsible_section",
+            "sections": [
+              {
+                "section_name": "Section",
+                "actions": [
+                  {
+                    "action_name": "Collapse all",
+                    "on_success": "collapses all sections at once"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "ast": {
+        "module_name": "Participants",
+        "components": {
+          "Filter_System": {
+            "type": "form",
+            "fields": {
+              "Any_Toggle": {
+                "type": "checkbox",
+                "required": false
+              },
+              "Add_Condition_Link": {
+                "type": "link",
+                "action_name": "+ Add condition"
+              },
+              "Clear_Filters_Button": {
+                "type": "button",
+                "action_name": "Clear filters"
+              },
+              "Apply_Filters_Button": {
+                "type": "button",
+                "action_name": "Apply filters"
+              }
+            }
+          },
+          "Participants_Table": {
+            "type": "data_table",
+            "sortable_columns": [
+              "First name",
+              "Last name"
+            ],
+            "row_actions": [
+              {
+                "action_name": "View Profile"
+              }
+            ],
+            "columns": [
+              {
+                "column_name": "Checkbox"
+              },
+              {
+                "column_name": "First name"
+              },
+              {
+                "column_name": "Last name"
+              },
+              {
+                "column_name": "Roles"
+              },
+              {
+                "column_name": "Groups"
+              },
+              {
+                "column_name": "Last access to course"
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "ast": {
+        "module_name": "Grades",
+        "components": {
+          "Grades_Table": {
+            "type": "data_table",
+            "columns": [
+              {
+                "column_name": "Grade item",
+                "type": "collapsible_header",
+                "sub_columns": [
+                  {
+                    "column_name": "Calculated weight",
+                    "type": "unspecified"
+                  },
+                  {
+                    "column_name": "Grade",
+                    "type": "unspecified"
+                  },
+                  {
+                    "column_name": "Range",
+                    "type": "unspecified"
+                  },
+                  {
+                    "column_name": "Percentage",
+                    "type": "unspecified"
+                  },
+                  {
+                    "column_name": "Feedback",
+                    "type": "unspecified"
+                  },
+                  {
+                    "column_name": "Contribution to course total",
+                    "type": "unspecified"
+                  }
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "row_type": "data_row",
+                "data": {
+                  "Grade item": "Course Name",
+                  "Calculated weight": "20%",
+                  "Grade": "85",
+                  "Range": "80-90",
+                  "Percentage": "85%",
+                  "Feedback": "Good job!",
+                  "Contribution to course total": "20%"
+                }
+              },
+              {
+                "row_type": "aggregation_row",
+                "data": {
+                  "Grade item": "AGGREGATION Course total",
+                  "Calculated weight": "",
+                  "Grade": "N/A",
+                  "Range": "",
+                  "Percentage": "82%",
+                  "Feedback": "",
+                  "Contribution to course total": "100%"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "attempts": 2
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "ast": {
+        "module_name": "Assignment",
+        "components": {
+          "Submission_Button": {
+            "type": "button",
+            "action_name": "Add submission",
+            "on_success": "opens submission form"
+          },
+          "Submission_Form": {
+            "type": "form",
+            "fields": {
+              "Online_Text_Editor": {
+                "type": "unspecified",
+                "required": false
+              },
+              "File_Upload_Area": {
+                "type": "file_upload",
+                "required": false
+              }
+            }
+          },
+          "Submission_Status_Section": {
+            "type": "data_table",
+            "row_actions": [
+              {
+                "action_name": "View Submission",
+                "preconditions": [
+                  "due date has not passed",
+                  "teacher permits resubmission"
+                ]
+              },
+              {
+                "action_name": "Edit Submission",
+                "preconditions": [
+                  "due date has not passed",
+                  "teacher permits resubmission"
+                ]
+              }
+            ],
+            "fields": {
+              "Submission_Status": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Grading_Status": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Time_Remaining": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Last_Modified": {
+                "type": "unspecified",
+                "required": false
+              },
+              "Submission_Comments": {
+                "type": "unspecified",
+                "required": false
+              }
+            }
+          }
+        }
+      },
+      "attempts": 3
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "ast": {
+        "module_name": "Activities",
+        "components": {
+          "Assignments_Section": {
+            "type": "data_table",
+            "sortable_columns": [
+              "Name",
+              "Due date",
+              "Submission status"
+            ],
+            "row_actions": [
+              {
+                "action_name": "Navigate to Activity",
+                "on_success": "redirects to activity page"
+              }
+            ]
+          },
+          "Forums_Section": {
+            "type": "collapsible_section",
+            "is_expanded": false,
+            "fields": {}
+          },
+          "Resources_Section": {
+            "type": "collapsible_section",
+            "is_expanded": false,
+            "fields": {}
+          },
+          "Additional_Activity_Types": {
+            "type": "collapsible_section",
+            "fields": {}
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "ast": {
+        "module_name": "Profile",
+        "components": {
+          "Profile_Page": {
+            "type": "page",
+            "fields": {
+              "Message_Button": {
+                "type": "button",
+                "action_name": "Message"
+              },
+              "Edit_Profile_Link": {
+                "type": "link",
+                "action_name": "Edit profile",
+                "on_success": "opens profile form"
+              }
+            }
+          },
+          "Profile_Form": {
+            "type": "form",
+            "fields": {
+              "General": {
+                "type": "collapsible_panel",
+                "fields": {
+                  "First_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Last_Name": {
+                    "type": "unspecified",
+                    "required": true
+                  },
+                  "Email_Address": {
+                    "type": "email",
+                    "required": true
+                  },
+                  "Email_Visibility": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "MoodleNet_Profile_ID": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "City_Town": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "Country": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "Timezone": {
+                    "type": "dropdown",
+                    "required": false
+                  },
+                  "Description": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              "User_Picture": {
+                "type": "collapsible_panel",
+                "fields": {
+                  "Current_Picture": {
+                    "type": "unspecified",
+                    "required": false
+                  },
+                  "New_Picture_Upload": {
+                    "type": "file_upload",
+                    "required": false
+                  },
+                  "Picture_Description": {
+                    "type": "unspecified",
+                    "required": false
+                  }
+                }
+              },
+              "Additional_Names": {
+                "type": "collapsible_panel",
+                "fields": {}
+              },
+              "Interests": {
+                "type": "collapsible_panel",
+                "fields": {}
+              },
+              "Optional_Fields": {
+                "type": "collapsible_panel",
+                "fields": {}
+              }
+            },
+            "submit_actions": [
+              {
+                "element_name": "Update Profile",
+                "on_success": "validates all required fields before saving"
+              },
+              {
+                "element_name": "Cancel",
+                "on_success": "exits without changes"
+              }
+            ],
+            "preconditions": [
+              "students can only modify their own profile"
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "ast": {
+        "module_name": "Logout",
+        "components": {
+          "Logout_Button": {
+            "type": "button",
+            "on_success": "terminates the current authenticated session and redirects to the login page",
+            "preconditions": [
+              "user must be authenticated"
+            ]
+          }
+        }
+      },
+      "attempts": 1
+    }
+  ]
+}

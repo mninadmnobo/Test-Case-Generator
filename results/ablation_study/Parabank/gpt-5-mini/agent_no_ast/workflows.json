@@ -1,0 +1,553 @@
+{
+  "project_name": "Parabank",
+  "generated_at": "2026-06-10T20:20:34.158911Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Sign In \u2014 authentication succeeds",
+          "actor": "<role>",
+          "conditional_branch": "Authentication == Success",
+          "terminal_action": "Sign In",
+          "on_success": "Signed in successfully. Redirects to the Accounts Overview page."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Sign In \u2014 authentication fails",
+          "actor": "<role>",
+          "conditional_branch": "Authentication == Failure",
+          "terminal_action": "Sign In",
+          "on_success": "Incorrect email or password. Please try again; password field is cleared and user may retry."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Use Forgot Password link",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Forgot Password?",
+          "on_success": "Opens the password recovery / Forgot Password flow (navigates to password recovery page)."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 2,
+      "module_title": "Register",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Complete registration and submit valid form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Register",
+          "on_success": "Account created successfully \u2014 please sign in, then redirects to the login page."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "Accounts Overview",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Click masked account number in table row",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Click Account Number",
+          "on_success": "Account number is clickable in the UI, but navigation/details are not implemented yet (click is currently a no-op)"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "Open New Account",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open Checking \u2014 valid deposit and sufficient funds",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Deposit_Amount >= 25 AND Funding_Sufficient == true",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully! Redirect to accounts overview."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open Savings \u2014 valid deposit and sufficient funds",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Deposit_Amount >= 100 AND Funding_Sufficient == true",
+          "terminal_action": "Open Account",
+          "on_success": "Account opened successfully! Redirect to accounts overview."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Attempt Open Checking \u2014 deposit below minimum",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Deposit_Amount < 25",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: deposit amount must be at least $25"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Attempt Open Savings \u2014 deposit below minimum",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Deposit_Amount < 100",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: deposit amount must be at least $100"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Attempt Open Checking \u2014 funding account insufficient (deposit meets minimum)",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Deposit_Amount >= 25 AND Funding_Sufficient == false",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: funding account has insufficient balance"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Attempt Open Savings \u2014 funding account insufficient (deposit meets minimum)",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Deposit_Amount >= 100 AND Funding_Sufficient == false",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: funding account has insufficient balance"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Attempt Open Checking \u2014 deposit below minimum AND funding insufficient",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Checking AND Deposit_Amount < 25 AND Funding_Sufficient == false",
+          "terminal_action": "Open Account",
+          "on_success": "Validation errors shown: deposit amount must be at least $25 AND funding account has insufficient balance"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Attempt Open Savings \u2014 deposit below minimum AND funding insufficient",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == Savings AND Deposit_Amount < 100 AND Funding_Sufficient == false",
+          "terminal_action": "Open Account",
+          "on_success": "Validation errors shown: deposit amount must be at least $100 AND funding account has insufficient balance"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Attempt Open \u2014 account type not selected",
+          "actor": "<role>",
+          "conditional_branch": "Account_Type == null",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: account type is required"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Attempt Open \u2014 deposit amount not numeric",
+          "actor": "<role>",
+          "conditional_branch": "Deposit_Amount == non-numeric",
+          "terminal_action": "Open Account",
+          "on_success": "Validation error shown: deposit amount must be numeric"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 5,
+      "module_title": "Transfer Funds",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Internal transfer \u2014 successful",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == My_ParaBank_Account AND Transfer_Amount_Valid == true AND Sufficient_Funds == true",
+          "terminal_action": "Transfer",
+          "on_success": "Transfer completed successfully; transaction ID displayed."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Internal transfer \u2014 insufficient funds",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == My_ParaBank_Account AND Sufficient_Funds == false",
+          "terminal_action": "Transfer",
+          "on_success": "Display error: 'Insufficient funds'."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Internal transfer \u2014 invalid transfer amount",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == My_ParaBank_Account AND Transfer_Amount_Valid == false",
+          "terminal_action": "Transfer",
+          "on_success": "Display validation error for invalid transfer amount."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "External transfer \u2014 successful",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == External_Account AND Transfer_Amount_Valid == true AND Sufficient_Funds == true AND AccountNumbers_Match == true",
+          "terminal_action": "Transfer",
+          "on_success": "Transfer completed successfully; transaction ID displayed."
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "External transfer \u2014 account numbers do not match",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == External_Account AND AccountNumbers_Match == false",
+          "terminal_action": "Transfer",
+          "on_success": "Display error: 'Account numbers do not match'."
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "External transfer \u2014 invalid transfer amount",
+          "actor": "<role>",
+          "conditional_branch": "Transfer_Type == External_Account AND Transfer_Amount_Valid == false",
+          "terminal_action": "Transfer",
+          "on_success": "Display validation error for invalid transfer amount."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 6,
+      "module_title": "Payments",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Submit payment (successful submission)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Pay",
+          "on_success": "Payment submitted successfully; returns a reference code and updates balances."
+        }
+      ],
+      "attempts": 2
+    },
+    {
+      "module_id": 7,
+      "module_title": "Request Loan",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Personal loan \u2014 approved",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal AND Loan_Amount >= 1000 AND Loan_Amount <= 50000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Approved",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan approved and created successfully! (shows account details)"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Personal loan \u2014 denied (Insufficient credit history)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal AND Loan_Amount >= 1000 AND Loan_Amount <= 50000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Denied_Insufficient_Credit",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Insufficient credit history"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Personal loan \u2014 denied (Inadequate collateral value)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal AND Loan_Amount >= 1000 AND Loan_Amount <= 50000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance < 0.20 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Inadequate collateral value"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Personal loan \u2014 denied (Down payment below minimum 10%)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Personal AND Loan_Amount >= 1000 AND Loan_Amount <= 50000 AND Down_Payment < 0.10 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Minimum down payment not met (10% required)"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Auto loan \u2014 approved",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto AND Loan_Amount >= 5000 AND Loan_Amount <= 75000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Approved",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan approved and created successfully! (shows account details)"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Auto loan \u2014 denied (Insufficient credit history)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto AND Loan_Amount >= 5000 AND Loan_Amount <= 75000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Denied_Insufficient_Credit",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Insufficient credit history"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Auto loan \u2014 denied (Inadequate collateral value)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto AND Loan_Amount >= 5000 AND Loan_Amount <= 75000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance < 0.20 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Inadequate collateral value"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Auto loan \u2014 denied (Down payment below minimum 10%)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Auto AND Loan_Amount >= 5000 AND Loan_Amount <= 75000 AND Down_Payment < 0.10 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Minimum down payment not met (10% required)"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Home loan \u2014 approved",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home AND Loan_Amount >= 50000 AND Loan_Amount <= 500000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Approved",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan approved and created successfully! (shows account details)"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Home loan \u2014 denied (Insufficient credit history)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home AND Loan_Amount >= 50000 AND Loan_Amount <= 500000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance >= 0.20 * Loan_Amount AND Credit_Engine_Result == Denied_Insufficient_Credit",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Insufficient credit history"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Home loan \u2014 denied (Inadequate collateral value)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home AND Loan_Amount >= 50000 AND Loan_Amount <= 500000 AND Down_Payment < Loan_Amount AND Down_Payment >= 0.10 * Loan_Amount AND Collateral_Account_Balance < 0.20 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Inadequate collateral value"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Home loan \u2014 denied (Down payment below minimum 10%)",
+          "actor": "<role>",
+          "conditional_branch": "Loan_Type == Home AND Loan_Amount >= 50000 AND Loan_Amount <= 500000 AND Down_Payment < 0.10 * Loan_Amount",
+          "terminal_action": "Request Loan",
+          "on_success": "Loan denied: Minimum down payment not met (10% required)"
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 8,
+      "module_title": "Update Contact Info",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Update Profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "Profile updated successfully. Refreshes the data."
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Manage Cards",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Request Card \u2014 successful submission",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Card",
+          "on_success": "Card request submitted successfully. (tracking ID shown)"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Update Controls \u2014 successful update (all validations pass)",
+          "actor": "<role>",
+          "conditional_branch": "Spending limit within policy AND Travel notice dates valid AND Status transition allowed",
+          "terminal_action": "Update Controls",
+          "on_success": "Card controls updated successfully."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Update Controls \u2014 validation failure: spending limit exceeds policy",
+          "actor": "<role>",
+          "conditional_branch": "Spending limit exceeds policy",
+          "terminal_action": "Update Controls",
+          "on_success": "Validation failures appear inline, and the form stays editable."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Update Controls \u2014 validation failure: travel notice dates invalid",
+          "actor": "<role>",
+          "conditional_branch": "Travel notice dates invalid",
+          "terminal_action": "Update Controls",
+          "on_success": "Validation failures appear inline, and the form stays editable."
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Update Controls \u2014 validation failure: status transition not allowed",
+          "actor": "<role>",
+          "conditional_branch": "Status transition not allowed",
+          "terminal_action": "Update Controls",
+          "on_success": "Validation failures appear inline, and the form stays editable."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 10,
+      "module_title": "Investments",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Buy trade executed successfully",
+          "actor": "<role>",
+          "conditional_branch": "Action == Buy AND Fund_Symbol_Exists == true AND Quantity > 0 AND Buying_Power >= Required_Buying_Power",
+          "terminal_action": "Execute Trade",
+          "on_success": "Trade executed successfully. Order ID displayed."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Sell trade executed successfully",
+          "actor": "<role>",
+          "conditional_branch": "Action == Sell AND Fund_Symbol_Exists == true AND Quantity > 0 AND Share_Balance >= Quantity",
+          "terminal_action": "Execute Trade",
+          "on_success": "Trade executed successfully. Order ID displayed."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Execute Trade with invalid fund symbol",
+          "actor": "<role>",
+          "conditional_branch": "Fund_Symbol_Exists == false",
+          "terminal_action": "Execute Trade",
+          "on_success": "Validation error shown inline; trade not executed."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Execute Trade with non-positive quantity",
+          "actor": "<role>",
+          "conditional_branch": "Quantity <= 0",
+          "terminal_action": "Execute Trade",
+          "on_success": "Validation error shown inline; trade not executed."
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Buy trade fails due to insufficient buying power",
+          "actor": "<role>",
+          "conditional_branch": "Action == Buy AND Buying_Power < Required_Buying_Power",
+          "terminal_action": "Execute Trade",
+          "on_success": "Validation error shown inline; trade not executed."
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Sell trade fails due to insufficient share balance",
+          "actor": "<role>",
+          "conditional_branch": "Action == Sell AND Share_Balance < Quantity",
+          "terminal_action": "Execute Trade",
+          "on_success": "Validation error shown inline; trade not executed."
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Create recurring investment plan successfully",
+          "actor": "<role>",
+          "conditional_branch": "Start_Date > Today AND Contribution_Amount >= Minimum AND Funding_Account_Balance >= Contribution_Amount",
+          "terminal_action": "Create Plan",
+          "on_success": "Plan created successfully."
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Create Plan fails due to start date in the past",
+          "actor": "<role>",
+          "conditional_branch": "Start_Date <= Today",
+          "terminal_action": "Create Plan",
+          "on_success": "Validation error shown inline; 'Start date must be in the future'."
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Create Plan fails due to contribution below minimum",
+          "actor": "<role>",
+          "conditional_branch": "Contribution_Amount < Minimum",
+          "terminal_action": "Create Plan",
+          "on_success": "Validation error shown inline; contribution below minimum."
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Create Plan fails due to insufficient funding account balance",
+          "actor": "<role>",
+          "conditional_branch": "Funding_Account_Balance < Contribution_Amount",
+          "terminal_action": "Create Plan",
+          "on_success": "Validation error shown inline; plan not created."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 11,
+      "module_title": "Account Statements",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Generate statement \u2014 Month and Year period",
+          "actor": "<role>",
+          "conditional_branch": "Statement_Period == Month_And_Year",
+          "terminal_action": "Generate Statement",
+          "on_success": "Statement generated successfully."
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Generate statement \u2014 Custom date range",
+          "actor": "<role>",
+          "conditional_branch": "Statement_Period == Custom_Date_Range",
+          "terminal_action": "Generate Statement",
+          "on_success": "Statement generated successfully."
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Save e-statement preference \u2014 Opt into paperless (email validated)",
+          "actor": "<role>",
+          "conditional_branch": "Paperless_OptIn == true",
+          "terminal_action": "Save Preference",
+          "on_success": "e-Statement preference updated."
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Save e-statement preference \u2014 Opt out of paperless",
+          "actor": "<role>",
+          "conditional_branch": "Paperless_OptIn == false",
+          "terminal_action": "Save Preference",
+          "on_success": "e-Statement preference updated."
+        }
+      ],
+      "attempts": 3
+    },
+    {
+      "module_id": 12,
+      "module_title": "Security Settings",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Change Password (successful submission)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Change Password",
+          "on_success": "Password changed successfully."
+        }
+      ],
+      "attempts": 2
+    },
+    {
+      "module_id": 13,
+      "module_title": "Support Center",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Send secure message (Send Message)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Send Message",
+          "on_success": "Message sent successfully. (with a ticket ID)"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Request callback (Request Callback)",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Request Callback",
+          "on_success": "Callback request submitted. (email confirmation sent)"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

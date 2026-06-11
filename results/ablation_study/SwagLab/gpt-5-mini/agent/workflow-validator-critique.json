@@ -1,0 +1,119 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-09T09:06:35.196562Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "Workflows cover the form's submit action (success and all failure cases including required-field errors), conditional branches reference existing fields, there are no phantom terminal actions, and on_success values match the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "retry",
+        "summary": "One or more workflows use conditional_branch variables that are not defined in the AST (clicked_column, product_in_cart); regenerate workflows with conditions that reference AST fields or update the AST to expose those fields.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": [
+          "WF-001 (terminal_action=Open Product Detail): conditional_branch 'clicked_column == Name' references 'clicked_column' which does not appear under visible_when/required_when or as a state key in the AST \u2014 either remove the conditional_branch, change it to reference an AST field (or the clickable_columns context) that exists, or add the corresponding visible_when/required_when entry to the AST.",
+          "WF-002 (terminal_action=Open Product Detail): conditional_branch 'clicked_column == Image' references 'clicked_column' which does not appear under visible_when/required_when or as a state key in the AST \u2014 either remove the conditional_branch, change it to reference an AST field (or the clickable_columns context) that exists, or add the corresponding visible_when/required_when entry to the AST.",
+          "WF-003 (terminal_action=Add to cart): conditional_branch 'product_in_cart == false' references 'product_in_cart' which is not defined under visible_when/required_when or as a state key in the AST \u2014 either remove or replace the conditional_branch with a condition that uses an AST-exposed property (or add a visible_when/required_when or state that represents product_in_cart).",
+          "WF-004 (terminal_action=Remove): conditional_branch 'product_in_cart == true' references 'product_in_cart' which is not defined under visible_when/required_when or as a state key in the AST \u2014 either remove or replace the conditional_branch with a condition that uses an AST-exposed property (or add a visible_when/required_when or state that represents product_in_cart)."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows are present and correct: state-bound actions, links, and on_success values match the AST; no phantom workflows or incorrect conditional branches found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows are present and match the AST actions; no phantoms, missing conditional branches, or empty on_success values were found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All form submit actions (Continue, Cancel) are covered by workflows, there are no phantom terminal actions, conditional branches or on_success mismatches, and the workflow list is complete.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All submit actions in the Checkout Wizard Overview step have matching workflows; no phantoms or other issues were found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The single workflow covers the Confirmation_Page submit action 'Back Home' with the correct on_success behavior; no missing workflows or phantoms were found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The workflow list correctly covers the Logout button action with matching terminal_action and on_success; no missing workflows or phantoms detected.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "Workflow list matches the AST: the Reset App State button workflow is present, on_success is concrete, and there are no phantom actions or conditional errors.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

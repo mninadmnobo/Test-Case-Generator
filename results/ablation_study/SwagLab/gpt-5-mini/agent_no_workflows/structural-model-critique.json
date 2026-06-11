@@ -1,0 +1,120 @@
+{
+  "project_name": "Swaglab",
+  "generated_at": "2026-06-10T18:47:05.491897Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately represents the interactive elements (Username, Password, Login button), validations, error messages, and success redirect described; no critical items missing and no extraneous elements found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 2,
+      "module_title": "Product Inventory",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately represents the interactive elements (product links, add/remove toggle, sort dropdown, cart badge, and product detail page); one minor extra row action ('View Details') was added but is non-critical.",
+        "missing": [],
+        "phantoms": [
+          "Product_Inventory_Page.components.Products_List.row_actions[0] (View Details action not mentioned in description)"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 3,
+      "module_title": "Product Detail",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST accurately captures the interactive elements (stateful Add/Remove action, Back to products, Cart icon) with no missing or extraneous items.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 4,
+      "module_title": "Shopping Cart",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly captures the interactive elements: per-item Remove row action, Continue Shopping navigation, and Checkout action; no missing or extraneous interactive items found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 5,
+      "module_title": "Checkout - Information",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST accurately models the form fields (First Name, Last Name, Postal Code), required validation/error messages, and the Continue and Cancel actions with their outcomes.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Checkout - Overview",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly includes the Overview_Step with no form fields and the two interactive buttons (Finish and Cancel) described; no missing or extraneous interactive elements were found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 7,
+      "module_title": "Checkout - Confirmation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "The AST correctly represents the single interactive element (the Back Home button) and its on_success behavior; no missing interactive elements or extraneous phantoms found.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST covers the logout action and protected pages behavior; only minor inferred property present and the explicit Login_Page component is not included but not critical.",
+        "missing": [
+          "components.Login_Page"
+        ],
+        "phantoms": [
+          "components.Logout_Button.state_transition"
+        ],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Reset App State",
+      "critique": {
+        "verdict": "yes",
+        "summary": "AST correctly models the single 'Reset App State' button with its described on_success behavior (clears cart and resets in-app state without logging the user out).",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}

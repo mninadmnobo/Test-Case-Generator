@@ -1,0 +1,403 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-10T21:42:20.850976Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Log in with valid credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "redirects to Dashboard"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Log in with invalid or empty credentials",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Log in",
+          "on_success": "shows inline error message"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Access as a guest",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Access as a guest",
+          "on_success": "Allows unauthenticated browsing"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View cookies notice",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cookies notice",
+          "on_success": "Provides cookie usage information"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Create a new calendar event",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "New_Event",
+          "on_success": "creates personal calendar entry"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Navigate to previous month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Previous Month",
+          "on_success": "opens dedicated calendar view"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Navigate to next month",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Next Month",
+          "on_success": "opens dedicated calendar view"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Reset dashboard to default settings",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Edit",
+          "terminal_action": "Reset page to default",
+          "on_success": "resets dashboard to default settings"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Add a new block",
+          "actor": "<role>",
+          "conditional_branch": "entity_state == Edit",
+          "terminal_action": "+ Add a block",
+          "on_success": "opens page listing all available block types"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "Configure existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Configure",
+          "on_success": "opens configuration options for the block"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "Move existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Move",
+          "on_success": "initiates block moving process"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "Delete existing block",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Delete",
+          "on_success": "removes the block from the dashboard"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "Open full calendar view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Full calendar",
+          "on_success": "opens dedicated calendar view"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "Open calendar data management",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Import or export calendars",
+          "on_success": "opens calendar data management"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 3,
+      "module_title": "My Courses",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Star a course",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Star this course",
+          "on_success": "Course starred; success message shown"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Remove a course from view",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Remove from view",
+          "on_success": "Course removed from view; success message shown"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 4,
+      "module_title": "Course Page",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Collapse all sections",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Collapse all",
+          "on_success": "All sections collapsed"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 5,
+      "module_title": "Participants",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Clear Filters",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Clear Filters",
+          "on_success": "Filters cleared"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Apply Filters",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Apply Filters",
+          "on_success": "Filters applied"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View Profile of Participant",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "View Profile",
+          "on_success": "Profile displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "Filter by First Name",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "filter by First Name",
+          "on_success": "Filtered by First Name"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Filter by Last Name",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "filter by Last Name",
+          "on_success": "Filtered by Last Name"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "workflows": [],
+      "attempts": 1
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Open submission form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Add_Submission_Button",
+          "on_success": "opens the submission form"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Submit with Online Text Editor",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Submission created"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "Submit with File Upload",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Submit",
+          "on_success": "Submission created"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View submission",
+          "actor": "<role>",
+          "conditional_branch": "due date has not passed AND teacher permits resubmission",
+          "terminal_action": "View",
+          "on_success": "Submission details displayed"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "Edit submission",
+          "actor": "<role>",
+          "conditional_branch": "due date has not passed AND teacher permits resubmission",
+          "terminal_action": "Edit",
+          "on_success": "Submission form opened for editing"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Navigate to Activity from Assignments Section",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Navigate to Activity",
+          "on_success": "redirects to activity's page"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 9,
+      "module_title": "Profile",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Send Message",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "send_message",
+          "on_success": "Message sent"
+        },
+        {
+          "wf_id": "WF-002",
+          "name": "Open Profile Form",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "open_profile_form",
+          "on_success": "Profile form opened"
+        },
+        {
+          "wf_id": "WF-003",
+          "name": "View Data Retention Summary",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_data_retention_summary",
+          "on_success": "Data retention summary displayed"
+        },
+        {
+          "wf_id": "WF-004",
+          "name": "View Course Profiles",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_course_profiles",
+          "on_success": "Course profiles displayed"
+        },
+        {
+          "wf_id": "WF-005",
+          "name": "View Blog Entries",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_blog_entries",
+          "on_success": "Blog entries displayed"
+        },
+        {
+          "wf_id": "WF-006",
+          "name": "View Forum Posts",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_forum_posts",
+          "on_success": "Forum posts displayed"
+        },
+        {
+          "wf_id": "WF-007",
+          "name": "View Forum Discussions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_forum_discussions",
+          "on_success": "Forum discussions displayed"
+        },
+        {
+          "wf_id": "WF-008",
+          "name": "View Learning Plans",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_learning_plans",
+          "on_success": "Learning plans displayed"
+        },
+        {
+          "wf_id": "WF-009",
+          "name": "View Browser Sessions",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_browser_sessions",
+          "on_success": "Browser sessions displayed"
+        },
+        {
+          "wf_id": "WF-010",
+          "name": "View Grades Overview",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "view_grades_overview",
+          "on_success": "Grades overview displayed"
+        },
+        {
+          "wf_id": "WF-011",
+          "name": "Update Profile",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Update Profile",
+          "on_success": "saves profile changes"
+        },
+        {
+          "wf_id": "WF-012",
+          "name": "Cancel Profile Update",
+          "actor": "<role>",
+          "conditional_branch": null,
+          "terminal_action": "Cancel",
+          "on_success": "exits without changes"
+        }
+      ],
+      "attempts": 1
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Logout authenticated user",
+          "actor": "<role>",
+          "conditional_branch": "user must be authenticated",
+          "terminal_action": "Logout_Button",
+          "on_success": "terminates the current authenticated session and redirects to the login page"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

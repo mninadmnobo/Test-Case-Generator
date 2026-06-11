@@ -1,0 +1,33 @@
+{
+  "project_name": "Moodlestudent",
+  "generated_at": "2026-06-09T12:05:52.764248Z",
+  "modules": [
+    {
+      "module_id": 6,
+      "module_title": "Grades",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    },
+    {
+      "module_id": 8,
+      "module_title": "Activities",
+      "workflows": [],
+      "error": "litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors. LiteLLM Retried: 2 times"
+    },
+    {
+      "module_id": 10,
+      "module_title": "Logout",
+      "workflows": [
+        {
+          "wf_id": "WF-001",
+          "name": "Logout action",
+          "actor": "<role>",
+          "conditional_branch": "user must be authenticated",
+          "terminal_action": "Logout_Button",
+          "on_success": "terminates the current authenticated session and redirects to the login page"
+        }
+      ],
+      "attempts": 1
+    }
+  ]
+}

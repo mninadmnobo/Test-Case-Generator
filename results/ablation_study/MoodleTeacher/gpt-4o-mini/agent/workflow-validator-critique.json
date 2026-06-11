@@ -1,0 +1,236 @@
+{
+  "project_name": "Moodleteacher",
+  "generated_at": "2026-06-09T11:47:58.703585Z",
+  "modules": [
+    {
+      "module_id": 1,
+      "module_title": "Login",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form submit actions.",
+        "missing": [
+          "No workflow for Login_Form: action=Log in"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Login_Form: action=Log in"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 2,
+      "module_title": "Dashboard",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for form actions in the Timeline block.",
+        "missing": [
+          "No workflow for Timeline_Block: action=Time_Range"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflow for Timeline_Block: action=Time_Range"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 3,
+      "module_title": "Dashboard \u2014 Edit Mode",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for state-bound actions related to existing blocks.",
+        "missing": [
+          "No workflow for existing_blocks: action=Configure",
+          "No workflow for existing_blocks: action=Move",
+          "No workflow for existing_blocks: action=Delete"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for existing_blocks: action=Configure",
+          "Add workflows for existing_blocks: action=Move",
+          "Add workflows for existing_blocks: action=Delete"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 4,
+      "module_title": "My Courses",
+      "critique": {
+        "verdict": "retry",
+        "summary": "There is a phantom workflow for terminal_action 'Course_Name' which is not found in any AST node.",
+        "missing": [],
+        "phantoms": [
+          "WF-003 terminal_action=Course_Name not found in any AST node"
+        ],
+        "fixes": [
+          "Remove phantom workflow WF-003"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 5,
+      "module_title": "Course Page",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly match the actions described in the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 6,
+      "module_title": "Course Edit Mode and Activity Chooser",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for state-bound actions and phantom workflows detected.",
+        "missing": [
+          "No workflow for state_bound_action_bar: state=Activity Chooser, action=Add"
+        ],
+        "phantoms": [
+          "WF-006 terminal_action=Add not found in any AST node",
+          "WF-007 terminal_action=Add not found in any AST node"
+        ],
+        "fixes": [
+          "Add workflow for state_bound_action_bar: state=Activity Chooser, action=Add",
+          "Remove phantom workflows WF-006 and WF-007"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 7,
+      "module_title": "Assignment Creation",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows for form submit actions are present and correct.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 8,
+      "module_title": "Course Settings",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correctly defined for the Course Settings form.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 9,
+      "module_title": "Participants Management",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for state-bound actions and phantom workflows detected.",
+        "missing": [
+          "No workflow for Participants_Table: state=Active, action=View Profile",
+          "No workflow for Participants_Table: state=Active, action=Edit Role",
+          "No workflow for Participants_Table: state=Active, action=Send Message",
+          "No workflow for Participants_Table: state=Active, action=With selected users\u2026"
+        ],
+        "phantoms": [
+          "WF-011 terminal_action=Message not found in any AST node"
+        ],
+        "fixes": [
+          "Add workflows for missing state-bound actions in Participants_Table.",
+          "Remove phantom workflow WF-011."
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 10,
+      "module_title": "Assignment \u2014 Teacher View",
+      "critique": {
+        "verdict": "retry",
+        "summary": "The workflow for the Grade button's submit action is missing.",
+        "missing": [
+          "No workflow for button: action=Grade"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add a workflow for button: action=Grade"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 11,
+      "module_title": "Assignment Submissions",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows are present and correctly defined.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 12,
+      "module_title": "Gradebook \u2014 Grader Report",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are accounted for and correctly match the actions defined in the AST.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 13,
+      "module_title": "Profile",
+      "critique": {
+        "verdict": "retry",
+        "summary": "Missing workflows for actions in the Profile page AST.",
+        "missing": [
+          "No workflow for Profile_Page: action=Edit_Profile_Link",
+          "No workflow for Profile_Page: action=Data_Retention_Summary_Link",
+          "No workflow for Profile_Page: action=Course_Profiles_Links",
+          "No workflow for Profile_Page: action=Browser_Sessions_Link",
+          "No workflow for Profile_Page: action=Grades_Overview_Link"
+        ],
+        "phantoms": [],
+        "fixes": [
+          "Add workflows for missing actions: Edit_Profile_Link, Data_Retention_Summary_Link, Course_Profiles_Links, Browser_Sessions_Link, Grades_Overview_Link"
+        ]
+      },
+      "forced_ship": true
+    },
+    {
+      "module_id": 14,
+      "module_title": "Profile Edit",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All required workflows are present and correct.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    },
+    {
+      "module_id": 15,
+      "module_title": "Logout",
+      "critique": {
+        "verdict": "yes",
+        "summary": "All workflows are present and correct.",
+        "missing": [],
+        "phantoms": [],
+        "fixes": []
+      },
+      "forced_ship": false
+    }
+  ]
+}
